@@ -35,8 +35,18 @@ export function evalCount(rs: RoundState, self: SlotState, count: Count): number
     case 'cards': {
       let n = 0
       for (const s of rs.slots) {
+        if (count.side === 'left' ? s.index >= self.index : count.side === 'right' ? s.index <= self.index : false) continue
         if (count.excludeSelf && s === self) continue
         if (matchFilter(s, count.filter)) n++
+      }
+      return n
+    }
+    case 'chain': {
+      const step = count.side === 'left' ? -1 : 1
+      let n = 0
+      for (let i = self.index + step; i >= 0 && i < rs.slots.length; i += step) {
+        if (!matchFilter(rs.slots[i], count.filter)) break
+        n++
       }
       return n
     }

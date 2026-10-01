@@ -1,5 +1,6 @@
 import type { ArtConfig, ArtKind, ContentDB } from '../content/index.ts'
 import type { CardDef, TamerDef, WeatherDef } from '../core/types.ts'
+import cardDirections from '../../content/art-direction.json' with { type: 'json' }
 
 /**
  * ChatGPT görsel prompt'ları içerikten üretilir (GDD "Kart görseli prompt'u").
@@ -25,13 +26,15 @@ const ELEMENT_NAMES: Record<string, string> = {
 }
 
 export function cardPrompt(card: CardDef, art: ArtConfig): string {
+  const direction = (cardDirections.cards as Record<string, { creature: string; habitat: string }>)[card.id]
   const lines = card.elements.map((e) => art.elements[e])
   const element =
     card.elements.length > 1
       ? `${card.elements.map((e) => ELEMENT_NAMES[e]).join(' and ')} combined, ${lines.map((l) => l.split(': ')[1]).join('; ')}`
       : lines[0]
   return fill(art.kinds.cards.template, {
-    CREATURE: card.art?.creature ?? card.name,
+    CREATURE: direction?.creature ?? card.art?.creature ?? card.name,
+    HABITAT: direction?.habitat ?? 'a quiet natural habitat specific to this creature, distinct from other cards',
     ELEMENT: element,
     POWER: art.power[card.rarity],
   })

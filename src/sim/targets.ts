@@ -1,7 +1,7 @@
 import type { ContentDB } from '../content/index.ts'
 import { deriveSeed } from '../core/rng.ts'
 import { runAgents, validate } from './calibrate.ts'
-import { arrangementExperiment, duplicateRatio, weatherFitExperiment } from './experiments.ts'
+import { arrangementExperiment, duplicateRatio, presetMatrix, weatherFitExperiment } from './experiments.ts'
 import { inRange } from './stats.ts'
 
 /**
@@ -65,6 +65,22 @@ export function checkBalance(db: ContentDB, opts: CheckOptions): TargetCheck[] {
     pass: inRange(fit.meanRatio, t.weatherFit.matchedOverMismatched),
     detail: `en zayıf: ${worstFit.weather} x${worstFit.ratio.toFixed(2)} (tam koleksiyon)`,
   })
+
+  if (db.decks.length > 1) {
+    log('preset desteler: dizilim etkisi ve hava matrisi...')
+    const m = presetMatrix(db, { seed: opts.seed, days: Math.max(30, Math.floor(opts.days / 3)) })
+    const weakest = m.rows.reduce((a, b) => (b.masterOverRandom < a.masterOverRandom ? b : a))
+    out.push({
+      id: 'presetDominance',
+      text: 'Hiçbir deste bütün hava türlerinde üstte olmamalı (GDD).',
+      value: m.dominant ? 0 : 1,
+      target: 'baskın deste yok',
+      pass: !m.dominant,
+      detail: m.dominant
+        ? `${m.dominant} her havada birinci`
+        : `en az dizilim etkisi: ${weakest.name} x${weakest.masterOverRandom.toFixed(2)} (usta/rastgele)`,
+    })
+  }
 
   const dup = duplicateRatio(db)
   out.push({

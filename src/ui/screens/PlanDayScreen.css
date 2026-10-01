@@ -1,0 +1,78 @@
+.plan { position: absolute; inset: 0; padding: 24px 38px; background: linear-gradient(#040b1033,#040b1044),url('/art/ui/board.webp') center / cover no-repeat; }
+.plan__top { display: flex; align-items: center; gap: 24px; height: 80px; padding: 12px 22px; }
+.plan__top h2 { font-size: 36px; color: var(--gold-hi); }
+.plan__lifetime { margin-left: auto; font-size: 20px; }
+.plan__lifetime b { color: var(--gold-hi); font-family: var(--font-display); }
+.plan__week { margin-top: 20px; display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; }
+.plan__day { position: relative; height: 195px; padding: 14px 16px; display: flex; flex-direction: column; align-items: center; gap: 3px; text-align: center; overflow: hidden; }
+.weather-scene { background: linear-gradient(180deg,#1c3a5144,#030d15f5),radial-gradient(ellipse at 65% 15%,#b1d9ef,#2e6585 40%,#152c29 75%); }
+.weather-scene--sun { background: linear-gradient(180deg,#202f3300,#091318e8),radial-gradient(ellipse at 30% 10%,#ffe0a2,#b28863 25%,#537380 55%,#253e39 80%); }
+.weather-scene--storm { background: linear-gradient(180deg,#18203733,#07101bed),radial-gradient(ellipse at 50% 20%,#7958a2,#242539 45%,#141d24); }
+.weather-scene--rain { background: repeating-linear-gradient(110deg,transparent 0 19px,#78bce62e 20px 21px),linear-gradient(180deg,#294056,#071017); }
+.weather-scene--quake,.weather-scene--drought { background: linear-gradient(180deg,#29332e55,#110c0bec),radial-gradient(ellipse at 80% 30%,#c57945,#53483d 50%,#172b29); }
+.weather-scene--fog { background: linear-gradient(180deg,#8492a777,#131c29ed),linear-gradient(120deg,#495e61,#1b364b); }
+.plan__day::before { content: ''; position: absolute; left: -5%; right: -5%; bottom: 40px; height: 100px; background: #10201db3; clip-path: polygon(0 80%,9% 47%,17% 62%,28% 15%,33% 47%,39% 23%,50% 76%,67% 46%,80% 67%,93% 25%,100% 70%,100% 100%,0 100%); pointer-events: none; }
+.plan__day > * { z-index: 1; }
+.plan__day small { font-family: var(--font-display); color: var(--gold-hi); font-size: 17px; }
+.plan__day b { font-family: var(--font-display); font-size: 22px; }
+.plan__day.is-today { border-color: var(--gold-hi); box-shadow: inset 0 0 0 2px #f9ca7399,0 0 20px #ffd88a66; }
+.plan__day.is-played { opacity: .6; }
+.plan__wicon { height: 70px; display: grid; place-items: center; margin: 5px 0; }
+.plan__weffect { font-size: 16px; color: #e1d8c6; }
+.plan__earned { position: absolute; top: 9px; right: 12px; color: var(--good); font-family: var(--font-display); }
+.plan__tamer { position: absolute; left: 38px; top: 344px; bottom: 222px; width: 432px; padding: 16px 22px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+.plan__tamer h3,.plan__decks h3 { display: flex; align-items: center; gap: 14px; color: var(--gold-hi); font-size: 27px; }
+.plan__portrait { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; overflow: hidden; margin: 0 -12px; background: radial-gradient(ellipse at center,#3b493d,#12201d 70%); }
+.plan__portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+.plan__portrait > span { font-family: var(--font-display); color: var(--gold-hi); font-size: 30px; }
+.plan__tamerrow { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.plan__tamerrow .btn { width: 45px; height: 45px; border-radius: 50%; padding: 0; font-size: 35px; }
+.plan__tamername { flex: 1; font-family: var(--font-display); font-size: 28px; font-weight: 700; text-align: center; color: var(--gold-hi); }
+.plan__tamer > .muted { text-align: center; font-size: 17px; }
+.plan__passive { margin: 0; padding: 12px; text-align: center; border: 1px solid var(--line); font-size: 20px; }
+.plan__decks { position: absolute; left: 494px; right: 38px; top: 344px; bottom: 222px; padding: 16px 22px; display: flex; flex-direction: column; }
+.plan__deckhint { margin-left: auto; font-family: var(--font-body); color: var(--text-dim); font-size: 17px; font-weight: 400; }
+.plan__deckgrid { flex: 1; min-height: 0; margin-top: 14px; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); grid-template-rows: repeat(2,minmax(0,1fr)); gap: 14px; }
+.plan__deck { position: relative; padding: 12px 14px; border: 1px solid #927341; background: #0a151bc9; cursor: pointer; display: flex; flex-direction: column; gap: 6px; overflow: hidden; transition: border-color .15s,box-shadow .15s; }
+.plan__deck:hover { border-color: var(--gold-hi); }
+.plan__deck.is-selected { border-color: var(--gold-hi); box-shadow: inset 0 0 0 2px #ffd58a99,0 0 17px #ffcc6655; }
+.plan__deck.is-incomplete,.plan__deck.is-incomplete:hover { border-color: #cf5148; background-color: #281418de; box-shadow: inset 0 0 0 1px #dc625444,0 0 14px #d93d3828; cursor: not-allowed; }
+.plan__deck.is-incomplete .plan__deckart { opacity: .35; }
+.plan__deck.is-incomplete > p,.plan__invalidcount { color: #ffaca0; }
+.plan__deckerror { display: block; color: #ffaca0; font-weight: 700; font-size: 16px; margin-top: 3px; }
+.plan__starterror { margin: 0; color: #ffaca0; font-size: 20px; }
+.plan__tamer > .plan__invalidcount { text-align: center; font-size: 17px; }
+.plan__deckart { position: absolute; inset: 0; display: flex; justify-content: flex-end; padding: 15px 30px 0 0; gap: 0; opacity: .7; pointer-events: none; mask-image: linear-gradient(90deg,transparent,#000 55%); }
+.plan__deckart > div { margin-right: -85px; }
+.plan__deckart .card { width: 145px; height: 205px; }
+.plan__deck > :not(.plan__deckart) { position: relative; z-index: 1; }
+.plan__check { position: absolute; right: 12px; top: 10px; font-size: 27px; color: var(--gold-hi); opacity: 1; }
+.plan__deck p { margin: 0; flex: 1; font-size: 17px; color: var(--text-dim); }
+.plan__deck .btn { align-self: flex-start; font-size: 14px; padding: 5px 10px; }
+.plan__deckhead { display: flex; justify-content: space-between; align-items: baseline; }
+.plan__deckhead b { font-family: var(--font-display); font-size: 27px; color: var(--gold-hi); }
+.plan__deckhead > span { padding: 3px 7px; background: #061019b3; font-size: 17px; }
+.plan__elements { display: flex; gap: 11px; font-size: 18px; }
+.plan__elements span { display: inline-flex; align-items: center; gap: 3px; }
+.plan__quota { position: absolute; left: 38px; bottom: 30px; width: 980px; height: 155px; padding: 19px 24px; display: flex; flex-direction: column; gap: 12px; }
+.plan__quotahead { display: flex; gap: 20px; align-items: center; }
+.plan__quotahead b { font-family: var(--font-display); color: var(--gold-hi); font-size: 22px; }
+.plan__quotahead span:first-of-type { font-family: var(--font-display); font-size: 28px; }
+.plan__quotahead .muted { margin-left: auto; font-size: 19px; }
+.plan__bar { height: 18px; border-radius: 999px; background: #0008; border: 1px solid var(--gold); overflow: hidden; padding: 3px; }
+.plan__bar div { height: 100%; border-radius: 999px; background: linear-gradient(90deg,#dd9a32,#ffe7a0); box-shadow: 0 0 14px #ffc46c88; transition: width .4s; }
+.plan__weeks { display: flex; gap: 14px; font-size: 17px; }
+.plan__actions { position: absolute; right: 38px; bottom: 30px; width: 790px; display: flex; flex-direction: column; align-items: flex-end; gap: 15px; }
+.plan__start { width: 580px; height: 96px; font-size: 37px; display: flex; justify-content: center; align-items: center; gap: 22px; }
+.plan__start .game-icon { color: #57310f; }
+.plan__actions .chip-row .btn { font-size: 15px; }
+.plan__cards { display: flex; flex-wrap: wrap; gap: 18px; max-height: 820px; padding: 6px; }
+.plan__cardcell { display: flex; flex-direction: column; align-items: center; gap: 6px; font-family: var(--font-display); font-size: 22px; color: var(--gold-hi); }
+
+.plan--tall .plan__portrait img { object-fit: contain; }
+.plan--tall .plan__deckart { align-items: center; padding-top: 30px; padding-bottom: 30px; mask-image: linear-gradient(90deg,transparent,#000 35%); }
+.plan--tall .plan__deckart .card { width: 235px; height: 335px; }
+.plan--tall .plan__deckart > div { margin-right: -145px; }
+.plan__decktamer { display: flex; align-items: center; gap: 7px; font-size: 16px; color: var(--gold-hi); }
+.plan__tamer h3 { font-size: 22px; }
+.plan__deckgrid { grid-template-rows: none; grid-auto-rows: minmax(220px,1fr); overflow-y: auto; }

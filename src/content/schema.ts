@@ -39,7 +39,13 @@ export const CardFilterSchema: z.ZodType<CardFilter> = z.lazy(() =>
 )
 
 export const CountSchema: z.ZodType<Count> = z.discriminatedUnion('kind', [
-  z.strictObject({ kind: z.literal('cards'), filter: CardFilterSchema.optional(), excludeSelf: z.boolean().optional() }),
+  z.strictObject({
+    kind: z.literal('cards'),
+    filter: CardFilterSchema.optional(),
+    excludeSelf: z.boolean().optional(),
+    side: side.optional(),
+  }),
+  z.strictObject({ kind: z.literal('chain'), side, filter: CardFilterSchema.optional() }),
   z.strictObject({ kind: z.literal('distinctElements') }),
   z.strictObject({ kind: z.literal('heat') }),
   z.strictObject({ kind: z.literal('selfTriggers') }),
@@ -208,10 +214,19 @@ export const CalendarSchema: z.ZodType<CalendarConfig> = z.strictObject({
     .min(1),
 })
 
+export const DeckPresetSchema = z.strictObject({
+  id,
+  name: z.string(),
+  tamer: z.string(),
+  text: z.string(),
+  cards: z.array(z.strictObject({ card: z.string(), count: z.int().min(1) })),
+})
+export type DeckPreset = z.infer<typeof DeckPresetSchema>
+
 export const StarterSchema = z.strictObject({
   tamer: z.string(),
-  deckName: z.string(),
-  deck: z.array(z.strictObject({ card: z.string(), count: z.int().min(1) })),
+  /** decks.json'daki preset id'si */
+  deck: z.string(),
   resource: z.number(),
 })
 export type StarterConfig = z.infer<typeof StarterSchema>
@@ -269,6 +284,7 @@ export const FILE_SCHEMAS = {
   cards: z.object({ cards: z.array(CardSchema) }),
   tamers: z.object({ tamers: z.array(TamerSchema) }),
   weather: z.object({ weather: z.array(WeatherSchema) }),
+  decks: z.object({ decks: z.array(DeckPresetSchema) }),
   economy: EconomySchema,
   calendar: CalendarSchema,
   starter: StarterSchema,

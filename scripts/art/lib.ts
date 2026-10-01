@@ -33,13 +33,20 @@ export const PATHS = {
 export const IMAGE_EXTS = ['.png', '.jpg', '.jpeg', '.webp']
 export const ART_KINDS: ArtKind[] = ['cards', 'tamers', 'weather']
 
-/** İçeriği her seferinde diskten okur (dev sunucusu açıkken JSON değişebilir). */
-export async function loadContentFromDisk(): Promise<ContentDB> {
+/**
+ * İçeriği her seferinde diskten okur (dev sunucusu açıkken JSON değişebilir).
+ * `set` verilirse content/proposals/<set>/cards.json (ve varsa decks.json) kullanılır.
+ */
+export async function loadContentFromDisk(opts: { set?: string } = {}): Promise<ContentDB> {
   const read = async (f: string) => JSON.parse(await readFile(path.join(PATHS.content, f), 'utf8'))
+  const setFile = (f: string) => (opts.set ? path.join('proposals', opts.set, f) : f)
+  const setDir = opts.set ? path.join(PATHS.content, 'proposals', opts.set) : null
+  if (setDir && !existsSync(path.join(setDir, 'cards.json'))) throw new Error(`Öneri seti bulunamadı: ${setDir}`)
   return buildContent({
-    cards: await read('cards.json'),
+    cards: await read(setFile('cards.json')),
     tamers: await read('tamers.json'),
     weather: await read('weather.json'),
+    decks: await read(setDir && existsSync(path.join(setDir, 'decks.json')) ? setFile('decks.json') : 'decks.json'),
     economy: await read('economy.json'),
     calendar: await read('calendar.json'),
     starter: await read('starter.json'),
@@ -138,6 +145,28 @@ export async function buildWebAll(db: ContentDB, force = false): Promise<number>
         built++
       }
     }
+  }
+  return built
+}
+
+/** Arayüz sahneleri ve paket illüstrasyonları da master PNG'lerden yeniden üretilebilir. */
+export async function buildUiAll(force = false): Promise<number> {
+  const sourceDir = path.join(PATHS.source, 'ui')
+  const webDir = path.join(ROOT, 'public/art/ui')
+  if (!existsSync(sourceDir)) return 0
+  await mkdir(webDir, { recursive: true })
+  let built = 0
+  for (const file of await readdir(sourceDir)) {
+    if (!file.endsWith('.png')) continue
+    const source = path.join(sourceDir, file)
+    const target = path.join(webDir, `${file.slice(0, -4)}.webp`)
+    if (!force && existsSync(target) && (await stat(target)).mtimeMs >= (await stat(source)).mtimeMs) continue
+    const scene = file === 'library.png' || file === 'board.png'
+    const image = sharp(source).rotate()
+    if (scene) image.resize(1920, 1080, { fit: 'cover' })
+    else image.resize({ width: 640 })
+    await image.webp({ quality: scene ? 88 : 86 }).toFile(target)
+    built++
   }
   return built
 }

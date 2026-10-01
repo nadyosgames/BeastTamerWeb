@@ -14,8 +14,8 @@ npm install
 npm run dev
 ```
 
-Tarayıcıda: **Tur Laboratuvarı** (`#lab`) kartları dizip motoru izlemek için, **Art Studio** (`#art`) ChatGPT
-görsellerini eklemek için.
+Tarayıcıda: **OYNA** (`#play`) playtest — haftanın havasına göre deste seç, 6 tur kartları diz, kotayı tuttur;
+**Tur Laboratuvarı** (`#lab`) tek bir eli serbestçe deneme; **Art Studio** (`#art`) ChatGPT görsellerini ekleme.
 
 ## Komutlar
 
@@ -24,11 +24,13 @@ görsellerini eklemek için.
 | `npm run dev` / `npm run build` | Geliştirme sunucusu / production build |
 | `npm test` | Motor testleri (GDD örnek turu = 56 kaynak dahil) |
 | `npm run lint` · `npm run typecheck` | oxlint (katman sınırları dahil) · TypeScript |
-| `npm run content:check` | İçerik JSON doğrulama |
+| `npm run content:check` | İçerik JSON doğrulama (`-- --set v1` ile öneri seti) |
 | `npm run content:schema` | JSON Schema üret (VS Code'da kart yazarken otomatik tamamlama) |
 | `npm run sim -- check` | GDD denge hedefleri ✓/✗ |
 | `npm run sim -- arrange \| weather \| cards \| campaign` | Tekil denge deneyleri |
 | `npm run sim -- calibrate` | Kota eğrisini simülasyonla üret → `content/generated/balance.json` |
+| `npm run sim -- decks` | Preset desteler: dizilim etkisi + hava matrisi |
+| `npm run sim -- review --set v1` | Öneri kart setini incele (güç, sinerji) → `Docs/proposals/` |
 | `npm run art:prompts` | ChatGPT prompt'larını üret → `art/prompts/PROMPTS.md` |
 | `npm run art:ingest` | `art/inbox/` → master + web görselleri |
 | `npm run art:status` | Eksik görseller |

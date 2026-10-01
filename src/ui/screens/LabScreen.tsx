@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { content } from '../../content/index.ts'
+import { content } from '../content.ts'
 import type { RoundEvent } from '../../core/engine/events.ts'
 import { compileModifiers } from '../../core/engine/modifiers.ts'
 import { resolveRound } from '../../core/engine/round.ts'

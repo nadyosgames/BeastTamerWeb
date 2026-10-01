@@ -7,13 +7,16 @@ import {
   calibrateQuota,
   cardPowerReport,
   checkBalance,
+  presetMatrix,
   PROFILES,
+  reviewSet,
   runAgents,
   summarize,
   validate,
   weatherFitExperiment,
 } from '../../src/sim/index.ts'
 import { loadContentFromDisk, ROOT } from '../art/lib.ts'
+import { reviewToMarkdown } from './review-md.ts'
 
 /**
  * Simülasyon CLI.
@@ -24,7 +27,10 @@ import { loadContentFromDisk, ROOT } from '../art/lib.ts'
  *   npm run sim -- cards                 kart gücü tablosu (nadirlik içi aykırılar)
  *   npm run sim -- campaign --profile good --weeks 144
  *   npm run sim -- calibrate             kota eğrisini üret → content/generated/balance.json
+ *   npm run sim -- decks                 preset desteler: dizilim etkisi + hava matrisi
+ *   npm run sim -- review --set v1       öneri kart setini incele → Docs/proposals/kart-seti-v1.md
  *
+ * --set <ad>: content/proposals/<ad>/ altındaki öneri setiyle çalışır (oyun içeriğine dokunmaz).
  * Ortak: --seed N  --json (yalnızca JSON yaz)  --strict (hedef tutmazsa çıkış kodu 1)
  * Her çalıştırma sim-results/ altına JSON bırakır (karşılaştırma ve ileride rapor ekranı için).
  */
@@ -42,10 +48,12 @@ const { positionals, values } = parseArgs({
     collection: { type: 'string', default: 'full' },
     strict: { type: 'boolean', default: false },
     dry: { type: 'boolean', default: false },
+    set: { type: 'string' },
   },
 })
 
-const db = await loadContentFromDisk()
+const db = await loadContentFromDisk({ set: values.set })
+if (values.set) console.log(`Öneri seti: ${values.set} (${db.cards.length} kart)`)
 const cmd = positionals[0] ?? 'check'
 const seed = Number(values.seed ?? db.targets.seed)
 const num = (v: string | undefined, d: number) => (v === undefined ? d : Number(v))
@@ -151,7 +159,45 @@ switch (cmd) {
     await save(`campaign-${profile}`, { validation: v, runs })
     break
   }
+  case 'decks': {
+    const m = presetMatrix(db, { seed, days: num(values.days, 120) })
+    console.log('\nPreset desteler · usta botla gün geliri (hava başına)')
+    console.table(
+      m.rows.map((r) => ({
+        deste: r.name,
+        'usta/acemi': `x${f2(r.masterOverNovice)}`,
+        'usta/rastgele': `x${f2(r.masterOverRandom)}`,
+        'dk/gün': f1(r.dayMinutes),
+        ...Object.fromEntries(db.weather.map((w) => [w.name, Math.round(r.byWeather[w.id]) + (m.bestIn[w.id] === r.id ? ' ★' : '')])),
+      })),
+    )
+    console.log(m.dominant ? `✗ ${m.dominant} tüm havalarda birinci (GDD: hiçbir deste her havada üstte olmamalı)` : '✓ Hiçbir deste tüm havalarda birinci değil.')
+    await save('decks', m)
+    break
+  }
+  case 'review': {
+    const set = values.set ?? 'base'
+    const r = reviewSet(db, {
+      set,
+      seed,
+      valueSamples: num(values.samples, 120),
+      pairSamples: num(values.days, 24),
+      deckDays: 120,
+      weatherDays: 20,
+      onProgress: progress,
+    })
+    const md = reviewToMarkdown(r, db, { seed, seconds: (performance.now() - t0) / 1000 })
+    const dir = path.join(ROOT, 'Docs/proposals')
+    await mkdir(dir, { recursive: true })
+    const file = path.join(dir, `kart-seti-${set}.md`)
+    await writeFile(file, md)
+    console.log(`
+İnceleme yazıldı: ${path.relative(ROOT, file)}`)
+    await save(`review-${set}`, r)
+    break
+  }
   case 'calibrate': {
+    if (values.set && !values.dry) throw new Error('Öneri setiyle kalibrasyon yalnızca --dry ile çalışır (oyun dengesine yazmaz).')
     const weeks = num(values.weeks, cycleWeeks)
     console.log(`\nKota kalibrasyonu · ${weeks} hafta · ${num(values.agents, sim.campaignAgents)} ajan`)
     const r = calibrateQuota(db, {
@@ -196,7 +242,7 @@ switch (cmd) {
       checks.map((c) => ({
         '': c.pass ? '✓' : '✗',
         hedef: c.id,
-        değer: c.id === 'dayLength' ? `${f1(c.value)} dk` : c.id.startsWith('quota') || c.id === 'duplicates' ? pct(c.value) : `x${f2(c.value)}`,
+        değer: c.id === 'dayLength' ? `${f1(c.value)} dk` : c.id === 'presetDominance' ? (c.pass ? 'yok' : 'var') : c.id.startsWith('quota') || c.id === 'duplicates' ? pct(c.value) : `x${f2(c.value)}`,
         aralık: c.target,
         detay: c.detail ?? '',
       })),

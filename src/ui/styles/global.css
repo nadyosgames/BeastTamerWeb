@@ -7,13 +7,13 @@
 /* Konsept çizimlerden: lacivert zemin, altın çerçeve, parşömen metin. */
 :root {
   --bg-0: #07090f;
-  --bg-1: #0d1220;
-  --bg-2: #141b2e;
-  --bg-3: #1c2540;
-  --line: #3a3324;
-  --gold: #e3b55b;
-  --gold-hi: #ffd88a;
-  --gold-lo: #9c7432;
+  --bg-1: #081218;
+  --bg-2: #101e24;
+  --bg-3: #1a2c32;
+  --line: #66502d;
+  --gold: #e9b85b;
+  --gold-hi: #ffe4a1;
+  --gold-lo: #ad7b35;
   --text: #f1e6cc;
   --text-dim: #b3a78a;
   --text-mute: #7d7461;
@@ -36,7 +36,7 @@
 
   --font-display: 'Cinzel', Georgia, serif;
   --font-body: 'Alegreya Sans', system-ui, sans-serif;
-  --radius: 10px;
+  --radius: 3px;
 }
 
 * {
@@ -71,18 +71,19 @@ h3 {
 }
 
 .panel {
-  background: linear-gradient(180deg, rgba(20, 27, 46, 0.92), rgba(13, 18, 32, 0.95));
-  border: 1px solid var(--line);
+  background: linear-gradient(140deg, rgba(14, 28, 33, 0.96), rgba(4, 12, 17, 0.94));
+  border: 1px solid var(--gold-lo);
   border-radius: var(--radius);
   box-shadow:
-    inset 0 0 0 1px rgba(227, 181, 91, 0.12),
+    inset 0 0 0 4px rgba(5, 10, 13, 0.7),
+    inset 0 0 0 5px rgba(227, 181, 91, 0.13),
     0 8px 30px rgba(0, 0, 0, 0.45);
 }
 
 .btn {
   background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
   border: 1px solid var(--gold-lo);
-  border-radius: 8px;
+  border-radius: 3px;
   padding: 10px 22px;
   font-family: var(--font-display);
   font-weight: 600;
@@ -102,9 +103,10 @@ h3 {
   cursor: default;
 }
 .btn.primary {
-  background: linear-gradient(180deg, #f3c76b, #c48d36);
+  background: radial-gradient(ellipse at 50% 0, #fff0a5, transparent 75%), linear-gradient(180deg, #ffd46d, #eea62d 65%, #c57920);
   border-color: var(--gold-hi);
   color: #2a1a05;
+  box-shadow: inset 0 0 0 3px #c98928, inset 0 0 0 4px #ffdf8c, 0 0 22px #ffaa3030;
 }
 .btn.small {
   padding: 6px 14px;
@@ -131,3 +133,79 @@ h3 {
   scrollbar-width: thin;
   scrollbar-color: var(--gold-lo) transparent;
 }
+
+.gold {
+  color: var(--gold-hi);
+}
+.good {
+  color: var(--good);
+}
+.bad {
+  color: var(--bad);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 5, 10, 0.78);
+  display: grid;
+  place-items: center;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+}
+.overlay__panel {
+  width: 1640px;
+  max-height: 940px;
+  padding: 22px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.overlay__panel header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.overlay__panel h3 {
+  color: var(--gold-hi);
+  font-size: 30px;
+}
+.overlay__panel--text {
+  width: 980px;
+  font-size: 22px;
+  line-height: 1.45;
+}
+.overlay__panel--text .btn {
+  align-self: flex-end;
+}
+
+.game-stage { isolation: isolate; background: #19140f url('/art/ui/library.webp') center / cover no-repeat; }
+.game-stage::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg,#090e1626,#090e160a 40%,#09080788),radial-gradient(ellipse at center,transparent 25%,#03060877); }
+.game-icon { flex-shrink: 0; color: var(--gold); }
+.weather-icon { color: #cce8ff; filter: drop-shadow(0 0 12px currentColor); }
+.weather-icon--sun,.weather-icon--drought { color: #ffd765; }
+.weather-icon--storm { color: #cf95ff; }
+.weather-icon--quake { color: #e7c180; }
+.weather-icon--calm,.weather-icon--wind { color: #c1e7f9; }
+button,input,select { outline-offset: 5px; }
+button:focus-visible,input:focus-visible,select:focus-visible,[tabindex]:focus-visible { outline: 2px solid var(--gold-hi); }
+input,select { font: inherit; color: var(--text); background: #0c1920; border: 1px solid #807459; border-radius: 3px; padding: 10px 16px; }
+input::placeholder { color: #aca69c; }
+select option { background: var(--bg-1); }
+.screen-heading { display: flex; align-items: center; gap: 24px; padding: 12px 22px; min-height: 76px; }
+.screen-heading h2 { font-size: 38px; color: var(--gold-hi); }
+.screen-heading__meta { margin-left: auto; color: var(--text-dim); }
+.resource-badge { display: flex; align-items: center; gap: 15px; padding: 12px 26px; }
+.resource-badge .game-icon { color: #c795ff; filter: drop-shadow(0 0 8px #a352ff); }
+.resource-badge small { display: block; font-family: var(--font-display); font-size: 16px; }
+.resource-badge b { font-family: var(--font-display); font-size: 30px; }
+.ornament { color: var(--gold); font-size: 24px; }
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+.lab,.art { background: #03090fd9; }
+.lab__top,.art__top { min-height: 76px; padding: 10px 18px; border: 1px solid var(--gold-lo); background: #071219; }
+/* Küçük altın köşe kesimleri, tüm ekranlardaki ortak çerçeve dili. */
+.panel { position: relative; }
+.panel::before,.panel::after { content: ''; position: absolute; width: 13px; height: 13px; border: 1px solid var(--gold); pointer-events: none; z-index: 2; }
+.panel::before { left: -1px; top: -1px; border-right: 0; border-bottom: 0; border-radius: 0 0 12px 0; }
+.panel::after { right: -1px; bottom: -1px; border-left: 0; border-top: 0; border-radius: 12px 0 0 0; }
+.btn { clip-path: polygon(8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px),0 8px); }

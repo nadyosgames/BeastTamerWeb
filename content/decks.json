@@ -1,0 +1,301 @@
+{
+  "$schema": "./schema/decks.schema.json",
+  "decks": [
+    {
+      "id": "karma",
+      "name": "Karma",
+      "tamer": "wanderer",
+      "text": "Başlangıç destesi, hepsi Common. Tilkiyi Ejder'in soluna, Kaplumbağayı güçlü kartın sağına, Golemi kısa ömürlü kartın sağına koy.",
+      "cards": [
+        {
+          "card": "spark_fox",
+          "count": 3
+        },
+        {
+          "card": "baby_dragon",
+          "count": 3
+        },
+        {
+          "card": "ember_hedgehog",
+          "count": 3
+        },
+        {
+          "card": "coral_turtle",
+          "count": 3
+        },
+        {
+          "card": "drop_frog",
+          "count": 3
+        },
+        {
+          "card": "coral_crab",
+          "count": 3
+        },
+        {
+          "card": "stone_golem",
+          "count": 3
+        },
+        {
+          "card": "charge_bat",
+          "count": 3
+        },
+        {
+          "card": "cloud_owl",
+          "count": 3
+        },
+        {
+          "card": "gust_cat",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "alev",
+      "name": "Alev",
+      "tamer": "wanderer",
+      "text": "Alev Zinciri. Zincir kartları (Sürü, Ocak Golemi, Kor Ejderi) sağ uca; Meşale, Tazı ve Zambak sol uca. Güneşli ve Kuraklık günleri için.",
+      "cards": [
+        {
+          "card": "torch_lizard",
+          "count": 3
+        },
+        {
+          "card": "blaze_hound",
+          "count": 3
+        },
+        {
+          "card": "flame_lily",
+          "count": 2
+        },
+        {
+          "card": "spark_fox",
+          "count": 3
+        },
+        {
+          "card": "baby_dragon",
+          "count": 3
+        },
+        {
+          "card": "wyvern",
+          "count": 3
+        },
+        {
+          "card": "ember_hedgehog",
+          "count": 3
+        },
+        {
+          "card": "flame_swarm",
+          "count": 3
+        },
+        {
+          "card": "forge_golem",
+          "count": 2
+        },
+        {
+          "card": "ash_crow",
+          "count": 3
+        },
+        {
+          "card": "magma_pup",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "gelgit",
+      "name": "Gelgit",
+      "tamer": "wanderer",
+      "text": "Kopya ve dayanıklılık. Kopyalayıcıları en güçlü kartın yanına, Yengeç ve Yosun Muhafızı'nı en çok kazanan kartın soluna koy. Yağmurlu günler için.",
+      "cards": [
+        {
+          "card": "coral_turtle",
+          "count": 3
+        },
+        {
+          "card": "whirl_octopus",
+          "count": 3
+        },
+        {
+          "card": "mirror_jelly",
+          "count": 3
+        },
+        {
+          "card": "coral_crab",
+          "count": 3
+        },
+        {
+          "card": "kelp_guardian",
+          "count": 3
+        },
+        {
+          "card": "drop_frog",
+          "count": 3
+        },
+        {
+          "card": "tide_otter",
+          "count": 3
+        },
+        {
+          "card": "tidal_serpent",
+          "count": 3
+        },
+        {
+          "card": "pearl_seahorse",
+          "count": 3
+        },
+        {
+          "card": "reef_seal",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "kok",
+      "name": "Kök",
+      "tamer": "wanderer",
+      "text": "Pasif kartlar toprağı besler. Kısa ömürlü kartları (Mantar, Böcek, İspinoz) Golem ve Porsuğun soluna koy. Sarsıntılı günler için.",
+      "cards": [
+        {
+          "card": "stone_golem",
+          "count": 3
+        },
+        {
+          "card": "burrow_badger",
+          "count": 3
+        },
+        {
+          "card": "crystal_golem",
+          "count": 3
+        },
+        {
+          "card": "root_keeper",
+          "count": 3
+        },
+        {
+          "card": "mushroom_toad",
+          "count": 3
+        },
+        {
+          "card": "boulder_beetle",
+          "count": 3
+        },
+        {
+          "card": "seed_finch",
+          "count": 3
+        },
+        {
+          "card": "vine_serpent",
+          "count": 3
+        },
+        {
+          "card": "rock_lizard",
+          "count": 3
+        },
+        {
+          "card": "moss_giant",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "ruzgar",
+      "name": "Rüzgar",
+      "tamer": "wanderer",
+      "text": "Konum ve karışım. Kartal ilk slota, Karahindiba son slota, Grifon uçlardan birine. Diğer elementlerden kartlar farklı element sayısını artırır. Rüzgarlı günler için.",
+      "cards": [
+        {
+          "card": "storm_eagle",
+          "count": 3
+        },
+        {
+          "card": "dandelion_bunny",
+          "count": 3
+        },
+        {
+          "card": "griffin_chick",
+          "count": 2
+        },
+        {
+          "card": "sky_whale_calf",
+          "count": 3
+        },
+        {
+          "card": "cloud_owl",
+          "count": 3
+        },
+        {
+          "card": "gust_cat",
+          "count": 3
+        },
+        {
+          "card": "breeze_fox",
+          "count": 3
+        },
+        {
+          "card": "coral_turtle",
+          "count": 3
+        },
+        {
+          "card": "charge_bat",
+          "count": 3
+        },
+        {
+          "card": "stone_golem",
+          "count": 3
+        },
+        {
+          "card": "magma_pup",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "firtina",
+      "name": "Fırtına",
+      "tamer": "wanderer",
+      "text": "Kutup bulmacası. Uyumlu (− | +) ve çakışan (+ | +) bağlantıları istediğin kartlara göre Elektrik kartlarının sırasını ayarla. Fırtınalı günler için.",
+      "cards": [
+        {
+          "card": "charge_bat",
+          "count": 3
+        },
+        {
+          "card": "spark_coil",
+          "count": 3
+        },
+        {
+          "card": "storm_snail",
+          "count": 3
+        },
+        {
+          "card": "static_rabbit",
+          "count": 3
+        },
+        {
+          "card": "volt_mouse",
+          "count": 3
+        },
+        {
+          "card": "tension_lizard",
+          "count": 3
+        },
+        {
+          "card": "thunder_ram",
+          "count": 3
+        },
+        {
+          "card": "arc_lynx",
+          "count": 3
+        },
+        {
+          "card": "capacitor_golem",
+          "count": 3
+        },
+        {
+          "card": "copper_worm",
+          "count": 3
+        }
+      ]
+    }
+  ]
+}

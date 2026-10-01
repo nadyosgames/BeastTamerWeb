@@ -1,4 +1,5 @@
 import type { Arranger } from '../core/day.ts'
+import type { RoundContext } from '../core/engine/state.ts'
 import { resolveRound } from '../core/engine/round.ts'
 import { shuffle, type Rng } from '../core/rng.ts'
 import type { CardDef } from '../core/types.ts'
@@ -44,6 +45,34 @@ export const noviceArranger: Arranger = (hand, ctx) => {
     placed.push(rest.splice(bestIdx, 1)[0])
   }
   return placed
+}
+
+/** Elin en iyi dizilimindeki tur geliri (dizilimi döndürmeden; sinerji analizinde sıcak yol). */
+export function bestTotal(hand: readonly CardDef[], ctx: RoundContext): number {
+  const n = hand.length
+  if (n === 0) return 0
+  let best = 0
+  const cur: CardDef[] = []
+  const used = new Array<boolean>(n).fill(false)
+  const rec = () => {
+    if (cur.length === n) {
+      const t = resolveRound(cur, ctx).total
+      if (t > best) best = t
+      return
+    }
+    const seen = new Set<CardDef>()
+    for (let i = 0; i < n; i++) {
+      if (used[i] || seen.has(hand[i])) continue
+      seen.add(hand[i])
+      used[i] = true
+      cur.push(hand[i])
+      rec()
+      cur.pop()
+      used[i] = false
+    }
+  }
+  rec()
+  return best
 }
 
 export const masterArranger: Arranger = (hand, ctx) => {

@@ -1,7 +1,7 @@
 import type { IncomingMessage } from 'node:http'
 import path from 'node:path'
 import type { Plugin } from 'vite'
-import { buildWebAll, hasMaster, IMAGE_EXTS, loadAssets, loadContentFromDisk, processImage } from '../scripts/art/lib.ts'
+import { buildUiAll, buildWebAll, hasMaster, IMAGE_EXTS, loadAssets, loadContentFromDisk, processImage } from '../scripts/art/lib.ts'
 
 /**
  * Art pipeline Vite eklentisi: dev ve build başında master'lardan eksik/eski web sürümlerini üretir;
@@ -20,6 +20,8 @@ export function artStudio(): Plugin {
         const db = await loadContentFromDisk()
         const n = await buildWebAll(db)
         if (n) this.info(`art: ${n} görselin web sürümü üretildi`)
+        const ui = await buildUiAll()
+        if (ui) this.info(`art: ${ui} arayüz görselinin web sürümü üretildi`)
       } catch (e) {
         this.warn(`art: web sürümleri üretilemedi: ${(e as Error).message}`)
       }

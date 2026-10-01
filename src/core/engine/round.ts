@@ -1,5 +1,5 @@
 import { roundIncome } from '../math.ts'
-import type { AbilityTrigger, CardDef, Effect, Target } from '../types.ts'
+import type { AbilityTrigger, CardDef, Effect, LinkState, Target } from '../types.ts'
 import { CUSTOM_OPS, type IncomeAccumulator } from './custom.ts'
 import type { DurabilitySource, EventSink } from './events.ts'
 import type { IncomeMod } from './modifiers.ts'
@@ -114,18 +114,11 @@ export function resolveRound(cards: readonly CardDef[], ctx: RoundContext, emit?
     }
   }
 
-  // 1b. Elektrik kutup bağlantıları: her kutuplu kart sağdaki bir sonraki kutuplu karta bağlanır.
-  let prev: SlotState | null = null
-  const links: { left: number; right: number; state: 'compatible' | 'clash' }[] = []
-  for (const s of slots) {
-    if (!s.card.polarity) continue
-    if (prev) {
-      const state = prev.card.polarity!.right !== s.card.polarity.left ? 'compatible' : 'clash'
-      prev.rightLink = state
-      s.leftLink = state
-      if (emit) links.push({ left: prev.index, right: s.index, state })
-    }
-    prev = s
+  // 1b. Elektrik kutup bağlantıları.
+  const links = polarityLinks(cards)
+  for (const l of links) {
+    slots[l.left].rightLink = l.state
+    slots[l.right].leftLink = l.state
   }
   if (emit && links.length) emit({ t: 'links', links })
 
@@ -157,6 +150,28 @@ export function resolveRound(cards: readonly CardDef[], ctx: RoundContext, emit?
     capped: rs.capped,
     slots: slots.map((s) => ({ income: s.income, triggers: s.triggers, durabilityLeft: s.durability })),
   }
+}
+
+export interface PolarityLink {
+  left: number
+  right: number
+  state: LinkState
+}
+
+/**
+ * Kutuplaşma (GDD): her kutuplu kart, sağında gelen bir sonraki kutuplu karta bağlanır
+ * (arada başka kartlar olabilir). Soldakinin sağ kutbu ile sağdakinin sol kutbu zıtsa uyumlu,
+ * aynıysa çakışan. UI dizilim sırasında da bunu gösterir.
+ */
+export function polarityLinks(cards: readonly CardDef[]): PolarityLink[] {
+  const out: PolarityLink[] = []
+  let prev = -1
+  cards.forEach((c, i) => {
+    if (!c.polarity) return
+    if (prev >= 0) out.push({ left: prev, right: i, state: cards[prev].polarity!.right !== c.polarity.left ? 'compatible' : 'clash' })
+    prev = i
+  })
+  return out
 }
 
 const NOT_LAST: CondEnv = { isLastTrigger: false }

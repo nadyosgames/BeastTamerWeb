@@ -58,7 +58,10 @@ export interface CardFilter {
 
 /** Sayılabilen şeyler (Sayım, Humus, Karışım, Isı, Büyüme...). */
 export type Count =
-  | { kind: 'cards'; filter?: CardFilter; excludeSelf?: boolean }
+  /** Masadaki kartlar; `side` verilirse yalnızca o taraftakiler (yön sayımı: "sağındaki her Ateş kartı"). */
+  | { kind: 'cards'; filter?: CardFilter; excludeSelf?: boolean; side?: Side }
+  /** Kesintisiz zincir: komşudan başlayıp o yönde filtreye uyan ardışık kart sayısı (Alev Zinciri). */
+  | { kind: 'chain'; side: Side; filter?: CardFilter }
   | { kind: 'distinctElements' }
   | { kind: 'heat' }
   | { kind: 'selfTriggers' }

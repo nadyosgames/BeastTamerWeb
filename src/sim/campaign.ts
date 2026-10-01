@@ -109,7 +109,7 @@ export function runCampaign(db: ContentDB, opts: CampaignOptions): CampaignResul
   const arrange = makeArranger(p.arranger, sub(9))
 
   const collection: Collection = {}
-  for (const { card, count } of db.starter.deck) collection[card] = (collection[card] ?? 0) + count
+  for (const { card, count } of db.deckById.get(db.starter.deck)!.cards) collection[card] = (collection[card] ?? 0) + count
   let balance = db.starter.resource
   let lifetime = 0
   let pity = 0

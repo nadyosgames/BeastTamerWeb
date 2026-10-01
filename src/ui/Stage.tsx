@@ -1,36 +1,35 @@
 import { useLayoutEffect, useState, type ReactNode } from 'react'
+import { StageContext, stageSizeFor } from './stage-context.ts'
 
 /**
- * Sabit 1920×1080 tasarım alanı, pencereye sığacak şekilde ölçeklenir (letterbox).
- * Unity'deki Canvas Scaler (Reference Resolution 1920×1080, Match 0.5) ile aynı koordinatlar:
- * web'de kurulan yerleşim Unity'ye piksel piksel taşınabilir.
+ * Tasarım alanı: 1920×1080 referans, Unity Canvas Scaler "Expand" kuralıyla pencereyi doldurur.
+ * Ekranlar kenarlara (left/right/top/bottom) çapalanarak yerleşir; ortalanması gereken öğeler
+ * `useStage().width` ile hesaplanır. Sahne sol üstten ölçeklenir, böylece kayma olmaz.
  */
-export const STAGE_W = 1920
-export const STAGE_H = 1080
-
 export function Stage({ children }: { children: ReactNode }) {
-  const [scale, setScale] = useState(1)
+  const [size, setSize] = useState(() => stageSizeFor(window.innerWidth, window.innerHeight))
   useLayoutEffect(() => {
-    const fit = () => setScale(Math.min(window.innerWidth / STAGE_W, window.innerHeight / STAGE_H))
+    const fit = () => setSize(stageSizeFor(window.innerWidth, window.innerHeight))
     fit()
     window.addEventListener('resize', fit)
     return () => window.removeEventListener('resize', fit)
   }, [])
   return (
-    <div style={{ position: 'fixed', inset: 0, display: 'grid', placeItems: 'center', background: '#000' }}>
+    <div style={{ position: 'fixed', inset: 0, overflow: 'hidden', background: 'var(--bg-0)' }}>
       <div
+        className="game-stage"
         style={{
-          width: STAGE_W,
-          height: STAGE_H,
-          transform: `scale(${scale})`,
-          flex: 'none',
-          position: 'relative',
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          width: size.width,
+          height: size.height,
+          transform: `scale(${size.scale})`,
+          transformOrigin: '0 0',
           overflow: 'hidden',
-          background:
-            'radial-gradient(ellipse at 50% 20%, #1d2742 0%, #0d1220 55%, #07090f 100%)',
         }}
       >
-        {children}
+        <StageContext.Provider value={size}>{children}</StageContext.Provider>
       </div>
     </div>
   )

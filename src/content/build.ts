@@ -9,12 +9,14 @@ import {
   CalendarSchema,
   CalibratedBalanceSchema,
   CardSchema,
+  DeckPresetSchema,
   EconomySchema,
   StarterSchema,
   TamerSchema,
   WeatherSchema,
   type ArtConfig,
   type BalanceTargets,
+  type DeckPreset,
   type StarterConfig,
 } from './schema.ts'
 
@@ -22,6 +24,7 @@ export interface RawContent {
   cards: unknown
   tamers: unknown
   weather: unknown
+  decks: unknown
   economy: unknown
   calendar: unknown
   starter: unknown
@@ -39,6 +42,9 @@ export interface ContentDB {
   tamerById: Map<string, TamerDef>
   weather: WeatherDef[]
   weatherById: Map<string, WeatherDef>
+  /** Hazır desteler (decks.json). */
+  decks: DeckPreset[]
+  deckById: Map<string, DeckPreset>
   economy: EconomyConfig
   calendar: CalendarConfig
   starter: StarterConfig
@@ -48,6 +54,8 @@ export interface ContentDB {
   balance: CalibratedBalance
   card(id: string): CardDef
   tamer(id: string): TamerDef
+  /** Preset destenin kart listesi (kopyalar dahil, 30 kart). */
+  deckCards(id: string): CardDef[]
   starterDeck(): CardDef[]
 }
 
@@ -73,6 +81,7 @@ export function buildContent(raw: RawContent): ContentDB {
   const cards = listOf(CardSchema, raw.cards, 'cards', 'cards.json')
   const tamers = listOf(TamerSchema, raw.tamers, 'tamers', 'tamers.json')
   const weather = listOf(WeatherSchema, raw.weather, 'weather', 'weather.json')
+  const decks = listOf(DeckPresetSchema, raw.decks, 'decks', 'decks.json')
   const economy = parse(EconomySchema, raw.economy, 'economy.json')
   const calendar = parse(CalendarSchema, raw.calendar, 'calendar.json')
   const starter = parse(StarterSchema, raw.starter, 'starter.json')
@@ -83,6 +92,7 @@ export function buildContent(raw: RawContent): ContentDB {
   const cardById = new Map(cards.map((c) => [c.id, c]))
   const tamerById = new Map(tamers.map((t) => [t.id, t]))
   const weatherById = new Map(weather.map((w) => [w.id, w]))
+  const deckById = new Map(decks.map((d) => [d.id, d]))
 
   const db: ContentDB = {
     cards,
@@ -92,6 +102,8 @@ export function buildContent(raw: RawContent): ContentDB {
     tamerById,
     weather,
     weatherById,
+    decks,
+    deckById,
     economy,
     calendar,
     starter,
@@ -108,8 +120,13 @@ export function buildContent(raw: RawContent): ContentDB {
       if (!t) throw new ContentError(`Bilinmeyen Tamer: ${id}`)
       return t
     },
+    deckCards(id) {
+      const d = deckById.get(id)
+      if (!d) throw new ContentError(`Bilinmeyen deste: ${id}`)
+      return d.cards.flatMap(({ card, count }) => Array.from({ length: count }, () => db.card(card)))
+    },
     starterDeck() {
-      return starter.deck.flatMap(({ card, count }) => Array.from({ length: count }, () => db.card(card)))
+      return db.deckCards(starter.deck)
     },
   }
 
@@ -158,20 +175,24 @@ export function checkContent(db: ContentDB): ContentProblem[] {
     }
   }
 
-  const starterTamer = db.tamerById.get(db.starter.tamer)
-  if (!starterTamer) err(`starter.json: Tamer "${db.starter.tamer}" yok`)
-  let size = 0
-  for (const { card, count } of db.starter.deck) {
-    const c = db.cardById.get(card)
-    if (!c) {
-      err(`starter.json: kart "${card}" yok`)
-      continue
+  if (!db.tamerById.get(db.starter.tamer)) err(`starter.json: Tamer "${db.starter.tamer}" yok`)
+  if (!db.deckById.get(db.starter.deck)) err(`starter.json: deste "${db.starter.deck}" decks.json'da yok`)
+  dup(db.decks.map((d) => d.id), 'Deste')
+  for (const d of db.decks) {
+    const tamer = db.tamerById.get(d.tamer)
+    if (!tamer) err(`decks.json: ${d.id} Tamer "${d.tamer}" yok`)
+    let size = 0
+    for (const { card, count } of d.cards) {
+      const c = db.cardById.get(card)
+      if (!c) {
+        err(`decks.json: ${d.id} kart "${card}" yok`)
+        continue
+      }
+      size += count
+      if (count > db.economy.rarities[c.rarity].deckLimit) err(`decks.json: ${d.id} ${card} deste sınırını aşıyor`)
     }
-    size += count
-    if (count > db.economy.rarities[c.rarity].deckLimit) err(`starter.json: ${card} deste sınırını aşıyor`)
+    if (tamer && size !== tamer.deckSize) err(`decks.json: ${d.id} ${size} kart, ${tamer.name} ${tamer.deckSize} ister`)
   }
-  if (starterTamer && size !== starterTamer.deckSize)
-    err(`starter.json: deste ${size} kart, ${starterTamer.id} ${starterTamer.deckSize} ister`)
 
   if (!db.economy.packs.some((p) => p.id === db.economy.weeklyPack))
     err(`economy.json: weeklyPack "${db.economy.weeklyPack}" paketlerde yok`)

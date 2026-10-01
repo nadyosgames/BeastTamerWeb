@@ -1,6 +1,7 @@
 import { useMemo, useState, type DragEvent } from 'react'
 import { fullPrompt, listArtAssets, type ArtAssetRef } from '../../art/prompts.ts'
-import { content, type ArtKind } from '../../content/index.ts'
+import type { ArtKind } from '../../content/index.ts'
+import { content } from '../content.ts'
 import { useNav } from '../../state/nav.ts'
 import { artUrl } from '../art.ts'
 import { CardView } from '../components/CardView.tsx'

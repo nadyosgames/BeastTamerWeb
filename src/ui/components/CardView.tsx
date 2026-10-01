@@ -1,7 +1,13 @@
 import { AnimatePresence, motion } from 'motion/react'
+import { useEffect, useId, useRef, useState } from 'react'
 import type { CardDef } from '../../core/types.ts'
 import { artUrl } from '../art.ts'
 import { ElementIcon } from './ElementIcon.tsx'
+import { GameIcon } from './GameIcon.tsx'
+import { RarityBadge } from './RarityBadge.tsx'
+import { CardText } from './CardText.tsx'
+import { CardKeywordTooltip } from './CardKeywordTooltip.tsx'
+import { cardKeywordInfo } from '../keywords.ts'
 import './CardView.css'
 
 /**
@@ -19,26 +25,40 @@ export interface CardViewProps {
   ward?: boolean
   size?: 'md' | 'sm'
   onClick?: () => void
+  actionLabel?: string
 }
 
-const KEYWORD_LABEL: Record<string, string> = {
-  swift: 'Swift',
-  heavy: 'Heavy',
-  ward: 'Ward',
-  rebirth: 'Rebirth',
-  overload: 'Overload',
-}
-
-export function CardView({ card, durability, passive, active, income, pulse, ward, size = 'md', onClick }: CardViewProps) {
+export function CardView({ card, durability, passive, active, income, pulse, ward, size = 'md', onClick, actionLabel }: CardViewProps) {
+  const anchor = useRef<HTMLDivElement>(null)
+  const timer = useRef<number | undefined>(undefined)
+  const tooltipId = useId()
+  const [showKeywords, setShowKeywords] = useState(false)
+  const hasKeywords = cardKeywordInfo(card).length > 0
+  const hideKeywords = () => { window.clearTimeout(timer.current); setShowKeywords(false) }
+  const revealKeywords = () => {
+    window.clearTimeout(timer.current)
+    if (hasKeywords) timer.current = window.setTimeout(() => setShowKeywords(true), 250)
+  }
+  useEffect(() => () => window.clearTimeout(timer.current), [])
   const img = artUrl('cards', card.id, size === 'sm')
   const el = card.elements[0]
   const dur = durability ?? card.durability
-  const keywords = [...(card.keywords ?? []).map((k) => KEYWORD_LABEL[k]), ...(card.slumber ? [`Slumber ${card.slumber}`] : [])]
   return (
     <div
+      ref={anchor}
       className={`card card--${size} rarity-${card.rarity} ${passive ? 'is-passive' : ''} ${active ? 'is-active' : ''} ${onClick ? 'is-clickable' : ''}`}
       style={{ ['--el' as string]: `var(--${el})`, ['--el2' as string]: `var(--${card.elements[1] ?? el})` }}
       onClick={onClick}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick || hasKeywords ? 0 : undefined}
+      aria-describedby={showKeywords ? tooltipId : undefined}
+      aria-label={onClick ? (actionLabel ?? `${card.name} kartını incele`) : undefined}
+      onKeyDown={(e) => { if (e.key === 'Escape') hideKeywords(); else if (onClick && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); hideKeywords(); onClick() } else revealKeywords() }}
+      onPointerEnter={(e) => { if (e.pointerType !== 'touch') revealKeywords() }}
+      onPointerLeave={hideKeywords}
+      onPointerDown={hideKeywords}
+      onFocus={(e) => { if (e.currentTarget.matches(':focus-visible')) revealKeywords() }}
+      onBlur={hideKeywords}
     >
       <div className="card__art">
         {img ? (
@@ -46,7 +66,7 @@ export function CardView({ card, durability, passive, active, income, pulse, war
         ) : (
           <div className="card__placeholder">
             <ElementIcon element={el} size={size === 'sm' ? 48 : 88} />
-            <span>{card.id}</span>
+            <span className="card__art-ornament">✦</span>
           </div>
         )}
         {passive && <div className="card__passive">PASİF</div>}
@@ -59,7 +79,9 @@ export function CardView({ card, durability, passive, active, income, pulse, war
           </div>
         ))}
       </div>
+      <span className="card__rarity"><RarityBadge rarity={card.rarity} size={size === 'sm' ? 42 : 44} /></span>
       <div className={`card__shield ${ward ? 'has-ward' : ''}`} title="Dayanıklılık">
+        {size === 'md' && <GameIcon name="shield" size={23} />}
         {durability !== undefined ? `${dur}/${card.durability}` : card.durability}
       </div>
       {card.polarity && (
@@ -72,8 +94,7 @@ export function CardView({ card, durability, passive, active, income, pulse, war
       <div className="card__name">{card.name}</div>
       {size === 'md' && (
         <div className="card__text">
-          {keywords.length > 0 && <div className="card__kw">{keywords.join(' · ')}</div>}
-          {card.text.replace(/^(Swift|Heavy|Ward|Rebirth|Overload|Slumber \d)\.\s*/g, '')}
+          <CardText text={card.text} />
         </div>
       )}
 
@@ -91,6 +112,7 @@ export function CardView({ card, durability, passive, active, income, pulse, war
           </motion.div>
         )}
       </AnimatePresence>
+      {showKeywords && hasKeywords && <CardKeywordTooltip card={card} anchor={anchor} id={tooltipId} />}
     </div>
   )
 }

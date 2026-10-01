@@ -9,7 +9,7 @@
         { "suffix": "", "width": 512 },
         { "suffix": "@thumb", "width": 192 }
       ],
-      "template": "Stylized hand-painted creature illustration for a collectible monster card game. Creature: {CREATURE}. Element: {ELEMENT}. Power level: {POWER}. Dynamic three-quarter pose, bold readable silhouette, clean shapes, rich saturated colors, soft rim lighting, subtle painterly brush texture, simple atmospheric background that matches the element, creature centered with breathing room around it, square 1:1 composition so it can be cropped into a card art window. Original creature design, charming but powerful. No text, no letters, no logo, no watermark, no frame, no border."
+      "template": "Stylized hand-painted creature illustration for a collectible monster card game. Creature: {CREATURE}. Element: {ELEMENT}. Power level: {POWER}. Unique habitat: {HABITAT}. Draw the specified species accurately, with a distinct personality and correct anatomy. Harmonious natural hues; separate the subject with light and shadow, not clashing colors. Crisp well-lit creature, softly blurred lower-detail environment. Calm negative space around the whole outline and between limbs, wings or coils. Solid readable material surfaces and broad painted planes. Restrained elemental accents attached to the creature only; no surrounding wall of flames, splashes, lightning, debris or energy ribbons. Full body, both wings, every foot and tail tip inside central 75% with at least 10% breathing room on each edge; partly fold wings if necessary. Readable at 170px. Square 1:1 illustration. No text, letters, numbers, watermark, frame, border or UI."
     },
     "tamers": {
       "label": "Tamer portresi",
@@ -33,21 +33,21 @@
     }
   },
   "elements": {
-    "fire": "fire: ember orange glow, floating sparks, thin lava cracks",
-    "water": "water: deep blue glow, bubbles, ripples",
-    "earth": "earth: moss green and amber glow, stone, roots",
-    "wind": "wind: lavender violet glow, swirling air currents, feathers",
-    "electric": "electric: bright yellow glow, lightning arcs, static sparks"
+    "fire": "fire: restrained amber accents on the subject; preserve its described colors, natural tan, brown, grey or muted olive habitat is allowed; not every background is red",
+    "water": "water: blue, turquoise and pearl accents, calm aquatic habitats, sparse small bubbles or ripples",
+    "earth": "earth: moss, stone, bark and ochre materials, related muted natural habitat hues",
+    "wind": "wind: lavender, cream and storm-grey accents, restrained breeze, varied natural atmospheric habitats",
+    "electric": "electric: restrained gold static accents, readable solid anatomy, varied subdued natural habitats; no lightning curtain"
   },
   "power": {
     "common": "small, young, simple, playful",
     "uncommon": "small but sturdy, simple markings",
     "rare": "mature, sharper features, small markings",
-    "epic": "majestic, armored, large elemental aura",
-    "legendary": "imposing, ornate armor, radiant aura",
-    "mythic": "colossal, ancient glowing runes, cosmic aura",
-    "ancient": "colossal, primordial, glowing runes, cosmic aura with stars swirling around it"
+    "epic": "majestic, imposing, distinctive mature anatomy",
+    "legendary": "grand, magnificent, ornate material details",
+    "mythic": "ancient and awe-inspiring, restrained luminous markings",
+    "ancient": "primordial and awe-inspiring, grand readable form, restrained luminous markings"
   },
   "negative": "Do not include any text, letters, numbers, watermark, signature or logo. Avoid extra limbs, deformed anatomy, blurry or cropped subjects and human hands.",
-  "styleAnchor": "Match the art style, rendering, palette and lighting of the attached reference image exactly, but draw a completely new subject."
+  "styleAnchor": "Use the attached reference ONLY for polished painterly fantasy rendering and readable silhouettes. Draw the requested species and its own habitat. Do not copy the reference creature, background composition, interface or exact palette. Keep the subject's described colors and a harmonious environment; establish clear tonal separation."
 }

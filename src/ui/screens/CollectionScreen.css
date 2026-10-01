@@ -1,0 +1,117 @@
+.collection { position: absolute; inset: 0; padding: 24px 34px; background: #03080d4d; }
+.collection > .screen-heading { margin-right: 300px; }
+.collection__catalog { position: absolute; left: 34px; right: 34px; top: 116px; bottom: 26px; display: flex; flex-direction: column; }
+.collection__filters { display: flex; align-items: center; gap: 20px; padding: 14px 20px; border-bottom: 1px solid var(--gold-lo); }
+.collection__search { display: flex; align-items: center; flex: 1; gap: 15px; border: 1px solid #687078; border-radius: 50px; padding: 0 20px; min-width: 200px; }
+.collection__search input { width: 100%; border: 0; padding: 9px 0; background: transparent; }
+.collection__search .game-icon { color: #e4dfd6; }
+.collection__elements { display: flex; gap: 12px; }
+.element-filter { width: 58px; height: 58px; display: grid; place-items: center; border: 1px solid var(--element-color); background: #080f15; border-radius: 12px 3px; box-shadow: inset 0 0 15px color-mix(in srgb,var(--element-color) 14%,transparent); }
+.element-filter.is-selected { box-shadow: 0 0 14px var(--element-color),inset 0 0 15px color-mix(in srgb,var(--element-color) 24%,transparent); outline: 1px solid var(--element-color); }
+.collection__filters select { min-width: 155px; font-family: var(--font-display); font-size: 18px; }
+.collection__grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(8,minmax(0,1fr)); grid-template-rows: repeat(3,minmax(0,1fr)); gap: 16px; padding: 16px 20px; }
+.collection__cell { position: relative; min-height: 0; border: 1px solid var(--gold-lo); border-radius: 3px; background: #061017; display: flex; flex-direction: column; }
+.collection__cell .card--sm { width: 100%; height: calc(100% - 33px); flex: 1; min-height: 0; border: 0; border-radius: 2px; box-shadow: none; }
+.collection__cell .card--sm .card__art { flex: 1; min-height: 0; }
+.collection__cell .card__art img { object-fit: contain; }
+.collection__cell .card--sm .card__name { flex-shrink: 0; font-size: 16px; }
+.collection__count { height: 33px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 18px; color: var(--text-dim); }
+.collection__count .game-icon { color: #aec6dc; }
+.collection__cell:hover { border-color: var(--gold-hi); box-shadow: 0 0 14px #ffd47c66; }
+.collection__pagination { display: flex; align-items: center; justify-content: space-between; padding: 10px 24px; border-top: 1px solid var(--gold-lo); font-size: 19px; height: 62px; }
+.collection__pagination > div { display: flex; align-items: center; gap: 26px; }
+.collection__pagination .btn { min-width: 56px; }
+.collection__empty { grid-column: 1/-1; grid-row: 1/-1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+.collection__empty p { margin: 0 0 10px; color: var(--text-dim); }
+.collection--decks > .screen-heading { margin-right: 530px; }
+.collection--decks .collection__catalog { right: 546px; }
+.collection--decks .collection__grid { grid-template-columns: repeat(6,minmax(0,1fr)); gap: 14px; }
+.collection--tall .collection__grid { grid-template-columns: repeat(6,minmax(0,1fr)); grid-template-rows: repeat(4,minmax(0,1fr)); }
+.collection--tall.collection--decks .collection__grid { grid-template-columns: repeat(4,minmax(0,1fr)); grid-template-rows: repeat(5,minmax(0,1fr)); }
+.collection--decks .collection__filters { gap: 12px; }
+.collection--decks .collection__filters select { min-width: 130px; font-size: 16px; padding: 10px; }
+.collection--decks .collection__elements { gap: 7px; }
+.collection--decks .element-filter { width: 45px; height: 50px; }
+.collection__deck { position: absolute; top: 24px; bottom: 26px; right: 34px; width: 488px; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+.collection__deck header { display: flex; align-items: center; gap: 22px; }
+.collection__deck header select { flex: 1; width: 0; font-family: var(--font-display); font-size: 25px; }
+.collection__deck header b { font-family: var(--font-display); font-size: 24px; }
+.collection__tamer { display: grid; grid-template-columns: 105px minmax(0,1fr); gap: 10px 14px; padding: 12px 0; border-block: 1px solid var(--gold-lo); }
+.collection__tamer > img { width: 105px; height: 130px; object-fit: cover; object-position: center 20%; border: 1px solid var(--gold); border-radius: 5px 5px 25px 25px; }
+.collection__tamerbody { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.collection__tamerbody label { font-family: var(--font-display); font-size: 16px; color: var(--gold-hi); }
+.collection__tamerbody select { width: 100%; font-size: 18px; padding: 8px; }
+.collection__tamerstats { display: flex; gap: 18px; }
+.collection__tamerstats > span { display: flex; align-items: center; gap: 6px; font-size: 15px; color: var(--text-dim); }
+.collection__tamerstats b { font-family: var(--font-display); font-size: 25px; color: var(--gold-hi); }
+.collection__tamerstats .game-icon { color: var(--gold); }
+.collection__tamer > p,.collection__tamer > small { grid-column: 1/-1; margin: 0; font-size: 18px; line-height: 1.2; }
+.collection__tamer > small { color: var(--text-dim); font-size: 15px; }
+.collection__decklist { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 8px; }
+.collection__decklist button { display: flex; align-items: center; gap: 10px; border: 1px solid #6b5639; background: #10191c; min-height: 48px; padding: 7px 10px; font-size: 19px; text-align: left; }
+.collection__decklist button:hover { border-color: var(--gold); }
+.collection__deckthumb { width: 60px; height: 36px; object-fit: cover; border-radius: 2px; }
+.collection__decklist button > span:first-of-type { flex: 1; }
+.collection__decktext { margin: 0; color: var(--text-dim); line-height: 1.25; font-size: 18px; }
+.collection__distribution { display: flex; justify-content: space-between; border-block: 1px solid var(--line); padding: 10px; }
+.collection__distribution span { display: flex; align-items: center; gap: 8px; }
+.collection__decksize { white-space: nowrap; }
+.collection__deck.is-incomplete { border-color: #cf5148; box-shadow: inset 0 0 0 1px #dc625455, 0 0 22px #d93d3838; }
+.collection__deck.is-incomplete > header select,.collection__deck.is-incomplete > header input { border-color: #cf5148; }
+.collection__deck.is-incomplete .collection__decksize { color: #ff8d80; text-shadow: 0 0 12px #ec493c70; }
+.collection__deckstatus { margin: -4px 0 0; padding: 8px 10px; border: 1px solid #b44c45; background: #441b1c88; color: #ffaca0; font-size: 17px; line-height: 1.2; }
+.collection__deckstatus.is-ready { border-color: #658b60; background: #23392666; color: #b0dba1; }
+.collection__reset { color: var(--gold-hi); min-height: 42px; }
+.collection__detail { width: 1000px; padding: 42px; display: flex; gap: 46px; align-items: center; }
+.collection__detail .card { flex-shrink: 0; transform: scale(1.12); margin: 24px; }
+.collection__detail h2 { color: var(--gold-hi); font-size: 32px; margin-top: 12px; }
+.collection__detail p { line-height: 1.5; }
+.collection__detail-element { display: flex; align-items: center; gap: 8px; padding: 7px 12px; border: 1px solid var(--line); }
+.collection__rarityhelp { position: absolute; right: 34px; top: 41px; font-size: 17px; }
+.collection--decks .collection__rarityhelp { right: 565px; }
+.collection__rarityguide { width: 760px; padding: 32px 38px; }
+.collection__rarityguide h2 { color: var(--gold-hi); }
+.collection__rarityguide > p { color: var(--text-dim); }
+.collection__rarityguide article { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.collection__rarityguide article .rarity-badge { font-size: 21px; }
+.collection__rarityguide > .btn { margin-top: 24px; }
+.collection__deck > header { gap: 10px; }
+.collection__deck > header input { flex: 1; min-width: 0; width: 0; font-size: 22px; }
+.collection__rename { padding: 5px 8px; font-size: 20px; }
+.collection__deckrow { display: flex; gap: 4px; min-width: 0; }
+.collection__deckrow .collection__deckcard { flex: 1; min-width: 0; padding: 5px 7px; }
+.collection__deckcard > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.collection__deckrow .collection__remove { width: 38px; min-width: 38px; justify-content: center; padding: 0; font-size: 28px; color: #efbf9c; }
+.collection__remove:hover { background: #52241f; }
+.collection__deckrow[draggable],.collection--decks .collection__cell { cursor: grab; }
+.collection__deckrow:active,.collection--decks .collection__cell:active { cursor: grabbing; }
+.collection__inspect { border: 0; color: var(--gold-hi); background: transparent; padding: 1px 5px; font-size: 19px; }
+.collection__count { gap: 6px; }
+.collection__count .rarity-badge { font-size: 14px; }
+.collection__draghelp { margin: 0; font-size: 16px; color: var(--gold-hi); line-height: 1.2; }
+.collection__autosave { color: var(--text-dim); font-size: 15px; }
+.collection__dropempty { flex: 1; min-height: 170px; display: flex; flex-direction: column; gap: 14px; align-items: center; justify-content: center; border: 1px dashed var(--gold-lo); color: var(--gold-hi); text-align: center; font-family: var(--font-display); font-size: 20px; }
+.collection__dropempty > span { font-family: var(--font-body); font-size: 18px; color: var(--text-dim); }
+.collection .is-drop-target { outline: 3px solid var(--gold-hi); outline-offset: -3px; box-shadow: inset 0 0 55px #ffca6233,0 0 25px #ffc85a55; }
+.collection__dragbanner,.collection__feedback { position: absolute; left: 50%; translate: -50% 0; padding: 14px 26px; background: #081219f5; border: 1px solid var(--gold); color: var(--gold-hi); font-size: 22px; z-index: 30; box-shadow: 0 6px 24px #0009; pointer-events: none; }
+.collection__dragbanner { top: 120px; }
+.collection__feedback { bottom: 110px; }
+.collection__create { width: 1260px; padding: 30px 38px; }
+.collection__create h2 { color: var(--gold-hi); }
+.collection__create > p { color: var(--text-dim); margin: 12px 0 20px; }
+.collection__newname { display: flex; align-items: center; gap: 22px; font-family: var(--font-display); color: var(--gold-hi); font-size: 20px; }
+.collection__newname input { flex: 1; font-family: var(--font-body); font-size: 25px; }
+.collection__tamergallery { margin-top: 24px; display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 14px; }
+.collection__tamergallery button { display: flex; flex-direction: column; align-items: center; gap: 6px; background: #0a151d; border: 1px solid var(--gold-lo); padding: 7px; color: var(--text); }
+.collection__tamergallery button.is-selected { border-color: var(--gold-hi); box-shadow: 0 0 0 2px var(--gold-hi),0 0 15px #ffe2a055; background: #34291d; }
+.collection__tamergallery img { width: 100%; height: 130px; object-fit: cover; object-position: center 20%; }
+.collection__tamergallery b { font-family: var(--font-display); font-size: 19px; }
+.collection__tamergallery span { font-size: 17px; color: var(--text-dim); }
+.collection__create > .collection__newpassive { color: var(--gold-hi); min-height: 30px; }
+.collection__createactions { display: flex; justify-content: flex-end; gap: 20px; }
+
+.collection--decks .collection__cell, .collection__deckrow { touch-action: none; user-select: none; }
+.collection__dragpreview { position: fixed; width: 120px; padding: 5px; background: #081219f2; border: 2px solid var(--gold-hi); border-radius: 7px; box-shadow: 0 12px 35px #000a; pointer-events: none; z-index: 1000; rotate: -4deg; }
+.collection__dragpreview img { display: block; width: 100%; aspect-ratio: 1; object-fit: contain; }
+.collection__dragpreview span { display: block; margin-top: 4px; color: var(--gold-hi); font-family: var(--font-display); font-size: 13px; text-align: center; }
+

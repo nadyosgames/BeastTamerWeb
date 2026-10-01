@@ -1,58 +1,22 @@
-.menu {
-  position: absolute;
-  inset: 0;
-}
-.menu__title {
-  position: absolute;
-  left: 60px;
-  top: 50px;
-  padding: 22px 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.menu__title h1 {
-  font-size: 64px;
-  color: var(--gold-hi);
-  text-shadow: 0 2px 0 #000;
-}
-.menu__showcase {
-  position: absolute;
-  left: 140px;
-  top: 330px;
-  display: flex;
-  gap: 10px;
-}
-.menu__nav {
-  position: absolute;
-  right: 80px;
-  top: 210px;
-  width: 560px;
-  padding: 26px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-.menu__btn {
-  height: 104px;
-  font-size: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-}
-.menu__btn small {
-  font-size: 16px;
-  opacity: 0.7;
-}
-.menu__status {
-  position: absolute;
-  right: 80px;
-  bottom: 60px;
-  width: 560px;
-  padding: 16px 22px;
-  font-size: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+.menu { position: absolute; inset: 0; }
+.menu__title { position: absolute; left: 28px; top: 24px; height: 96px; padding: 0 30px 0 18px; display: flex; align-items: center; gap: 24px; }
+.menu__title h1 { font-size: 49px; color: var(--gold-hi); text-shadow: 0 3px 4px #000; letter-spacing: .08em; }
+.menu__title > .game-icon { filter: drop-shadow(0 0 9px #db9e3538); }
+.menu__resource { position: absolute; right: 36px; top: 30px; min-width: 270px; }
+.menu__nav { position: absolute; right: 36px; top: 218px; width: 540px; padding: 16px; display: flex; flex-direction: column; gap: 16px; }
+.menu__btn { position: relative; min-height: 145px; display: flex; align-items: center; gap: 25px; padding: 20px 28px; border: 1px solid var(--gold-lo); border-radius: 2px; background: linear-gradient(120deg,#102029,#050d13); text-align: left; box-shadow: inset 0 0 0 5px #070e14, inset 0 0 0 6px #a1763938; transition: background .2s, box-shadow .2s, border-color .2s; }
+.menu__btn span:first-of-type { flex: 1; font-family: var(--font-display); font-size: 34px; font-weight: 600; }
+.menu__btn small { display: block; font-family: var(--font-body); font-size: 18px; color: var(--text-dim); margin-top: 8px; letter-spacing: .02em; }
+.menu__arrow { font-size: 50px; color: var(--gold); font-family: Georgia,serif; }
+.menu__btn--play { min-height: 166px; background: radial-gradient(ellipse at center,#66431e,#291a10); border-color: #ffc963; box-shadow: inset 0 0 0 5px #44270f, inset 0 0 0 7px #f5bb55, inset 0 0 24px #f8b44b66, 0 0 20px #ffb34244; }
+.menu__btn--play span:first-of-type { color: var(--gold-hi); font-size: 46px; }
+.menu__btn:hover { border-color: var(--gold-hi); box-shadow: inset 0 0 0 5px #111915, inset 0 0 0 6px #e6b85c88, 0 0 26px #e5a84255; }
+.menu__chapter { position: absolute; left: 46px; bottom: 157px; text-shadow: 0 2px 5px #000; }
+.menu__chapter > span { color: #eed198; font-family: var(--font-display); font-size: 16px; letter-spacing: .2em; }
+.menu__chapter p { margin: 10px 0 0; font-family: var(--font-display); font-size: 24px; }
+.menu__footer { position: absolute; left: 38px; right: 38px; bottom: 32px; display: flex; align-items: center; gap: 28px; }
+.menu__footer > .btn { display: flex; align-items: center; justify-content: center; gap: 18px; height: 86px; min-width: 245px; font-size: 22px; background: #071119ee; }
+.menu__tools { display: flex; align-items: center; gap: 15px; margin-left: auto; text-shadow: 0 2px 4px #000; }
+.menu__tools button { background: transparent; border: 0; font-size: 18px; color: var(--text-dim); padding: 12px 0; }
+.menu__tools button:hover { color: var(--gold-hi); }
+.menu__footer > .menu__settings { min-width: 88px; }

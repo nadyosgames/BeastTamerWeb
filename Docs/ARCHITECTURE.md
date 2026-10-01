@@ -47,7 +47,9 @@ content/                     Oyun verisi (tasarımcının düzenlediği yer)
   tamers.json, weather.json  Tamer pasifleri ve hava etkileri (ortak Modifier dili)
   economy.json               Nadirlik sınırları, kopya oranları, paketler, pity, süre varsayımları
   calendar.json              Gün/hafta/ay/yıl, burçlar ve albüm pasifleri, hava kuralları
-  starter.json               Başlangıç destesi ve Tamer
+  decks.json                 Preset desteler (playtest ve başlangıç destesi)
+  starter.json               Başlangıç destesi (decks.json'daki id) ve Tamer
+  proposals/<set>/           Onay bekleyen kart/deste önerileri (oyuna girmez, --set / ?set= ile denenir)
   balance-targets.json       GDD denge hedefleri (simülasyon bunları kontrol eder)
   art.json                   Görsel prompt şablonları ve boyutlar (tür başına)
   generated/balance.json     SİMÜLASYON ÇIKTISI: kalibre kota eğrisi (versiyonlanır)
@@ -122,6 +124,13 @@ Performans: tur başına ~1,7 µs, usta botla tam gün ~1,7 ms. Simülasyonda `e
 Kart yeteneği = `{ on: <zamanlama>, effects: [...] }`. Efektler: `gain`, `gainPer`, `mult`, `copyIncome`,
 `addHeat`, `addDurability`, `retrigger`, `aura`, `custom`. Koşullar (`if`): `count`, `allCards`, `slot`,
 `position`, `neighbor`, `passParity`, `lastTrigger`, `link`, `round`, `self`, `not/all/any`.
+Sayımlar (`gainPer.per`): `cards` (`side` ile yön sayımı: "sağındaki her Ateş kartı"), `chain` (Alev Zinciri:
+komşudan başlayan **ardışık** eşleşen kart sayısı), `distinctElements`, `heat`, `selfTriggers`, `pass`.
+
+**Dizilim tasarım ilkesi** (simülasyondan): konuma duyarlı kart doğru dizildiğinde konumsuz karttan güçlü,
+yanlış dizildiğinde zayıf olmalı ("yüksek tavan, düşük taban"). Aksi halde iyi oyuncu konumsal kartları desteye
+almaz ve dizilim kararı önemsizleşir. Tek elementli destede kendiliğinden sağlanan koşullar ("sağındaki kart Ateş")
+karar yaratmaz; tip, konum, dayanıklılık, zincir ve kutup koşulları yaratır.
 
 - **Sadece yeni kart** (mevcut efektlerle): `content/cards.json`'a yaz → `npm run content:check` →
   `npm run sim -- cards` (gücü akranlarıyla karşılaştır) → `npm run sim -- check`.
@@ -140,7 +149,15 @@ npm run sim -- weather               Hava uyumu: havaya kurulmuş deste / en uyg
 npm run sim -- cards                 Kart gücü: marjinal katkı, nadirlik içi z-skoru (▲▼ aykırılar)
 npm run sim -- campaign --profile good|casual|mismatched --weeks 144
 npm run sim -- calibrate             Kota eğrisini üretir → content/generated/balance.json
+npm run sim -- decks                 Preset desteler: dizilim etkisi + deste × hava gelir matrisi
+npm run sim -- review --set v1       Öneri kart seti incelemesi → Docs/proposals/kart-seti-v1.md
 ```
+
+**Kart önerisi → onay akışı:** yeni kartlar `content/proposals/<set>/cards.json`'a yazılır (oyuna girmez) →
+`npm run content:check -- --set <set>` → `npm run sim -- review --set <set>` (güç, sinerji ortakları, nadirlik
+eğrisi, element destelerinde dizilim etkisi, hava uyumu) → Tur Laboratuvarı'nda `?set=<set>` ile elle deneme →
+onaydan sonra `content/cards.json`'a taşınır ve kota yeniden kalibre edilir. Sinerji ölçümü: iki kart birlikte
+masadayken, her biri rastgele kartla değiştirildiği duruma göre usta dizilimle fazladan gelir.
 
 Her çalıştırma `sim-results/` altına JSON bırakır (sürümler arası karşılaştırma için).
 
@@ -197,7 +214,19 @@ content (art.creature) ──npm run art:prompts──▶ art/prompts/PROMPTS.md
 - **Git LFS:** `art/source`, `art/style-ref` ve `Concept Arts` LFS'te (`.gitattributes`). Klonlayan herkes bir kez
   `git lfs install` çalıştırmalı.
 
-## 7. Unity'ye geçiş
+## 7. Playtest modu
+
+`npm run dev` → OYNA. Günü Planla (haftanın havası, Tamer, preset deste, haftalık kota) → 6 tur: çekilen 5 kartı
+sürükleyerek diz, BAŞLAT, motorun olay akışını izle (x1/x2/x4/Atla) → her tur sonunda **aynı elin en iyi dizilimi**
+ile karşılaştırma → gün özeti (usta bota göre verim, gerçek süre, tur başına planlama süresi) → 5 günde hafta
+sonucu ve kota. İlerleme tarayıcıda (localStorage) saklanır; aynı profil tohumu + gün = aynı eller.
+
+Her gün `DayLog` olarak kaydedilir (el, dizilim, gelir, en iyi gelir, planlama saniyesi). "Kayıtları indir"
+JSON verir: gerçek oyuncu verisi simülasyon varsayımlarıyla (economy.json `planningSecPerRound`, usta/acemi bot
+oranları) karşılaştırılır ve dengeye geri beslenir. Kod: `src/state/game.ts` (profil), `src/state/run.ts`
+(gün akışı), `src/ui/screens/PlanDayScreen.tsx`, `RunScreen.tsx`.
+
+## 8. Unity'ye geçiş
 
 `npm run art:export-unity -- --unity <UnityProjesi>` şunu yazar:
 
@@ -210,10 +239,12 @@ content (art.creature) ──npm run art:prompts──▶ art/prompts/PROMPTS.md
 
 C# port eşleştirmesi: `types.ts` → `[Serializable]` sınıflar / enum'lar, `round.ts` → `RoundResolver`,
 `events.ts` → olay tipleri (oynatıcı DOTween ile aynı olay → görsel kuralını uygular), `rng.ts` → `uint` ile
-mulberry32, `math.ts` → `Math.Floor(x + 0.5)`. Web arayüzü 1920×1080 sabit sahnede kurulur; Unity Canvas Scaler
-(Reference 1920×1080) ile aynı koordinatlar.
+mulberry32, `math.ts` → `Math.Floor(x + 0.5)`. Web arayüzü 1920×1080 referanslı sahnede kurulur ve Unity Canvas
+Scaler'ın **Expand** kuralıyla pencereyi doldurur (kısa kenar referansa oturur, uzun kenar uzar; siyah bant yok).
+Unity'de aynı ayar: Scale With Screen Size, Reference 1920×1080, Screen Match Mode = Expand. Ekranlar kenarlara
+çapalanır, ortalanacak öğeler `useStage().width` ile hesaplanır.
 
-## 8. Kütüphaneler
+## 9. Kütüphaneler
 
 | Paket | Sürüm | Neden |
 |---|---|---|
@@ -229,11 +260,11 @@ mulberry32, `math.ts` → `Math.Floor(x + 0.5)`. Web arayüzü 1920×1080 sabit 
 | sharp | 0.35 | Görsel kırpma/ölçekleme/WebP (art pipeline) |
 | oxlint | 1.86 | Hızlı lint + katman sınırı kuralları |
 
-## 9. Sıradaki adımlar (GDD prototip planı)
+## 10. Sıradaki adımlar (GDD prototip planı)
 
 1. ✅ Tur çözücü ve simülasyon (CLI) — "dizilimin gerçek etkisi var mı?" ölçülüyor.
-2. Oynanabilir gün: OYNA ekranı (Günü Planla → 6 tur → sonuç), x1/x2/x4/Atla, gerçek gün süresi ölçümü.
-3. Hafta: 5 gün, kota çubuğu, günlük hava, 2-3 kayıtlı deste (kayıt: localStorage, sürümlü şema).
+2. ✅ Oynanabilir gün: Günü Planla → 6 tur → sonuç, x1/x2/x4/Atla, gerçek gün süresi ölçümü.
+3. ✅ Hafta: 5 gün, kota çubuğu, günlük hava, 6 preset deste (playtest kaydı + JSON dışa aktarım).
 4. Koleksiyon: paketler, market, kopya → kaynak, deste düzenleme ekranı.
 5. Albüm ve quest kitabı + simülasyona quest/albüm görevleri.
 6. Tarayıcıda denge paneli (sim'i Web Worker'da çalıştırıp grafikle gösterme).

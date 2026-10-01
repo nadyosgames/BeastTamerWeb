@@ -55,15 +55,6 @@
   font-family: var(--font-display);
   font-size: 34px;
 }
-.gold {
-  color: var(--gold-hi);
-}
-.good {
-  color: var(--good);
-}
-.bad {
-  color: var(--bad);
-}
 
 .lab__slots {
   position: absolute;

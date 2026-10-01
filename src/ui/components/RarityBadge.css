@@ -1,0 +1,34 @@
+.rarity-badge {
+  --setting-light: #edf1f2;
+  --setting-mid: #9daab4;
+  --setting-dark: #36444f;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--rarity-color);
+  vertical-align: middle;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1;
+  white-space: nowrap;
+}
+.rarity-badge > svg {
+  width: var(--badge-size);
+  height: var(--badge-size);
+  flex-shrink: 0;
+  overflow: visible;
+  filter: drop-shadow(0 2px 2px #000c);
+}
+.rarity-badge--legendary,
+.rarity-badge--mythic,
+.rarity-badge--ancient {
+  --setting-light: #fff1ba;
+  --setting-mid: #d4a351;
+  --setting-dark: #71502b;
+}
+.rarity-badge--ancient {
+  --setting-light: #fff9db;
+  --setting-mid: #dfc589;
+}
+

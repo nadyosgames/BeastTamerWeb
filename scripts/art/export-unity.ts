@@ -51,7 +51,7 @@ for (const a of assets.filter(hasMaster)) {
 // 2. İçerik
 const contentDir = path.join(base, 'Content')
 await mkdir(contentDir, { recursive: true })
-for (const f of ['cards', 'tamers', 'weather', 'economy', 'calendar', 'starter', 'art', 'balance-targets']) {
+for (const f of ['cards', 'tamers', 'weather', 'decks', 'economy', 'calendar', 'starter', 'art', 'balance-targets']) {
   const json = JSON.parse(await readFile(path.join(PATHS.content, `${f}.json`), 'utf8'))
   delete json.$schema
   await writeFile(path.join(contentDir, `${f}.json`), JSON.stringify(json, null, 2))

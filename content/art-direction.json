@@ -1,0 +1,504 @@
+{
+  "cards": {
+    "ember_thunder_dragon": {
+      "creature": "a sleek armored dragon with charcoal scales split by glowing ember cracks, crackling yellow lightning arcs along its horns and wings, and a mane of living flame",
+      "habitat": "an ancient ruined stone bridge in warm storm light, pale smoke-grey distant sky"
+    },
+    "eternal_flame": {
+      "creature": "an ancient serpentine dragon of softly luminous ivory-gold fire with a definite scaled body, long separated S-curve, majestic horned head and distinct tapering tail; restrained gold glow",
+      "habitat": "a silent ancient stone sanctuary, dim warm sepia arches and a dark gold atmosphere"
+    },
+    "magma_titan": {
+      "creature": "a towering golem of black basalt with a few restrained glowing amber seams between solid basalt plates",
+      "habitat": "a vast deserted basalt quarry, faded warm grey dust behind its black stone outline"
+    },
+    "phoenix": {
+      "creature": "a majestic phoenix with long flowing tail feathers of gold and crimson fire, wings spread wide",
+      "habitat": "a desert temple rooftop above a softly blurred sandy valley, quiet bronze dusk sky"
+    },
+    "lava_salamander": {
+      "creature": "a sleek dark copper and charcoal salamander with amber belly and a few thin glowing seams, four distinct small legs and long separate tapering tail",
+      "habitat": "a dry obsidian shore beside a calm geothermal pool; muted warm grey steam far behind, no lava river"
+    },
+    "coral_turtle": {
+      "creature": "a young sea turtle with a shell covered in pink and orange coral, friendly round eyes, water droplets around it",
+      "habitat": "a calm shallow lagoon, soft sea-green water and a few distant blurred coral shapes"
+    },
+    "stone_golem": {
+      "creature": "a sturdy little golem made of mossy boulders with glowing amber eyes and tiny ferns growing on its shoulders",
+      "habitat": "a mossy forest footpath with muted dark olive foliage and a few distant sunlit ferns"
+    },
+    "cloud_owl": {
+      "creature": "a round fluffy owl with lavender feathers that blend into soft clouds, big golden eyes",
+      "habitat": "a dark plum twilight woodland branch with a soft lavender dusk opening behind"
+    },
+    "charge_bat": {
+      "creature": "ONE small charcoal-grey bat, short rounded snout, large ears, cheerful eyes, two broad leathery bat wings with visibly long finger bones, short legs, tiny gold static accents. A BAT, not a fox, not a bird",
+      "habitat": "a quiet warm-grey cave mouth at dusk, pale amber sky behind its dark furry body and bat membranes"
+    },
+    "mist_ghost": {
+      "creature": "a small translucent ghost made of pale blue mist with a gentle smile, wisps trailing behind it",
+      "habitat": "a quiet flooded stone cloister, subdued teal arches and still water"
+    },
+    "storm_moth": {
+      "creature": "a fluffy moth with lavender and white wings patterned like storm clouds",
+      "habitat": "a dusk meadow with blurred indigo thistles, clean open space around both patterned wings"
+    },
+    "dandelion_bunny": {
+      "creature": "a fluffy white bunny with a dandelion puff tail, seeds drifting in the breeze",
+      "habitat": "a soft dusky lilac meadow, only three tiny drifting seeds well away from its face"
+    },
+    "whirl_wisp": {
+      "creature": "a tiny spinning whirlwind spirit with a playful face, leaves caught in its spiral",
+      "habitat": "a quiet old hilltop stone stair, dark desaturated plum haze, a compact single spirit"
+    },
+    "cyclone_ferret": {
+      "creature": "a sleek ferret with a small curl of wind at its paws, fur swept by the wind",
+      "habitat": "a smooth quiet moor path, subdued lavender heather far behind, no encircling cyclone wall"
+    },
+    "chime_bird": {
+      "creature": "an elegant songbird with long tail feathers shaped like wind chimes, glowing softly",
+      "habitat": "a branch beside a quiet abandoned wind shrine, muted plum stone and soft lilac light"
+    },
+    "sky_whale_calf": {
+      "creature": "a baby whale floating among the clouds with small feathered fins",
+      "habitat": "a quiet open lavender morning sky above distant mountains, sparse clouds below the animal"
+    },
+    "thistle_ball": {
+      "creature": "a round fluffy thistle seed creature rolling in the wind with tiny eyes",
+      "habitat": "a weathered stone wall by a lilac meadow, subdued purple-green background"
+    },
+    "gale_hound": {
+      "creature": "a lean wind-swept hound with streaming lavender fur, sprinting",
+      "habitat": "a wide open heather path, softly blurred mauve hills and quiet lavender haze"
+    },
+    "thunder_hawk": {
+      "creature": "a sharp-eyed hawk with storm-grey feathers crackling with yellow lightning",
+      "habitat": "a storm-battered high branch, pale grey-lilac sky behind dark feathers, tiny hornless natural hawk"
+    },
+    "fire_hawk": {
+      "creature": "a fierce hawk with feathers of orange flame trailing ember sparks across the wind",
+      "habitat": "a warm autumn ridge in muted copper and mauve evening light, restrained flame only on feather tips"
+    },
+    "griffin_chick": {
+      "creature": "a fluffy baby griffin with an eagle head and a lion cub body, tiny wings flapping",
+      "habitat": "a broad mossy nest ledge, subdued mauve canyon and soft lilac dawn"
+    },
+    "sage_owl": {
+      "creature": "a wise old owl with silver-lavender feathers, round spectacles and a scroll",
+      "habitat": "a quiet ancient library window ledge, dim muted plum shelves far behind"
+    },
+    "vortex_spirit": {
+      "creature": "a swirling violet vortex spirit with glowing eyes at its center",
+      "habitat": "a silent hilltop ruin under a faded lavender night sky, one compact spirit with a clearly bounded body"
+    },
+    "sky_serpent": {
+      "creature": "a long feathered serpent gliding through the clouds, iridescent lavender scales",
+      "habitat": "an open pale lavender dawn sky above distant mountains, clear spacious S-shaped feathered body"
+    },
+    "cloud_dragon": {
+      "creature": "a fluffy cloud dragon with a body made of soft clouds and a lavender mane",
+      "habitat": "a subdued dark lilac evening sky, small clouds far below, whole pale fluffy dragon separated"
+    },
+    "hurricane_eagle": {
+      "creature": "a great eagle above a high peak, wings spread with swirling storm clouds",
+      "habitat": "a high stone peak with quiet pale storm-grey sky, no circular hurricane touching its wings"
+    },
+    "roc": {
+      "creature": "a gigantic mythical roc bird with emerald and gold feathers soaring above mountains",
+      "habitat": "a wide misty alpine vista, muted sage-purple mountains far below and pale dawn sky"
+    },
+    "tornado_dragon": {
+      "creature": "a majestic long storm dragon with a coherent grey-lavender serpentine body, two distinct wings, readable head and tail; wind texture on its body only",
+      "habitat": "a quiet mauve sky above a distant rocky plain, coherent dragon body and readable head, no debris curtain"
+    },
+    "four_winds": {
+      "creature": "ONE ancient violet wind spirit with four distinct serene faces integrated into its unified flowing body, restrained luminous wind markings",
+      "habitat": "a silent ancient wind shrine above muted purple hills, four faces are on ONE unified spirit body"
+    },
+    "spark_coil": {
+      "creature": "a small eel-like serpent coiled around itself like a copper coil, glowing yellow stripes buzzing with electricity",
+      "habitat": "a weathered copper workshop shelf, soft dark olive-brown wall behind a small coiled serpent"
+    },
+    "storm_snail": {
+      "creature": "a cute snail whose spiral shell is a tiny thundercloud with lightning sparks, glowing antennae",
+      "habitat": "a damp dark garden stone, blurred olive-green leaves, warm light defining its grey thundercloud shell"
+    },
+    "volt_mouse": {
+      "creature": "a tiny round mouse with lightning-bolt tail and glowing yellow cheeks",
+      "habitat": "a warm timber attic floor, subdued brown beams behind its small round golden body"
+    },
+    "zap_beetle": {
+      "creature": "a small metallic beetle with antennae sparking electricity",
+      "habitat": "a broad dark copper pipe in an old garden pump house, quiet olive-brown background"
+    },
+    "copper_worm": {
+      "creature": "a segmented copper-colored worm with glowing wire-like stripes",
+      "habitat": "a pale dry soil patch under an old copper waterwheel, subdued tan wood behind"
+    },
+    "jolt_pup": {
+      "creature": "a playful puppy with spiky yellow fur charged with static, tiny lightning sparks",
+      "habitat": "a quiet grassy workshop courtyard, muted olive shrubs and warm brown fence"
+    },
+    "tension_lizard": {
+      "creature": "a lean lizard with spiky yellow frills standing up with crackling static, tense alert pose",
+      "habitat": "a flat pale desert stone, soft tawny scrub far behind its darker spiky silhouette"
+    },
+    "dynamo_hamster": {
+      "creature": "a chubby hamster running in a tiny glowing dynamo wheel",
+      "habitat": "a dim wooden tinkerer workshop, its ONE small dynamo wheel clearly separated from distant tools"
+    },
+    "arc_lynx": {
+      "creature": "a sleek lynx with ear tufts sparking electric arcs",
+      "habitat": "a dark autumn birch grove, softly blurred pale ochre trunks behind its tawny spotted fur"
+    },
+    "capacitor_golem": {
+      "creature": "a boxy metal golem with glass capacitor tubes glowing on its back",
+      "habitat": "a deserted stone machinery room, soft pale tan wall behind dark metal and restrained amber tubes"
+    },
+    "surge_weasel": {
+      "creature": "a hyperactive weasel with fur standing on end, with restrained static accents",
+      "habitat": "a quiet golden wheat field edge, dark olive hedge behind its small tawny body"
+    },
+    "electric_eel": {
+      "creature": "a long dark-blue electric eel glowing with yellow lightning stripes underwater",
+      "habitat": "a calm deep river pool, pale desaturated teal underwater haze behind dark navy body and small yellow accents"
+    },
+    "magnet_golem": {
+      "creature": "a heavy iron golem with a giant horseshoe magnet on its chest attracting metal shards",
+      "habitat": "a pale dusty scrapyard courtyard, one distant blurred wooden fence; only two small metal shards near feet"
+    },
+    "storm_hound": {
+      "creature": "a fierce hound with a mane of crackling blue-yellow lightning",
+      "habitat": "an open stormy heath, faded warm grey sky behind its dark navy body, restrained gold arcs"
+    },
+    "lightning_wisp": {
+      "creature": "a small flickering ghost made of pure lightning with a cheeky grin",
+      "habitat": "a dim stone bell tower chamber, soft umber walls behind one compact golden spirit"
+    },
+    "coil_tortoise": {
+      "creature": "a tortoise with a copper coil shell humming with electricity",
+      "habitat": "a quiet sandy workshop garden, muted dark olive shrubs behind its copper coil shell"
+    },
+    "thunder_dragon": {
+      "creature": "a powerful storm dragon with dark blue scales and wings crackling with thunderbolts",
+      "habitat": "a high windswept sandstone ridge, pale warm-grey storm sky behind its dark blue scales"
+    },
+    "plasma_serpent": {
+      "creature": "a glowing serpent made of swirling violet and yellow plasma energy",
+      "habitat": "a quiet ancient observatory courtyard at violet dusk, muted dark plum stone, one coherent serpentine body"
+    },
+    "conductor_crab": {
+      "creature": "a crab with copper claws connected by arcs of electricity",
+      "habitat": "a flat pale tidal sandbank beside weathered copper shipwreck timber, calm muted olive sea"
+    },
+    "raijin_wolf": {
+      "creature": "a majestic white wolf with small lightning accents on its fur, drums of thunder floating around it",
+      "habitat": "a quiet mountaintop shrine, dim olive-brown pillars and bronze sky; only two small thunder drums off to the sides"
+    },
+    "storm_colossus": {
+      "creature": "a giant storm golem of dark metal with a thundercloud crown and lightning veins",
+      "habitat": "a wide pale dusty ruined terrace under warm-grey clouds, crown stays compact and limbs separated"
+    },
+    "tempest_dragon": {
+      "creature": "a colossal tempest dragon with a clearly visible body, restrained lightning and glowing runes across its wings",
+      "habitat": "an isolated ancient peak above a soft warm-grey cloud sea, clear full wings and body, restrained gold lightning"
+    },
+    "ember_hedgehog": {
+      "creature": "a round hedgehog whose spines glow like smoldering embers, rosy cheeks, sitting on warm coals",
+      "habitat": "a sheltered hollow beneath an old chestnut tree, softly blurred tan leaf litter"
+    },
+    "flame_swarm": {
+      "creature": "a pack of three tiny fire fox kits huddled together, flame tails flickering",
+      "habitat": "three separate fox kits in a sandy dry meadow at evening, distant tawny grass"
+    },
+    "baby_dragon": {
+      "creature": "a chubby baby red dragon with tiny wings puffing a small flame, playful expression",
+      "habitat": "a sandstone cave entrance with pale warm limestone behind its red body"
+    },
+    "cinder_beetle": {
+      "creature": "a tiny beetle with a glowing ember shell and smoking antennae",
+      "habitat": "a charcoal log in a quiet abandoned campsite, soft grey ash in the distance"
+    },
+    "torch_lizard": {
+      "creature": "a small lizard with a flickering flame crest on its head like a torch",
+      "habitat": "a weathered terracotta garden wall in late afternoon, muted clay plaster behind it"
+    },
+    "ash_crow": {
+      "creature": "a sleek black crow with ash-grey feathers and glowing ember eyes, sparks trailing from its wings",
+      "habitat": "an old chimney ledge, soft light beige morning sky separating the black wings"
+    },
+    "magma_pup": {
+      "creature": "a small round golem pup made of cooling magma rock with glowing orange cracks",
+      "habitat": "a deserted quarry of warm grey stone, hazy pale dust behind its dark rock body"
+    },
+    "blaze_hound": {
+      "creature": "a lean hound with a compact flame mane and glowing tail tip, running pose",
+      "habitat": "a dry golden savanna path, distant acacia shapes, dusky olive shadows"
+    },
+    "flame_lily": {
+      "creature": "a living lily flower with petals of flickering fire and a sleepy face in its bud",
+      "habitat": "an overgrown greenhouse flower bed, dim olive foliage and warm glass light"
+    },
+    "fire_wisp": {
+      "creature": "a small floating ghost made of blue-orange flame with a mischievous smile",
+      "habitat": "a dark old stone lantern alcove with soot-brown masonry"
+    },
+    "forge_golem": {
+      "creature": "a stout golem shaped like a blacksmith forge with a glowing furnace belly",
+      "habitat": "a medieval smithy courtyard, matte tan sandstone wall and a distant blurred anvil"
+    },
+    "wyvern": {
+      "creature": "a young red wyvern with leathery wings and a flaming tail tip, perched on rocks",
+      "habitat": "a high weathered sandstone cliff, hazy amber dawn sky"
+    },
+    "phoenix_chick": {
+      "creature": "a fluffy baby phoenix chick with downy flame feathers hatching from a glowing egg shell",
+      "habitat": "a nest of dark twigs on an old olive tree, softly blurred umber bark"
+    },
+    "cinder_drake": {
+      "creature": "a muscular ember drake with smoldering scales and a faint small breath of smoke",
+      "habitat": "a windswept ash plateau, subdued beige haze and distant muted grey ridges"
+    },
+    "swarm_mother": {
+      "creature": "a large glowing fire beetle queen surrounded by tiny ember beetles",
+      "habitat": "a warm earthen cavern chamber with clay walls, queen and only two small separated beetle attendants"
+    },
+    "steam_turtle": {
+      "creature": "a stocky turtle with a shell like a bubbling hot spring, steam vents puffing white clouds, ember glow under the water",
+      "habitat": "a mineral hot spring terrace, pale travertine and softly blurred sage green hills"
+    },
+    "crimson_wolf": {
+      "creature": "a proud crimson wolf with a blazing mane, howling with a few tiny ember accents",
+      "habitat": "a moonlit dry pine ridge, soft taupe mist separating its warm crimson fur"
+    },
+    "drop_frog": {
+      "creature": "a glossy blue frog with translucent water-drop spots, surrounded by floating bubbles, cheerful face",
+      "habitat": "a broad lily pad on a quiet blue-green garden pond, softly blurred reeds"
+    },
+    "coral_crab": {
+      "creature": "a small red crab with a coral crown on its shell, raised claws, bubbles around it",
+      "habitat": "a pale wet sandy tidepool with distant softly blurred coral, no splash curtain"
+    },
+    "bubble_fish": {
+      "creature": "a round puffer fish blowing a stream of shiny bubbles, big surprised eyes",
+      "habitat": "a sheltered underwater blue grotto, soft dark teal rocks, only two tiny bubbles"
+    },
+    "tide_otter": {
+      "creature": "a playful otter floating on its back on gentle waves, holding a shell",
+      "habitat": "a quiet estuary at dawn, smooth sage blue water and blurred reed banks"
+    },
+    "reef_seal": {
+      "creature": "a chubby grey seal pup lying on a coral reef rock, whiskers dripping with water",
+      "habitat": "a flat warm-grey coastal rock ledge, softly blurred muted blue-green sea behind"
+    },
+    "mist_wisp": {
+      "creature": "a tiny wisp of pale blue mist shaped like a sleepy little ghost",
+      "habitat": "a still shaded lakeshore with faint slate-blue reeds and thin distant fog"
+    },
+    "river_eel": {
+      "creature": "a long slender river eel with teal scales weaving through reeds and ripples",
+      "habitat": "a clear gently flowing stream above pale smooth pebbles, a distant blurred reed bank"
+    },
+    "whirl_octopus": {
+      "creature": "a round blue octopus with swirling whirlpool patterns on its head, curling tentacles splashing water, big friendly eyes",
+      "habitat": "a flat pale sandy seafloor in a turquoise bay, no objects among its separated arms"
+    },
+    "pearl_seahorse": {
+      "creature": "an elegant seahorse with orange and teal scales holding a glowing pearl in its curled tail",
+      "habitat": "a dim sheltered sea grass meadow, sparse blurred blue-green stalks far behind"
+    },
+    "wave_dolphin": {
+      "creature": "a sleek dolphin leaping out of a cresting wave, joyful expression",
+      "habitat": "one small clean leap above a smooth aquamarine coastal bay, distant hazy limestone cliffs"
+    },
+    "kelp_guardian": {
+      "creature": "a tall swaying kelp creature with gentle eyes and seaweed arms, small fish around it",
+      "habitat": "a clear open patch in an underwater kelp forest, pale green filtered sunlight behind its dark fronds"
+    },
+    "tide_caller": {
+      "creature": "a slender sea serpent with a glowing conch-shell crest, calling the tide",
+      "habitat": "a calm cove beside an ancient pale limestone sea arch, muted ocean haze"
+    },
+    "mirror_jelly": {
+      "creature": "a translucent jellyfish with a mirror-like shimmering bell reflecting light, long glowing tentacles",
+      "habitat": "deep dark blue water with soft empty space, a faint distant sea cavern silhouette"
+    },
+    "mud_turtle": {
+      "creature": "a sturdy turtle covered in wet mud and moss, lily pads growing on its shell",
+      "habitat": "a shallow earthy marsh pool, blurred soft olive reeds and pale mud bank"
+    },
+    "rain_bird": {
+      "creature": "a graceful blue songbird made of raindrops and cloud wisps, singing in a drizzle",
+      "habitat": "a mossy branch under a soft rainy canopy, muted blue-grey foliage behind the bird"
+    },
+    "abyss_angler": {
+      "creature": "a deep-sea anglerfish with a glowing lantern lure, dark blue body and sharp friendly grin",
+      "habitat": "an open deep-sea trench, smooth midnight navy water with a dim slate gradient"
+    },
+    "tidal_serpent": {
+      "creature": "a long sea serpent rising from rolling tides, turquoise scales and a fin crest",
+      "habitat": "a calm tidal inlet, its whole spacious S-curve visible above shallow teal water and pale sand"
+    },
+    "leviathan_calf": {
+      "creature": "a young leviathan with deep blue armored scales and glowing bioluminescent spots, emerging from the deep",
+      "habitat": "a quiet open blue ocean shelf, softly lit pale underwater haze behind its dark armor"
+    },
+    "mist_queen": {
+      "creature": "an elegant ghost queen made of swirling sea mist with a crown of pale coral",
+      "habitat": "a lonely sea-worn stone stairway, softly blurred dark slate coast and faint fog"
+    },
+    "elder_tortoise": {
+      "creature": "an ancient wise sea tortoise with a barnacle-covered shell and a long white beard of seaweed",
+      "habitat": "an ancient submerged temple courtyard, pale sea-green stone floor and quiet dim arch"
+    },
+    "kraken": {
+      "creature": "ONE colossal deep-purple octopus kraken, strong round mantle, luminous eyes, eight thick readable separated arms with open spaces between them",
+      "habitat": "a wide calm deep-blue bay, tentacles individually separated with open water between them"
+    },
+    "sea_dragon": {
+      "creature": "a majestic serpentine sea dragon with flowing fins, teal and silver scales, riding a great wave",
+      "habitat": "a softly lit underwater sea arch, pale turquoise water behind its clearly separated fins and S-body"
+    },
+    "moon_whale": {
+      "creature": "a colossal ethereal whale swimming through a starry night sky above the ocean, glowing moon runes on its skin",
+      "habitat": "a quiet midnight ocean horizon under a silver moon, broad empty indigo sky around its body"
+    },
+    "root_keeper": {
+      "creature": "a small wooden guardian made of twisted roots and bark with glowing green eyes and leaves sprouting on its head",
+      "habitat": "a soft fern glade, pale sage mist behind its darker bark figure"
+    },
+    "pebble_mole": {
+      "creature": "a chubby mole with tiny pebbles stuck in its soft brown fur, digging out of the ground",
+      "habitat": "a small burrow entrance in sandy soil, quiet tan hillside behind"
+    },
+    "sprout": {
+      "creature": "a tiny sprout creature with two leaf ears and a seed-shaped body, smiling",
+      "habitat": "a dark fertile garden bed after rain, softly blurred olive seedlings in the distance"
+    },
+    "clay_golem": {
+      "creature": "a small round golem of reddish clay with handprints on its body and pebble eyes",
+      "habitat": "a quiet pottery yard with muted pale plaster walls and dry clay ground"
+    },
+    "mushroom_toad": {
+      "creature": "a chubby toad with a big spotted mushroom cap growing on its head",
+      "habitat": "a shady fallen log with a few distant soft moss shapes, muted green-brown woodland"
+    },
+    "burrow_badger": {
+      "creature": "a stocky badger with earthy striped fur peeking out of a burrow",
+      "habitat": "the open doorway of an earthen den, softly blurred ochre roots off to the sides"
+    },
+    "boulder_beetle": {
+      "creature": "a tiny beetle with a shell like a polished river stone, moss on its back",
+      "habitat": "a flat pale river pebble on a quiet green-brown creek bank"
+    },
+    "rock_lizard": {
+      "creature": "a chunky lizard with rocky plates and amber crystal spikes along its back",
+      "habitat": "a broad warm sandstone ledge, subdued pale ochre canyon haze"
+    },
+    "thorn_bush": {
+      "creature": "a grumpy little thorn bush creature with berry eyes and prickly branches",
+      "habitat": "an abandoned herb garden, soft tan wall behind its prickly green outline"
+    },
+    "iron_tortoise": {
+      "creature": "a tortoise with a heavy shell made of iron ore plates and rivets",
+      "habitat": "a pale dusty iron mine entrance, subdued tan rock separating its dark iron plates"
+    },
+    "crystal_golem": {
+      "creature": "a golem made of glowing amber and green crystals growing out of rock",
+      "habitat": "a quiet limestone cavern, subdued grey-green wall behind its amber crystal figure"
+    },
+    "vine_serpent": {
+      "creature": "a green serpent made of twisting vines with small leaves and flowers along its body",
+      "habitat": "a pale sunlit forest clearing, spacious S-curve on a simple flat stone, no vines in the gaps"
+    },
+    "seed_finch": {
+      "creature": "a small brown finch carrying a glowing seed in its beak, nest of twigs",
+      "habitat": "a nest on a broad old branch, dim blurred olive leaves behind the small brown bird"
+    },
+    "moss_giant": {
+      "creature": "a large gentle golem made of mossy stone and roots with a bushy moss beard and glowing green eyes",
+      "habitat": "a quiet ancient woodland path, soft pale sage mist behind its massive dark moss shape"
+    },
+    "volcano_tortoise": {
+      "creature": "a massive tortoise with a small smoking rocky crater on its shell, visible head, four stout feet and tail; tiny amber seam only on shell",
+      "habitat": "a pale ash plain, small shell volcano is part of the creature only; distant warm grey haze"
+    },
+    "elder_oak": {
+      "creature": "an old oak tree creature with a wise wrinkled bark face and acorn eyes",
+      "habitat": "an open meadow at dawn, subdued pale sage sky behind its dark bark and separated limbs"
+    },
+    "granite_golem": {
+      "creature": "a tall imposing golem of speckled grey granite with glowing runes on its fists",
+      "habitat": "an abandoned temple terrace, quiet dusty olive trees and pale warm stone"
+    },
+    "quake_mole": {
+      "creature": "a burly mole with large digging claws causing the ground to crack around it",
+      "habitat": "a freshly dug ochre field, soft dry earth behind its large dark body, restrained small ground crack"
+    },
+    "sandstorm_eagle": {
+      "creature": "a fierce eagle with sandstone-colored feathers, wings trailing swirling sand and wind currents, small crystals on its crest",
+      "habitat": "a desert mesa above soft sand dunes, faded beige sky, no sand cloud crossing wings"
+    },
+    "ancient_tree": {
+      "creature": "an ancient walking tree spirit with a mossy trunk face, glowing green eyes and branches full of leaves and fireflies",
+      "habitat": "a quiet woodland glade, pale sage fog behind its dark trunk, branches separated from background trees"
+    },
+    "mountain_tortoise": {
+      "creature": "a gigantic tortoise carrying a small mountain with pine trees on its shell",
+      "habitat": "a wide misty alpine valley, light muted sage sky behind its dark mountain shell"
+    },
+    "world_tree": {
+      "creature": "a colossal world tree spirit with roots wrapping around the earth, glowing leaves and a serene ancient face",
+      "habitat": "a broad open dawn landscape with faded olive hills, entire tree-shaped walking spirit visible"
+    },
+    "stone_colossus": {
+      "creature": "a towering colossus of ancient carved stone covered in moss and glowing runes",
+      "habitat": "a silent abandoned stone plaza, light warm grey mist behind its dark carved stone outline"
+    },
+    "gaia_tortoise": {
+      "creature": "a primordial world tortoise with an entire glowing forest and waterfalls on its shell, cosmic runes",
+      "habitat": "a primordial meadow with soft hazy sage mountains, miniature forest stays ONLY on its shell"
+    },
+    "gust_cat": {
+      "creature": "a small winged cat with pale lavender fur and a wispy tail made of breeze, floating in the air",
+      "habitat": "a quiet lilac heather hillside, muted dusky lavender sky with ample space around its wings"
+    },
+    "breeze_sparrow": {
+      "creature": "a tiny sparrow riding a gust of wind with ruffled lavender feathers",
+      "habitat": "a weathered fence rail beside a lavender meadow, subdued mauve morning light"
+    },
+    "breeze_fox": {
+      "creature": "a slender pale fox with long flowing tail and ears like leaves in the wind",
+      "habitat": "a muted purple heath under pale lavender dawn sky, long tail fully clear of grasses"
+    },
+    "flock_finch": {
+      "creature": "a cheerful little finch with lavender wings, part of a small flock flying together",
+      "habitat": "three individually separated small finches above an old mauve orchard, soft plum sky"
+    },
+    "storm_eagle": {
+      "creature": "a proud adult eagle with a strongly hooked beak, fierce golden eyes, lavender and storm-grey feathered wings, taloned feet. An eagle, not an owl or fox",
+      "habitat": "a high weathered ridge with pale mauve storm sky, entire hooked-beak eagle and wings clear"
+    },
+    "static_rabbit": {
+      "creature": "a fluffy yellow rabbit with puffed static fur and sparks dancing between its long ears",
+      "habitat": "a dry golden meadow, subdued dark olive-brown grass behind its pale yellow fur"
+    },
+    "thunder_ram": {
+      "creature": "a sturdy ram with curled horns crackling with lightning and a woolly fleece full of static",
+      "habitat": "a rocky highland meadow, softly blurred muted olive hillside behind cream fleece"
+    },
+    "spark_fox": {
+      "creature": "a small fox cub with ember-tipped orange fur, big curious eyes and a glowing spark at the tip of its fluffy flame tail",
+      "habitat": "a quiet autumn woodland clearing, muted brown leaves and distant ochre trunks; no fire on the ground"
+    },
+    "volcano_serpent": {
+      "creature": "one majestic horned volcanic serpent, charcoal and burnt-copper solid scales, softly lit ivory-amber belly, a few thin amber seams; clean spacious S-curve with distinct head and tapering tail",
+      "habitat": "a simple low dark rock slab, softly blurred muted warm-brown atmosphere; no volcano inside its coils, no erupting volcano or lava foreground"
+    },
+    "sun_dragon": {
+      "creature": "one majestic red and gold dragon, ivory belly, gold sun crest on its chest, distinct horns and two leathery wings with restrained amber highlights; all wings, feet and tail visible",
+      "habitat": "an ancient sandstone sun-temple terrace at warm dawn, subdued tan arches and a softly blurred amber sky; no fire or lava in the environment"
+    }
+  }
+}

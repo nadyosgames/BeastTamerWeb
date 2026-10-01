@@ -72,7 +72,7 @@ export function arrangementExperiment(
     master: summarize(incomes.master),
   }
   return {
-    deck: opts.deckName ?? db.starter.deckName,
+    deck: opts.deckName ?? db.deckById.get(db.starter.deck)!.name,
     tamer: tamer.name,
     days: opts.days,
     income,
@@ -108,7 +108,7 @@ export function weatherFitExperiment(
   const tamer = opts.tamer ?? db.tamer(db.starter.tamer)
   const coll =
     opts.collection === 'starter'
-      ? Object.fromEntries(db.starter.deck.map((d) => [d.card, d.count]))
+      ? Object.fromEntries(db.deckById.get(db.starter.deck)!.cards.map((d) => [d.card, d.count]))
       : fullCollection(db.packPool, db.economy)
   const owned = collectionToOwned(coll, db.cardById)
   const weathers = db.weather.filter((w) => w.modifiers.length > 0)
@@ -210,4 +210,56 @@ export function duplicateRatio(db: ContentDB): number {
   let perCard = 0
   for (const r of RARITIES) perCard += ((std.odds[r] ?? 0) / totalOdds) * (db.economy.rarities[r].duplicatePct / 100)
   return (perCard * std.cards) / std.priceMult
+}
+
+// ---------------------------------------------------------------------------
+// 5. Preset desteler: dizilim etkisi ve hava matrisi
+// ---------------------------------------------------------------------------
+
+export interface PresetRow {
+  id: string
+  name: string
+  masterOverNovice: number
+  masterOverRandom: number
+  dayMinutes: number
+  /** Hava id → usta botla ortalama gün geliri. */
+  byWeather: Record<string, number>
+}
+
+export interface PresetMatrix {
+  rows: PresetRow[]
+  /** Hava id → o havada en çok kazandıran preset. */
+  bestIn: Record<string, string>
+  /** Tüm etkili havalarda birinci olan preset (GDD: olmamalı). */
+  dominant: string | null
+}
+
+export function presetMatrix(db: ContentDB, opts: { seed: number; days: number }): PresetMatrix {
+  const rows: PresetRow[] = db.decks.map((d) => {
+    const tamer = db.tamer(d.tamer)
+    const deck = db.deckCards(d.id)
+    const arr = arrangementExperiment(db, { seed: opts.seed, days: opts.days, deck, tamer, deckName: d.name })
+    const byWeather: Record<string, number> = {}
+    for (const w of db.weather) {
+      let sum = 0
+      const n = Math.max(10, Math.floor(opts.days / 3))
+      for (let i = 0; i < n; i++)
+        sum += playDay({ deck, tamer, weather: w }, createRng(deriveSeed(opts.seed, i, 11)), makeArranger('master', createRng(i))).total
+      byWeather[w.id] = sum / n
+    }
+    return {
+      id: d.id,
+      name: d.name,
+      masterOverNovice: arr.masterOverNovice,
+      masterOverRandom: arr.masterOverRandom,
+      dayMinutes: arr.dayMinutes.mean,
+      byWeather,
+    }
+  })
+  const bestIn: Record<string, string> = {}
+  for (const w of db.weather) bestIn[w.id] = rows.reduce((a, b) => (b.byWeather[w.id] > a.byWeather[w.id] ? b : a)).id
+  const effective = db.weather.filter((w) => w.modifiers.length > 0).map((w) => w.id)
+  const first = bestIn[effective[0]]
+  const dominant = effective.every((w) => bestIn[w] === first) ? first : null
+  return { rows, bestIn, dominant }
 }
