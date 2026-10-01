@@ -1,0 +1,14 @@
+{
+  "id": "lava_salamander",
+  "name": "Lav Semenderi",
+  "key": "cards/lava_salamander",
+  "habitat": "a dry obsidian shore beside a calm geothermal pool; muted warm grey steam far behind, no lava river",
+  "subject": "a sleek dark copper and charcoal salamander with amber belly and a few thin glowing seams, four distinct small legs and long separate tapering tail",
+  "prompt": "Use case: stylized-concept. Asset: standalone square 1024x1024 collectible creature card illustration, no UI. Subject: a sleek dark copper and charcoal salamander with amber belly and a few thin glowing seams, four distinct small legs and long separate tapering tail. Power/age: developed, powerful and elegant. Elements: fire; secondary elements are restrained accents. Unique habitat: a dry obsidian shore beside a calm geothermal pool; muted warm grey steam far behind, no lava river. Palette: Creature: burnt copper, ember orange, charcoal and ivory highlights. Background may be natural tan, warm grey, brown, muted olive, ash or pale dawn hues as specified; it does NOT need to be red. No forced blue/cyan contrast. Reference image 1 is ONLY the approved silhouette readability and painterly material treatment: do NOT draw a snake unless THIS subject is a snake. Reference image 2 is ONLY rendering style, especially its fire fox: do NOT copy its creatures or UI. Draw the SPECIFIED species accurately, with its own distinct anatomy and personality. Preserve a harmonious natural palette. Use tonal/value separation, not unrelated clashing hues. The creature is crisp and well lit; environment is softly blurred, lower detail and lower contrast. Dark bodies get a pale subdued background, pale bodies get a dark subdued background. Whole creature fits central 80% with breathing room on ALL sides, head, limbs, wings and tail clearly traceable at 170px. No foreground object crossing the body; keep calm negative space right around the entire outline and between limbs/coils. Solid readable material surfaces, broadly painted clean planes. Elemental effects are SMALL, attached to the creature only, never an all-over texture. No wall of flames, water splashes, dense lightning, debris, encircling energy ribbons or sparkle fields. Charm and polished hand-painted fantasy illustration, expressive face appropriate to species, subtle brush texture. Natural grounded scene, no studio gradient or sticker cutout. No card frame, border, words, letters, numbers, UI or watermark.",
+  "references": [
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/art/source/cards/volcano_serpent.png",
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+  ],
+  "source": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f853-107f-71b2-8552-8e3e2fa59707\\exec-71092a3f-1dc0-4551-be95-4acc212bdb10.png",
+  "master": "art/source/cards/lava_salamander.png"
+}

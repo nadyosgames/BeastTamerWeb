@@ -1,0 +1,162 @@
+import fs from 'node:fs'
+
+const habitats = {
+  spark_fox: 'a quiet autumn woodland clearing, muted brown leaves and distant ochre trunks; no fire on the ground',
+  ember_hedgehog: 'a sheltered hollow beneath an old chestnut tree, softly blurred tan leaf litter',
+  flame_swarm: 'three separate fox kits in a sandy dry meadow at evening, distant tawny grass',
+  baby_dragon: 'a sandstone cave entrance with pale warm limestone behind its red body',
+  cinder_beetle: 'a charcoal log in a quiet abandoned campsite, soft grey ash in the distance',
+  torch_lizard: 'a weathered terracotta garden wall in late afternoon, muted clay plaster behind it',
+  ash_crow: 'an old chimney ledge, soft light beige morning sky separating the black wings',
+  magma_pup: 'a deserted quarry of warm grey stone, hazy pale dust behind its dark rock body',
+  blaze_hound: 'a dry golden savanna path, distant acacia shapes, dusky olive shadows',
+  flame_lily: 'an overgrown greenhouse flower bed, dim olive foliage and warm glass light',
+  fire_wisp: 'a dark old stone lantern alcove with soot-brown masonry',
+  forge_golem: 'a medieval smithy courtyard, matte tan sandstone wall and a distant blurred anvil',
+  wyvern: 'a high weathered sandstone cliff, hazy amber dawn sky',
+  phoenix_chick: 'a nest of dark twigs on an old olive tree, softly blurred umber bark',
+  lava_salamander: 'a dry obsidian shore beside a calm geothermal pool; muted warm grey steam far behind, no lava river',
+  cinder_drake: 'a windswept ash plateau, subdued beige haze and distant muted grey ridges',
+  swarm_mother: 'a warm earthen cavern chamber with clay walls, queen and only two small separated beetle attendants',
+  steam_turtle: 'a mineral hot spring terrace, pale travertine and softly blurred sage green hills',
+  crimson_wolf: 'a moonlit dry pine ridge, soft taupe mist separating its warm crimson fur',
+  ember_thunder_dragon: 'an ancient ruined stone bridge in warm storm light, pale smoke-grey distant sky',
+  magma_titan: 'a vast deserted basalt quarry, faded warm grey dust behind its black stone outline',
+  phoenix: 'a desert temple rooftop above a softly blurred sandy valley, quiet bronze dusk sky',
+  eternal_flame: 'a silent ancient stone sanctuary, dim warm sepia arches and a dark gold atmosphere',
+  coral_turtle: 'a calm shallow lagoon, soft sea-green water and a few distant blurred coral shapes',
+  drop_frog: 'a broad lily pad on a quiet blue-green garden pond, softly blurred reeds',
+  coral_crab: 'a pale wet sandy tidepool with distant softly blurred coral, no splash curtain',
+  bubble_fish: 'a sheltered underwater blue grotto, soft dark teal rocks, only two tiny bubbles',
+  tide_otter: 'a quiet estuary at dawn, smooth sage blue water and blurred reed banks',
+  reef_seal: 'a flat warm-grey coastal rock ledge, softly blurred muted blue-green sea behind',
+  mist_wisp: 'a still shaded lakeshore with faint slate-blue reeds and thin distant fog',
+  river_eel: 'a clear gently flowing stream above pale smooth pebbles, a distant blurred reed bank',
+  whirl_octopus: 'a flat pale sandy seafloor in a turquoise bay, no objects among its separated arms',
+  pearl_seahorse: 'a dim sheltered sea grass meadow, sparse blurred blue-green stalks far behind',
+  wave_dolphin: 'one small clean leap above a smooth aquamarine coastal bay, distant hazy limestone cliffs',
+  kelp_guardian: 'a clear open patch in an underwater kelp forest, pale green filtered sunlight behind its dark fronds',
+  mist_ghost: 'a quiet flooded stone cloister, subdued teal arches and still water',
+  tide_caller: 'a calm cove beside an ancient pale limestone sea arch, muted ocean haze',
+  mirror_jelly: 'deep dark blue water with soft empty space, a faint distant sea cavern silhouette',
+  mud_turtle: 'a shallow earthy marsh pool, blurred soft olive reeds and pale mud bank',
+  rain_bird: 'a mossy branch under a soft rainy canopy, muted blue-grey foliage behind the bird',
+  abyss_angler: 'an open deep-sea trench, smooth midnight navy water with a dim slate gradient',
+  tidal_serpent: 'a calm tidal inlet, its whole spacious S-curve visible above shallow teal water and pale sand',
+  leviathan_calf: 'a quiet open blue ocean shelf, softly lit pale underwater haze behind its dark armor',
+  mist_queen: 'a lonely sea-worn stone stairway, softly blurred dark slate coast and faint fog',
+  elder_tortoise: 'an ancient submerged temple courtyard, pale sea-green stone floor and quiet dim arch',
+  kraken: 'a wide calm deep-blue bay, tentacles individually separated with open water between them',
+  sea_dragon: 'a softly lit underwater sea arch, pale turquoise water behind its clearly separated fins and S-body',
+  moon_whale: 'a quiet midnight ocean horizon under a silver moon, broad empty indigo sky around its body',
+  stone_golem: 'a mossy forest footpath with muted dark olive foliage and a few distant sunlit ferns',
+  root_keeper: 'a soft fern glade, pale sage mist behind its darker bark figure',
+  pebble_mole: 'a small burrow entrance in sandy soil, quiet tan hillside behind',
+  sprout: 'a dark fertile garden bed after rain, softly blurred olive seedlings in the distance',
+  clay_golem: 'a quiet pottery yard with muted pale plaster walls and dry clay ground',
+  mushroom_toad: 'a shady fallen log with a few distant soft moss shapes, muted green-brown woodland',
+  burrow_badger: 'the open doorway of an earthen den, softly blurred ochre roots off to the sides',
+  boulder_beetle: 'a flat pale river pebble on a quiet green-brown creek bank',
+  rock_lizard: 'a broad warm sandstone ledge, subdued pale ochre canyon haze',
+  thorn_bush: 'an abandoned herb garden, soft tan wall behind its prickly green outline',
+  iron_tortoise: 'a pale dusty iron mine entrance, subdued tan rock separating its dark iron plates',
+  crystal_golem: 'a quiet limestone cavern, subdued grey-green wall behind its amber crystal figure',
+  vine_serpent: 'a pale sunlit forest clearing, spacious S-curve on a simple flat stone, no vines in the gaps',
+  seed_finch: 'a nest on a broad old branch, dim blurred olive leaves behind the small brown bird',
+  moss_giant: 'a quiet ancient woodland path, soft pale sage mist behind its massive dark moss shape',
+  volcano_tortoise: 'a pale ash plain, small shell volcano is part of the creature only; distant warm grey haze',
+  elder_oak: 'an open meadow at dawn, subdued pale sage sky behind its dark bark and separated limbs',
+  granite_golem: 'an abandoned temple terrace, quiet dusty olive trees and pale warm stone',
+  quake_mole: 'a freshly dug ochre field, soft dry earth behind its large dark body, restrained small ground crack',
+  sandstorm_eagle: 'a desert mesa above soft sand dunes, faded beige sky, no sand cloud crossing wings',
+  ancient_tree: 'a quiet woodland glade, pale sage fog behind its dark trunk, branches separated from background trees',
+  mountain_tortoise: 'a wide misty alpine valley, light muted sage sky behind its dark mountain shell',
+  world_tree: 'a broad open dawn landscape with faded olive hills, entire tree-shaped walking spirit visible',
+  stone_colossus: 'a silent abandoned stone plaza, light warm grey mist behind its dark carved stone outline',
+  gaia_tortoise: 'a primordial meadow with soft hazy sage mountains, miniature forest stays ONLY on its shell',
+  cloud_owl: 'a dark plum twilight woodland branch with a soft lavender dusk opening behind',
+  gust_cat: 'a quiet lilac heather hillside, muted dusky lavender sky with ample space around its wings',
+  storm_moth: 'a dusk meadow with blurred indigo thistles, clean open space around both patterned wings',
+  breeze_sparrow: 'a weathered fence rail beside a lavender meadow, subdued mauve morning light',
+  breeze_fox: 'a muted purple heath under pale lavender dawn sky, long tail fully clear of grasses',
+  dandelion_bunny: 'a soft dusky lilac meadow, only three tiny drifting seeds well away from its face',
+  flock_finch: 'three individually separated small finches above an old mauve orchard, soft plum sky',
+  whirl_wisp: 'a quiet old hilltop stone stair, dark desaturated plum haze, a compact single spirit',
+  storm_eagle: 'a high weathered ridge with pale mauve storm sky, entire hooked-beak eagle and wings clear',
+  cyclone_ferret: 'a smooth quiet moor path, subdued lavender heather far behind, no encircling cyclone wall',
+  chime_bird: 'a branch beside a quiet abandoned wind shrine, muted plum stone and soft lilac light',
+  sky_whale_calf: 'a quiet open lavender morning sky above distant mountains, sparse clouds below the animal',
+  thistle_ball: 'a weathered stone wall by a lilac meadow, subdued purple-green background',
+  gale_hound: 'a wide open heather path, softly blurred mauve hills and quiet lavender haze',
+  thunder_hawk: 'a storm-battered high branch, pale grey-lilac sky behind dark feathers, tiny hornless natural hawk',
+  fire_hawk: 'a warm autumn ridge in muted copper and mauve evening light, restrained flame only on feather tips',
+  griffin_chick: 'a broad mossy nest ledge, subdued mauve canyon and soft lilac dawn',
+  sage_owl: 'a quiet ancient library window ledge, dim muted plum shelves far behind',
+  vortex_spirit: 'a silent hilltop ruin under a faded lavender night sky, one compact spirit with a clearly bounded body',
+  sky_serpent: 'an open pale lavender dawn sky above distant mountains, clear spacious S-shaped feathered body',
+  cloud_dragon: 'a subdued dark lilac evening sky, small clouds far below, whole pale fluffy dragon separated',
+  hurricane_eagle: 'a high stone peak with quiet pale storm-grey sky, no circular hurricane touching its wings',
+  roc: 'a wide misty alpine vista, muted sage-purple mountains far below and pale dawn sky',
+  tornado_dragon: 'a quiet mauve sky above a distant rocky plain, coherent dragon body and readable head, no debris curtain',
+  four_winds: 'a silent ancient wind shrine above muted purple hills, four faces are on ONE unified spirit body',
+  charge_bat: 'a quiet warm-grey cave mouth at dusk, pale amber sky behind its dark furry body and bat membranes',
+  spark_coil: 'a weathered copper workshop shelf, soft dark olive-brown wall behind a small coiled serpent',
+  storm_snail: 'a damp dark garden stone, blurred olive-green leaves, warm light defining its grey thundercloud shell',
+  static_rabbit: 'a dry golden meadow, subdued dark olive-brown grass behind its pale yellow fur',
+  volt_mouse: 'a warm timber attic floor, subdued brown beams behind its small round golden body',
+  zap_beetle: 'a broad dark copper pipe in an old garden pump house, quiet olive-brown background',
+  copper_worm: 'a pale dry soil patch under an old copper waterwheel, subdued tan wood behind',
+  jolt_pup: 'a quiet grassy workshop courtyard, muted olive shrubs and warm brown fence',
+  tension_lizard: 'a flat pale desert stone, soft tawny scrub far behind its darker spiky silhouette',
+  thunder_ram: 'a rocky highland meadow, softly blurred muted olive hillside behind cream fleece',
+  dynamo_hamster: 'a dim wooden tinkerer workshop, its ONE small dynamo wheel clearly separated from distant tools',
+  arc_lynx: 'a dark autumn birch grove, softly blurred pale ochre trunks behind its tawny spotted fur',
+  capacitor_golem: 'a deserted stone machinery room, soft pale tan wall behind dark metal and restrained amber tubes',
+  surge_weasel: 'a quiet golden wheat field edge, dark olive hedge behind its small tawny body',
+  electric_eel: 'a calm deep river pool, pale desaturated teal underwater haze behind dark navy body and small yellow accents',
+  magnet_golem: 'a pale dusty scrapyard courtyard, one distant blurred wooden fence; only two small metal shards near feet',
+  storm_hound: 'an open stormy heath, faded warm grey sky behind its dark navy body, restrained gold arcs',
+  lightning_wisp: 'a dim stone bell tower chamber, soft umber walls behind one compact golden spirit',
+  coil_tortoise: 'a quiet sandy workshop garden, muted dark olive shrubs behind its copper coil shell',
+  thunder_dragon: 'a high windswept sandstone ridge, pale warm-grey storm sky behind its dark blue scales',
+  plasma_serpent: 'a quiet ancient observatory courtyard at violet dusk, muted dark plum stone, one coherent serpentine body',
+  conductor_crab: 'a flat pale tidal sandbank beside weathered copper shipwreck timber, calm muted olive sea',
+  raijin_wolf: 'a quiet mountaintop shrine, dim olive-brown pillars and bronze sky; only two small thunder drums off to the sides',
+  storm_colossus: 'a wide pale dusty ruined terrace under warm-grey clouds, crown stays compact and limbs separated',
+  tempest_dragon: 'an isolated ancient peak above a soft warm-grey cloud sea, clear full wings and body, restrained gold lightning',
+}
+const original = JSON.parse(fs.readFileSync('art/direction/card-generation-plan.json','utf8')).jobs
+const overrides = {
+  charge_bat: 'ONE small charcoal-grey bat, short rounded snout, large ears, cheerful eyes, two broad leathery bat wings with visibly long finger bones, short legs, tiny gold static accents. A BAT, not a fox, not a bird',
+  storm_eagle: 'a proud adult eagle with a strongly hooked beak, fierce golden eyes, lavender and storm-grey feathered wings, taloned feet. An eagle, not an owl or fox',
+  volcano_tortoise: 'a massive tortoise with a small smoking rocky crater on its shell, visible head, four stout feet and tail; tiny amber seam only on shell',
+  lava_salamander: 'a sleek dark copper and charcoal salamander with amber belly and a few thin glowing seams, four distinct small legs and long separate tapering tail',
+  eternal_flame: 'an ancient serpentine dragon of softly luminous ivory-gold fire with a definite scaled body, long separated S-curve, majestic horned head and distinct tapering tail; restrained gold glow',
+  tornado_dragon: 'a majestic long storm dragon with a coherent grey-lavender serpentine body, two distinct wings, readable head and tail; wind texture on its body only',
+  kraken: 'ONE colossal deep-purple octopus kraken, strong round mantle, luminous eyes, eight thick readable separated arms with open spaces between them',
+  four_winds: 'ONE ancient violet wind spirit with four distinct serene faces integrated into its unified flowing body, restrained luminous wind markings',
+}
+const power = {common:'small, young, playful and charming',uncommon:'distinct and confident',rare:'developed, powerful and elegant',epic:'majestic and imposing',legendary:'grand and magnificent',mythic:'ancient and awe-inspiring',ancient:'primordial and awe-inspiring'}
+const palettes = {fire:'Creature: burnt copper, ember orange, charcoal and ivory highlights. Background may be natural tan, warm grey, brown, muted olive, ash or pale dawn hues as specified; it does NOT need to be red. No forced blue/cyan contrast.',water:'Sea blue, turquoise, pearl and soft slate; related desaturated aquatic background hues.',earth:'Moss green, ochre, warm stone, bark and muted sage, related natural background hues.',wind:'Soft lavender, mauve, cream and storm grey, related muted atmospheric background hues.',electric:'Gold, copper, charcoal and cream with restrained electric accents; subdued olive-brown or warm grey environment unless habitat specifies aquatic/navy/violet. No giant lightning wall.'}
+const root = process.cwd().replaceAll('\\','/')
+const references = [`${root}/Concept Arts/inrun.png`]
+const jobs = original.filter(j=>!['volcano_serpent','spark_fox'].includes(j.id)).map(j=>{
+  let subject = overrides[j.id] ?? j.creature
+  subject = subject.replace('rivers of lava flowing through its body','a few restrained glowing amber seams between solid basalt plates').replace('smoke pouring from its nostrils','a faint small breath of smoke').replace('coiled in a storm, cosmic lightning','with a clearly visible body, restrained lightning').replace('wreathed in lightning','with small lightning accents on its fur').replace('surging with bright lightning','with restrained static accents').replace('at the eye of a hurricane','above a high peak').replace('debris and lightning swirling around it','restrained wind patterns on its body').replace('with embers swirling around it','with a few tiny ember accents').replace('with a mane and tail of roaring flames','with a compact flame mane and glowing tail tip').replace('spinning in a small cyclone','with a small curl of wind at its paws')
+  const prompt = `Use case: stylized-concept. Asset: standalone square 1024x1024 collectible creature card illustration, no UI. Subject: ${subject}. Power/age: ${power[j.rarity]}. Elements: ${j.elements.join(' + ')}; secondary elements are restrained accents. Unique habitat: ${habitats[j.id]}. Palette: ${palettes[j.elements[0]]} Reference image 1 is ONLY the approved silhouette readability and painterly material treatment: do NOT draw a snake unless THIS subject is a snake. Reference image 2 is ONLY rendering style, especially its fire fox: do NOT copy its creatures or UI. Draw the SPECIFIED species accurately, with its own distinct anatomy and personality. Preserve a harmonious natural palette. Use tonal/value separation, not unrelated clashing hues. The creature is crisp and well lit; environment is softly blurred, lower detail and lower contrast. Dark bodies get a pale subdued background, pale bodies get a dark subdued background. Whole creature fits central 80% with breathing room on ALL sides, head, limbs, wings and tail clearly traceable at 170px. No foreground object crossing the body; keep calm negative space right around the entire outline and between limbs/coils. Solid readable material surfaces, broadly painted clean planes. Elemental effects are SMALL, attached to the creature only, never an all-over texture. No wall of flames, water splashes, dense lightning, debris, encircling energy ribbons or sparkle fields. Charm and polished hand-painted fantasy illustration, expressive face appropriate to species, subtle brush texture. Natural grounded scene, no studio gradient or sticker cutout. No card frame, border, words, letters, numbers, UI or watermark.`
+  const individualPrompt = prompt
+    .replace(/Reference image 1 is ONLY.*?Preserve a harmonious natural palette\./, 'Reference image 1 is ONLY the painterly game illustration style, especially the first fox. Do not reproduce the UI, background scene, fox species or other creatures from the reference. Draw the SPECIFIED species with its own correct anatomy. The requested HABITAT is mandatory: do not substitute generic fantasy mountains, volcanic pillars, rocky perches or red skies. Every card has its own environment. Preserve a harmonious natural palette.')
+    .replace(palettes.fire, 'Keep the subject colors described above: fire creatures can be copper, crimson, charcoal, ivory or gold as specified. Use compatible, subdued natural habitat hues. The background does NOT need to be red. No forced blue/cyan contrast.')
+    .replace('Whole creature fits central 80% with breathing room on ALL sides', 'The ENTIRE animal, including both wings, every foot and the tip of the tail, fits inside the central 75% of the canvas. Leave at least 10% empty margin on EVERY edge. Partly fold wings if necessary to fit; never crop anatomy. Keep breathing room on ALL sides')
+  return {id:j.id,name:j.name,key:`cards/${j.id}`,habitat:habitats[j.id],subject,prompt:individualPrompt,references}
+})
+// Sun Dragon already has an accepted warm-palette revision; approved serpent stays untouched.
+const plan = {generator:'Built-in image_gen',direction:'Approved serpent readability, individual natural habitats, harmonious palettes and tonal separation',keep:['volcano_serpent','sun_dragon','spark_fox'],jobs:jobs.filter(j=>j.id!=='sun_dragon')}
+fs.writeFileSync('art/direction/readable-card-plan.json',JSON.stringify(plan,null,2)+'\n')
+const directions = Object.fromEntries(jobs.map(j=>[j.id,{creature:j.subject,habitat:j.habitat}]))
+directions.spark_fox = {creature:original.find(j=>j.id==='spark_fox').creature,habitat:habitats.spark_fox}
+directions.volcano_serpent = {creature:'one majestic horned volcanic serpent, charcoal and burnt-copper solid scales, softly lit ivory-amber belly, a few thin amber seams; clean spacious S-curve with distinct head and tapering tail',habitat:'a simple low dark rock slab, softly blurred muted warm-brown atmosphere; no volcano inside its coils, no erupting volcano or lava foreground'}
+directions.sun_dragon = {creature:'one majestic red and gold dragon, ivory belly, gold sun crest on its chest, distinct horns and two leathery wings with restrained amber highlights; all wings, feet and tail visible',habitat:'an ancient sandstone sun-temple terrace at warm dawn, subdued tan arches and a softly blurred amber sky; no fire or lava in the environment'}
+fs.writeFileSync('content/art-direction.json',JSON.stringify({cards:directions},null,2)+'\n')
+fs.mkdirSync('art/direction/results/readable-cards',{recursive:true})
+console.log(`${plan.jobs.length} individual habitat prompts prepared`)

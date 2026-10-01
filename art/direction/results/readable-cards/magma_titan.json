@@ -1,0 +1,14 @@
+{
+  "id": "magma_titan",
+  "name": "Magma Titanı",
+  "key": "cards/magma_titan",
+  "habitat": "a vast deserted basalt quarry, faded warm grey dust behind its black stone outline",
+  "subject": "a towering golem of black basalt with a few restrained glowing amber seams between solid basalt plates",
+  "prompt": "Use case: stylized-concept. Asset: standalone square 1024x1024 collectible creature card illustration, no UI. Subject: a towering golem of black basalt with a few restrained glowing amber seams between solid basalt plates. Power/age: majestic and imposing. Elements: fire; secondary elements are restrained accents. Unique habitat: a vast deserted basalt quarry, faded warm grey dust behind its black stone outline. Palette: Creature: burnt copper, ember orange, charcoal and ivory highlights. Background may be natural tan, warm grey, brown, muted olive, ash or pale dawn hues as specified; it does NOT need to be red. No forced blue/cyan contrast. Reference image 1 is ONLY the approved silhouette readability and painterly material treatment: do NOT draw a snake unless THIS subject is a snake. Reference image 2 is ONLY rendering style, especially its fire fox: do NOT copy its creatures or UI. Draw the SPECIFIED species accurately, with its own distinct anatomy and personality. Preserve a harmonious natural palette. Use tonal/value separation, not unrelated clashing hues. The creature is crisp and well lit; environment is softly blurred, lower detail and lower contrast. Dark bodies get a pale subdued background, pale bodies get a dark subdued background. Whole creature fits central 80% with breathing room on ALL sides, head, limbs, wings and tail clearly traceable at 170px. No foreground object crossing the body; keep calm negative space right around the entire outline and between limbs/coils. Solid readable material surfaces, broadly painted clean planes. Elemental effects are SMALL, attached to the creature only, never an all-over texture. No wall of flames, water splashes, dense lightning, debris, encircling energy ribbons or sparkle fields. Charm and polished hand-painted fantasy illustration, expressive face appropriate to species, subtle brush texture. Natural grounded scene, no studio gradient or sticker cutout. No card frame, border, words, letters, numbers, UI or watermark.",
+  "references": [
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/art/source/cards/volcano_serpent.png",
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+  ],
+  "source": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f853-107f-71b2-8552-8e3e2fa59707\\exec-32c8f792-2989-4403-99c5-288385a3ab44.png",
+  "master": "art/source/cards/magma_titan.png"
+}

@@ -1,0 +1,14 @@
+{
+  "id": "charge_bat",
+  "name": "Şarj Yarasası",
+  "key": "cards/charge_bat",
+  "habitat": "a quiet warm-grey cave mouth at dusk, pale amber sky behind its dark furry body and bat membranes",
+  "subject": "ONE small charcoal-grey bat, short rounded snout, large ears, cheerful eyes, two broad leathery bat wings with visibly long finger bones, short legs, tiny gold static accents. A BAT, not a fox, not a bird",
+  "prompt": "Use case: stylized-concept. Asset: standalone square 1024x1024 collectible creature card illustration, no UI. Subject: ONE small charcoal-grey bat, short rounded snout, large ears, cheerful eyes, two broad leathery bat wings with visibly long finger bones, short legs, tiny gold static accents. A BAT, not a fox, not a bird. Power/age: small, young, playful and charming. Elements: electric; secondary elements are restrained accents. Unique habitat: a quiet warm-grey cave mouth at dusk, pale amber sky behind its dark furry body and bat membranes. Palette: Gold, copper, charcoal and cream with restrained electric accents; subdued olive-brown or warm grey environment unless habitat specifies aquatic/navy/violet. No giant lightning wall. Reference image 1 is ONLY the approved silhouette readability and painterly material treatment: do NOT draw a snake unless THIS subject is a snake. Reference image 2 is ONLY rendering style, especially its fire fox: do NOT copy its creatures or UI. Draw the SPECIFIED species accurately, with its own distinct anatomy and personality. Preserve a harmonious natural palette. Use tonal/value separation, not unrelated clashing hues. The creature is crisp and well lit; environment is softly blurred, lower detail and lower contrast. Dark bodies get a pale subdued background, pale bodies get a dark subdued background. Whole creature fits central 80% with breathing room on ALL sides, head, limbs, wings and tail clearly traceable at 170px. No foreground object crossing the body; keep calm negative space right around the entire outline and between limbs/coils. Solid readable material surfaces, broadly painted clean planes. Elemental effects are SMALL, attached to the creature only, never an all-over texture. No wall of flames, water splashes, dense lightning, debris, encircling energy ribbons or sparkle fields. Charm and polished hand-painted fantasy illustration, expressive face appropriate to species, subtle brush texture. Natural grounded scene, no studio gradient or sticker cutout. No card frame, border, words, letters, numbers, UI or watermark.",
+  "references": [
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/art/source/cards/volcano_serpent.png",
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+  ],
+  "source": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f853-107f-71b2-8552-8e3e2fa59707\\exec-57d7a010-36a4-4572-b1e8-49c84e9083d0.png",
+  "master": "art/source/cards/charge_bat.png"
+}

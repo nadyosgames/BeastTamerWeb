@@ -1,0 +1,14 @@
+{
+  "id": "eternal_flame",
+  "key": "cards/eternal_flame",
+  "master": "art/source/cards/eternal_flame.png",
+  "prompt": "Use case: stylized-concept. Square creature card illustration. Draw ONE ancient majestic serpentine dragon made of softly luminous IVORY and WHITE-GOLD eternal fire, definitely not red/copper/charcoal. Its entire coherent body has a spacious S-curve, readable horned head, solid broad material planes and a separate tapering tail. Small delicate gold flame tips only. Habitat: a silent ancient stone sanctuary, dim sepia arches, dark bronze atmosphere. Calm negative space between coils; no environment inside the coils, no dense sparks, no volcanic landscape. Bright ivory creature against subdued warm-brown surroundings, harmonious related hues, gentle light and shadow separation. Reference image is only polished painterly rendering style, do not copy the fox or interface. Whole creature inside central 75% with at least 10% margin on all four edges. Clean crisp silhouette readable at 170px. No text, letters, symbols, numbers, frame, UI or watermark.",
+  "references": [
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+  ],
+  "source": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f853-107f-71b2-8552-8e3e2fa59707\\exec-37928bc7-3b73-44d6-a23f-6f1f8275e4da.png",
+  "previousMaster": "art/source/revisions/cards/eternal_flame.v3.png",
+  "generationReferences": [
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+  ]
+}

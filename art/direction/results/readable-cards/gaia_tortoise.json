@@ -1,0 +1,13 @@
+{
+  "id": "gaia_tortoise",
+  "name": "Toprak Ana",
+  "key": "cards/gaia_tortoise",
+  "habitat": "a primordial meadow with soft hazy sage mountains, miniature forest stays ONLY on its shell",
+  "subject": "a primordial world tortoise with an entire glowing forest and waterfalls on its shell, cosmic runes",
+  "prompt": "Use case: stylized-concept. Asset: standalone square 1024x1024 collectible creature card illustration, no UI. Subject: a primordial world tortoise with an entire glowing forest and waterfalls on its shell, cosmic runes. Power/age: ancient and awe-inspiring. Elements: earth; secondary elements are restrained accents. Unique habitat: a primordial meadow with soft hazy sage mountains, miniature forest stays ONLY on its shell. Palette: Moss green, ochre, warm stone, bark and muted sage, related natural background hues. Reference image 1 is ONLY the painterly game illustration style, especially the first fox. Do not reproduce the UI, background scene, fox species or other creatures from the reference. Draw the SPECIFIED species with its own correct anatomy. The requested HABITAT is mandatory: do not substitute generic fantasy mountains, volcanic pillars, rocky perches or red skies. Every card has its own environment. Preserve a harmonious natural palette. Use tonal/value separation, not unrelated clashing hues. The creature is crisp and well lit; environment is softly blurred, lower detail and lower contrast. Dark bodies get a pale subdued background, pale bodies get a dark subdued background. The ENTIRE animal, including both wings, every foot and the tip of the tail, fits inside the central 75% of the canvas. Leave at least 10% empty margin on EVERY edge. Partly fold wings if necessary to fit; never crop anatomy. Keep breathing room on ALL sides, head, limbs, wings and tail clearly traceable at 170px. No foreground object crossing the body; keep calm negative space right around the entire outline and between limbs/coils. Solid readable material surfaces, broadly painted clean planes. Elemental effects are SMALL, attached to the creature only, never an all-over texture. No wall of flames, water splashes, dense lightning, debris, encircling energy ribbons or sparkle fields. Charm and polished hand-painted fantasy illustration, expressive face appropriate to species, subtle brush texture. Natural grounded scene, no studio gradient or sticker cutout. No card frame, border, words, letters, numbers, UI or watermark.",
+  "references": [
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+  ],
+  "source": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f853-107f-71b2-8552-8e3e2fa59707\\exec-e6bc77f2-f99d-4a83-9b1a-34e44835c114.png",
+  "master": "art/source/cards/gaia_tortoise.png"
+}

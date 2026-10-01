@@ -1,0 +1,16 @@
+{
+  "id": "ember_thunder_dragon",
+  "key": "cards/ember_thunder_dragon",
+  "master": "art/source/cards/ember_thunder_dragon.png",
+  "prompt": "Reframe and repaint THIS creature illustration. Image 1 is identity reference: preserve the creature's species, face, colors, material design and personality. Image 2 is painterly fantasy rendering only, especially the fox; do not copy its species or UI. Identity: a sleek armored dragon with charcoal scales split by glowing ember cracks, crackling yellow lightning arcs along its horns and wings, and a mane of living flame. Habitat: an ancient ruined stone bridge in warm storm light, pale smoke-grey distant sky. Change the pose to fit the ENTIRE creature on the canvas. Partly fold both wings into a compact three-quarter silhouette if necessary. All wing tips, head crest, every foot and tail tip must stay at least 10% away from EVERY canvas edge. Zoom out enough; no cropped anatomy. Center the entire silhouette, not just the face. Crisp subject, softly blurred subdued natural background, harmonious hues and clear light/dark separation. Solid readable surfaces, restrained highlights attached to the animal only. No wall of fire, dense lightning, lava background or energy ribbons crossing the outline. Preserve the warm palette for fire creatures; muted tan stone, sepia, brown and soft amber sky are allowed, no forced blue contrast. For Sun Dragon use the quiet sandstone sun temple, keep its sun crest and ivory belly, reduce flame glow so wings have solid red leathery surfaces with thin amber rims. No extra creature. Square 1024x1024, no frame, border, text, letters, numbers, UI or watermark.",
+  "references": [
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/art/source/revisions/cards/ember_thunder_dragon.v3.png",
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+  ],
+  "source": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f853-107f-71b2-8552-8e3e2fa59707\\exec-7ce23f1c-6e49-4afc-aca8-9e3945acc5b4.png",
+  "previousMaster": "art/source/revisions/cards/ember_thunder_dragon.v3.png",
+  "generationReferences": [
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/art/source/cards/ember_thunder_dragon.png",
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "key": "cards/sun_dragon",
+  "master": "art/source/cards/sun_dragon.png",
+  "prompt": "Edit ONLY the environment and color harmony of reference image 1 (Sun Dragon). Preserve this exact majestic red and gold dragon, its pose, anatomy, flame-edged wings, sun crest, ivory belly, face and silhouette. Reference image 2 is the visual target for COLOR HARMONY and silhouette readability: look specifically at the FIRE FOX in the first card. That fox uses an analogous warm palette, a dark warm red/brown background, few dim embers, brighter subject, quiet space behind its body. Apply that exact principle to the dragon: replace all blue/teal/gray mountains with a softly blurred, dark burgundy, soot brown and warm charcoal volcanic atmosphere. Background colors stay related to the dragon's orange/red/gold palette, just MUCH darker and less saturated. Keep tonal (light-versus-dark) contrast, NOT complementary hue contrast. Gentle warm ember glow low near the dark rock perch, a few tiny sparse embers, no wall of fire and no lava crisscrossing behind wings. Subject gets the brightest warm highlights. Background quiet, soft, low contrast; creature edges crisp. Not a plain blank studio background: a subtle natural volcanic setting with enough depth, but no competing detail. Do not cool the palette. No blue, cyan, teal or purple behind this fire dragon. Standalone square illustration, no cards, frames, UI, text or watermark.",
+  "revision": "analogous-tonal-contrast",
+  "reference": "User's fox concept",
+  "previousMaster": "art/source/revisions/cards/sun_dragon.v3.png"
+}

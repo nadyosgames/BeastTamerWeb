@@ -1,0 +1,74 @@
+{
+  "generator": "Built-in image_gen",
+  "jobs": [
+    {
+      "id": "sun_dragon",
+      "key": "cards/sun_dragon",
+      "master": "art/source/cards/sun_dragon.png",
+      "prompt": "Reframe and repaint THIS creature illustration. Image 1 is identity reference: preserve the creature's species, face, colors, material design and personality. Image 2 is painterly fantasy rendering only, especially the fox; do not copy its species or UI. Identity: one majestic red and gold dragon, ivory belly, gold sun crest on its chest, distinct horns and two leathery wings with restrained amber highlights; all wings, feet and tail visible. Habitat: an ancient sandstone sun-temple terrace at warm dawn, subdued tan arches and a softly blurred amber sky; no fire or lava in the environment. Change the pose to fit the ENTIRE creature on the canvas. Partly fold both wings into a compact three-quarter silhouette if necessary. All wing tips, head crest, every foot and tail tip must stay at least 10% away from EVERY canvas edge. Zoom out enough; no cropped anatomy. Center the entire silhouette, not just the face. Crisp subject, softly blurred subdued natural background, harmonious hues and clear light/dark separation. Solid readable surfaces, restrained highlights attached to the animal only. No wall of fire, dense lightning, lava background or energy ribbons crossing the outline. Preserve the warm palette for fire creatures; muted tan stone, sepia, brown and soft amber sky are allowed, no forced blue contrast. For Sun Dragon use the quiet sandstone sun temple, keep its sun crest and ivory belly, reduce flame glow so wings have solid red leathery surfaces with thin amber rims. No extra creature. Square 1024x1024, no frame, border, text, letters, numbers, UI or watermark.",
+      "references": [
+        "C:/Users/canbe/Documents/Github/BeastTamerWeb/art/source/cards/sun_dragon.png",
+        "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+      ]
+    },
+    {
+      "id": "eternal_flame",
+      "key": "cards/eternal_flame",
+      "master": "art/source/cards/eternal_flame.png",
+      "prompt": "Use case: stylized-concept. Square creature card illustration. Draw ONE ancient majestic serpentine dragon made of softly luminous IVORY and WHITE-GOLD eternal fire, definitely not red/copper/charcoal. Its entire coherent body has a spacious S-curve, readable horned head, solid broad material planes and a separate tapering tail. Small delicate gold flame tips only. Habitat: a silent ancient stone sanctuary, dim sepia arches, dark bronze atmosphere. Calm negative space between coils; no environment inside the coils, no dense sparks, no volcanic landscape. Bright ivory creature against subdued warm-brown surroundings, harmonious related hues, gentle light and shadow separation. Reference image is only polished painterly rendering style, do not copy the fox or interface. Whole creature inside central 75% with at least 10% margin on all four edges. Clean crisp silhouette readable at 170px. No text, letters, symbols, numbers, frame, UI or watermark.",
+      "references": [
+        "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+      ]
+    },
+    {
+      "id": "storm_eagle",
+      "key": "cards/storm_eagle",
+      "master": "art/source/cards/storm_eagle.png",
+      "prompt": "Reframe and repaint THIS creature illustration. Image 1 is identity reference: preserve the creature's species, face, colors, material design and personality. Image 2 is painterly fantasy rendering only, especially the fox; do not copy its species or UI. Identity: a proud adult eagle with a strongly hooked beak, fierce golden eyes, lavender and storm-grey feathered wings, taloned feet. An eagle, not an owl or fox. Habitat: a high weathered ridge with pale mauve storm sky, entire hooked-beak eagle and wings clear. Change the pose to fit the ENTIRE creature on the canvas. Partly fold both wings into a compact three-quarter silhouette if necessary. All wing tips, head crest, every foot and tail tip must stay at least 10% away from EVERY canvas edge. Zoom out enough; no cropped anatomy. Center the entire silhouette, not just the face. Crisp subject, softly blurred subdued natural background, harmonious hues and clear light/dark separation. Solid readable surfaces, restrained highlights attached to the animal only. No wall of fire, dense lightning, lava background or energy ribbons crossing the outline. Preserve the warm palette for fire creatures; muted tan stone, sepia, brown and soft amber sky are allowed, no forced blue contrast. For Sun Dragon use the quiet sandstone sun temple, keep its sun crest and ivory belly, reduce flame glow so wings have solid red leathery surfaces with thin amber rims. No extra creature. Square 1024x1024, no frame, border, text, letters, numbers, UI or watermark.",
+      "references": [
+        "C:/Users/canbe/Documents/Github/BeastTamerWeb/art/source/cards/storm_eagle.png",
+        "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+      ]
+    },
+    {
+      "id": "hurricane_eagle",
+      "key": "cards/hurricane_eagle",
+      "master": "art/source/cards/hurricane_eagle.png",
+      "prompt": "Reframe and repaint THIS creature illustration. Image 1 is identity reference: preserve the creature's species, face, colors, material design and personality. Image 2 is painterly fantasy rendering only, especially the fox; do not copy its species or UI. Identity: a great eagle above a high peak, wings spread with swirling storm clouds. Habitat: a high stone peak with quiet pale storm-grey sky, no circular hurricane touching its wings. Change the pose to fit the ENTIRE creature on the canvas. Partly fold both wings into a compact three-quarter silhouette if necessary. All wing tips, head crest, every foot and tail tip must stay at least 10% away from EVERY canvas edge. Zoom out enough; no cropped anatomy. Center the entire silhouette, not just the face. Crisp subject, softly blurred subdued natural background, harmonious hues and clear light/dark separation. Solid readable surfaces, restrained highlights attached to the animal only. No wall of fire, dense lightning, lava background or energy ribbons crossing the outline. Preserve the warm palette for fire creatures; muted tan stone, sepia, brown and soft amber sky are allowed, no forced blue contrast. For Sun Dragon use the quiet sandstone sun temple, keep its sun crest and ivory belly, reduce flame glow so wings have solid red leathery surfaces with thin amber rims. No extra creature. Square 1024x1024, no frame, border, text, letters, numbers, UI or watermark.",
+      "references": [
+        "C:/Users/canbe/Documents/Github/BeastTamerWeb/art/source/cards/hurricane_eagle.png",
+        "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+      ]
+    },
+    {
+      "id": "griffin_chick",
+      "key": "cards/griffin_chick",
+      "master": "art/source/cards/griffin_chick.png",
+      "prompt": "Reframe and repaint THIS creature illustration. Image 1 is identity reference: preserve the creature's species, face, colors, material design and personality. Image 2 is painterly fantasy rendering only, especially the fox; do not copy its species or UI. Identity: a fluffy baby griffin with an eagle head and a lion cub body, tiny wings flapping. Habitat: a broad mossy nest ledge, subdued mauve canyon and soft lilac dawn. Change the pose to fit the ENTIRE creature on the canvas. Partly fold both wings into a compact three-quarter silhouette if necessary. All wing tips, head crest, every foot and tail tip must stay at least 10% away from EVERY canvas edge. Zoom out enough; no cropped anatomy. Center the entire silhouette, not just the face. Crisp subject, softly blurred subdued natural background, harmonious hues and clear light/dark separation. Solid readable surfaces, restrained highlights attached to the animal only. No wall of fire, dense lightning, lava background or energy ribbons crossing the outline. Preserve the warm palette for fire creatures; muted tan stone, sepia, brown and soft amber sky are allowed, no forced blue contrast. For Sun Dragon use the quiet sandstone sun temple, keep its sun crest and ivory belly, reduce flame glow so wings have solid red leathery surfaces with thin amber rims. No extra creature. Square 1024x1024, no frame, border, text, letters, numbers, UI or watermark.",
+      "references": [
+        "C:/Users/canbe/Documents/Github/BeastTamerWeb/art/source/cards/griffin_chick.png",
+        "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+      ]
+    },
+    {
+      "id": "phoenix",
+      "key": "cards/phoenix",
+      "master": "art/source/cards/phoenix.png",
+      "prompt": "Reframe and repaint THIS creature illustration. Image 1 is identity reference: preserve the creature's species, face, colors, material design and personality. Image 2 is painterly fantasy rendering only, especially the fox; do not copy its species or UI. Identity: a majestic phoenix with long flowing tail feathers of gold and crimson fire, wings spread wide. Habitat: a desert temple rooftop above a softly blurred sandy valley, quiet bronze dusk sky. Change the pose to fit the ENTIRE creature on the canvas. Partly fold both wings into a compact three-quarter silhouette if necessary. All wing tips, head crest, every foot and tail tip must stay at least 10% away from EVERY canvas edge. Zoom out enough; no cropped anatomy. Center the entire silhouette, not just the face. Crisp subject, softly blurred subdued natural background, harmonious hues and clear light/dark separation. Solid readable surfaces, restrained highlights attached to the animal only. No wall of fire, dense lightning, lava background or energy ribbons crossing the outline. Preserve the warm palette for fire creatures; muted tan stone, sepia, brown and soft amber sky are allowed, no forced blue contrast. For Sun Dragon use the quiet sandstone sun temple, keep its sun crest and ivory belly, reduce flame glow so wings have solid red leathery surfaces with thin amber rims. No extra creature. Square 1024x1024, no frame, border, text, letters, numbers, UI or watermark.",
+      "references": [
+        "C:/Users/canbe/Documents/Github/BeastTamerWeb/art/source/cards/phoenix.png",
+        "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+      ]
+    },
+    {
+      "id": "ember_thunder_dragon",
+      "key": "cards/ember_thunder_dragon",
+      "master": "art/source/cards/ember_thunder_dragon.png",
+      "prompt": "Reframe and repaint THIS creature illustration. Image 1 is identity reference: preserve the creature's species, face, colors, material design and personality. Image 2 is painterly fantasy rendering only, especially the fox; do not copy its species or UI. Identity: a sleek armored dragon with charcoal scales split by glowing ember cracks, crackling yellow lightning arcs along its horns and wings, and a mane of living flame. Habitat: an ancient ruined stone bridge in warm storm light, pale smoke-grey distant sky. Change the pose to fit the ENTIRE creature on the canvas. Partly fold both wings into a compact three-quarter silhouette if necessary. All wing tips, head crest, every foot and tail tip must stay at least 10% away from EVERY canvas edge. Zoom out enough; no cropped anatomy. Center the entire silhouette, not just the face. Crisp subject, softly blurred subdued natural background, harmonious hues and clear light/dark separation. Solid readable surfaces, restrained highlights attached to the animal only. No wall of fire, dense lightning, lava background or energy ribbons crossing the outline. Preserve the warm palette for fire creatures; muted tan stone, sepia, brown and soft amber sky are allowed, no forced blue contrast. For Sun Dragon use the quiet sandstone sun temple, keep its sun crest and ivory belly, reduce flame glow so wings have solid red leathery surfaces with thin amber rims. No extra creature. Square 1024x1024, no frame, border, text, letters, numbers, UI or watermark.",
+      "references": [
+        "C:/Users/canbe/Documents/Github/BeastTamerWeb/art/source/cards/ember_thunder_dragon.png",
+        "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+      ]
+    }
+  ]
+}

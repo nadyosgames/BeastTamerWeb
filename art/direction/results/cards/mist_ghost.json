@@ -1,0 +1,12 @@
+{
+  "key": "cards/mist_ghost",
+  "master": "art/source/cards/mist_ghost.png",
+  "prompt": "Edit reference image 1 (Sis Hayaleti) for clearer tonal silhouette separation. Preserve the SAME creature design, identity, facial expression, anatomy, pose, proportions and silhouette. Art direction: charming polished painterly fantasy creature illustration for Canavar Deste. Subject: a small translucent ghost made of pale blue mist with a gentle smile, wisps trailing behind it. Rarity/power: confident and agile. Primary element is water; any secondary element none stays a restrained accent on the creature. Color harmony: analogous ocean blue, turquoise and sea-green; dark midnight-blue aquatic depth, softly suggested water or reef shapes. Creature's coral/orange or other anatomy colors stay intact. Reference image 2 is ONLY color-harmony/art-direction reference: look at the first FIRE FOX card, then apply its value-separation principle using THIS creature's own element palette. Keep analogous hues related to the creature; DO NOT switch to unrelated or complementary colors to force contrast. Simplify and darken the BACKGROUND, reduce background saturation and sharp detail, remove dense effects that collide with the silhouette. Keep a believable softly blurred natural environment, not a plain studio backdrop. Sparse, small elemental accents only; NO wall of fire, dense lightning bolts, luminous water splashes or swirling magical ribbons across the whole background. The creature remains the focal point with readable light/shadow planes and crisp silhouette, gentle same-palette rim light. Background is clearly lower contrast and typically 2-3 value steps darker than the creature; for a dark-bodied creature, use a subtle soft localized glow behind it so its outline still reads. Preserve dark fur/stone where appropriate while making anatomy legible. The subject should read instantly at 170px thumbnail size. Reduce excessive glow ON the body if it obscures limbs or face, without changing identity. One standalone square illustration. No card frame, border, UI, typography, words, letters, numbers or watermark.",
+  "references": [
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/art/source/cards/mist_ghost.png",
+    "C:/Users/canbe/Documents/Github/BeastTamerWeb/Concept Arts/inrun.png"
+  ],
+  "source": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f853-107f-71b2-8552-8e3e2fa59707\\exec-0993a024-a3c0-4fbe-b9bf-4c6f3a215061.png",
+  "revision": "analogous-tonal-contrast",
+  "previousMaster": "art/source/revisions/cards/mist_ghost.v1.png"
+}
