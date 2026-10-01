@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "targets": {
+      "type": "object",
+      "properties": {
+        "arrangementSkill": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "masterOverNovice": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2
+            }
+          },
+          "required": [
+            "text",
+            "masterOverNovice"
+          ],
+          "additionalProperties": false
+        },
+        "weatherFit": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "matchedOverMismatched": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2
+            }
+          },
+          "required": [
+            "text",
+            "matchedOverMismatched"
+          ],
+          "additionalProperties": false
+        },
+        "dayLength": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "minutes": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2
+            }
+          },
+          "required": [
+            "text",
+            "minutes"
+          ],
+          "additionalProperties": false
+        },
+        "duplicates": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "maxRatio": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "text",
+            "maxRatio"
+          ],
+          "additionalProperties": false
+        },
+        "quota": {
+          "type": "object",
+          "properties": {
+            "text": {
+              "type": "string"
+            },
+            "goodPlayerRatio": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "mismatchedRatio": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "items": false,
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "calibrationRatio": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "text",
+            "goodPlayerRatio",
+            "mismatchedRatio",
+            "calibrationRatio"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "arrangementSkill",
+        "weatherFit",
+        "dayLength",
+        "duplicates",
+        "quota"
+      ],
+      "additionalProperties": false
+    },
+    "simulation": {
+      "type": "object",
+      "properties": {
+        "daysPerCheck": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "campaignAgents": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "calibrationIterations": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "daysPerCheck",
+        "campaignAgents",
+        "calibrationIterations"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "seed",
+    "targets",
+    "simulation"
+  ],
+  "additionalProperties": false
+}

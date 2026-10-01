@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "tamer": {
+      "type": "string"
+    },
+    "deckName": {
+      "type": "string"
+    },
+    "deck": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "card": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          }
+        },
+        "required": [
+          "card",
+          "count"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "resource": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "tamer",
+    "deckName",
+    "deck",
+    "resource"
+  ],
+  "additionalProperties": false
+}

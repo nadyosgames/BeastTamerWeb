@@ -1,0 +1,16 @@
+# Metin dosyaları depoda LF ile tutulur (Windows/macOS ekip üyeleri arasında fark çıkmasın).
+* text=auto eol=lf
+
+# Görsel master'ları ve konsept çizimler Git LFS'te (depo şişmesin, sürüm geçmişi kalsın).
+# Bir kez çalıştır: git lfs install
+art/source/**/*.png filter=lfs diff=lfs merge=lfs -text
+art/style-ref/**/*.png filter=lfs diff=lfs merge=lfs -text
+Concept?Arts/** filter=lfs diff=lfs merge=lfs -text
+*.psd filter=lfs diff=lfs merge=lfs -text
+
+# İkili dosyalar
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.woff2 binary

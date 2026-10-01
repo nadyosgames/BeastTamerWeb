@@ -1,0 +1,18 @@
+{
+  "$schema": "./schema/starter.schema.json",
+  "tamer": "wanderer",
+  "deckName": "Başlangıç",
+  "deck": [
+    { "card": "spark_fox", "count": 3 },
+    { "card": "coral_turtle", "count": 3 },
+    { "card": "stone_golem", "count": 3 },
+    { "card": "charge_bat", "count": 3 },
+    { "card": "cloud_owl", "count": 3 },
+    { "card": "baby_dragon", "count": 3 },
+    { "card": "ember_hedgehog", "count": 3 },
+    { "card": "drop_frog", "count": 3 },
+    { "card": "gust_cat", "count": 3 },
+    { "card": "coral_crab", "count": 3 }
+  ],
+  "resource": 0
+}

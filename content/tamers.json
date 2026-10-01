@@ -1,0 +1,110 @@
+{
+  "$schema": "./schema/tamers.schema.json",
+  "tamers": [
+    {
+      "id": "wanderer",
+      "name": "Gezgin",
+      "deckSize": 30,
+      "slots": 5,
+      "modifiers": [{ "kind": "incomePct", "pct": 10, "if": { "kind": "round", "which": "first" } }],
+      "text": "Her günün ilk turunda tüm kartlar +%10.",
+      "unlock": { "kind": "start" },
+      "art": { "subject": "a cheerful young tamer with messy brown hair, a green travel cloak and a leather satchel, a small lavender owl perched on the shoulder" }
+    },
+    {
+      "id": "blacksmith",
+      "name": "Demirci",
+      "deckSize": 30,
+      "slots": 5,
+      "modifiers": [
+        { "kind": "durabilityAtStart", "amount": 1, "filter": { "baseDurability": { "cmp": "==", "value": 1 } } }
+      ],
+      "text": "Dayanıklılığı 1 olan kartlar +1 dayanıklılıkla başlar.",
+      "unlock": { "kind": "year", "year": 2 },
+      "art": { "subject": "a broad-shouldered blacksmith tamer with a soot-stained apron, braided beard and a glowing hammer, a small rock golem companion" }
+    },
+    {
+      "id": "vanguard",
+      "name": "Öncü",
+      "deckSize": 30,
+      "slots": 5,
+      "modifiers": [
+        { "kind": "incomePct", "pct": 50, "if": { "kind": "position", "where": "first" } },
+        { "kind": "incomePct", "pct": 25, "if": { "kind": "position", "where": "last" } }
+      ],
+      "text": "İlk slottaki kart %50, son slottaki kart %25 daha güçlü.",
+      "unlock": { "kind": "year", "year": 2 },
+      "art": { "subject": "a determined young scout tamer with a red scarf and light leather armor, holding a banner, a small eagle companion" }
+    },
+    {
+      "id": "sentinel",
+      "name": "Nöbetçi",
+      "deckSize": 30,
+      "slots": 5,
+      "modifiers": [{ "kind": "abilityScale", "on": "aura", "pct": 50 }],
+      "text": "Aura yetenekleri %50 daha güçlü.",
+      "unlock": { "kind": "year", "year": 3 },
+      "art": { "subject": "a calm guardian tamer in moss-green armor with a tall shield engraved with runes, a small tree spirit companion" }
+    },
+    {
+      "id": "seasoner",
+      "name": "Mevsimci",
+      "deckSize": 30,
+      "slots": 5,
+      "modifiers": [{ "kind": "weatherScale", "bonusPct": 20, "penaltyPct": -50 }],
+      "text": "Hava bonusları %20 daha güçlü, hava cezaları yarıya iner.",
+      "unlock": { "kind": "year", "year": 3 },
+      "art": { "subject": "a whimsical weather-watcher tamer with a wide-brimmed hat decorated with tiny clouds, holding a brass weather vane" }
+    },
+    {
+      "id": "gravedigger",
+      "name": "Mezarcı",
+      "deckSize": 30,
+      "slots": 5,
+      "modifiers": [{ "kind": "abilityScale", "on": "lastBreath", "pct": 50 }],
+      "text": "Last Breath yetenekleri %50 daha güçlü.",
+      "unlock": { "kind": "quest", "quest": "ghost_whisper" },
+      "art": { "subject": "a gentle gravekeeper tamer with a hooded dark cloak, holding a lantern with a soft blue flame, a small ghost companion" }
+    },
+    {
+      "id": "harvester",
+      "name": "Hasatçı",
+      "deckSize": 30,
+      "slots": 5,
+      "modifiers": [{ "kind": "repeatAbility", "on": "epilogue", "times": 2 }],
+      "text": "Epilogue yetenekleri iki kez çalışır.",
+      "unlock": { "kind": "lifetime", "amount": 50000 },
+      "art": { "subject": "a friendly farmer tamer with a straw hat and a scythe decorated with flowers, a basket of glowing fruit" }
+    },
+    {
+      "id": "collector",
+      "name": "Koleksiyoncu",
+      "deckSize": 30,
+      "slots": 5,
+      "modifiers": [{ "kind": "incomePct", "pct": 10, "filter": { "rarityAtLeast": "rare" } }],
+      "text": "Rare ve üzeri kartlar +%10.",
+      "unlock": { "kind": "lifetime", "amount": 120000 },
+      "art": { "subject": "an eccentric collector tamer with round spectacles, a velvet coat full of pockets and a monocle, holding a card album" }
+    },
+    {
+      "id": "sanctuary_keeper",
+      "name": "Sığınak Bekçisi",
+      "deckSize": 18,
+      "slots": 3,
+      "modifiers": [{ "kind": "incomePct", "pct": 80 }],
+      "text": "Kart etkileri %80 daha güçlü. 18 kart, 3 slot.",
+      "unlock": { "kind": "quest", "quest": "sanctuary" },
+      "art": { "subject": "a serene sanctuary keeper tamer in white and gold robes with a glowing staff, surrounded by small resting creatures" }
+    },
+    {
+      "id": "crowd_commander",
+      "name": "Kalabalık Komutanı",
+      "deckSize": 36,
+      "slots": 6,
+      "modifiers": [{ "kind": "incomePct", "pct": -20 }],
+      "text": "6 slot, ama kart etkileri %20 daha zayıf. 36 kart.",
+      "unlock": { "kind": "year", "year": 5 },
+      "art": { "subject": "a loud charismatic commander tamer with a feathered hat and a war horn, many tiny creatures marching behind" }
+    }
+  ]
+}

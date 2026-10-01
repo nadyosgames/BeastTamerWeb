@@ -1,0 +1,273 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "kinds": {
+      "type": "object",
+      "properties": {
+        "cards": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "master": {
+              "type": "object",
+              "properties": {
+                "width": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "width",
+                "height"
+              ],
+              "additionalProperties": false
+            },
+            "chatgptSize": {
+              "type": "string"
+            },
+            "web": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "suffix": {
+                    "type": "string"
+                  },
+                  "width": {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "suffix",
+                  "width"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "template": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "label",
+            "master",
+            "chatgptSize",
+            "web",
+            "template"
+          ],
+          "additionalProperties": false
+        },
+        "tamers": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "master": {
+              "type": "object",
+              "properties": {
+                "width": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "width",
+                "height"
+              ],
+              "additionalProperties": false
+            },
+            "chatgptSize": {
+              "type": "string"
+            },
+            "web": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "suffix": {
+                    "type": "string"
+                  },
+                  "width": {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "suffix",
+                  "width"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "template": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "label",
+            "master",
+            "chatgptSize",
+            "web",
+            "template"
+          ],
+          "additionalProperties": false
+        },
+        "weather": {
+          "type": "object",
+          "properties": {
+            "label": {
+              "type": "string"
+            },
+            "master": {
+              "type": "object",
+              "properties": {
+                "width": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                },
+                "height": {
+                  "type": "integer",
+                  "minimum": -9007199254740991,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "width",
+                "height"
+              ],
+              "additionalProperties": false
+            },
+            "chatgptSize": {
+              "type": "string"
+            },
+            "web": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "suffix": {
+                    "type": "string"
+                  },
+                  "width": {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  }
+                },
+                "required": [
+                  "suffix",
+                  "width"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "template": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "label",
+            "master",
+            "chatgptSize",
+            "web",
+            "template"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "cards",
+        "tamers",
+        "weather"
+      ],
+      "additionalProperties": false
+    },
+    "elements": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "enum": [
+          "fire",
+          "water",
+          "earth",
+          "wind",
+          "electric"
+        ]
+      },
+      "additionalProperties": {
+        "type": "string"
+      },
+      "required": [
+        "fire",
+        "water",
+        "earth",
+        "wind",
+        "electric"
+      ]
+    },
+    "power": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "enum": [
+          "common",
+          "uncommon",
+          "rare",
+          "epic",
+          "legendary",
+          "mythic",
+          "ancient"
+        ]
+      },
+      "additionalProperties": {
+        "type": "string"
+      },
+      "required": [
+        "common",
+        "uncommon",
+        "rare",
+        "epic",
+        "legendary",
+        "mythic",
+        "ancient"
+      ]
+    },
+    "negative": {
+      "type": "string"
+    },
+    "styleAnchor": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "kinds",
+    "elements",
+    "power",
+    "negative",
+    "styleAnchor"
+  ],
+  "additionalProperties": false
+}

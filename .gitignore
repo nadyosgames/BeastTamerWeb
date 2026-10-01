@@ -1,0 +1,49 @@
+# ── Bağımlılıklar ve derleme çıktıları ────────────────────────────
+node_modules/
+dist/
+dist-ssr/
+*.tsbuildinfo
+.vite/
+coverage/
+
+# ── Ortam ve gizli anahtarlar (OPENAI_API_KEY vb.) ─────────────────
+.env
+.env.*
+!.env.example
+*.local
+
+# ── Görsel pipeline: yalnızca MASTER görseller versiyonlanır ───────
+# ChatGPT'den indirilen ham dosyalar (art:ingest sonrası arşivlenir)
+art/inbox/**
+!art/inbox/README.md
+!art/inbox/*/
+!art/inbox/*/.gitkeep
+art/originals/
+# İçerikten üretilen prompt dosyaları (npm run art:prompts ile yeniden üretilir)
+art/prompts/
+# Master'dan üretilen web sürümleri (npm run dev/build sırasında otomatik)
+src/generated/
+# Unity'ye aktarım paketi (npm run art:export-unity)
+export/
+
+# ── Simülasyon çıktıları (content/generated/balance.json HARİÇ: o versiyonlanır) ──
+sim-results/
+
+# ── Claude Code yerel ayarları ─────────────────────────────────────
+.claude/settings.local.json
+
+# ── Loglar ─────────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+
+# ── Editör ve işletim sistemi ──────────────────────────────────────
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.sw?
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,53 @@
+{
+  "$schema": "./schema/art.schema.json",
+  "kinds": {
+    "cards": {
+      "label": "Kart illüstrasyonu",
+      "master": { "width": 1024, "height": 1024 },
+      "chatgptSize": "1024x1024",
+      "web": [
+        { "suffix": "", "width": 512 },
+        { "suffix": "@thumb", "width": 192 }
+      ],
+      "template": "Stylized hand-painted creature illustration for a collectible monster card game. Creature: {CREATURE}. Element: {ELEMENT}. Power level: {POWER}. Dynamic three-quarter pose, bold readable silhouette, clean shapes, rich saturated colors, soft rim lighting, subtle painterly brush texture, simple atmospheric background that matches the element, creature centered with breathing room around it, square 1:1 composition so it can be cropped into a card art window. Original creature design, charming but powerful. No text, no letters, no logo, no watermark, no frame, no border."
+    },
+    "tamers": {
+      "label": "Tamer portresi",
+      "master": { "width": 1024, "height": 1536 },
+      "chatgptSize": "1024x1536",
+      "web": [
+        { "suffix": "", "width": 512 },
+        { "suffix": "@thumb", "width": 160 }
+      ],
+      "template": "Stylized hand-painted character portrait for the hero selection screen of a collectible monster card game. Character: {SUBJECT}. Waist-up portrait, friendly confident expression, rich saturated colors, warm candle-lit rim lighting, subtle painterly brush texture, softly blurred background of a cozy fantasy library, portrait 2:3 composition with the face in the upper third. Original character design. No text, no letters, no logo, no watermark, no frame, no border."
+    },
+    "weather": {
+      "label": "Hava durumu bandı",
+      "master": { "width": 1536, "height": 864 },
+      "chatgptSize": "1536x1024",
+      "web": [
+        { "suffix": "", "width": 768 },
+        { "suffix": "@thumb", "width": 320 }
+      ],
+      "template": "Stylized hand-painted fantasy landscape banner for a card game weather calendar. Scene: {SUBJECT}. Wide panoramic composition, no characters or creatures, rich saturated colors, painterly brush texture, strong mood lighting, simple shapes that stay readable when small, important elements in the vertical middle so the image can be cropped to 16:9. No text, no letters, no logo, no watermark, no frame, no border."
+    }
+  },
+  "elements": {
+    "fire": "fire: ember orange glow, floating sparks, thin lava cracks",
+    "water": "water: deep blue glow, bubbles, ripples",
+    "earth": "earth: moss green and amber glow, stone, roots",
+    "wind": "wind: lavender violet glow, swirling air currents, feathers",
+    "electric": "electric: bright yellow glow, lightning arcs, static sparks"
+  },
+  "power": {
+    "common": "small, young, simple, playful",
+    "uncommon": "small but sturdy, simple markings",
+    "rare": "mature, sharper features, small markings",
+    "epic": "majestic, armored, large elemental aura",
+    "legendary": "imposing, ornate armor, radiant aura",
+    "mythic": "colossal, ancient glowing runes, cosmic aura",
+    "ancient": "colossal, primordial, glowing runes, cosmic aura with stars swirling around it"
+  },
+  "negative": "Do not include any text, letters, numbers, watermark, signature or logo. Avoid extra limbs, deformed anatomy, blurry or cropped subjects and human hands.",
+  "styleAnchor": "Match the art style, rendering, palette and lighting of the attached reference image exactly, but draw a completely new subject."
+}

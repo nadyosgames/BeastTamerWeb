@@ -1,0 +1,175 @@
+.lab {
+  position: absolute;
+  inset: 0;
+  padding: 22px 36px;
+}
+.lab__top {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.lab__top h2 {
+  font-size: 34px;
+  color: var(--gold-hi);
+  margin-right: auto;
+}
+.lab__sub {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 19px;
+}
+.lab__sub select {
+  font: inherit;
+  background: var(--bg-2);
+  color: var(--text);
+  border: 1px solid var(--gold-lo);
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+.lab__board {
+  position: relative;
+  height: 470px;
+  margin-top: 18px;
+}
+.lab__hud {
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 140px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-align: center;
+}
+.lab__hud small {
+  display: block;
+  font-family: var(--font-display);
+  color: var(--text-dim);
+  font-size: 15px;
+}
+.lab__hud b {
+  font-family: var(--font-display);
+  font-size: 34px;
+}
+.gold {
+  color: var(--gold-hi);
+}
+.good {
+  color: var(--good);
+}
+.bad {
+  color: var(--bad);
+}
+
+.lab__slots {
+  position: absolute;
+  left: 170px;
+  right: 0;
+  top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+}
+.lab__slot {
+  position: relative;
+}
+.lab__slot.is-selected .card {
+  outline: 3px dashed var(--gold-hi);
+  outline-offset: 6px;
+}
+.lab__slot--empty {
+  width: 270px;
+  height: 400px;
+  border: 2px dashed var(--line);
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  color: var(--text-mute);
+  cursor: pointer;
+}
+.lab__slotnum {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  translate: -50% 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  background: var(--bg-1);
+}
+.lab__remove {
+  position: absolute;
+  bottom: -14px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--bad);
+  background: var(--bg-1);
+  color: var(--bad);
+  line-height: 1;
+}
+.lab__slottotal {
+  position: absolute;
+  bottom: -34px;
+  left: 50%;
+  translate: -50% 0;
+  font-family: var(--font-display);
+  color: var(--gold-hi);
+}
+
+.lab__controls {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 14px 0 14px;
+}
+.lab__verdict {
+  margin: 0 auto;
+  font-size: 21px;
+}
+.lab__verdict b {
+  font-family: var(--font-display);
+  font-size: 26px;
+}
+
+.lab__pool {
+  position: absolute;
+  left: 36px;
+  bottom: 22px;
+  width: 1220px;
+  height: 380px;
+  padding: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-content: flex-start;
+}
+.lab__log {
+  position: absolute;
+  right: 36px;
+  bottom: 22px;
+  width: 590px;
+  height: 380px;
+  padding: 14px 18px;
+  font-size: 17px;
+  line-height: 1.45;
+}
+.lab__passes {
+  display: flex;
+  gap: 18px;
+  font-family: var(--font-display);
+  color: var(--gold-hi);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}

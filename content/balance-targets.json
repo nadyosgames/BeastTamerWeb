@@ -1,0 +1,33 @@
+{
+  "$schema": "./schema/balance-targets.schema.json",
+  "seed": 20261001,
+  "targets": {
+    "arrangementSkill": {
+      "text": "Usta bot (tüm dizilimleri dener) acemiden (tek geçişli açgözlü) %25-50 fazla kazanmalı.",
+      "masterOverNovice": [1.25, 1.5]
+    },
+    "weatherFit": {
+      "text": "Havaya uygun deste, uygunsuzdan %30-50 fazla kazanmalı.",
+      "matchedOverMismatched": [1.3, 1.5]
+    },
+    "dayLength": {
+      "text": "Bir gün (maç) 4-8 dakika sürmeli.",
+      "minutes": [4, 8]
+    },
+    "duplicates": {
+      "text": "Tamamı kopya Standart paket, fiyatının en fazla %30'u kadar kaynak vermeli.",
+      "maxRatio": 0.3
+    },
+    "quota": {
+      "text": "İyi oyuncu kotanın %100-130'unu, uyumsuz destede oynayan %70-90'ını yapmalı.",
+      "goodPlayerRatio": [1.0, 1.3],
+      "mismatchedRatio": [0.7, 0.9],
+      "calibrationRatio": 1.15
+    }
+  },
+  "simulation": {
+    "daysPerCheck": 300,
+    "campaignAgents": 6,
+    "calibrationIterations": 3
+  }
+}

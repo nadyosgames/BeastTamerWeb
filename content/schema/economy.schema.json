@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "rarities": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "enum": [
+          "common",
+          "uncommon",
+          "rare",
+          "epic",
+          "legendary",
+          "mythic",
+          "ancient"
+        ]
+      },
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "deckLimit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "duplicatePct": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "deckLimit",
+          "duplicatePct"
+        ],
+        "additionalProperties": false
+      },
+      "required": [
+        "common",
+        "uncommon",
+        "rare",
+        "epic",
+        "legendary",
+        "mythic",
+        "ancient"
+      ]
+    },
+    "packs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "priceMult": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "cards": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "odds": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string",
+              "enum": [
+                "common",
+                "uncommon",
+                "rare",
+                "epic",
+                "legendary",
+                "mythic",
+                "ancient"
+              ]
+            },
+            "additionalProperties": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "guarantee": {
+            "type": "object",
+            "properties": {
+              "rarityAtLeast": {
+                "type": "string",
+                "enum": [
+                  "common",
+                  "uncommon",
+                  "rare",
+                  "epic",
+                  "legendary",
+                  "mythic",
+                  "ancient"
+                ]
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 9007199254740991
+              }
+            },
+            "required": [
+              "rarityAtLeast",
+              "count"
+            ],
+            "additionalProperties": false
+          },
+          "element": {
+            "type": "boolean"
+          },
+          "smart": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "priceMult",
+          "cards",
+          "odds"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "packPricePctOfQuota": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "weeklyPack": {
+      "type": "string"
+    },
+    "quotaFallback": {
+      "type": "object",
+      "properties": {
+        "base": {
+          "type": "number"
+        },
+        "growthPerWeek": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "base",
+        "growthPerWeek"
+      ],
+      "additionalProperties": false
+    },
+    "pity": {
+      "type": "object",
+      "properties": {
+        "packsWithoutRarePlus": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "packsWithoutRarePlus"
+      ],
+      "additionalProperties": false
+    },
+    "softFail": {
+      "type": "object",
+      "properties": {
+        "missedWeeks": {
+          "type": "integer",
+          "minimum": -9007199254740991,
+          "maximum": 9007199254740991
+        },
+        "quotaReductionPct": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "missedWeeks",
+        "quotaReductionPct"
+      ],
+      "additionalProperties": false
+    },
+    "timing": {
+      "type": "object",
+      "properties": {
+        "planningSecPerRound": {
+          "type": "number"
+        },
+        "secPerStep": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "planningSecPerRound",
+        "secPerStep"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "rarities",
+    "packs",
+    "packPricePctOfQuota",
+    "weeklyPack",
+    "quotaFallback",
+    "pity",
+    "softFail",
+    "timing"
+  ],
+  "additionalProperties": false
+}

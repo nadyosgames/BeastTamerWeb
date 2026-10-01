@@ -1,0 +1,681 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "daysPerWeek": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "weeksPerMonth": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "monthsPerYear": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "yearsPerCycle": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "cycles": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "weatherRules": {
+      "type": "object",
+      "properties": {
+        "minDistinctPerWeek": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        },
+        "maxSameInARow": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9007199254740991
+        }
+      },
+      "required": [
+        "minDistinctPerWeek",
+        "maxSameInARow"
+      ],
+      "additionalProperties": false
+    },
+    "zodiac": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "albumPassive": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string"
+              },
+              "modifiers": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "incomePct"
+                        },
+                        "pct": {
+                          "type": "number"
+                        },
+                        "filter": {
+                          "$ref": "#/$defs/__schema0"
+                        },
+                        "if": {
+                          "$ref": "#/$defs/__schema1"
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "pct"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "durabilityAtStart"
+                        },
+                        "amount": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "min": {
+                          "type": "integer",
+                          "minimum": -9007199254740991,
+                          "maximum": 9007199254740991
+                        },
+                        "filter": {
+                          "$ref": "#/$defs/__schema0"
+                        },
+                        "if": {
+                          "$ref": "#/$defs/__schema1"
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "amount"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "abilityScale"
+                        },
+                        "on": {
+                          "type": "string",
+                          "enum": [
+                            "howl",
+                            "harvest",
+                            "lastBreath",
+                            "aura",
+                            "epilogue",
+                            "haunt"
+                          ]
+                        },
+                        "pct": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "on",
+                        "pct"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "repeatAbility"
+                        },
+                        "on": {
+                          "type": "string",
+                          "enum": [
+                            "howl",
+                            "harvest",
+                            "lastBreath",
+                            "aura",
+                            "epilogue",
+                            "haunt"
+                          ]
+                        },
+                        "times": {
+                          "type": "integer",
+                          "minimum": 1,
+                          "maximum": 9007199254740991
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "on",
+                        "times"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "weatherScale"
+                        },
+                        "bonusPct": {
+                          "type": "number"
+                        },
+                        "penaltyPct": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "bonusPct",
+                        "penaltyPct"
+                      ],
+                      "additionalProperties": false
+                    }
+                  ]
+                }
+              },
+              "duplicateBonusPct": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "text",
+              "modifiers"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "albumPassive"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "daysPerWeek",
+    "weeksPerMonth",
+    "monthsPerYear",
+    "yearsPerCycle",
+    "cycles",
+    "weatherRules",
+    "zodiac"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "type": "object",
+      "properties": {
+        "element": {
+          "type": "string",
+          "enum": [
+            "fire",
+            "water",
+            "earth",
+            "wind",
+            "electric"
+          ]
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "beast",
+            "ghost",
+            "golem",
+            "dragon",
+            "flora",
+            "swarm",
+            "avian",
+            "serpent",
+            "neutral"
+          ]
+        },
+        "keyword": {
+          "type": "string",
+          "enum": [
+            "swift",
+            "heavy",
+            "ward",
+            "rebirth",
+            "overload"
+          ]
+        },
+        "rarityAtLeast": {
+          "type": "string",
+          "enum": [
+            "common",
+            "uncommon",
+            "rare",
+            "epic",
+            "legendary",
+            "mythic",
+            "ancient"
+          ]
+        },
+        "state": {
+          "type": "string",
+          "enum": [
+            "active",
+            "passive"
+          ]
+        },
+        "baseDurability": {
+          "type": "object",
+          "properties": {
+            "cmp": {
+              "type": "string",
+              "enum": [
+                ">=",
+                "<=",
+                "==",
+                ">",
+                "<"
+              ]
+            },
+            "value": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "cmp",
+            "value"
+          ],
+          "additionalProperties": false
+        },
+        "anyOf": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema0"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "__schema1": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "count"
+            },
+            "count": {
+              "oneOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "cards"
+                    },
+                    "filter": {
+                      "$ref": "#/$defs/__schema0"
+                    },
+                    "excludeSelf": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "distinctElements"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "heat"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "selfTriggers"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "pass"
+                    }
+                  },
+                  "required": [
+                    "kind"
+                  ],
+                  "additionalProperties": false
+                }
+              ]
+            },
+            "cmp": {
+              "type": "string",
+              "enum": [
+                ">=",
+                "<=",
+                "==",
+                ">",
+                "<"
+              ]
+            },
+            "value": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "kind",
+            "count",
+            "cmp",
+            "value"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "allCards"
+            },
+            "filter": {
+              "$ref": "#/$defs/__schema0"
+            }
+          },
+          "required": [
+            "kind",
+            "filter"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "slot"
+            },
+            "index": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9007199254740991
+            }
+          },
+          "required": [
+            "kind",
+            "index"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "position"
+            },
+            "where": {
+              "type": "string",
+              "enum": [
+                "first",
+                "last"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "where"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "neighbor"
+            },
+            "side": {
+              "type": "string",
+              "enum": [
+                "left",
+                "right"
+              ]
+            },
+            "filter": {
+              "$ref": "#/$defs/__schema0"
+            }
+          },
+          "required": [
+            "kind",
+            "side",
+            "filter"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "passParity"
+            },
+            "parity": {
+              "type": "string",
+              "enum": [
+                "odd",
+                "even"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "parity"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "lastTrigger"
+            }
+          },
+          "required": [
+            "kind"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "link"
+            },
+            "side": {
+              "type": "string",
+              "enum": [
+                "left",
+                "right"
+              ]
+            },
+            "state": {
+              "type": "string",
+              "enum": [
+                "compatible",
+                "clash"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "side",
+            "state"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "round"
+            },
+            "which": {
+              "type": "string",
+              "enum": [
+                "first",
+                "last"
+              ]
+            }
+          },
+          "required": [
+            "kind",
+            "which"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "self"
+            },
+            "filter": {
+              "$ref": "#/$defs/__schema0"
+            }
+          },
+          "required": [
+            "kind",
+            "filter"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "not"
+            },
+            "cond": {
+              "$ref": "#/$defs/__schema1"
+            }
+          },
+          "required": [
+            "kind",
+            "cond"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "all"
+            },
+            "conds": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/__schema1"
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "conds"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "any"
+            },
+            "conds": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/__schema1"
+              }
+            }
+          },
+          "required": [
+            "kind",
+            "conds"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  }
+}

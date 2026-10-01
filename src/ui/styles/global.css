@@ -1,0 +1,133 @@
+@import '@fontsource/cinzel/600.css';
+@import '@fontsource/cinzel/700.css';
+@import '@fontsource/alegreya-sans/400.css';
+@import '@fontsource/alegreya-sans/500.css';
+@import '@fontsource/alegreya-sans/700.css';
+
+/* Konsept çizimlerden: lacivert zemin, altın çerçeve, parşömen metin. */
+:root {
+  --bg-0: #07090f;
+  --bg-1: #0d1220;
+  --bg-2: #141b2e;
+  --bg-3: #1c2540;
+  --line: #3a3324;
+  --gold: #e3b55b;
+  --gold-hi: #ffd88a;
+  --gold-lo: #9c7432;
+  --text: #f1e6cc;
+  --text-dim: #b3a78a;
+  --text-mute: #7d7461;
+  --good: #7cc04a;
+  --bad: #e0574a;
+
+  --fire: #ff7a2f;
+  --water: #3aa0ff;
+  --earth: #8cc152;
+  --wind: #b48cff;
+  --electric: #ffd23f;
+
+  --common: #9aa0a6;
+  --uncommon: #6fbf73;
+  --rare: #4f8ff7;
+  --epic: #a35cff;
+  --legendary: #f2b33d;
+  --mythic: #e0413a;
+  --ancient: #7ef0e0;
+
+  --font-display: 'Cinzel', Georgia, serif;
+  --font-body: 'Alegreya Sans', system-ui, sans-serif;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  background: var(--bg-0);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 22px;
+  overflow: hidden;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(20, 27, 46, 0.92), rgba(13, 18, 32, 0.95));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow:
+    inset 0 0 0 1px rgba(227, 181, 91, 0.12),
+    0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+.btn {
+  background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
+  border: 1px solid var(--gold-lo);
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition:
+    border-color 0.15s,
+    transform 0.1s;
+}
+.btn:hover:not(:disabled) {
+  border-color: var(--gold-hi);
+}
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.btn.primary {
+  background: linear-gradient(180deg, #f3c76b, #c48d36);
+  border-color: var(--gold-hi);
+  color: #2a1a05;
+}
+.btn.small {
+  padding: 6px 14px;
+  font-size: 17px;
+}
+.btn.active {
+  border-color: var(--gold-hi);
+  box-shadow: 0 0 0 1px var(--gold-hi) inset;
+  color: var(--gold-hi);
+}
+
+.chip-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.muted {
+  color: var(--text-dim);
+}
+
+.scroll {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-lo) transparent;
+}

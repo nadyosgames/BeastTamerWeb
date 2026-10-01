@@ -1,0 +1,103 @@
+{
+  "$schema": "./schema/weather.schema.json",
+  "weather": [
+    {
+      "id": "sunny",
+      "name": "Güneşli",
+      "icon": "sun",
+      "weight": 2,
+      "modifiers": [
+        { "kind": "incomePct", "pct": 40, "filter": { "element": "fire" } },
+        { "kind": "incomePct", "pct": -20, "filter": { "element": "water" } }
+      ],
+      "text": "Ateş +%40, Su −%20",
+      "art": { "subject": "a sunny valley with warm golden light, rocky cliffs and a bright sun in a clear sky" }
+    },
+    {
+      "id": "rainy",
+      "name": "Yağmurlu",
+      "icon": "rain",
+      "weight": 2,
+      "modifiers": [
+        { "kind": "incomePct", "pct": 40, "filter": { "element": "water" } },
+        { "kind": "incomePct", "pct": -20, "filter": { "element": "fire" } }
+      ],
+      "text": "Su +%40, Ateş −%20",
+      "art": { "subject": "a misty forest lake under gentle heavy rain, dark blue clouds and ripples on the water" }
+    },
+    {
+      "id": "stormy",
+      "name": "Fırtınalı",
+      "icon": "storm",
+      "weight": 2,
+      "modifiers": [
+        { "kind": "incomePct", "pct": 40, "filter": { "element": "electric" } },
+        { "kind": "incomePct", "pct": -20, "filter": { "element": "earth" } }
+      ],
+      "text": "Elektrik +%40, Toprak −%20",
+      "art": { "subject": "a dramatic night sky over dark hills with violet lightning bolts striking the ground" }
+    },
+    {
+      "id": "windy",
+      "name": "Rüzgarlı",
+      "icon": "wind",
+      "weight": 2,
+      "modifiers": [
+        { "kind": "incomePct", "pct": 40, "filter": { "element": "wind" } },
+        { "kind": "incomePct", "pct": -20, "filter": { "element": "electric" } }
+      ],
+      "text": "Rüzgar +%40, Elektrik −%20",
+      "art": { "subject": "rolling green highlands with swirling wind currents, leaves and petals flying through a pale sky" }
+    },
+    {
+      "id": "quake",
+      "name": "Sarsıntılı",
+      "icon": "quake",
+      "weight": 2,
+      "modifiers": [
+        { "kind": "incomePct", "pct": 40, "filter": { "element": "earth" } },
+        { "kind": "incomePct", "pct": -20, "filter": { "element": "wind" } }
+      ],
+      "text": "Toprak +%40, Rüzgar −%20",
+      "art": { "subject": "a rocky canyon with cracked glowing ground, floating dust and falling pebbles at dusk" }
+    },
+    {
+      "id": "foggy",
+      "name": "Sisli",
+      "icon": "fog",
+      "weight": 1,
+      "modifiers": [
+        { "kind": "incomePct", "pct": 40, "filter": { "type": "ghost" } },
+        { "kind": "incomePct", "pct": -20, "filter": { "keyword": "swift" } }
+      ],
+      "text": "Ghost +%40, Swift −%20",
+      "art": { "subject": "a quiet moor covered in thick pale fog, silhouettes of old trees and faint lantern lights" }
+    },
+    {
+      "id": "drought",
+      "name": "Kuraklık",
+      "icon": "drought",
+      "weight": 1,
+      "modifiers": [
+        { "kind": "incomePct", "pct": 20, "filter": { "element": "fire" } },
+        {
+          "kind": "durabilityAtStart",
+          "amount": -1,
+          "min": 1,
+          "filter": { "anyOf": [{ "element": "water" }, { "type": "flora" }] }
+        }
+      ],
+      "text": "Ateş +%20. Su ve Flora kartları tur başında −1 dayanıklılık (en az 1).",
+      "art": { "subject": "a cracked dry desert plain under a hazy orange sun, withered bushes and heat shimmer" }
+    },
+    {
+      "id": "calm",
+      "name": "Sakin",
+      "icon": "calm",
+      "weight": 1,
+      "modifiers": [],
+      "text": "Etki yok",
+      "art": { "subject": "a peaceful meadow by a calm lake with soft clouds and a gentle breeze" }
+    }
+  ]
+}

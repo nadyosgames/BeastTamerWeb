@@ -1,0 +1,121 @@
+.art {
+  position: absolute;
+  inset: 0;
+  padding: 22px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.art__top {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.art__top h2 {
+  font-size: 34px;
+  color: var(--gold-hi);
+  margin-right: auto;
+}
+.art__toggle {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.art__help {
+  padding: 12px 18px;
+  font-size: 18px;
+}
+.art__help code,
+.art__meta code {
+  color: var(--gold-hi);
+  font-size: 15px;
+}
+.art__grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-content: start;
+  padding-right: 6px;
+}
+.art__item {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  padding: 14px;
+  min-height: 268px;
+}
+.art__item.is-over {
+  border-color: var(--gold-hi);
+}
+.art__preview {
+  flex: none;
+  width: 170px;
+  display: grid;
+  place-items: center;
+}
+.art__grid--weather .art__preview {
+  width: 240px;
+}
+.art__preview img {
+  max-width: 100%;
+  max-height: 240px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+.art__empty {
+  width: 100%;
+  height: 200px;
+  border: 2px dashed var(--line);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: var(--text-mute);
+}
+.art__meta {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.art__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+}
+.art__prompt {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--text-dim);
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.art__status {
+  font-size: 15px;
+}
+.art__status--ok {
+  color: var(--good);
+}
+.art__status--error {
+  color: var(--bad);
+}
+.art__status--busy {
+  color: var(--gold-hi);
+}
+.art__drop {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(7, 9, 15, 0.82);
+  border: 2px dashed var(--gold-hi);
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--gold-hi);
+  pointer-events: none;
+}

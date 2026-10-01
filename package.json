@@ -1,0 +1,46 @@
+{
+  "name": "beast-tamer-web",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Canavar Deste - web prototipi (oynanabilirlik testi, sonra Unity'ye taşınacak)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run content:check && tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "oxlint",
+    "typecheck": "tsc -b",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "content:check": "tsx scripts/content/validate.ts",
+    "content:schema": "tsx scripts/content/export-schema.ts",
+    "sim": "tsx scripts/sim/simulate.ts",
+    "sim:bench": "tsx scripts/sim/bench.ts",
+    "art:prompts": "tsx scripts/art/prompts.ts",
+    "art:ingest": "tsx scripts/art/ingest.ts",
+    "art:status": "tsx scripts/art/status.ts",
+    "art:generate": "tsx scripts/art/generate-openai.ts",
+    "art:export-unity": "tsx scripts/art/export-unity.ts"
+  },
+  "dependencies": {
+    "@fontsource/alegreya-sans": "^5.3.0",
+    "@fontsource/cinzel": "^5.3.0",
+    "motion": "^13.5.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "zod": "^4.6.5",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.86.0",
+    "sharp": "^0.35.5",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.2",
+    "vitest": "^5.0.1"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "./schema/calendar.schema.json",
+  "daysPerWeek": 5,
+  "weeksPerMonth": 4,
+  "monthsPerYear": 6,
+  "yearsPerCycle": 6,
+  "cycles": 2,
+  "weatherRules": { "minDistinctPerWeek": 2, "maxSameInARow": 2 },
+  "zodiac": [
+    {
+      "id": "snake",
+      "name": "Yılan",
+      "albumPassive": {
+        "text": "Last Breath yetenekleri %25 daha güçlü.",
+        "modifiers": [{ "kind": "abilityScale", "on": "lastBreath", "pct": 25 }]
+      }
+    },
+    {
+      "id": "horse",
+      "name": "At",
+      "albumPassive": {
+        "text": "Her günün son turu %15 daha fazla kaynak üretir.",
+        "modifiers": [{ "kind": "incomePct", "pct": 15, "if": { "kind": "round", "which": "last" } }]
+      }
+    },
+    {
+      "id": "tiger",
+      "name": "Kaplan",
+      "albumPassive": {
+        "text": "Ateş ve Elektrik kartları +%10.",
+        "modifiers": [{ "kind": "incomePct", "pct": 10, "filter": { "anyOf": [{ "element": "fire" }, { "element": "electric" }] } }]
+      }
+    },
+    {
+      "id": "dragon",
+      "name": "Ejder",
+      "albumPassive": {
+        "text": "Legendary ve üzeri kartlar +%15.",
+        "modifiers": [{ "kind": "incomePct", "pct": 15, "filter": { "rarityAtLeast": "legendary" } }]
+      }
+    },
+    {
+      "id": "monkey",
+      "name": "Maymun",
+      "albumPassive": {
+        "text": "Kopya kartlardan gelen kaynak %25 daha fazla.",
+        "modifiers": [],
+        "duplicateBonusPct": 25
+      }
+    },
+    {
+      "id": "rooster",
+      "name": "Horoz",
+      "albumPassive": {
+        "text": "Her günün ilk turunda tüm kartlar +1 dayanıklılıkla başlar.",
+        "modifiers": [{ "kind": "durabilityAtStart", "amount": 1, "if": { "kind": "round", "which": "first" } }]
+      }
+    }
+  ]
+}

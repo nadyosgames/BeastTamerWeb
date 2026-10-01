@@ -1,0 +1,1064 @@
+{
+  "$schema": "./schema/cards.schema.json",
+  "cards": [
+    {
+      "id": "spark_fox",
+      "name": "Kıvılcım Tilkisi",
+      "elements": [
+        "fire"
+      ],
+      "type": "beast",
+      "rarity": "common",
+      "durability": 2,
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 6
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +6.",
+      "art": {
+        "creature": "a small fox cub with ember-tipped orange fur, big curious eyes and a glowing spark at the tip of its fluffy flame tail"
+      }
+    },
+    {
+      "id": "coral_turtle",
+      "name": "Mercan Kaplumbağası",
+      "elements": [
+        "water"
+      ],
+      "type": "beast",
+      "rarity": "common",
+      "durability": 1,
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 4
+            },
+            {
+              "op": "copyIncome",
+              "from": "left",
+              "pct": 50
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +4 ve soldaki kartın bu geçişteki gelirinin %50'si.",
+      "art": {
+        "creature": "a young sea turtle with a shell covered in pink and orange coral, friendly round eyes, water droplets around it"
+      }
+    },
+    {
+      "id": "stone_golem",
+      "name": "Taş Golemi",
+      "elements": [
+        "earth"
+      ],
+      "type": "golem",
+      "rarity": "common",
+      "durability": 3,
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 4
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +4.",
+      "art": {
+        "creature": "a sturdy little golem made of mossy boulders with glowing amber eyes and tiny ferns growing on its shoulders"
+      }
+    },
+    {
+      "id": "charge_bat",
+      "name": "Şarj Yarasası",
+      "elements": [
+        "electric"
+      ],
+      "type": "beast",
+      "rarity": "common",
+      "durability": 1,
+      "polarity": {
+        "left": "+",
+        "right": "-"
+      },
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 5
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +5.",
+      "art": {
+        "creature": "a small fluffy bat with big ears, wings crackling with static electricity, mischievous grin"
+      }
+    },
+    {
+      "id": "cloud_owl",
+      "name": "Bulut Baykuşu",
+      "elements": [
+        "wind"
+      ],
+      "type": "avian",
+      "rarity": "common",
+      "durability": 2,
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 5
+            },
+            {
+              "op": "mult",
+              "value": 2,
+              "if": {
+                "kind": "count",
+                "count": {
+                  "kind": "distinctElements"
+                },
+                "cmp": ">=",
+                "value": 3
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +5. Masada en az 3 farklı element varsa x2.",
+      "art": {
+        "creature": "a round fluffy owl with lavender feathers that blend into soft clouds, big golden eyes"
+      }
+    },
+    {
+      "id": "spark_coil",
+      "name": "Kıvılcım Bobini",
+      "elements": [
+        "electric"
+      ],
+      "type": "serpent",
+      "rarity": "common",
+      "durability": 2,
+      "unlockYear": 2,
+      "polarity": {
+        "left": "-",
+        "right": "+"
+      },
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 4
+            },
+            {
+              "op": "gain",
+              "amount": 4,
+              "if": {
+                "kind": "link",
+                "side": "right",
+                "state": "compatible"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +4. Sağ bağlantı uyumluysa +4.",
+      "art": {
+        "creature": "a small eel-like serpent coiled around itself like a copper coil, glowing yellow stripes buzzing with electricity"
+      }
+    },
+    {
+      "id": "storm_snail",
+      "name": "Fırtına Salyangozu",
+      "elements": [
+        "electric"
+      ],
+      "type": "beast",
+      "rarity": "common",
+      "durability": 2,
+      "unlockYear": 2,
+      "polarity": {
+        "left": "-",
+        "right": "+"
+      },
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 5
+            },
+            {
+              "op": "gain",
+              "amount": 3,
+              "if": {
+                "kind": "link",
+                "side": "left",
+                "state": "compatible"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +5. Sol bağlantı uyumluysa +3.",
+      "art": {
+        "creature": "a cute snail whose spiral shell is a tiny thundercloud with lightning sparks, glowing antennae"
+      }
+    },
+    {
+      "id": "tension_lizard",
+      "name": "Gerilim Kertenkelesi",
+      "elements": [
+        "electric"
+      ],
+      "type": "beast",
+      "rarity": "uncommon",
+      "durability": 2,
+      "unlockYear": 2,
+      "polarity": {
+        "left": "+",
+        "right": "-"
+      },
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 4
+            },
+            {
+              "op": "mult",
+              "value": 2,
+              "if": {
+                "kind": "link",
+                "side": "left",
+                "state": "clash"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +4. Sol bağlantı çakışıyorsa x2.",
+      "art": {
+        "creature": "a lean lizard with spiky yellow frills standing up with crackling static, tense alert pose"
+      }
+    },
+    {
+      "id": "static_rabbit",
+      "name": "Statik Tavşan",
+      "elements": [
+        "electric"
+      ],
+      "type": "beast",
+      "rarity": "common",
+      "durability": 2,
+      "unlockYear": 2,
+      "polarity": {
+        "left": "+",
+        "right": "+"
+      },
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 3
+            },
+            {
+              "op": "gain",
+              "amount": 3,
+              "if": {
+                "kind": "link",
+                "side": "left",
+                "state": "clash"
+              }
+            },
+            {
+              "op": "gain",
+              "amount": 3,
+              "if": {
+                "kind": "link",
+                "side": "right",
+                "state": "clash"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +3. Her çakışan bağlantı için +3.",
+      "art": {
+        "creature": "a fluffy yellow rabbit with puffed static fur and sparks dancing between its long ears"
+      }
+    },
+    {
+      "id": "thunder_ram",
+      "name": "Şimşek Koçu",
+      "elements": [
+        "electric"
+      ],
+      "type": "beast",
+      "rarity": "uncommon",
+      "durability": 2,
+      "unlockYear": 2,
+      "keywords": [
+        "ward"
+      ],
+      "polarity": {
+        "left": "-",
+        "right": "-"
+      },
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 4
+            },
+            {
+              "op": "mult",
+              "value": 1.5,
+              "if": {
+                "kind": "link",
+                "side": "left",
+                "state": "compatible"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Ward. Harvest: +4. Sol bağlantı uyumluysa x1,5.",
+      "art": {
+        "creature": "a sturdy ram with curled horns crackling with lightning and a woolly fleece full of static"
+      }
+    },
+    {
+      "id": "baby_dragon",
+      "name": "Yavru Ejder",
+      "elements": [
+        "fire"
+      ],
+      "type": "dragon",
+      "rarity": "common",
+      "durability": 2,
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 5
+            },
+            {
+              "op": "gainPer",
+              "amount": 2,
+              "per": {
+                "kind": "cards",
+                "filter": {
+                  "type": "dragon"
+                },
+                "excludeSelf": true
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +5 ve masadaki her başka Dragon için +2.",
+      "art": {
+        "creature": "a chubby baby red dragon with tiny wings puffing a small flame, playful expression"
+      }
+    },
+    {
+      "id": "ember_hedgehog",
+      "name": "Köz Kirpisi",
+      "elements": [
+        "fire"
+      ],
+      "type": "beast",
+      "rarity": "common",
+      "durability": 2,
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "addHeat",
+              "amount": 1
+            },
+            {
+              "op": "gain",
+              "amount": 2
+            },
+            {
+              "op": "gainPer",
+              "amount": 1,
+              "per": {
+                "kind": "heat"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: masaya +1 Isı. +2 ve masadaki Isı kadar +1.",
+      "art": {
+        "creature": "a round hedgehog whose spines glow like smoldering embers, rosy cheeks, sitting on warm coals"
+      }
+    },
+    {
+      "id": "flame_swarm",
+      "name": "Alev Sürüsü",
+      "elements": [
+        "fire"
+      ],
+      "type": "swarm",
+      "rarity": "common",
+      "durability": 1,
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 3
+            },
+            {
+              "op": "gainPer",
+              "amount": 3,
+              "per": {
+                "kind": "cards",
+                "filter": {
+                  "type": "swarm"
+                },
+                "excludeSelf": true
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +3 ve masadaki her başka Swarm için +3.",
+      "art": {
+        "creature": "a pack of three tiny fire fox kits huddled together, flame tails flickering"
+      }
+    },
+    {
+      "id": "lava_salamander",
+      "name": "Lav Semenderi",
+      "elements": [
+        "fire"
+      ],
+      "type": "serpent",
+      "rarity": "rare",
+      "durability": 3,
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 3
+            },
+            {
+              "op": "mult",
+              "value": 6,
+              "if": {
+                "kind": "lastTrigger"
+              }
+            },
+            {
+              "op": "mult",
+              "value": 0.5,
+              "if": {
+                "kind": "not",
+                "cond": {
+                  "kind": "lastTrigger"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +3. Son tetikte x6, önceki tetiklerde x0,5.",
+      "art": {
+        "creature": "a sleek salamander with dark volcanic skin split by glowing lava cracks, molten drips"
+      }
+    },
+    {
+      "id": "sun_dragon",
+      "name": "Güneş Ejderi",
+      "elements": [
+        "fire"
+      ],
+      "type": "dragon",
+      "rarity": "legendary",
+      "durability": 3,
+      "unlockYear": 4,
+      "keywords": [
+        "overload"
+      ],
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 10
+            },
+            {
+              "op": "mult",
+              "value": 3,
+              "if": {
+                "kind": "allCards",
+                "filter": {
+                  "element": "fire"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Overload. Harvest: +10. Dizilen tüm kartlar Ateş ise x3.",
+      "art": {
+        "creature": "a majestic red and gold dragon with a radiant sun-like crest and wings glowing with sunfire"
+      }
+    },
+    {
+      "id": "drop_frog",
+      "name": "Damla Kurbağası",
+      "elements": [
+        "water"
+      ],
+      "type": "beast",
+      "rarity": "common",
+      "durability": 3,
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 4
+            },
+            {
+              "op": "mult",
+              "value": 1.5,
+              "if": {
+                "kind": "passParity",
+                "parity": "odd"
+              }
+            },
+            {
+              "op": "mult",
+              "value": 0.75,
+              "if": {
+                "kind": "passParity",
+                "parity": "even"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +4. Tek geçişlerde x1,5, çift geçişlerde x0,75.",
+      "art": {
+        "creature": "a glossy blue frog with translucent water-drop spots, surrounded by floating bubbles, cheerful face"
+      }
+    },
+    {
+      "id": "coral_crab",
+      "name": "Mercan Yengeci",
+      "elements": [
+        "water"
+      ],
+      "type": "beast",
+      "rarity": "common",
+      "durability": 2,
+      "abilities": [
+        {
+          "on": "howl",
+          "effects": [
+            {
+              "op": "addDurability",
+              "target": "right",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "text": "Howl: sağındaki kartın dayanıklılığını +1 yapar. Harvest: +3.",
+      "art": {
+        "creature": "a small red crab with a coral crown on its shell, raised claws, bubbles around it"
+      }
+    },
+    {
+      "id": "mist_ghost",
+      "name": "Sis Hayaleti",
+      "elements": [
+        "water"
+      ],
+      "type": "ghost",
+      "rarity": "rare",
+      "durability": 2,
+      "unlockYear": 3,
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "on": "haunt",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +3. Haunt: başka bir kart pasife geçtiğinde +3.",
+      "art": {
+        "creature": "a small translucent ghost made of pale blue mist with a gentle smile, wisps trailing behind it"
+      }
+    },
+    {
+      "id": "pearl_seahorse",
+      "name": "İnci Denizatı",
+      "elements": [
+        "water"
+      ],
+      "type": "serpent",
+      "rarity": "uncommon",
+      "durability": 1,
+      "unlockYear": 3,
+      "keywords": [
+        "rebirth"
+      ],
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 4
+            }
+          ]
+        },
+        {
+          "on": "lastBreath",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 6
+            }
+          ]
+        }
+      ],
+      "text": "Rebirth. Harvest: +4. Last Breath: +6.",
+      "art": {
+        "creature": "an elegant seahorse with orange and teal scales holding a glowing pearl in its curled tail"
+      }
+    },
+    {
+      "id": "steam_turtle",
+      "name": "Buhar Kaplumbağası",
+      "elements": [
+        "fire",
+        "water"
+      ],
+      "type": "beast",
+      "rarity": "rare",
+      "durability": 3,
+      "unlockYear": 2,
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 3
+            },
+            {
+              "op": "gainPer",
+              "amount": 1,
+              "per": {
+                "kind": "heat"
+              }
+            },
+            {
+              "op": "mult",
+              "value": 1.5,
+              "if": {
+                "kind": "passParity",
+                "parity": "odd"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: +3 ve masadaki Isı kadar +1. Tek geçişlerde x1,5.",
+      "art": {
+        "creature": "a stocky turtle with a shell like a bubbling hot spring, steam vents puffing white clouds, ember glow under the water"
+      }
+    },
+    {
+      "id": "moss_giant",
+      "name": "Yosun Devi",
+      "elements": [
+        "earth"
+      ],
+      "type": "golem",
+      "rarity": "rare",
+      "durability": 4,
+      "unlockYear": 3,
+      "keywords": [
+        "heavy"
+      ],
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 3
+            }
+          ]
+        },
+        {
+          "on": "epilogue",
+          "effects": [
+            {
+              "op": "gainPer",
+              "amount": 2,
+              "per": {
+                "kind": "cards",
+                "filter": {
+                  "state": "passive"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Heavy. Harvest: +3. Epilogue: masadaki her pasif kart için +2.",
+      "art": {
+        "creature": "a large gentle golem made of mossy stone and roots with a bushy moss beard and glowing green eyes"
+      }
+    },
+    {
+      "id": "rock_lizard",
+      "name": "Kaya Kertenkelesi",
+      "elements": [
+        "earth"
+      ],
+      "type": "beast",
+      "rarity": "uncommon",
+      "durability": 3,
+      "keywords": [
+        "heavy"
+      ],
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 2
+            },
+            {
+              "op": "gainPer",
+              "amount": 2,
+              "per": {
+                "kind": "cards",
+                "filter": {
+                  "state": "passive"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Heavy. Harvest: +2 ve masadaki her pasif kart için +2.",
+      "art": {
+        "creature": "a chunky lizard with rocky plates and amber crystal spikes along its back"
+      }
+    },
+    {
+      "id": "root_keeper",
+      "name": "Kök Bekçisi",
+      "elements": [
+        "earth"
+      ],
+      "type": "flora",
+      "rarity": "uncommon",
+      "durability": 3,
+      "unlockYear": 3,
+      "slumber": 2,
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 4
+            },
+            {
+              "op": "gainPer",
+              "amount": 2,
+              "per": {
+                "kind": "selfTriggers"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Slumber 2. Harvest: +4 ve bu turdaki her önceki tetiği için +2.",
+      "art": {
+        "creature": "a small wooden guardian made of twisted roots and bark with glowing green eyes and leaves sprouting on its head"
+      }
+    },
+    {
+      "id": "ancient_tree",
+      "name": "Kadim Ağaç",
+      "elements": [
+        "earth"
+      ],
+      "type": "flora",
+      "rarity": "epic",
+      "durability": 4,
+      "unlockYear": 4,
+      "abilities": [
+        {
+          "on": "aura",
+          "effects": [
+            {
+              "op": "aura",
+              "filter": {
+                "element": "earth"
+              },
+              "gain": 2
+            }
+          ]
+        },
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 3
+            }
+          ]
+        }
+      ],
+      "text": "Aura: diğer Toprak kartları Harvest'te +2. Harvest: +3.",
+      "art": {
+        "creature": "an ancient walking tree spirit with a mossy trunk face, glowing green eyes and branches full of leaves and fireflies"
+      }
+    },
+    {
+      "id": "gust_cat",
+      "name": "Esinti Kedisi",
+      "elements": [
+        "wind"
+      ],
+      "type": "beast",
+      "rarity": "common",
+      "durability": 2,
+      "keywords": [
+        "swift"
+      ],
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 2
+            },
+            {
+              "op": "gainPer",
+              "amount": 2,
+              "per": {
+                "kind": "distinctElements"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Swift. Harvest: +2 ve masadaki her farklı element için +2.",
+      "art": {
+        "creature": "a small winged cat with pale lavender fur and a wispy tail made of breeze, floating in the air"
+      }
+    },
+    {
+      "id": "storm_moth",
+      "name": "Fırtına Güvesi",
+      "elements": [
+        "wind"
+      ],
+      "type": "swarm",
+      "rarity": "common",
+      "durability": 1,
+      "keywords": [
+        "swift"
+      ],
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 3
+            },
+            {
+              "op": "gainPer",
+              "amount": 2,
+              "per": {
+                "kind": "cards",
+                "filter": {
+                  "type": "swarm"
+                },
+                "excludeSelf": true
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Swift. Harvest: +3 ve masadaki her başka Swarm için +2.",
+      "art": {
+        "creature": "a fluffy moth with lavender and white wings patterned like storm clouds"
+      }
+    },
+    {
+      "id": "ember_thunder_dragon",
+      "name": "Kor Şimşek Ejderi",
+      "elements": [
+        "fire",
+        "electric"
+      ],
+      "type": "dragon",
+      "rarity": "epic",
+      "durability": 2,
+      "unlockYear": 4,
+      "polarity": {
+        "left": "-",
+        "right": "+"
+      },
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "addHeat",
+              "amount": 1
+            },
+            {
+              "op": "gain",
+              "amount": 4
+            },
+            {
+              "op": "gainPer",
+              "amount": 1,
+              "per": {
+                "kind": "heat"
+              }
+            },
+            {
+              "op": "mult",
+              "value": 1.5,
+              "if": {
+                "kind": "link",
+                "side": "right",
+                "state": "compatible"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Harvest: masaya +1 Isı. +4 ve masadaki Isı kadar +1. Sağ bağlantı uyumluysa x1,5.",
+      "art": {
+        "creature": "a sleek armored dragon with charcoal scales split by glowing ember cracks, crackling yellow lightning arcs along its horns and wings, and a mane of living flame"
+      }
+    },
+    {
+      "id": "sandstorm_eagle",
+      "name": "Kum Fırtınası Kartalı",
+      "elements": [
+        "earth",
+        "wind"
+      ],
+      "type": "avian",
+      "rarity": "epic",
+      "durability": 3,
+      "unlockYear": 4,
+      "keywords": [
+        "swift"
+      ],
+      "abilities": [
+        {
+          "on": "harvest",
+          "effects": [
+            {
+              "op": "gain",
+              "amount": 3
+            },
+            {
+              "op": "gainPer",
+              "amount": 1,
+              "per": {
+                "kind": "cards",
+                "filter": {
+                  "state": "passive"
+                }
+              }
+            },
+            {
+              "op": "gainPer",
+              "amount": 1,
+              "per": {
+                "kind": "distinctElements"
+              }
+            }
+          ]
+        }
+      ],
+      "text": "Swift. Harvest: +3, masadaki her pasif kart ve her farklı element için +1.",
+      "art": {
+        "creature": "a fierce eagle with sandstone-colored feathers, wings trailing swirling sand and wind currents, small crystals on its crest"
+      }
+    }
+  ]
+}

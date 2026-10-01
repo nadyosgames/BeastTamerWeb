@@ -1,0 +1,1249 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Canavar Deste GDD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sol yapışkan içindekiler + tek sütun belge. Tema: dört element (ateş, su, toprak, hava) sayfayı bölümlere göre renklendirir; hero dört elementin karışımı. */
+:root {
+  --bg: #f3f5fc;
+  --surface: #ffffff;
+  --fg: #171d33;
+  --muted: #566080;
+  --line: #d8dcf0;
+  --fire: #d9441f;
+  --water: #1577c9;
+  --earth: #2c8c3a;
+  --air: #7444e3;
+  --fire-soft: #fde2d8;
+  --water-soft: #d6eafc;
+  --earth-soft: #dcf2dc;
+  --air-soft: #e9e0fc;
+  --on-c: #ffffff;
+  --accent: var(--water);
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c1120;
+    --surface: #151c33;
+    --fg: #eaeefb;
+    --muted: #9ba7c9;
+    --line: #28325a;
+    --fire: #ff7a52;
+    --water: #4db4ff;
+    --earth: #6bd672;
+    --air: #b195ff;
+    --fire-soft: #3a1c15;
+    --water-soft: #12293f;
+    --earth-soft: #143122;
+    --air-soft: #2a2250;
+    --on-c: #0c1120;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c1120;
+  --surface: #151c33;
+  --fg: #eaeefb;
+  --muted: #9ba7c9;
+  --line: #28325a;
+  --fire: #ff7a52;
+  --water: #4db4ff;
+  --earth: #6bd672;
+  --air: #b195ff;
+  --fire-soft: #3a1c15;
+  --water-soft: #12293f;
+  --earth-soft: #143122;
+  --air-soft: #2a2250;
+  --on-c: #0c1120;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background:
+    radial-gradient(900px 520px at 0% -8%, var(--fire-soft), transparent 65%),
+    radial-gradient(820px 520px at 100% 0%, var(--air-soft), transparent 65%),
+    radial-gradient(900px 640px at 40% 112%, var(--water-soft), transparent 65%),
+    var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 15.5px;
+  line-height: 1.6;
+  padding-inline: 16px;
+  padding-block: 28px 72px;
+}
+.wrap {
+  max-width: 1080px;
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 48px;
+}
+
+/* Element renkleri: bölüm sırasına göre ateş, su, toprak, hava döner */
+main > section:nth-of-type(4n+1) { --sc: var(--fire);  --scs: var(--fire-soft); }
+main > section:nth-of-type(4n+2) { --sc: var(--water); --scs: var(--water-soft); }
+main > section:nth-of-type(4n+3) { --sc: var(--earth); --scs: var(--earth-soft); }
+main > section:nth-of-type(4n+4) { --sc: var(--air);   --scs: var(--air-soft); }
+nav.toc a:nth-of-type(4n+1) { --sc: var(--fire); }
+nav.toc a:nth-of-type(4n+2) { --sc: var(--water); }
+nav.toc a:nth-of-type(4n+3) { --sc: var(--earth); }
+nav.toc a:nth-of-type(4n+4) { --sc: var(--air); }
+.fire  { --c: var(--fire);  --cs: var(--fire-soft); }
+.water { --c: var(--water); --cs: var(--water-soft); }
+.earth { --c: var(--earth); --cs: var(--earth-soft); }
+.air   { --c: var(--air);   --cs: var(--air-soft); }
+
+nav.toc {
+  position: sticky;
+  top: calc(env(safe-area-inset-top, 0px) + 24px);
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13.5px;
+}
+nav.toc .doc-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, var(--fire), var(--air), var(--water));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: var(--fg);
+  -webkit-text-fill-color: transparent;
+}
+nav.toc a {
+  color: var(--muted);
+  text-decoration: none;
+  padding: 5px 10px;
+  border-left: 4px solid var(--sc);
+  border-radius: 0 6px 6px 0;
+}
+nav.toc a:hover, nav.toc a:focus-visible { color: var(--fg); background: var(--surface); outline: none; }
+nav.toc a:focus-visible { box-shadow: 0 0 0 2px var(--sc); }
+main { min-width: 0; display: flex; flex-direction: column; gap: 56px; }
+
+/* Hero */
+header.top {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 34px 28px 26px;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: linear-gradient(125deg, var(--fire-soft) 0%, var(--air-soft) 48%, var(--water-soft) 100%);
+}
+header.top::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 7px;
+  background: linear-gradient(90deg, var(--fire) 0 25%, var(--earth) 25% 50%, var(--water) 50% 75%, var(--air) 75% 100%);
+}
+header.top::after {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: -50px;
+  top: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--water), transparent 68%);
+  opacity: 0.35;
+  pointer-events: none;
+}
+header.top > * { position: relative; z-index: 1; }
+.meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+h1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin: 0;
+  text-wrap: balance;
+  background: linear-gradient(90deg, var(--fire), var(--air) 55%, var(--water));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: var(--fg);
+  -webkit-text-fill-color: transparent;
+}
+.lede { font-size: 1.12rem; color: var(--fg); max-width: 62ch; margin: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: var(--c);
+  color: var(--on-c);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 6px 0 0;
+}
+.facts div {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.facts div:nth-child(4n+1) { border-color: var(--fire); }
+.facts div:nth-child(4n+2) { border-color: var(--water); }
+.facts div:nth-child(4n+3) { border-color: var(--earth); }
+.facts div:nth-child(4n+4) { border-color: var(--air); }
+.facts dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 0; font-weight: 600; }
+
+/* Bölümler */
+section { display: flex; flex-direction: column; gap: 16px; scroll-margin-top: 24px; }
+h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.7rem;
+  letter-spacing: -0.012em;
+  margin: 0;
+  text-wrap: balance;
+}
+h2::before {
+  content: "";
+  flex: none;
+  width: 18px;
+  height: 18px;
+  background: var(--sc);
+  transform: rotate(45deg);
+  border-radius: 4px;
+  box-shadow: 0 0 0 4px var(--scs);
+}
+h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; margin: 8px 0 0; }
+p { margin: 0; max-width: 68ch; }
+ul, ol { margin: 0; padding-left: 1.25rem; display: flex; flex-direction: column; gap: 6px; max-width: 68ch; }
+li::marker { color: var(--sc); }
+code, .mono { font-family: var(--font-mono); font-size: 0.88em; }
+code { background: var(--scs); padding: 1px 7px; border-radius: 5px; }
+.scroll { overflow-x: auto; border: 1px solid var(--sc); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 520px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--fg); font-weight: 600; background: var(--scs); }
+tbody tr:hover td { background: var(--scs); }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { font-variant-numeric: tabular-nums; }
+.dot { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 6px; background: var(--c); }
+
+/* Döngü adımları */
+.loop { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.loop .step {
+  background: linear-gradient(165deg, var(--cs), var(--surface) 85%);
+  border: 1px solid var(--c);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.loop .step:nth-child(1) { --c: var(--fire);  --cs: var(--fire-soft); }
+.loop .step:nth-child(2) { --c: var(--earth); --cs: var(--earth-soft); }
+.loop .step:nth-child(3) { --c: var(--water); --cs: var(--water-soft); }
+.loop .step:nth-child(4) { --c: var(--air);   --cs: var(--air-soft); }
+.loop .step:nth-child(5) { --c: var(--fire);  --cs: var(--fire-soft); }
+.loop .step b { font-family: var(--font-display); font-size: 1.05rem; }
+.loop .step span { color: var(--muted); font-size: 14px; }
+
+/* Masa diyagramı */
+.board { display: flex; flex-direction: column; gap: 10px; }
+.board-row { display: flex; align-items: stretch; gap: 0; overflow-x: auto; padding: 6px 2px 12px; }
+.slot {
+  flex: 0 0 136px;
+  background: linear-gradient(160deg, var(--cs), var(--surface) 92%);
+  border: 1.5px solid var(--c);
+  border-radius: 14px;
+  padding: 11px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  box-shadow: 0 8px 20px -10px var(--c);
+}
+.slot .el {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--c);
+  color: var(--on-c);
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+.slot .nm { font-family: var(--font-display); font-weight: 700; line-height: 1.15; }
+.slot .ef { font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+.join { flex: 0 0 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2px; font-size: 11.5px; line-height: 1.2; padding: 0 4px; color: var(--muted); }
+.join i { font-style: normal; font-weight: 700; font-size: 12.5px; }
+.join .arrow { font-family: var(--font-mono); font-size: 16px; color: var(--fg); }
+.caption { font-size: 13.5px; color: var(--muted); max-width: 68ch; }
+
+/* Paneller */
+.cards3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.panel {
+  background: linear-gradient(180deg, var(--scs), var(--surface) 70%);
+  border: 1px solid var(--sc);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.cards3 .panel:nth-child(4n+1) { --sc: var(--fire);  --scs: var(--fire-soft); }
+.cards3 .panel:nth-child(4n+2) { --sc: var(--water); --scs: var(--water-soft); }
+.cards3 .panel:nth-child(4n+3) { --sc: var(--earth); --scs: var(--earth-soft); }
+.cards3 .panel:nth-child(4n+4) { --sc: var(--air);   --scs: var(--air-soft); }
+.panel h3 { margin: 0; }
+.panel ul { font-size: 14.5px; }
+
+/* Hesaplayıcı */
+.calc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 20px;
+  align-items: end;
+  background: linear-gradient(135deg, var(--scs), var(--surface) 75%);
+  border: 1px solid var(--sc);
+  border-radius: 12px;
+  padding: 16px;
+}
+.calc label { display: flex; flex-direction: column; gap: 4px; font-size: 12.5px; color: var(--muted); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.04em; }
+.calc input { font: inherit; font-family: var(--font-mono); font-size: 15px; text-transform: none; letter-spacing: 0; width: 120px; padding: 7px 9px; background: var(--surface); color: var(--fg); border: 1px solid var(--line); border-radius: 6px; }
+.calc input:focus-visible { outline: 2px solid var(--sc); outline-offset: 1px; }
+.calc output { font-family: var(--font-mono); font-size: 1.3rem; font-weight: 500; color: var(--fg); font-variant-numeric: tabular-nums; }
+.calc .res { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.calc .res small { font-size: 12.5px; color: var(--muted); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.04em; }
+.calc .res:nth-of-type(1) output { color: var(--sc); }
+
+/* Açık kararlar */
+.question {
+  border: 1px solid var(--sc);
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--scs), var(--surface) 70%);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.question b { font-family: var(--font-display); font-size: 1.02rem; }
+.question span { color: var(--muted); font-size: 14.5px; }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 16px; }
+
+@media (max-width: 820px) {
+  .wrap { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  nav.toc { position: static; flex-direction: row; flex-wrap: wrap; gap: 6px; }
+  nav.toc .doc-name { width: 100%; margin-bottom: 2px; }
+  nav.toc a { border: 1px solid var(--sc); border-left-width: 1px; border-radius: 999px; padding: 3px 11px; font-size: 12.5px; background: var(--surface); }
+  header.top { padding: 30px 18px 22px; }
+  main { gap: 44px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  nav.toc a { transition: color 0.15s, background 0.15s; }
+  header.top::after { animation: drift 9s ease-in-out infinite alternate; }
+  .slot { transition: transform 0.2s; }
+  .slot:hover { transform: translateY(-3px); }
+  @keyframes drift { from { transform: translate(0, 0); } to { transform: translate(-28px, 22px); } }
+}
+
+/* Kart sabit kural ekleri */
+.slot { flex-basis: 150px; }
+.join { flex-basis: 92px; }
+.join i { color: var(--fg); }
+.slot .gel {
+  margin-top: auto;
+  padding-top: 6px;
+  border-top: 1px dashed var(--c);
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 13.5px;
+  font-variant-numeric: tabular-nums;
+}
+.slot .gel::before { content: "Gelir "; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+.total {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  background: var(--scs);
+  border: 1px solid var(--sc);
+  border-radius: 10px;
+  padding: 10px 14px;
+  max-width: 68ch;
+}
+.total b { color: var(--fg); font-size: 1.05em; }
+table.wide { min-width: 820px; }
+ol li::marker { font-family: var(--font-mono); font-weight: 500; }
+
+/* v0.3: Elektrik elementi, beş renkli döngü, masa ızgarası, skill tree */
+:root { --elec: #e0a800; --elec-soft: #fbefc2; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --elec: #ffd54a; --elec-soft: #3a3110; }
+}
+:root[data-theme="dark"] { --elec: #ffd54a; --elec-soft: #3a3110; }
+.elec { --c: var(--elec); --cs: var(--elec-soft); --on-c: #1f1800; }
+
+main > section:nth-of-type(5n+1) { --sc: var(--fire);  --scs: var(--fire-soft); }
+main > section:nth-of-type(5n+2) { --sc: var(--water); --scs: var(--water-soft); }
+main > section:nth-of-type(5n+3) { --sc: var(--earth); --scs: var(--earth-soft); }
+main > section:nth-of-type(5n+4) { --sc: var(--air);   --scs: var(--air-soft); }
+main > section:nth-of-type(5n+5) { --sc: var(--elec);  --scs: var(--elec-soft); }
+nav.toc a:nth-of-type(5n+1) { --sc: var(--fire); }
+nav.toc a:nth-of-type(5n+2) { --sc: var(--water); }
+nav.toc a:nth-of-type(5n+3) { --sc: var(--earth); }
+nav.toc a:nth-of-type(5n+4) { --sc: var(--air); }
+nav.toc a:nth-of-type(5n+5) { --sc: var(--elec); }
+.facts div:nth-child(5n+1) { border-color: var(--fire); }
+.facts div:nth-child(5n+2) { border-color: var(--water); }
+.facts div:nth-child(5n+3) { border-color: var(--earth); }
+.facts div:nth-child(5n+4) { border-color: var(--air); }
+.facts div:nth-child(5n+5) { border-color: var(--elec); }
+.cards3 .panel:nth-child(5n+1) { --sc: var(--fire);  --scs: var(--fire-soft); }
+.cards3 .panel:nth-child(5n+2) { --sc: var(--water); --scs: var(--water-soft); }
+.cards3 .panel:nth-child(5n+3) { --sc: var(--earth); --scs: var(--earth-soft); }
+.cards3 .panel:nth-child(5n+4) { --sc: var(--air);   --scs: var(--air-soft); }
+.cards3 .panel:nth-child(5n+5) { --sc: var(--elec);  --scs: var(--elec-soft); }
+.loop .step:nth-child(5) { --c: var(--elec); --cs: var(--elec-soft); }
+header.top::before {
+  background: linear-gradient(90deg, var(--fire) 0 20%, var(--earth) 20% 40%, var(--water) 40% 60%, var(--air) 60% 80%, var(--elec) 80% 100%);
+}
+.calc .res:nth-of-type(1) output { color: var(--fg); }
+
+.board-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 10px; }
+.board-grid .slot { flex: none; }
+.slot .hes { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); }
+.slot .gel { margin-top: auto; }
+
+.tree { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.branch {
+  background: linear-gradient(170deg, var(--cs), var(--surface) 75%);
+  border: 1px solid var(--c);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.branch h4 {
+  align-self: flex-start;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--c);
+  color: var(--on-c);
+  padding: 3px 11px;
+  border-radius: 999px;
+}
+.branch ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; max-width: none; }
+.branch li { position: relative; font-size: 13.5px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
+.branch li:not(:last-child)::after { content: ""; position: absolute; left: 18px; top: 100%; width: 2px; height: 10px; background: var(--c); }
+.branch li.key { background: var(--c); border-color: var(--c); color: var(--on-c); font-weight: 600; }
+.branch.center { grid-column: 1 / -1; --c: var(--fg); --cs: var(--surface); --on-c: var(--bg); }
+.branch.center ul { flex-direction: row; flex-wrap: wrap; gap: 8px; }
+.branch.center li::after { display: none; }
+
+/* v0.4: nadirlik rozetleri, evrim yolu, prompt blokları */
+.rar {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 999px;
+  color: #ffffff;
+  background: var(--rc, #69728a);
+  white-space: nowrap;
+}
+.r-common { --rc: #69728a; }
+.r-uncommon { --rc: #2a8a4f; }
+.r-rare { --rc: #2a72c4; }
+.r-epic { --rc: #7d3fd0; }
+.r-legendary { --rc: #e89b00; color: #1f1300; }
+.r-antic { background: linear-gradient(90deg, #ff7a8a, #ffc371, #8df0b0, #6ec4ff, #b79cff); color: #1a1030; }
+header.top .chips .rar { font-size: 11.5px; padding: 3px 11px; }
+.path { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; }
+.path .arrow { color: var(--muted); font-size: 12px; }
+.slot .ef .rar { margin-right: 4px; }
+
+.prompt-wrap { border: 1px solid var(--sc); border-radius: 10px; background: var(--surface); overflow: hidden; }
+.prompt-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--scs);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+button.copy {
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  background: var(--fg);
+  color: var(--bg);
+  border: 0;
+  border-radius: 6px;
+  padding: 5px 12px;
+  cursor: pointer;
+}
+button.copy:hover { opacity: 0.88; }
+button.copy:focus-visible { outline: 2px solid var(--sc); outline-offset: 2px; }
+pre.prompt {
+  margin: 0;
+  padding: 14px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.65;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--fg);
+}
+td code { display: inline-block; margin: 2px 0; background: var(--scs); }
+
+/* v0.5: Mythic / Ancient rozetleri, hava günleri, tur izi, ince ayarlar */
+.r-mythic { --rc: #c2185b; }
+.r-ancient { background: linear-gradient(90deg, #ff7a8a, #ffc371, #8df0b0, #6ec4ff, #b79cff); color: #1a1030; }
+
+.days { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.day {
+  background: linear-gradient(165deg, var(--cs), var(--surface) 85%);
+  border: 1.5px solid var(--c);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.day .d { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.day b { font-family: var(--font-display); font-size: 1.05rem; line-height: 1.15; }
+.day span { font-size: 13.5px; color: var(--muted); }
+.day .pick { margin-top: 4px; padding-top: 6px; border-top: 1px dashed var(--c); font-size: 13px; color: var(--fg); }
+
+.note {
+  border: 1px solid var(--sc);
+  border-radius: 12px;
+  background: var(--scs);
+  padding: 12px 16px;
+  max-width: 68ch;
+  font-size: 14.5px;
+}
+.note b { font-family: var(--font-display); }
+table.mid { min-width: 640px; }
+td .rar { margin-right: 2px; }
+.calc .res output { min-width: 4.5ch; }
+</style>
+
+<div class="wrap">
+  <nav class="toc" aria-label="İçindekiler">
+    <div class="doc-name">Canavar Deste</div>
+    <a href="#ozet">Özet</a>
+    <a href="#dongu">Çekirdek döngü</a>
+    <a href="#tur">Tur ve gün</a>
+    <a href="#takvim">Takvim ve zodyak</a>
+    <a href="#hava">Hava durumu</a>
+    <a href="#kaynak">Kaynak ve kota</a>
+    <a href="#tamer">Tamer'lar</a>
+    <a href="#kartlar">Kart yetenekleri</a>
+    <a href="#nadirlik">Nadirlik ve tipler</a>
+    <a href="#paket">Paketler ve kopyalar</a>
+    <a href="#album">Albüm ve lore</a>
+    <a href="#quest">Quest kitabı</a>
+    <a href="#yol">İlerleme yol haritası</a>
+    <a href="#denge">Denge ve simülasyon</a>
+    <a href="#risk">Riskler</a>
+    <a href="#prototip">Prototip planı</a>
+    <a href="#prompt">Kart görseli prompt'u</a>
+    <a href="#acik">Açık kararlar</a>
+  </nav>
+
+  <main>
+    <header class="top">
+      <div class="meta">Game Design Document · v0.6 · Nadyos Games</div>
+      <h1>Canavar Deste</h1>
+      <p class="lede">Her gün 30 kartlık bir deste kur, kartları 5 slota diz ve dayanıklılıkları bitene kadar tetiklenişini izle. Haftalık kotayı tutturan paket kazanır. Hava önceden görünür, Tamer kuralları belirler, 6 yıllık zodyak döngüsü yaklaşık 60 saatlik bir kampanya kurar.</p>
+      <div class="chips" aria-label="Elementler"><span class="chip fire">Ateş</span><span class="chip water">Su</span><span class="chip earth">Toprak</span><span class="chip air">Rüzgar</span><span class="chip elec">Elektrik</span></div>
+      <div class="chips" aria-label="Nadirlik"><span class="rar r-common">Common</span><span class="rar r-uncommon">Uncommon</span><span class="rar r-rare">Rare</span><span class="rar r-epic">Epic</span><span class="rar r-legendary">Legendary</span><span class="rar r-mythic">Mythic</span><span class="rar r-ancient">Ancient</span></div>
+      <dl class="facts">
+        <div><dt>Tür</dt><dd>Stratejik koleksiyon kart oyunu</dd></div>
+        <div><dt>Platform</dt><dd>Steam (PC)</dd></div>
+        <div><dt>Motor</dt><dd>Unity / C# / URP</dd></div>
+        <div><dt>Bir gün (maç)</dt><dd>~5 dk</dd></div>
+        <div><dt>Zodyak döngüsü</dt><dd>6 yıl · ~60 saat</dd></div>
+        <div><dt>Toplam süre</dt><dd>100+ saat (2 döngü)</dd></div>
+      </dl>
+    </header>
+
+    <section id="ozet">
+      <h2>Özet ve konum</h2>
+      <p>Oyuncu koleksiyonundan bir deste kurar, bir Tamer seçer ve her gün tüm desteyi tur tur oynar. Bir turda 5 kart slotlara dizilir, kartlar soldan sağa yeteneklerini tetikler ve her tetikte 1 dayanıklılık kaybeder. Dayanıklılığı biten kartlar pasife geçer, tüm kartlar bitene kadar geçişler tekrarlanır. Kartlar kaynak üretir. Haftalık kotayı tutturan oyuncu haftalık paket kazanır, kaynakla ayrıca paket satın alınabilir.</p>
+      <p>Hedef kitle incremental oyuncuları değil, koleksiyon yapmayı ve deste planlamayı seven stratejik kart oyuncularıdır. Oyunun ana kararı "bugünün havasına ve kotama hangi desteyle, hangi Tamer ile gireyim, kartları nasıl dizeyim" sorusudur.</p>
+      <h3>v0.4'ten farklar</h3>
+      <div class="cards3">
+        <div class="panel"><h3>Kimlik</h3><ul><li>Incremental yerine stratejik koleksiyon kart oyunu.</li><li>1 Trilyon hedefi, Çağ atlama, prestige ve büyük skill tree kaldırıldı.</li></ul></div>
+        <div class="panel"><h3>Oynanış</h3><ul><li>Karılmış deste, 5 kartlık turlar, dayanıklılık döngüsü.</li><li>Tamer'lar, anahtar kelimeler (Howl, Harvest, Last Breath...), 8 yaratık tipi ve Nötr, hibrit (çift elementli) kartlar.</li></ul></div>
+        <div class="panel"><h3>Zaman</h3><ul><li>Gün = bir maç, hafta, ay, yıl ve 6 yıllık zodyak döngüsü.</li><li>Günlük, önceden görünür hava durumu.</li></ul></div>
+        <div class="panel"><h3>Koleksiyon</h3><ul><li>Evrim yok. 7 nadirlik, Ancient dahil.</li><li>Haftalık paket, satın alınan paketler, kopya → kaynak, lore albümleri, quest kitabı.</li></ul></div>
+      </div>
+      <h3>Rakipler</h3>
+      <p>Kota yapısı Luck be a Landlord ile kanıtlanmış (5.331 incelemenin %94'ü olumlu). Alan Balatro, Slay the Spire ve Monster Train gibi devlerle dolu. Idle deckbuilder nişi küçük (Creature Card Idle 172 inceleme %71, Card Corner 71 inceleme %80). Ayrışma noktaları: takvim ve zodyak yapısı, günlük hava ile deste seçimi, albüm ve quest kitabı ile koleksiyon hedefleri.</p>
+    </section>
+
+    <section id="dongu">
+      <h2>Çekirdek döngü</h2>
+      <div class="loop">
+        <div class="step"><b>1. Planla</b><span>Hafta başında kotayı ve haftanın havasını gör, günlere deste ata.</span></div>
+        <div class="step"><b>2. Kur</b><span>Güne uygun desteyi ve Tamer'ı seç.</span></div>
+        <div class="step"><b>3. Oyna</b><span>Deste karılır. Her turda 5 kartı diz ve başlat, tüm desteyi bitir.</span></div>
+        <div class="step"><b>4. Kazan</b><span>Tetikler kaynak üretir. Hafta sonunda kota tutarsa paket gelir.</span></div>
+        <div class="step"><b>5. Harca ve ilerle</b><span>Paket al, koleksiyonu ve desteyi geliştir, görev ve albüm hedeflerini ilerlet.</span></div>
+      </div>
+      <p class="caption">Bir gün yaklaşık 5 dakikadır. Oyuncunun kararları: deste, Tamer, dizilim. Çekme ve değiştirme mekaniği yoktur, her gün destenin tamamı oynanır.</p>
+    </section>
+
+    <section id="tur">
+      <h2>Tur ve gün</h2>
+      <p>Tur, 5 kartın dizilip tamamen çözülmesidir. Gün (maç), tüm destenin turlara bölünerek oynanmasıdır. 30 kartlık deste ve 5 slotla bir gün 6 turdur. Çoğu Tamer bu yapıyla oynar, az sayıda istisna Tamer deste boyutunu veya slot sayısını değiştirir.</p>
+      <h3>Kurallar</h3>
+      <ol>
+        <li>Gün başında deste karılır.</li>
+        <li>Slot sayısı kadar kart çekilir ve oyuncu bunları slotlara dizer. Destedeki tüm kartlar yaratıktır ve çekilen her kart bir slota dizilmek zorundadır. Büyü (spell) kartı yoktur. Oyuncunun kararı kartların sırasıdır, hangi kartların geleceğini deste kurarken belirler.</li>
+        <li>Geçiş: soldan sağa, dayanıklılığı 0'dan büyük her kart yeteneğini (Harvest) tetikler ve 1 dayanıklılık kaybeder. Swift ve Heavy kartlar bu sırayı değiştirir.</li>
+        <li>Dayanıklılığı 0 olan kart pasife geçer. Tetiklenmez ama masada olduğu için sayım, komşu ve tür koşullarına dahildir.</li>
+        <li>Geçişler tüm kartların dayanıklılığı 0 olana kadar tekrarlanır. Anahtar kelimesiz kartlarda toplam tetik sayısı, dayanıklılıkların toplamına eşittir. Rebirth, Ward, Overload ve Slumber bunu değiştirir. Sonsuz döngüye karşı turda yumuşak bir tetik sınırı (öneri: 60) vardır.</li>
+        <li>Tur biter (Epilogue yetenekleri çalışır), kartlar atılır, yeni tur için kart çekilir. Deste bitince gün biter ve kazanılan kaynak haftalık toplama yazılır. Tur içindeki durum (sayaçlar, geçici etkiler) tur sonunda sıfırlanır, turlar arasında taşınan bir durum yoktur.</li>
+      </ol>
+      <div class="note"><b>Varsayım:</b> Pasif kartlar sayım ve komşu hesabına dahildir. Bu, kartları dayanıklılığa göre soldan sağa dizmeyi bir karar haline getirir. Simülasyonda test edilecek.</div>
+      <h3>Örnek tur</h3>
+      <div class="board">
+        <div class="board-grid" role="img" aria-label="Beş slotlu örnek tur. Kıvılcım Tilkisi dayanıklılık 2, toplam 12. Mercan Kaplumbağası dayanıklılık 1, toplam 7. Taş Golemi dayanıklılık 3, toplam 12. Şarj Yarasası dayanıklılık 1, toplam 5. Bulut Baykuşu dayanıklılık 2, toplam 20. Tur toplamı 56 kaynak, 9 tetik.">
+          <div class="slot fire"><span class="el">Ateş · Beast</span><span class="nm">Kıvılcım Tilkisi</span><span class="ef">Harvest: +6.</span><span class="hes">Dayanıklılık 2 · 6 × 2</span><span class="gel">12</span></div>
+          <div class="slot water"><span class="el">Su · Beast</span><span class="nm">Mercan Kaplumbağası</span><span class="ef">Harvest: +4 ve önceki kartın o tetikteki gelirinin %50'si.</span><span class="hes">Dayanıklılık 1 · 7 × 1</span><span class="gel">7</span></div>
+          <div class="slot earth"><span class="el">Toprak · Golem</span><span class="nm">Taş Golemi</span><span class="ef">Harvest: +4.</span><span class="hes">Dayanıklılık 3 · 4 × 3</span><span class="gel">12</span></div>
+          <div class="slot elec"><span class="el">Elektrik · Beast</span><span class="nm">Şarj Yarasası</span><span class="ef">Harvest: +5.</span><span class="hes">Dayanıklılık 1 · 5 × 1</span><span class="gel">5</span></div>
+          <div class="slot air"><span class="el">Rüzgar · Avian</span><span class="nm">Bulut Baykuşu</span><span class="ef">Harvest: +5. Masada en az 3 farklı element varsa x2.</span><span class="hes">Dayanıklılık 2 · 10 × 2</span><span class="gel">20</span></div>
+        </div>
+      </div>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Geçiş</th><th>Tetiklenen slotlar</th><th class="num">Gelir</th><th>Kalan dayanıklılık</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>1, 2, 3, 4, 5</td><td class="num">6 + 7 + 4 + 5 + 10 = 32</td><td>1 · 0 · 2 · 0 · 1</td></tr>
+            <tr><td>2</td><td>1, 3, 5</td><td class="num">6 + 4 + 10 = 20</td><td>0 · 0 · 1 · 0 · 0</td></tr>
+            <tr><td>3</td><td>3</td><td class="num">4</td><td>0 · 0 · 0 · 0 · 0</td></tr>
+            <tr><td><b>Toplam</b></td><td>9 tetik (2+1+3+1+2)</td><td class="num"><b>56</b></td><td>Tur biter</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">Kaplumbağa ilk geçişte 4 + %50 × 6 = 7 kazanır. Baykuş, pasife geçmiş Kaplumbağa ve Yarasa masada durduğu için ikinci geçişte de 5 elementi görür ve x2 alır. Bu turun süresi yaklaşık 9 × 0,5 = 4,5 sn animasyon artı planlama.</p>
+      <h3>Süre</h3>
+      <p>Bir gün yaklaşık 5 dakikadır. Zamanın çoğu planlamadır (6 tur × ~40 sn). 30 kart ve ortalama 3 dayanıklılıkla ~90 tetik, yarım saniyelik animasyonla ~45 sn tutar. Geç oyunda dayanıklılıklar 6-8'e çıkınca ~200 tetik (~100 sn) olur. Bu yüzden x2, x4 hız ve "Atla" düğmesi ilk günden tasarımın parçasıdır.</p>
+      <p>Tetik başına ödül ve süre dengesi: Deste boyutu veya slot sayısı değişen istisna Tamer'lar maç süresini değiştirdiği için ödül, tetik sayısıyla birlikte ölçeklenir. Aksi halde oyuncular hep en kısa maçlı Tamer'ı seçer.</p>
+    </section>
+
+    <section id="takvim">
+      <h2>Takvim ve zodyak</h2>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Birim</th><th>Tanım</th><th class="num">Gün</th><th class="num">Süre</th></tr></thead>
+          <tbody>
+            <tr><td><b>Gün</b></td><td>Bir maç, tüm destenin oynanması</td><td class="num">1</td><td class="num">~5 dk</td></tr>
+            <tr><td><b>Hafta</b></td><td>5 gün. Haftalık kota ve haftalık paket</td><td class="num">5</td><td class="num">~25 dk</td></tr>
+            <tr><td><b>Ay</b></td><td>4 hafta. Aylık görev, 1 albüm parçası</td><td class="num">20</td><td class="num">~1 sa 40 dk</td></tr>
+            <tr><td><b>Yıl</b></td><td>6 ay. Burç yılı ve o yılın albümü (yıl sonunda kalıcı pasif)</td><td class="num">120</td><td class="num">~10 sa</td></tr>
+            <tr><td><b>Zodyak döngüsü</b></td><td>6 burç yılı</td><td class="num">720</td><td class="num">~60 sa</td></tr>
+            <tr><td><b>Kampanya</b></td><td>2 döngü (birinci ve ikinci tur)</td><td class="num">1.440</td><td class="num">~120 sa</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Burç yılları</h3>
+      <p>Burç yılının oynanışa doğrudan bir etkisi yoktur. Yılın albümü tamamlanınca o burcun pasifi oyuncuya kalıcı olarak açılır. Pasifler yalnızca ödüldür, hiçbir ceza içermez. Oyundaki olumlu ve olumsuz etkilerin asıl kaynağı hava durumudur.</p>
+      <p>Çin takvimindeki 12 hayvan yerine 6 hayvanlık bir döngü kullanılır. Döngü kısa olduğu için kaçırılan albüm 60 saat sonra yeniden gelir. 12 yıllık döngüde bu 120 saat olurdu ve telafi anlamsızlaşırdı. Döngü bittiğinde yeni yıl yeniden ilk burçla başlar (ikinci Yılan yılı gibi). Yeni burçlar sonradan eklenip döngüyü uzatabilir.</p>
+      <div class="scroll">
+        <table class="mid">
+          <thead><tr><th>Burç (örnek)</th><th>Albüm ödülü: kalıcı pasif (taslak)</th></tr></thead>
+          <tbody>
+            <tr><td><b>Yılan</b></td><td>Last Breath yetenekleri %25 daha güçlü.</td></tr>
+            <tr><td><b>At</b></td><td>Her günün son turu %15 daha fazla kaynak üretir.</td></tr>
+            <tr><td><b>Kaplan</b></td><td>Ateş ve Elektrik kartları +%10.</td></tr>
+            <tr><td><b>Ejder</b></td><td>Legendary ve üzeri kartlar +%15.</td></tr>
+            <tr><td><b>Maymun</b></td><td>Kopya kartlardan gelen kaynak %25 daha fazla.</td></tr>
+            <tr><td><b>Horoz</b></td><td>Her günün ilk turunda tüm kartlar +1 dayanıklılıkla başlar.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">Burçlar ve pasifler örnektir, simülasyonla ayarlanacak. Pasifler kalıcıdır ve birbirine eklenir, bu yüzden küçük tutulur. İkinci döngüde aynı hayvanlar element varyantlarıyla (Ateş Yılanı, Su Yılanı) dönebilir ve kota çarpanı yükselir.</p>
+    </section>
+
+    <section id="hava">
+      <h2>Hava durumu</h2>
+      <p>Hava günlüktür ve önceden görünür. Hava, oyundaki olumlu ve olumsuz etkilerin asıl kaynağıdır (burç ve Tamer yalnızca ödül verir). Her hava bir elemente veya tipe bonus, bir başkasına ceza verir. Oyuncu haftayı görür ve günlere uygun deste seçer: "2. gün fırtınalı, Elektrik ağırlıklı bir deste hazırlarım."</p>
+      <h3>Örnek hafta</h3>
+      <div class="days">
+        <div class="day fire"><span class="d">Gün 1</span><b>Güneşli</b><span>Ateş +%40, Su −%20</span><span class="pick">Ateş destesi</span></div>
+        <div class="day elec"><span class="d">Gün 2</span><b>Fırtınalı</b><span>Elektrik +%40, Toprak −%20</span><span class="pick">Elektrik destesi</span></div>
+        <div class="day water"><span class="d">Gün 3</span><b>Yağmurlu</b><span>Su +%40, Ateş −%20</span><span class="pick">Su destesi</span></div>
+        <div class="day water"><span class="d">Gün 4</span><b>Yağmurlu</b><span>Su +%40, Ateş −%20</span><span class="pick">Su destesi</span></div>
+        <div class="day earth"><span class="d">Gün 5</span><b>Sarsıntılı</b><span>Toprak +%40, Rüzgar −%20</span><span class="pick">Toprak destesi</span></div>
+      </div>
+      <h3>Kurallar</h3>
+      <ul>
+        <li>Her haftada en az 2 farklı hava olur ve aynı hava en fazla 2 gün üst üste gelir. Böylece tek deste bütün haftayı en iyi şekilde geçemez.</li>
+        <li>Aynı kart birden fazla destede kullanılabilir. Oyuncu 3-4 deste kurup kaydeder. Deste kaydetme, kopyalama ve "bu hava için önerilen deste" butonu arayüzün parçasıdır.</li>
+        <li>Hedef: havaya uygun deste, uygunsuz desteden yaklaşık %30-50 fazla kazanmalı. Çok yüksek olursa deste değiştirmek zorunlu olur, çok düşükse anlamsızlaşır.</li>
+      </ul>
+      <div class="scroll">
+        <table class="mid">
+          <thead><tr><th>Hava (taslak)</th><th>Olumlu</th><th>Olumsuz</th></tr></thead>
+          <tbody>
+            <tr><td><span class="dot fire"></span>Güneşli</td><td>Ateş +%40</td><td>Su −%20</td></tr>
+            <tr><td><span class="dot water"></span>Yağmurlu</td><td>Su +%40</td><td>Ateş −%20</td></tr>
+            <tr><td><span class="dot elec"></span>Fırtınalı</td><td>Elektrik +%40</td><td>Toprak −%20</td></tr>
+            <tr><td><span class="dot air"></span>Rüzgarlı</td><td>Rüzgar +%40</td><td>Elektrik −%20</td></tr>
+            <tr><td><span class="dot earth"></span>Sarsıntılı</td><td>Toprak +%40</td><td>Rüzgar −%20</td></tr>
+            <tr><td><span class="dot"></span>Sisli</td><td>Ghost kartlar +%40</td><td>Swift kartlar −%20</td></tr>
+            <tr><td><span class="dot"></span>Kuraklık</td><td>Ateş +%20</td><td>Su ve Flora kartları turun başında −1 dayanıklılık (en az 1)</td></tr>
+            <tr><td><span class="dot"></span>Sakin</td><td>Yok</td><td>Yok</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="kaynak">
+      <h2>Kaynak ve kota</h2>
+      <p>Kaynak, kartların tetiklenmesiyle kazanılır ve oyunun tek para birimidir (çalışma adı "kaynak", tematik bir ad sonra seçilecek). Üç işe yarar.</p>
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Kullanım</th><th>Kural</th></tr></thead>
+          <tbody>
+            <tr><td><b>Haftalık kota</b></td><td>Hafta içinde tetiklerle kazanılan toplam kaynak kotaya bakar. Harcama bu toplamı düşürmez, kota yalnızca "bu kadar kazanmalısın" demektir. Tutarsa haftalık paket verilir.</td></tr>
+            <tr><td><b>Satın alma</b></td><td>Bakiye ile paket satın alınır (Paketler bölümü).</td></tr>
+            <tr><td><b>Açılışlar</b></td><td>Yaşam boyu kazanılan toplam kaynak Tamer ve bazı içeriklerin kilidini açar.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note"><b>Öneri:</b> Kopyalardan gelen kaynak yalnızca bakiyeye eklenir. Kotaya ve yaşam boyu toplama sayılmaz. Böylece kota hâlâ oynanışla kazanılır.</div>
+      <h3>Yumuşak başarısızlık</h3>
+      <ul>
+        <li>Kota tutmazsa yalnızca haftalık paketi kaçırırsın. Kazandığın kaynak bakiyende kalır ve onunla paket alabilirsin. Gelişim yavaşlar, durmaz.</li>
+        <li>Kota senaryoludur (yıl ve haftaya göre sabit bir eğri), oyuncu performansına göre değişmez. Eğri, ilerleyen koleksiyonla ulaşılabilir olacak şekilde ayarlanır.</li>
+        <li>Seçenek: art arda 2 hafta kaçırılırsa 3. haftanın kotası geçici olarak %15 düşer.</li>
+        <li>Kota ilerleme çubuğu hafta boyunca görünür. Oyuncu eksik kalan günlerde hangi desteyi seçeceğine buna göre karar verir.</li>
+      </ul>
+      <p>Hedef (taslak): havaya uygun deste kuran ve iyi dizen oyuncu kotanın %100-130'unu, uyumsuz destede oynayan %70-90'ını yapar.</p>
+    </section>
+
+    <section id="tamer">
+      <h2>Tamer'lar</h2>
+      <p>Tamer, Hearthstone'daki hero gibi desteye bağlı bir kahramandır. Deste bir Tamer ile kurulur ve Tamer'ın pasifi o destenin tüm kartları için geçerlidir. Tamer'lar elemente veya tipe bağlı değildir, kısıt koymaz. Pasifler genel kurallardır ve her destede işe yarar. Çoğu Tamer 30 kart ve 5 slotla oynar.</p>
+      <div class="scroll">
+        <table class="mid">
+          <thead><tr><th>Tamer (örnek)</th><th>Pasif (taslak)</th><th class="num">Deste / slot</th><th>Açılış</th></tr></thead>
+          <tbody>
+            <tr><td><b>Gezgin</b></td><td>Her günün ilk turunda tüm kartlar +%10.</td><td class="num">30 / 5</td><td>Başlangıç</td></tr>
+            <tr><td><b>Demirci</b></td><td>Dayanıklılığı 1 olan kartlar +1 dayanıklılıkla başlar.</td><td class="num">30 / 5</td><td>Yıl 2</td></tr>
+            <tr><td><b>Öncü</b></td><td>İlk slottaki kart %50, son slottaki kart %25 daha güçlü.</td><td class="num">30 / 5</td><td>Yıl 2</td></tr>
+            <tr><td><b>Nöbetçi</b></td><td>Aura yetenekleri %50 daha güçlü.</td><td class="num">30 / 5</td><td>Yıl 3</td></tr>
+            <tr><td><b>Mevsimci</b></td><td>Hava bonusları %20 daha güçlü, hava cezaları yarıya iner.</td><td class="num">30 / 5</td><td>Yıl 3</td></tr>
+            <tr><td><b>Mezarcı</b></td><td>Last Breath yetenekleri %50 daha güçlü.</td><td class="num">30 / 5</td><td>Quest</td></tr>
+            <tr><td><b>Hasatçı</b></td><td>Epilogue yetenekleri iki kez çalışır.</td><td class="num">30 / 5</td><td>Yaşam boyu kaynak</td></tr>
+            <tr><td><b>Koleksiyoncu</b></td><td>Rare ve üzeri kartlar +%10.</td><td class="num">30 / 5</td><td>Yaşam boyu kaynak</td></tr>
+            <tr><td><b>Sığınak Bekçisi</b> (istisna)</td><td>Kart etkileri %80 daha güçlü.</td><td class="num">18 / 3</td><td>Quest</td></tr>
+            <tr><td><b>Kalabalık Komutanı</b> (istisna)</td><td>6 slot, ama kart etkileri %20 daha zayıf.</td><td class="num">36 / 6</td><td>Yıl 5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Tasarım kuralları</h3>
+      <ul>
+        <li>Pasifler genel etkilerdir (dayanıklılık, konum, zamanlama, hava, nadirlik). Element veya tip kısıtı koymaz.</li>
+        <li>Çoğu Tamer 30 kart / 5 slot oynar. Deste veya slot sayısı değişen istisnalar azdır ve maç süresini etkilediği için ödülleri tetik sayısına göre ölçeklenir.</li>
+        <li>Oyuncu başlangıçta 10 farklı kartlık hazır bir deste alır (10 kart × 3 kopya = 30). Deste boyutu kademeli açılmaz.</li>
+        <li>Tamer'lar kaynak, quest ve yıl ilerlemesiyle açılır.</li>
+        <li>Seçenek: her Tamer'a özel 4-6 kartlık bir havuz (Hearthstone'daki sınıf kartları gibi). Açık karar listesinde.</li>
+      </ul>
+    </section>
+
+    <section id="kartlar">
+      <h2>Kart yetenekleri</h2>
+      <p>Kartlar sabittir, yetenekleri kartın üstünde yazar. Komşu kuralı yalnızca bir tiptir, hiçbir kart bu kalıba zorunlu değildir. Mana yoktur, kartların bedeli dayanıklılıktır: güçlü kart az tetiklenir, sağlam kart zayıf vurur.</p>
+      <h3>Anahtar kelimeler</h3>
+      <p>İki gruba ayrılır: kartın yeteneğinin ne zaman çalıştığını söyleyen zamanlama kelimeleri ve kartın durumunu ya da sırasını değiştiren kelimeler.</p>
+      <div class="scroll">
+        <table class="mid">
+          <thead><tr><th>Zamanlama</th><th>Ne zaman çalışır</th></tr></thead>
+          <tbody>
+            <tr><td><b>Howl</b></td><td>Tur başında, kartlar dizildikten sonra, ilk geçişten önce.</td></tr>
+            <tr><td><b>Harvest</b></td><td>Kartın sırası gelince. Gelir ve koşullar burada hesaplanır.</td></tr>
+            <tr><td><b>Last Breath</b></td><td>Kartın dayanıklılığı 0'a düştüğü tetikte, o tetiğin Harvest'inden sonra.</td></tr>
+            <tr><td><b>Aura</b></td><td>Kart masadayken (dayanıklılığı 0 olduktan sonra ve uyurken de) sürekli geçerlidir.</td></tr>
+            <tr><td><b>Epilogue</b></td><td>Tüm kartlar bittikten sonra, tur kapanırken.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="scroll">
+        <table class="mid">
+          <thead><tr><th>Durum ve sıra</th><th>Kural</th><th>Sık görüldüğü (zorunlu değil)</th></tr></thead>
+          <tbody>
+            <tr><td><b>Ward</b></td><td>Kartın dayanıklılığı ilk kez azalacağında (tetik ya da hava etkisi) o azalma engellenir.</td><td>Koruma kartları</td></tr>
+            <tr><td><b>Rebirth</b></td><td>Dayanıklılığı bitince Last Breath çalışır, sonra kart bir kez 1 dayanıklılıkla geri döner ve Rebirth'ünü kaybeder. Last Breath yalnızca ilk ölümde çalışır.</td><td>Ghost, Golem, Serpent</td></tr>
+            <tr><td><b>Slumber N</b></td><td>Tur başında uyur: ilk N−1 geçişte tetiklenmez, N. geçişten itibaren normal çalışır. Uyurken Aura geçerlidir.</td><td>Flora, geç oyun kartları</td></tr>
+            <tr><td><b>Overload</b></td><td>Her tetikte 1 yerine 2 dayanıklılık kaybeder, efekti güçlüdür.</td><td>Dragon, Ateş, Elektrik</td></tr>
+            <tr><td><b>Swift</b></td><td>Her geçişte soldan sağa sıradan bağımsız ilk tetiklenir. Birden fazla Swift kendi arasında soldan sağa sıralanır.</td><td>Avian, Rüzgar</td></tr>
+            <tr><td><b>Heavy</b></td><td>Her geçişte en son tetiklenir.</td><td>Golem, Toprak</td></tr>
+            <tr><td><b>Haunt</b></td><td>Masadaki başka bir kart pasife geçtiğinde çalışır. Aktif ya da pasif olması fark etmez, dayanıklılık harcamaz.</td><td>Ghost</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note"><b>Not:</b> Kartın kendi özelliği olan şeyler (dayanıklılığı hep 1 olan güçlü kartlar gibi) anahtar kelime sayılmaz, kartın metninde yazar. Dayanıklılık düşüren etkiler yalnızca hava durumundan gelir (Kuraklık gibi), Ward bu kayıptan da korur.</div>
+      <h3>Yetenek tipleri</h3>
+      <div class="scroll">
+        <table class="wide">
+          <thead><tr><th>Tip</th><th>Örnek yetenek</th><th>Sık görüldüğü element</th></tr></thead>
+          <tbody>
+            <tr><td><b>Sayım</b></td><td>Masadaki diğer her Su kartı için +2.</td><td>Hepsi</td></tr>
+            <tr><td><b>Saf deste</b></td><td>Dizilen tüm kartlar Ateş ise x3.</td><td><span class="dot fire"></span>Ateş</td></tr>
+            <tr><td><b>Isı</b></td><td>Harvest: masaya +1 Isı ekle. Masadaki Isı kadar +1 bonus al.</td><td><span class="dot fire"></span>Ateş</td></tr>
+            <tr><td><b>Patlama</b></td><td>Son tetikte x6, önceki tetiklerde x0,5.</td><td><span class="dot fire"></span>Ateş</td></tr>
+            <tr><td><b>Gelgit</b></td><td>Tek geçişlerde x1,5, çift geçişlerde x0,75.</td><td><span class="dot water"></span>Su</td></tr>
+            <tr><td><b>Humus</b></td><td>Masadaki her pasif kart için +2.</td><td><span class="dot earth"></span>Toprak</td></tr>
+            <tr><td><b>Karışım</b></td><td>Masadaki her farklı element için +2.</td><td><span class="dot air"></span>Rüzgar</td></tr>
+            <tr><td><b>Kutuplaşma</b></td><td>Harvest: +4. Sağ bağlantı uyumluysa +4 daha.</td><td><span class="dot elec"></span>Elektrik</td></tr>
+            <tr><td><b>Komşu</b></td><td>Önceki kart Su ise x0,75. Sonraki kart Ateş ise x1,25.</td><td>Hepsi</td></tr>
+            <tr><td><b>Konum</b></td><td>3. slottaysa x3. En sağdaysa +12.</td><td>Hepsi</td></tr>
+            <tr><td><b>Büyüme</b></td><td>Her tetiklendiğinde bu tur için +1 taban kazanır.</td><td>Hepsi</td></tr>
+            <tr><td><b>Dayanıklılık</b></td><td>Howl: sağındaki kartın dayanıklılığını +1 yapar. Last Breath: solundaki kartı bir kez daha tetikler.</td><td>Hepsi</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Element kimlikleri</h3>
+      <p>Her elementin kendi mekaniği vardır. Isı, Gelgit, Humus ve Karışım, kart metninde geçen kurallardır (yalnızca o kelimeyi taşıyan kartlar kullanır). Elektrik'in genel pasifi Kutuplaşmadır: kutuplar kartın üstünde sabit basılıdır ve bağlantının ne yaptığını kartın kendi metni söyler. Hiçbir mekanik sıra bozmaz ve turlar arasında durum taşımaz, her şey tur sonunda sıfırlanır.</p>
+      <div class="cards3">
+        <div class="panel"><h3>Ateş: Isı</h3><p>Ateş kartları masaya Isı ekler, sonraki Ateş kartları o Isı kadar bonus alır. Ateş kartlarını peş peşe dizmeyi ödüllendirir.</p></div>
+        <div class="panel"><h3>Su: Gelgit</h3><p>Geçiş numarasına göre dalgalanır: tek geçişlerde güçlü, çift geçişlerde zayıf. Dayanıklılık, kartın hangi geçişlerde vuracağını belirler.</p></div>
+        <div class="panel"><h3>Toprak: Humus</h3><p>Pasife geçen her kart toprağı besler. Toprak kartları masadaki pasif kart sayısıyla geç geçişlerde güçlenir.</p></div>
+        <div class="panel"><h3>Rüzgar: Karışım</h3><p>Masadaki farklı element sayısı kadar bonus. Çok elementli destenin elementi, Ateş'in saf deste kimliğinin tersi.</p></div>
+        <div class="panel"><h3>Elektrik: Kutuplaşma</h3><p>Her Elektrik kartının iki kenarında sabit bir kutup vardır. Elektrik kartları sıradaki bir sonraki Elektrik kartına bağlanır. Zıt kutuplar uyumlu, aynı kutuplar çakışan bağlantı kurar. Bağlantı ne verir, kartın kendi metni karar verir.</p></div>
+      </div>
+      <h3>Kutuplaşma kuralları (Elektrik)</h3>
+      <ul>
+        <li>Her Elektrik kartının sol ve sağ kenarında sabit bir kutup (+ veya −) vardır. Kutuplar kartın tasarımının parçasıdır, rastgele değildir ve deste kurarken bellidir. Dört kombinasyon da olabilir: − | +, + | −, + | +, − | −.</li>
+        <li>Bağlantı slot sırasına göre kurulur. Bir Elektrik kartı, kendisinden sağda gelen bir sonraki Elektrik kartıyla bağlanır. Arada başka elementler olabilir, Elektrik kartlarının yan yana olması gerekmez.</li>
+        <li>Soldaki kartın sağ kutbu ile sağdaki kartın sol kutbu karşılaşır. Zıt kutuplar uyumlu bağlantı, aynı kutuplar çakışan bağlantı kurar.</li>
+        <li>Genel kuralın kendisi bir çarpan ya da ceza vermez. Etki kartın metninde yazar. Bir kart uyumlu bağlantıda, çakışan bağlantıda ya da her ikisinde ayrı ayrı bonus verebilir. Bazı kartlar uyumu, bazıları çakışmayı ister, böylece kutuplar bir bulmaca olur.</li>
+        <li>Bir kartın sol ve sağ bağlantısı ayrı değerlendirilir. Bağlantısı olmayan kenar (en sağdaki ya da tek Elektrik kartı) metindeki "bağlantı" koşullarını sağlamaz.</li>
+        <li>Bağlantılar turun başında kurulur ve tur boyunca sabit kalır. Pasife geçen kart bağlantıyı bozmaz.</li>
+      </ul>
+      <div class="scroll">
+        <table class="wide">
+          <thead><tr><th>Slot</th><th>Kart</th><th>Kutuplar (sol | sağ)</th><th>Kart metni</th><th>Bağlantı</th><th class="num">Harvest</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Kıvılcım Bobini</td><td>− | +</td><td>Harvest: +4. Sağ bağlantı uyumluysa +4.</td><td>Sağı + ile 3. slotun solu − karşılaşır: uyumlu</td><td class="num">8</td></tr>
+            <tr><td>2</td><td>Su kartı</td><td>Yok</td><td>Başka bir element.</td><td>Bağlantıyı bozmaz</td><td class="num">Kendi gelirini üretir</td></tr>
+            <tr><td>3</td><td>Fırtına Salyangozu</td><td>− | +</td><td>Harvest: +5. Sol bağlantı uyumluysa +3.</td><td>Solu uyumlu. Sağı + ile 4. slotun solu + karşılaşır: çakışan, ama metinde sağ koşul yok</td><td class="num">8</td></tr>
+            <tr><td>4</td><td>Gerilim Kertenkelesi</td><td>+ | −</td><td>Harvest: +4. Sol bağlantı çakışıyorsa x2.</td><td>Solu çakışan, sağı boşta</td><td class="num">8</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">Çakışan bağlantı kendi başına ceza değildir. Gerilim Kertenkelesi çakışmadan kazanır, Kıvılcım Bobini ve Fırtına Salyangozu uyumdan kazanır. Etkiler kart başına ayarlanır, simülasyonla dengelenir.</p>
+
+      <h3>Hibrit kartlar (çift element)</h3>
+      <p>Bazı kartlar iki elemente birden aittir, örneğin hem Ateş hem Elektrik. Bunlar daha nadir kartlardır (öneri: Rare ve üzeri). Kartın üstünde iki element taşı görünür.</p>
+      <ul>
+        <li>Kart iki elementin de kurallarını kullanabilir: Ateş + Elektrik bir kart Isı ve Kutuplaşma metni taşıyabilir. Elektrik içeren hibrit kartın kutupları vardır ve Elektrik bağlantılarına katılır.</li>
+        <li>Sayım kuralları kartı iki element olarak da sayar (Karışım'daki farklı element sayısı, "tüm kartlar Ateş ise" gibi saf deste koşulu, Isı ve Humus sayımları).</li>
+        <li>Hava bonusu ve cezası kartın her iki elementine ayrı uygulanır ve toplanır. Ateş + Su kartı Güneşli günde +%40 ve −%20 alır, yani net +%20. Ateş + Elektrik kartı Güneşli günde +%40, Fırtınalı günde +%40 alır.</li>
+        <li>Element paketinde, kartın iki elementinden birinin paketinde çıkabilir.</li>
+        <li>Güçleri, iki elementin koşulunu da besleyebilmelerinden gelir. Aynı zamanda desteyi tek elemente kilitlemez, çok elementli destelerde Karışım ile iyi çalışır.</li>
+      </ul>
+      <div class="scroll">
+        <table class="wide">
+          <thead><tr><th>Kart (örnek)</th><th>Elementler</th><th>Tip</th><th>Nadirlik</th><th>Yetenek</th></tr></thead>
+          <tbody>
+            <tr><td><b>Kor Şimşek Ejderi</b></td><td><span class="dot fire"></span>Ateş + <span class="dot elec"></span>Elektrik</td><td>Dragon</td><td><span class="rar r-epic">Epic</span></td><td>Kutuplar − | +. Harvest: +4 ve masaya +1 Isı. Masadaki Isı kadar bonus. Sağ bağlantı uyumluysa x1,5.</td></tr>
+            <tr><td><b>Buhar Kaplumbağası</b></td><td><span class="dot fire"></span>Ateş + <span class="dot water"></span>Su</td><td>Beast</td><td><span class="rar r-rare">Rare</span></td><td>Harvest: +3. Tek geçişlerde x1,5 (Gelgit). Masadaki Isı kadar +1.</td></tr>
+            <tr><td><b>Kum Fırtınası Kartalı</b></td><td><span class="dot earth"></span>Toprak + <span class="dot air"></span>Rüzgar</td><td>Avian</td><td><span class="rar r-epic">Epic</span></td><td>Swift. Harvest: +3. Masadaki her pasif kart için +1 ve her farklı element için +1.</td></tr>
+          </tbody>
+        </table>
+      </div>
+<h3>Yaratık tipleri</h3>
+      <p>8 tip ve Nötr vardır, her tip birden fazla elementte bulunur. Tip yaratığın kimliğidir, tür sinerjileri onu sayar. Hiçbir tip belirli bir anahtar kelimeye ya da nadirliğe bağlı değildir. Kart yeteneğini istediği anahtar kelimeyle yazar. Aşağıdaki "sık görülür" notları yalnızca eğilimdir. Tip sayısı ileride artabilir.</p>
+      <div class="note"><b>Örnek:</b> Yavru Ejder, <span class="rar r-common">Common</span> · Dragon · Ateş. Dayanıklılık 2, Harvest: +5 ve masadaki her başka Dragon için +2. Anahtar kelimesi yok. Dragon olmak Legendary olmayı gerektirmez.</div>
+      <div class="cards3">
+        <div class="panel"><h3>Beast</h3><p>En kalabalık tip. Sayım ve komşu sinerjileri sık görülür.</p></div>
+        <div class="panel"><h3>Ghost</h3><p>Pasiflik ve veda teması. Haunt, Aura ve Last Breath sık görülür.</p></div>
+        <div class="panel"><h3>Golem</h3><p>Sağlam ve istikrarlı. Yüksek dayanıklılık ve Heavy sık görülür.</p></div>
+        <div class="panel"><h3>Dragon</h3><p>Büyük ve ateşli tema, her nadirlikte bulunur. Üst nadirliklerde Overload ve yüksek çarpanlar sık görülür.</p></div>
+        <div class="panel"><h3>Flora</h3><p>Büyüme ve bekleme teması. Slumber ve büyüme sık görülür.</p></div>
+        <div class="panel"><h3>Swarm</h3><p>Çok kopya, düşük dayanıklılık. Aynı tipteki kart sayısıyla güçlenir.</p></div>
+        <div class="panel"><h3>Avian</h3><p>Hızlı ve öncü. Swift ve zamanlama sık görülür.</p></div>
+        <div class="panel"><h3>Serpent</h3><p>Zehir ve veda teması. Last Breath ve Epilogue sık görülür.</p></div>
+        <div class="panel"><h3>Nötr</h3><p>Tipi yoktur, hiçbir tip sinerjisini tetiklemez. Karşılığında esnek, genel amaçlı kartlar ve sayaçları okuyan köprü kartlardır.</p></div>
+      </div>
+      <h3>Hesaplama sırası</h3>
+      <ol>
+        <li>Howl yetenekleri çalışır.</li>
+        <li>Her geçişte aktif kartlar şu sırayla tetiklenir: Swift kartlar, sonra diğerleri soldan sağa, en son Heavy kartlar. Uyuyan kartlar atlanır.</li>
+        <li>Her tetikte Harvest: taban + düz bonuslar, × koşul çarpanları, + kopyalanan gelir. Ardından dayanıklılık düşer (Ward ilk tetikte düşürmez, Overload 2 düşürür).</li>
+        <li>Dayanıklılığı 0'a düşen kartın Last Breath'i çalışır, sonra varsa Rebirth ile geri döner. Ardından Haunt kartlar tepki verir.</li>
+        <li>Element kuralları (Isı, Humus, Kutup) bu adımlarda uygulanır. Kutup bağlantıları turun başında slot sırasına göre belirlenir. Hava çarpanları ve albümlerden kazanılan kalıcı pasifler uygulanır. Tamer pasifi son çarpandır.</li>
+        <li>Tüm kartlar bitince Epilogue çalışır ve tur kapanır. Turda tetik sınırı aşılırsa tur sonlanır.</li>
+      </ol>
+    </section>
+
+    <section id="nadirlik">
+      <h2>Nadirlik ve tipler</h2>
+      <p>7 nadirlik vardır. Evrim sistemi kaldırıldı, her kart kendi nadirliğindedir. Destede aynı karttan en fazla 3 kopya olur. Üst nadirliklerde sınır düşer (öneri).</p>
+      <div class="scroll">
+        <table class="mid">
+          <thead><tr><th>Nadirlik</th><th class="num">Destede en fazla</th><th>Rol</th><th class="num">Kopya → kaynak</th></tr></thead>
+          <tbody>
+            <tr><td><span class="rar r-common">Common</span></td><td class="num">3</td><td>Temel sayım ve komşu kuralları, öğretici.</td><td class="num">%2</td></tr>
+            <tr><td><span class="rar r-uncommon">Uncommon</span></td><td class="num">3</td><td>Koşullu çarpanlar.</td><td class="num">%4</td></tr>
+            <tr><td><span class="rar r-rare">Rare</span></td><td class="num">3</td><td>Tek kuralı değiştiren yetenekler.</td><td class="num">%8</td></tr>
+            <tr><td><span class="rar r-epic">Epic</span></td><td class="num">3</td><td>Kombo çekirdekleri.</td><td class="num">%16</td></tr>
+            <tr><td><span class="rar r-legendary">Legendary</span></td><td class="num">2</td><td>Desteyi tanımlayan, etrafına deste kurulan kartlar.</td><td class="num">%40</td></tr>
+            <tr><td><span class="rar r-mythic">Mythic</span></td><td class="num">1</td><td>Oynanış kuralını büken kartlar (slot, tur, dayanıklılık).</td><td class="num">%80</td></tr>
+            <tr><td><span class="rar r-ancient">Ancient</span></td><td class="num">1</td><td>Oyunun zirvesi. Çok nadir düşer, bazıları quest zincirinin sonunda kazanılır.</td><td class="num">%200</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">Kopya → kaynak: destedeki 3 kopyaya (Legendary 2, Mythic ve Ancient 1) sığmayan her kart, belirtilen oranda Standart paket fiyatı kadar kaynağa dönüşür. Taslak değerlerdir.</p>
+      <p>Ancient kartların albümlerle bir ilgisi yoktur. Normal paketlerden çok düşük ihtimalle çıkabilir, bazıları quest kitabındaki zincirlerle verilir. Ancient olmayan bazı kartlar da yalnızca quest ile kazanılabilir.</p>
+      <p>Nadirlik ve tip birbirinden bağımsızdır (Common bir Dragon olabilir). Hibrit kartlar nadir sınıfındadır, öneri olarak Rare ve üzeri.</p>
+    </section>
+
+    <section id="paket">
+      <h2>Paketler ve kopyalar</h2>
+      <p>Paketler iki yoldan gelir: kotayı tutturunca verilen haftalık Standart paket ve kaynakla satın alınanlar. Her pakette 5 kart vardır.</p>
+      <div class="scroll">
+        <table class="wide">
+          <thead><tr><th>Paket</th><th class="num">Fiyat</th><th>Garanti</th><th>Nadirlik oranları (kart başına, taslak)</th></tr></thead>
+          <tbody>
+            <tr><td><b>Standart</b></td><td class="num">1×</td><td>Eksik kart önceliği</td><td>Common %55 · Uncommon %25 · Rare %12 · Epic %5 · Legendary %2,5 · Mythic %0,45 · Ancient %0,05</td></tr>
+            <tr><td><b>Element</b></td><td class="num">1,5×</td><td>Tek elementten 5 kart (hibrit kartlar iki elementin paketinde de çıkar)</td><td>Standart ile aynı oranlar. Hedefli koleksiyon için.</td></tr>
+            <tr><td><b>Şanslı</b></td><td class="num">2,5×</td><td>En az 1 Rare veya üstü</td><td>Common %35 · Uncommon %28 · Rare %22 · Epic %10 · Legendary %4 · Mythic %0,9 · Ancient %0,1</td></tr>
+            <tr><td><b>Mühürlü</b></td><td class="num">6×</td><td>En az 1 Epic veya üstü</td><td>Rare %50 · Epic %35 · Legendary %12 · Mythic %2,7 · Ancient %0,3</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Fiyatlandırma</h3>
+      <ul>
+        <li>Standart paketin fiyatı, o haftanın kotasının sabit bir yüzdesidir (başlangıç önerisi: %20). Gelir kotayla birlikte büyüdüğü için haftada alınabilecek paket sayısı yıllar içinde yaklaşık sabit kalır.</li>
+        <li>Diğer paketler yukarıdaki çarpanla Standart fiyattan hesaplanır. Fiyatlar ve oranlar simülasyonla ayarlanır.</li>
+        <li>Kesin sınır gerekirse haftalık alım üst sınırı eklenebilir.</li>
+      </ul>
+      <h3>Kopyalar</h3>
+      <ul>
+        <li>Yılda 120 kart (24 haftalık paket × 5 kart), 6 yıllık döngüde 720 kart yalnızca ücretsiz paketlerden gelir. Satın alınanlarla birlikte koleksiyon hızla dolar, bu yüzden kopya yönetimi baştan tasarlanır.</li>
+        <li><b>Akıllı paket:</b> her pakette, eksik kart (sahip olunmayan ya da 3. kopyası olmayan) varsa en az 1 tanesi garanti edilir. Belirli sayıda pakette Rare veya üstü çıkmazsa kötü şans koruması devreye girer. Koleksiyon tamamlanınca bu kurallar kapanır.</li>
+        <li><b>Kopya → kaynak:</b> destede kullanılabilecek sayıyı aşan kopyalar kaynağa dönüşür (oranlar Nadirlik tablosunda). Tüm kartları kopya olan bir Standart paket, fiyatının yaklaşık %27'si kadar kaynak verir. Kural: bu oran %30'u geçmemeli, aksi halde kopyalar paketi kendi kendine finanse eder.</li>
+        <li>Eksik son kartlar için quest kitabı deterministik bir yol sunar.</li>
+      </ul>
+    </section>
+
+    <section id="album">
+      <h2>Albüm ve lore</h2>
+      <p>Albümler hikaye ve lore koleksiyonudur. Ancient kartlarla veya paketlerle ilgisi yoktur. Her burç yılının bir albümü vardır ve her ayın kendi görevi vardır.</p>
+      <ul>
+        <li>Ay görevini tamamlayan oyuncu o ayın albüm parçasını kazanır. Bir yılda 6 parça = 6 lore sahnesi.</li>
+        <li>6 parça tamamlanınca burç albümü biter. Albüm kısa bir hikaye açar ve o burç yılının pasifini kalıcı olarak verir (Takvim bölümündeki tablo). Pasifler yalnızca ödüldür ve küçüktür, ceza içermez.</li>
+        <li>Kaçırılan parça sonraki döngüde, aynı burç yılı yeniden geldiğinde toplanır. Önerilen kural: o yılda parçalar yalnızca eksik olanlardan düşer, böylece görevleri yapan oyuncu albümü garanti tamamlar.</li>
+        <li>İçerik maliyeti düşüktür: döngü başına 6 albüm, 36 kısa lore metni ve 6 illüstrasyon (her biri 6 parçaya bölünür).</li>
+      </ul>
+      <div class="scroll">
+        <table class="mid">
+          <thead><tr><th>Ay</th><th>Aylık görev (Yılan yılı, örnek)</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Hava bonusunu kullanan bir deste ile 6 gün oyna.</td></tr>
+            <tr><td>2</td><td>Bir günü tek elementli bir destede bitir.</td></tr>
+            <tr><td>3</td><td>Bir günde toplam 150 tetik yap.</td></tr>
+            <tr><td>4</td><td>3 farklı Tamer ile birer gün oyna.</td></tr>
+            <tr><td>5</td><td>Bir turda tek bir kartı 8 veya daha fazla kez tetikle.</td></tr>
+            <tr><td>6</td><td>Yılın 24 haftalık kotasından en az 18'ini tutturmak.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="quest">
+      <h2>Quest kitabı</h2>
+      <p>Quest kitabı yıllardan ve takvimden bağımsızdır. Oyuncu istediği zaman ilerletir, zamana bağlı kaçırma yoktur. Ödüller:</p>
+      <ul>
+        <li>Belirli kartlar (bazıları Mythic, bazıları Ancient).</li>
+        <li>Yeni Tamer'lar.</li>
+        <li>Koleksiyon ve beceri hedefleri.</li>
+      </ul>
+      <div class="scroll">
+        <table class="mid">
+          <thead><tr><th>Quest (örnek)</th><th>Hedef</th><th>Ödül</th></tr></thead>
+          <tbody>
+            <tr><td><b>Golem Ustası</b></td><td>5 farklı Golem kartı topla.</td><td>Mythic Golem kartı</td></tr>
+            <tr><td><b>Fırtına Avcısı</b></td><td>10 fırtınalı günü Elektrik destesiyle oyna.</td><td>Tamer: Mevsimci</td></tr>
+            <tr><td><b>Hayalet Fısıltısı</b></td><td>Pasife geçen Ghost kartlarıyla bir günde 100 kaynak kazan.</td><td>Ghost Legendary</td></tr>
+            <tr><td><b>Eski Hikayeler</b></td><td>3 farklı burç albümünü tamamla.</td><td>Ancient kart (zincir sonu)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="yol">
+      <h2>İlerleme yol haritası</h2>
+      <p>Büyük bir skill tree yerine ilerleme dört eksenle yürür: Tamer'lar, kart havuzu, kota ölçeği ve yıl yıl açılan kural katmanları. Deste her zaman 30 kart ve 5 slottur (istisna Tamer'lar hariç).</p>
+      <div class="scroll">
+        <table class="wide">
+          <thead><tr><th>Yıl</th><th>Açılanlar (taslak)</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Başlangıç destesi (10 kart × 3), Gezgin. Temel döngü, dayanıklılık, haftalık kota, günlük hava.</td></tr>
+            <tr><td>2</td><td>Demirci ve Öncü. Element mekanikleri (Isı, Gelgit, Humus, Karışım, Kutup), ilk albüm pasifi, element paketleri.</td></tr>
+            <tr><td>3</td><td>Nöbetçi ve Mevsimci. Last Breath, Haunt, Slumber ve tür sinerjileri.</td></tr>
+            <tr><td>4</td><td>Epic ve Legendary havuzu genişler, Şanslı paket.</td></tr>
+            <tr><td>5</td><td>Mythic havuzu, Mühürlü paket, Kalabalık Komutanı.</td></tr>
+            <tr><td>6</td><td>Zorlu kotalar, Ancient quest zincirleri, döngünün finali.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="caption">İkinci döngüde kota çarpanı yükselir, burçlar element varyantlarıyla gelir, kaçırılan albümler tamamlanır. 100+ saatlik hedef 2 döngüyle karşılanır.</p>
+    </section>
+
+    <section id="denge">
+      <h2>Denge ve simülasyon</h2>
+      <p>Sayılar elle değil, simülasyonla dengelenir. Simülasyonun birimi gündür (30 kartlık bir maç).</p>
+      <h3>Simülasyon tasarımı</h3>
+      <ul>
+        <li><b>Girdi:</b> deste, Tamer, hava, açılmış albüm pasifleri, kota.</li>
+        <li><b>Botlar:</b> rastgele dizen, acemi (tek geçişli açgözlü), usta (her turda tüm 5! = 120 dizilimi dener).</li>
+        <li><b>Çıktı:</b> 1.000 karışım için kaynak dağılımı (ortalama, en kötü %10, en iyi %10), kota tutturma oranı, en çok görülen kartlar.</li>
+      </ul>
+      <h3>Hedefler (taslak)</h3>
+      <ul>
+        <li>Usta bot, acemiden %25-50 fazla kazanmalı. Fark çok küçükse dizmenin anlamı yok, çok büyükse öğrenme eşiği yüksek.</li>
+        <li>Havaya uygun deste, uygunsuzdan %30-50 fazla kazanmalı.</li>
+        <li>Hiçbir deste veya Tamer bütün hava türlerinde üstte olmamalı.</li>
+        <li>Maç süresi Tamer'a göre 4-8 dk arasında kalmalı, ödül tetik sayısıyla orantılı olmalı.</li>
+        <li>Kopya → kaynak döngüsü paketi kendi kendine finanse etmemeli (oran %30 altında).</li>
+      </ul>
+      <h3>Süre hesaplayıcı</h3>
+      <p>Değerleri değiştirip gün, yıl ve döngü süresini gör. Planlama süresi prototipte ölçülmelidir.</p>
+      <div class="calc">
+        <label for="c-deck">Deste (kart)<input id="c-deck" type="number" min="1" max="60" step="1" value="30"></label>
+        <label for="c-slot">Slot<input id="c-slot" type="number" min="1" max="10" step="1" value="5"></label>
+        <label for="c-dur">Ort. dayanıklılık<input id="c-dur" type="number" min="1" max="12" step="0.5" value="3"></label>
+        <label for="c-plan">Planlama (sn/tur)<input id="c-plan" type="number" min="5" max="180" step="5" value="40"></label>
+        <label for="c-anim">Tetik (sn)<input id="c-anim" type="number" min="0.1" max="2" step="0.1" value="0.5"></label>
+        <div class="res"><small>Tur sayısı</small><output id="o-tur" for="c-deck c-slot">0</output></div>
+        <div class="res"><small>Tetik</small><output id="o-trig" for="c-deck c-dur">0</output></div>
+        <div class="res"><small>Gün (dk)</small><output id="o-gun" for="c-deck c-slot c-dur c-plan c-anim">0</output></div>
+        <div class="res"><small>Yıl (saat)</small><output id="o-yil" for="c-deck c-slot c-dur c-plan c-anim">0</output></div>
+        <div class="res"><small>6 yıllık döngü (saat)</small><output id="o-cag" for="c-deck c-slot c-dur c-plan c-anim">0</output></div>
+      </div>
+    </section>
+
+    <section id="risk">
+      <h2>Riskler</h2>
+      <div class="cards3">
+        <div class="panel"><h3>Kart havuzu ve sanat</h3><p>Koleksiyon odaklı kitle için sanat ürünün yarısıdır. İki kişilik ekip için ilk sürümde 60-80 kart gerçekçi. Yapay zekâ sanat kullanılırsa Steam'de bildirim zorunlu.</p></div>
+        <div class="panel"><h3>Çözülmüş meta</h3><p>Mana yok. Dayanıklılık, nadirlik sınırları ve hava "en iyi 30 kart" yığılmasını önlemeli. Simülasyon sürekli bakmalı.</p></div>
+        <div class="panel"><h3>Kural yığılması</h3><p>Dayanıklılık, pasif, hava, albüm pasifleri, tür, anahtar kelime ve Tamer ilk saate yığılırsa oyuncu boğulur. Yıl yıl açılmalı.</p></div>
+        <div class="panel"><h3>İçerik tekrarı</h3><p>1.440 gün ve 100+ saat. Çeşitlilik hava, Tamer, albüm ve quest'ten gelmeli.</p></div>
+        <div class="panel"><h3>Maç süresi</h3><p>Tamer ve dayanıklılığa göre maç 4-8 dk arası oynar. Hız seçenekleri ve ödül ölçeklemesi gerekli.</p></div>
+        <div class="panel"><h3>Paket ekonomisi</h3><p>Gelir büyüdükçe paket enflasyonu ve kopya yığılması olur. Kotaya bağlı fiyat ve akıllı paket kuralları bunun için.</p></div>
+        <div class="panel"><h3>Okunabilirlik</h3><p>Tekrar eden tetikler, pasif kartlar ve hava etkileri ekranda aynı anda. Tetik animasyonu kısa ve net olmalı.</p></div>
+        <div class="panel"><h3>Pazar</h3><p>Balatro, Slay the Spire ve Monster Train alanı doyurmuş. Ayrışma: takvim, zodyak, hava ve albüm.</p></div>
+      </div>
+    </section>
+
+    <section id="prototip">
+      <h2>Prototip planı</h2>
+      <ol>
+        <li><b>Tur çözücü ve simülasyon (CLI):</b> dayanıklılık döngüsü, 15 kart, bot dizilimi, kaynak dağılımı. Soru: dizilimin gerçek bir etkisi var mı?</li>
+        <li><b>Oynanabilir gün:</b> Unity, 12-15 kart, 1 Tamer (Gezgin), 30 kartlık deste, hız düğmeleri. Stopwatch ile gerçek gün süresini ölç.</li>
+        <li><b>Hafta:</b> 5 gün, haftalık kota, günlük hava, 2-3 deste.</li>
+        <li><b>Koleksiyon:</b> paketler, satın alma, kopya → kaynak, deste kurma arayüzü.</li>
+        <li><b>Albüm ve quest:</b> bir burç yılı (6 ay) ve 5-6 quest.</li>
+      </ol>
+      <p>Kontrol soruları: 4-5 dk'lık gün eğlenceli mi, hava deste değiştirtiyor mu, kota yumuşak başarısızlıkla yeterince gergin mi?</p>
+    </section>
+
+    <section id="prompt">
+      <h2>Kart görseli prompt'u</h2>
+      <p>Oyundaki görseller ChatGPT ile üretilecek. Görsel üretim araçları kart üzerindeki yazıyı ve sayıları sık bozar. Bu yüzden önerim: yalnızca yaratık illüstrasyonunu üret, çerçeve, isim, sayılar ve nadirlik rozetini Unity UI'da kur. Prompt'lar İngilizce, çünkü görsel araçlar bu dilde daha tutarlı.</p>
+      <h3>Nasıl kullanılır</h3>
+      <ol>
+        <li>ChatGPT'ye sanat prompt'uyla tek bir yaratık ürettir (kare 1:1). Değişkenleri aşağıdaki tablodan doldur. Her istekte tek yaratık iste.</li>
+        <li>Tüm kartları aynı sohbette üret. Beğendiğin ilk görseli referans bırak (ya da yeniden yükle) ve sonraki isteklerde "aynı stilde" de, böylece kartlar aynı stilde kalır.</li>
+        <li>Nadirliğe göre POWER ve RARITY FRAME değişkenlerini değiştir. Hibrit kartta ELEMENT satırlarını birleştir.</li>
+        <li>ChatGPT'de ayrı bir negatif prompt alanı yoktur. Yasakları prompt'un sonuna cümle olarak ekle (6. bölüm).</li>
+      </ol>
+      <h3>Değişkenler</h3>
+      <div class="scroll">
+        <table class="wide">
+          <thead><tr><th>Değişken</th><th>Seçenekler (prompt'a olduğu gibi yapıştır)</th></tr></thead>
+          <tbody>
+            <tr><td><b>ELEMENT</b></td><td><code>fire: ember orange glow, floating sparks, thin lava cracks</code><br><code>water: deep blue glow, bubbles, ripples</code><br><code>earth: moss green and amber glow, stone, roots</code><br><code>wind: lavender violet glow, swirling air currents, feathers</code><br><code>electric: bright yellow glow, lightning arcs, static sparks</code><br><code>hybrid: write both element lines together, for example fire + electric: ember orange and bright yellow glow, lightning arcs wrapped in flames, floating sparks</code></td></tr>
+            <tr><td><b>POWER</b></td><td><code>Common: small, young, simple, playful</code><br><code>Uncommon: small but sturdy, simple markings</code><br><code>Rare: mature, sharper features, small markings</code><br><code>Epic: majestic, armored, large elemental aura</code><br><code>Legendary: imposing, ornate armor, radiant aura</code><br><code>Mythic: colossal, ancient glowing runes, cosmic aura</code><br><code>Ancient: colossal, primordial, glowing runes, cosmic aura with stars swirling around it</code></td></tr>
+            <tr><td><b>RARITY FRAME</b></td><td><code>Common: plain carved stone frame, muted grey, no glow</code><br><code>Uncommon: green-tinted bronze frame with leaf engravings, faint glow</code><br><code>Rare: polished blue steel frame with silver trim and small gems</code><br><code>Epic: violet crystal-studded frame with glowing runes</code><br><code>Legendary: gold filigree frame, radiant glow, floating sparks</code><br><code>Mythic: crimson and obsidian frame with glowing ember veins and ornate spikes</code><br><code>Ancient: iridescent prismatic ancient frame of cracked cosmic stone, floating runes, rainbow holographic sheen</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>1. Sanat prompt'u (şablon)</h3>
+      <div class="prompt-wrap">
+        <div class="prompt-head"><span>Şablon</span><button type="button" class="copy" data-copy="p1">Kopyala</button></div>
+        <pre class="prompt" id="p1">Stylized hand-painted creature illustration for a collectible monster card game. Creature: {CREATURE}. Element: {ELEMENT}. Power level: {POWER}. Dynamic three-quarter pose, bold readable silhouette, clean shapes, rich saturated colors, soft rim lighting, subtle painterly brush texture, simple atmospheric background that matches the element, creature centered with breathing room around it, square 1:1 composition so it can be cropped into a card art window. Original creature design, charming but powerful. No text, no letters, no logo, no watermark, no frame, no border.</pre>
+      </div>
+
+      <h3>2. Örnek: Kıvılcım Tilkisi (Common)</h3>
+      <div class="prompt-wrap">
+        <div class="prompt-head"><span>Doldurulmuş</span><button type="button" class="copy" data-copy="p2">Kopyala</button></div>
+        <pre class="prompt" id="p2">Stylized hand-painted creature illustration for a collectible monster card game. Creature: a small fox cub with ember-tipped orange fur, big curious eyes and a glowing spark at the tip of its tail. Element: fire, ember orange glow, floating sparks, thin lava cracks. Power level: small, young, simple, playful. Dynamic three-quarter pose, bold readable silhouette, clean shapes, rich saturated colors, soft rim lighting, subtle painterly brush texture, simple atmospheric background that matches the element, creature centered with breathing room around it, square 1:1 composition so it can be cropped into a card art window. Original creature design, charming but powerful. No text, no letters, no logo, no watermark, no frame, no border.</pre>
+      </div>
+
+      <h3>3. Örnek: Ezeli Dokuzkuyruk (Ancient)</h3>
+      <div class="prompt-wrap">
+        <div class="prompt-head"><span>Doldurulmuş</span><button type="button" class="copy" data-copy="p3">Kopyala</button></div>
+        <pre class="prompt" id="p3">Stylized hand-painted creature illustration for a collectible monster card game. Creature: a colossal nine-tailed fox spirit made of living flame and ancient stone, nine tails blazing with white-gold fire, glowing runes across its fur. Element: fire, ember orange glow, floating sparks, thin lava cracks. Power level: colossal, ancient glowing runes, cosmic aura with stars and embers swirling around it. Dynamic three-quarter pose, bold readable silhouette, clean shapes, rich saturated colors, soft rim lighting, subtle painterly brush texture, simple atmospheric background that matches the element, creature centered with breathing room around it, square 1:1 composition so it can be cropped into a card art window. Original creature design, awe-inspiring and powerful. No text, no letters, no logo, no watermark, no frame, no border.</pre>
+      </div>
+
+      <h3>4. Örnek: Kor Şimşek Ejderi (Epic, hibrit Ateş + Elektrik)</h3>
+      <div class="prompt-wrap">
+        <div class="prompt-head"><span>Doldurulmuş</span><button type="button" class="copy" data-copy="p6">Kopyala</button></div>
+        <pre class="prompt" id="p6">Stylized hand-painted creature illustration for a collectible monster card game. Creature: a sleek armored dragon with charcoal scales split by glowing ember cracks, crackling yellow lightning arcs running along its horns and wings, and a mane of living flame. Element: fire and electric combined, ember orange and bright yellow glow, lightning arcs wrapped in flames, floating sparks. Power level: majestic, armored, large elemental aura. Dynamic three-quarter pose, bold readable silhouette, clean shapes, rich saturated colors, soft rim lighting, subtle painterly brush texture, simple atmospheric background that matches both elements, creature centered with breathing room around it, square 1:1 composition so it can be cropped into a card art window. Original creature design, majestic and powerful. No text, no letters, no logo, no watermark, no frame, no border.</pre>
+      </div>
+
+      <h3>5. Tam kart taslağı (düzen denemesi)</h3>
+      <div class="prompt-wrap">
+        <div class="prompt-head"><span>Şablon</span><button type="button" class="copy" data-copy="p4">Kopyala</button></div>
+        <pre class="prompt" id="p4">Collectible monster trading card design, portrait 5:7 ratio, full card front view. {RARITY FRAME}. Top-left: a round {ELEMENT NAME} element gem. Top-right: a small shield-shaped badge for the durability number. Large framed art window showing {CREATURE}. Name banner below the art. Below it, a parchment-style text box for the ability. Small rarity gem at the bottom center. Stylized hand-painted fantasy look with crisp border details and {ELEMENT} accent lighting. Use blurred placeholder marks instead of readable text. Original design, no existing franchise characters, no logos, no watermark.</pre>
+      </div>
+      <p class="caption">Hibrit kartta sol üstteki tek element taşı yerine iki taş yan yana yazılır: "Top-left: two overlapping round element gems, {ELEMENT 1} and {ELEMENT 2}".</p>
+
+      <h3>6. Yasaklar (ChatGPT'de negatif prompt yok)</h3>
+      <div class="prompt-wrap">
+        <div class="prompt-head"><span>Prompt sonuna ekle</span><button type="button" class="copy" data-copy="p5">Kopyala</button></div>
+        <pre class="prompt" id="p5">Do not include any text, letters, numbers, watermark, signature or logo. Avoid extra limbs, deformed anatomy, blurry or cropped subjects and human hands.</pre>
+      </div>
+    </section>
+
+    <section id="acik">
+      <h2>Açık kararlar</h2>
+      <div class="question"><b>Kaynağın adı ne olsun?</b><span>"Altın" yerine temaya uygun bir ad (Ruh, Yankı, Mühür gibi). Şimdilik "kaynak".</span></div>
+      <div class="question"><b>Paket fiyatları ve tipleri</b><span>Kotanın %20'si ve 1× / 1,5× / 2,5× / 6× çarpanları bir başlangıç. Şanslı tipler daha pahalı ve daha şanslı olacak şekilde simülasyonla ayarlanacak.</span></div>
+      <div class="question"><b>Kopya → kaynak oranları</b><span>Tablodaki oranlar taslak. İsteğe bağlı olarak fazla kopyaların kozmetik bir "ustalık" çubuğunu doldurması (güç vermeden) eklenebilir. Karar bekliyor.</span></div>
+      <div class="question"><b>Ancient edinme yolu</b><span>Şimdilik: normal paketlerden çok düşük ihtimal, bazıları quest zincirinin sonunda. Kaç Ancient kart olacağı ve hangilerinin quest'e bağlanacağı açık.</span></div>
+      <div class="question"><b>Burç listesi ve albüm pasifleri</b><span>6 hayvan ve pasifler örnek. Pasifler albüm tamamlanınca kalıcı açılır ve yalnızca olumludur. Hangi burçlar ve hangi pasifler seçilecek.</span></div>
+      <div class="question"><b>Kota eğrisi</b><span>Yıl ve haftaya göre kota değerleri. Simülasyon sonrası belirlenecek.</span></div>
+      <div class="question"><b>Şans yetenekleri olsun mu?</b><span>Stratejik kitle için varyansı düşük tutmak önemli. Olasılıklı yetenekler tamamen çıkarılabilir ya da yalnızca küçük etkilerle kalabilir.</span></div>
+      <div class="question"><b>2D mi, 3D mi? Kural gösterimi cümle mi, ikon mu?</b><span>Sanat yükünü ve okunabilirliği belirler. Temiz 2D kartlar hızlıdır. İkonlu koşullar hızlı okunur ama öğrenmesi zaman alır.</span></div>
+      <div class="question"><b>Tamer'a özel kart havuzu olsun mu?</b><span>Her Tamer'a 4-6 özel kart (Hearthstone sınıf kartları gibi) Tamer seçimini anlamlı yapar ve koleksiyona hedef ekler. Kart ve sanat yükünü artırır.</span></div>
+      <div class="question"><b>Element-nötr kartlar</b><span>Nötr tip yaratık tipidir. Hava bonus/cezasından etkilenmeyen, elementsiz kartlar da ayrıca olabilir.</span></div>
+      <div class="question"><b>Kutup etkileri</b><span>Kutuplar kartta sabit, etki kartın metninde. Hangi kutup kombinasyonları kullanılacak (− | +, + | −, + | +, − | −) ve çakışan bağlantı kartlara yalnızca ödül olarak mı yoksa artı ve eksi dengesiyle mi yazılacak. Sayılar simülasyonla ayarlanacak.</span></div>
+      <div class="question"><b>Hibrit kart kuralları</b><span>Taslak: Rare ve üzeri, iki elementin hava bonus ve cezası toplanır, iki element olarak sayılır. Kaç hibrit kart olacağı, Common-Uncommon'a hiç inip inmeyeceği ve çift cezanın (örneğin Ateş + Su kartı Güneşli günde) nasıl çalışacağı açık.</span></div>
+      <div class="question"><b>Hava dayanıklılığa dokunsun mu?</b><span>Kuraklık gibi hava durumları bazı kartların dayanıklılığını turun başında düşürebilir, Ward bundan korur. Olumsuz etkilerin tek kaynağı hava olduğu için önerildi. Olmasını istemezsen Ward'a başka bir anlam bulmak gerekir.</span></div>
+      <div class="question"><b>Yaratık tipi listesi</b><span>8 tip taslaktır (Beast, Ghost, Golem, Dragon, Flora, Swarm, Avian, Serpent). Tipler anahtar kelimeye ve nadirliğe bağlı değildir. Eksik ya da gereksiz olan var mı?</span></div>
+      <div class="question"><b>Oyun adı</b><span>Henüz konmadı. Çalışma adı: Canavar Deste.</span></div>
+    </section>
+
+    <footer>Canavar Deste GDD · v0.6 · 1 Ekim 2026</footer>
+  </main>
+</div>
+
+<script>
+(function () {
+  var ids = ['c-deck', 'c-slot', 'c-dur', 'c-plan', 'c-anim'];
+  var els = ids.map(function (id) { return document.getElementById(id); });
+  var oTur = document.getElementById('o-tur');
+  var oTrig = document.getElementById('o-trig');
+  var oGun = document.getElementById('o-gun');
+  var oYil = document.getElementById('o-yil');
+  var oCag = document.getElementById('o-cag');
+  function val(el, d) { var v = parseFloat(el.value); return isFinite(v) && v > 0 ? v : d; }
+  function calc() {
+    var deck = val(els[0], 30), slot = val(els[1], 5), dur = val(els[2], 3), plan = val(els[3], 40), anim = val(els[4], 0.5);
+    var tur = Math.ceil(deck / slot);
+    var trig = deck * dur;
+    var sec = tur * plan + trig * anim;
+    var gunDk = sec / 60;
+    var yilSaat = 120 * gunDk / 60;
+    oTur.textContent = String(tur);
+    oTrig.textContent = String(Math.round(trig));
+    oGun.textContent = gunDk.toFixed(1);
+    oYil.textContent = yilSaat.toFixed(1);
+    oCag.textContent = (yilSaat * 6).toFixed(0);
+  }
+  els.forEach(function (el) { el.addEventListener('input', calc); });
+  calc();
+
+  function selectText(node) {
+    try {
+      var range = document.createRange();
+      range.selectNodeContents(node);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    } catch (e) {}
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('button.copy'), function (btn) {
+    btn.addEventListener('click', function () {
+      var node = document.getElementById(btn.getAttribute('data-copy'));
+      if (!node) return;
+      var text = node.textContent;
+      function done(msg) {
+        var old = btn.getAttribute('data-label') || btn.textContent;
+        btn.setAttribute('data-label', old);
+        btn.textContent = msg;
+        setTimeout(function () { btn.textContent = old; }, 1800);
+      }
+      var p;
+      try { p = navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(text) : null; } catch (e) { p = null; }
+      if (p && p.then) {
+        p.then(function () { done('Kopyalandı'); }, function () { selectText(node); done('Seçildi, Ctrl+C'); });
+      } else {
+        selectText(node);
+        done('Seçildi, Ctrl+C');
+      }
+    });
+  });
+})();
+</script>
+
+</body></html>
