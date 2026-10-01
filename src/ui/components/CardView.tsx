@@ -7,7 +7,7 @@ import { GameIcon } from './GameIcon.tsx'
 import { RarityBadge } from './RarityBadge.tsx'
 import { CardText } from './CardText.tsx'
 import { CardKeywordTooltip } from './CardKeywordTooltip.tsx'
-import { cardKeywordInfo } from '../keywords.ts'
+import { cardKeywordInfo, cardTextParagraphs } from '../keywords.ts'
 import './CardView.css'
 
 /**
@@ -26,18 +26,22 @@ export interface CardViewProps {
   size?: 'md' | 'sm'
   onClick?: () => void
   actionLabel?: string
+  /** Koleksiyonun küçük kartında tam kartı ve kuralları yan yana açar. */
+  hoverPreview?: boolean
+  keywordTooltip?: boolean
 }
 
-export function CardView({ card, durability, passive, active, income, pulse, ward, size = 'md', onClick, actionLabel }: CardViewProps) {
+export function CardView({ card, durability, passive, active, income, pulse, ward, size = 'md', onClick, actionLabel, hoverPreview = false, keywordTooltip = true }: CardViewProps) {
   const anchor = useRef<HTMLDivElement>(null)
   const timer = useRef<number | undefined>(undefined)
   const tooltipId = useId()
   const [showKeywords, setShowKeywords] = useState(false)
-  const hasKeywords = cardKeywordInfo(card).length > 0
+  const hasKeywords = keywordTooltip && cardKeywordInfo(card).length > 0
+  const canPreview = keywordTooltip && (hoverPreview || hasKeywords)
   const hideKeywords = () => { window.clearTimeout(timer.current); setShowKeywords(false) }
   const revealKeywords = () => {
     window.clearTimeout(timer.current)
-    if (hasKeywords) timer.current = window.setTimeout(() => setShowKeywords(true), 250)
+    if (canPreview) timer.current = window.setTimeout(() => setShowKeywords(true), 250)
   }
   useEffect(() => () => window.clearTimeout(timer.current), [])
   const img = artUrl('cards', card.id, size === 'sm')
@@ -46,11 +50,11 @@ export function CardView({ card, durability, passive, active, income, pulse, war
   return (
     <div
       ref={anchor}
-      className={`card card--${size} rarity-${card.rarity} ${passive ? 'is-passive' : ''} ${active ? 'is-active' : ''} ${onClick ? 'is-clickable' : ''}`}
+      className={`card card--${size} rarity-${card.rarity} ${cardTextParagraphs(card.text).length > 2 ? 'card--many-rules' : ''} ${passive ? 'is-passive' : ''} ${active ? 'is-active' : ''} ${onClick ? 'is-clickable' : ''}`}
       style={{ ['--el' as string]: `var(--${el})`, ['--el2' as string]: `var(--${card.elements[1] ?? el})` }}
       onClick={onClick}
       role={onClick ? 'button' : undefined}
-      tabIndex={onClick || hasKeywords ? 0 : undefined}
+      tabIndex={onClick || canPreview ? 0 : undefined}
       aria-describedby={showKeywords ? tooltipId : undefined}
       aria-label={onClick ? (actionLabel ?? `${card.name} kartını incele`) : undefined}
       onKeyDown={(e) => { if (e.key === 'Escape') hideKeywords(); else if (onClick && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); hideKeywords(); onClick() } else revealKeywords() }}
@@ -94,7 +98,7 @@ export function CardView({ card, durability, passive, active, income, pulse, war
       <div className="card__name">{card.name}</div>
       {size === 'md' && (
         <div className="card__text">
-          <CardText text={card.text} />
+          <CardText text={card.text} paragraphs />
         </div>
       )}
 
@@ -112,7 +116,7 @@ export function CardView({ card, durability, passive, active, income, pulse, war
           </motion.div>
         )}
       </AnimatePresence>
-      {showKeywords && hasKeywords && <CardKeywordTooltip card={card} anchor={anchor} id={tooltipId} />}
+      {showKeywords && canPreview && <CardKeywordTooltip card={card} anchor={anchor} id={tooltipId} preview={hoverPreview ? <CardView card={card} keywordTooltip={false} /> : undefined} />}
     </div>
   )
 }

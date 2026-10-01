@@ -204,6 +204,9 @@
   margin-bottom: 2px;
 }
 .card__keyword { font-weight: 700; color: var(--gold-hi); }
+.card__rule { margin: 0; }
+.card__rule + .card__rule { margin-top: 6px; }
+.card--md.card--many-rules .card__art { flex-basis: 50%; }
 
 .card__income {
   position: absolute;

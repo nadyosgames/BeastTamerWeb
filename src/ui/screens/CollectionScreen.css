@@ -66,6 +66,7 @@
 .collection__detail .card { flex-shrink: 0; transform: scale(1.12); margin: 24px; }
 .collection__detail h2 { color: var(--gold-hi); font-size: 32px; margin-top: 12px; }
 .collection__detail p { line-height: 1.5; }
+.collection__rules .card__rule + .card__rule { margin-top: 12px; }
 .collection__detail-element { display: flex; align-items: center; gap: 8px; padding: 7px 12px; border: 1px solid var(--line); }
 .collection__rarityhelp { position: absolute; right: 34px; top: 41px; font-size: 17px; }
 .collection--decks .collection__rarityhelp { right: 565px; }
