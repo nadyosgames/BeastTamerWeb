@@ -58,6 +58,8 @@ interface Profile {
   customDecks: Record<string, PlayerDeck>
   speed: Speed
   preview: boolean
+  /** Eğitim bitirildi ya da atlandı; OYNA artık eğitimi önermez. */
+  tutorialDone: boolean
 }
 
 interface GameActions {
@@ -72,6 +74,7 @@ interface GameActions {
   removeDeckCard(deckId: string, cardId: string): void
   setSpeed(s: Speed): void
   setPreview(v: boolean): void
+  setTutorialDone(v: boolean): void
   /** Günü kaydeder; hafta bittiyse hafta sonucunu döner. */
   recordDay(log: Omit<DayLog, 'dayIndex' | 'week' | 'finishedAt'>): WeekLog | null
   reset(): void
@@ -93,6 +96,7 @@ const fresh = (): Profile => ({
   customDecks: {},
   speed: 1,
   preview: false,
+  tutorialDone: false,
 })
 
 export const useGame = create<Profile & GameActions>()(
@@ -167,6 +171,7 @@ export const useGame = create<Profile & GameActions>()(
       },
       setSpeed: (speed) => set({ speed }),
       setPreview: (preview) => set({ preview }),
+      setTutorialDone: (tutorialDone) => set({ tutorialDone }),
       recordDay(log) {
         const s = get()
         const week = currentWeek(s.dayIndex)

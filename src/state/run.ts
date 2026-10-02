@@ -1,5 +1,6 @@
 import { create } from 'zustand'
-import { planDay, roundContext, type DayPlan } from '../core/day.ts'
+import { DEFAULT_TRIGGER_CAP, planDay, roundContext, type DayPlan } from '../core/day.ts'
+import { compileModifiers } from '../core/engine/modifiers.ts'
 import type { RoundEvent } from '../core/engine/events.ts'
 import { resolveRound } from '../core/engine/round.ts'
 import { createRng, deriveSeed } from '../core/rng.ts'
@@ -25,6 +26,8 @@ export interface RoundRecord extends RoundLog {
 
 interface RunState {
   status: RunStatus
+  /** 'tutorial': sabit eller, hava/Tamer yok, profil ve haftalık kota etkilenmez. */
+  mode: 'day' | 'tutorial'
   deckId: string
   tamerId: string
   weatherId: string
@@ -41,6 +44,8 @@ interface RunState {
   roundStartedAt: number
   weekResult: WeekLog | null
   startDay(): void
+  /** Verilen sabit ellerle eğitim günü başlatır (slot sayısı = el büyüklüğü). */
+  startTutorial(hands: CardDef[][]): void
   /** El kartını (k) slota koyar; slot doluysa kartlar yer değiştirir (eldeki karta karşılık ele döner). */
   place(k: number, slot: number): void
   /** Kartı slottan ele geri alır. */
@@ -57,6 +62,7 @@ interface RunState {
 
 const idle = {
   status: 'idle' as RunStatus,
+  mode: 'day' as RunState['mode'],
   plan: null,
   roundIndex: 0,
   hand: [],
@@ -97,6 +103,25 @@ export const useRun = create<RunState>((set, get) => ({
       tamerId,
       weatherId,
       dayIndex,
+      plan,
+      hand,
+      slots: emptySlots(hand),
+      dayStartedAt: now,
+      roundStartedAt: now,
+    })
+  },
+
+  startTutorial(hands) {
+    const plan: DayPlan = { mods: compileModifiers({}), slots: hands[0].length, hands, triggerCap: DEFAULT_TRIGGER_CAP }
+    const now = performance.now()
+    const hand = hands[0].slice()
+    set({
+      ...idle,
+      mode: 'tutorial',
+      status: 'arrange',
+      deckId: '',
+      tamerId: '',
+      weatherId: '',
       plan,
       hand,
       slots: emptySlots(hand),
@@ -176,6 +201,10 @@ export const useRun = create<RunState>((set, get) => ({
         events: null,
         roundStartedAt: performance.now(),
       })
+      return
+    }
+    if (s.mode === 'tutorial') {
+      set({ status: 'dayDone', weekResult: null })
       return
     }
     const total = s.rounds.reduce((a, r) => a + r.total, 0)

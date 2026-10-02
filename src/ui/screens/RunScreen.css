@@ -210,3 +210,5 @@
 .run__speed { gap: 12px; justify-content: center; border-top: 1px solid var(--line); padding-top: 12px; }
 .run__speed .btn { border-radius: 30px; min-width: 62px; }
 .run__speed .btn.active { background: linear-gradient(180deg,#604017,#2c1b0c); box-shadow: 0 0 12px #ffbd5466,inset 0 0 10px #ffbe5444; }
+.run__help { align-self: flex-start; margin-top: 23px; margin-left: auto; width: 46px; font-family: var(--font-display); font-size: 22px; }
+.run__help + .run__leave { margin-left: 0; }

@@ -29,6 +29,8 @@ interface BoardProps {
   hand: CardDef[]
   slots: (number | null)[]
   view: RoundView
+  /** Vurgulanan el kartları (eğitim); dizim aşamasında parlar. */
+  focus?: readonly number[]
   onPlace(k: number, slot: number): void
   onUnplace(k: number): void
 }
@@ -176,7 +178,7 @@ export function Board(p: BoardProps) {
         return (
           <motion.div
             key={`${p.round}-${k}`}
-            className={`board__card ${arrange ? 'is-draggable' : ''} ${dragging ? 'is-dragging' : ''}`}
+            className={`board__card ${arrange ? 'is-draggable' : ''} ${dragging ? 'is-dragging' : ''} ${arrange && p.focus?.includes(k) ? 'is-focus' : ''}`}
             data-x={Math.round(r.x)}
             data-y={Math.round(r.y)}
             data-slot={slot}

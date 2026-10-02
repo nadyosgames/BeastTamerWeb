@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { roundContext } from '../../core/day.ts'
 import { resolveRound } from '../../core/engine/round.ts'
 import { calendarLabel, useGame } from '../../state/game.ts'
@@ -9,6 +9,10 @@ import { content } from '../content.ts'
 import { useRoundPlayback, type Speed } from '../playback/useRoundPlayback.ts'
 import { Board } from '../run/Board.tsx'
 import { RoundLog } from '../run/RoundLog.tsx'
+import { HowToPlay } from '../components/HowToPlay.tsx'
+import { TutorialCoach, TutorialDone } from '../tutorial/TutorialCoach.tsx'
+import { coachStep } from '../tutorial/flow.ts'
+import { TUTORIAL } from '../tutorial/script.ts'
 import { useStage } from '../stage-context.ts'
 import { WEATHER_ICON } from '../weather.ts'
 import './RunScreen.css'
@@ -26,6 +30,7 @@ export function RunScreen() {
   const setPreview = useGame((s) => s.setPreview)
   const dayIndex = useGame((s) => s.dayIndex)
   const stage = useStage()
+  const [guide, setGuide] = useState(false)
 
   useEffect(() => {
     if (run.status === 'idle') go('play')
@@ -49,8 +54,13 @@ export function RunScreen() {
   if (!run.plan) return null
 
   const arrange = run.status === 'arrange'
+  const tutorial = run.mode === 'tutorial'
+  const lesson = tutorial ? TUTORIAL[run.roundIndex] : undefined
+  const slotIds = run.slots.map((k) => (k === null ? null : run.hand[k].id))
+  const goalMet = !lesson || coachStep(lesson, slotIds).goalMet
+  const focus = lesson?.focus ? run.hand.flatMap((c, k) => (lesson.focus!.includes(c.id) ? [k] : [])) : undefined
   const weather = content.weatherById.get(run.weatherId)
-  const tamer = content.tamer(run.tamerId)
+  const tamer = tutorial ? null : content.tamer(run.tamerId)
   const deck = playerDeck(useGame.getState(), run.deckId)
   const completed = run.rounds.slice(0, run.roundIndex).reduce((a, r) => a + r.total, 0)
   const dayTotal = completed + (arrange ? 0 : view.total)
@@ -58,6 +68,13 @@ export function RunScreen() {
   const placed = run.slots.filter((k) => k !== null).length
 
   const leaveDay = () => {
+    if (tutorial) {
+      if (confirm('Eğitimden çıkılsın mı? Ana menüdeki "Nasıl oynanır" ile yeniden başlatabilirsin.')) {
+        run.leave()
+        go('menu')
+      }
+      return
+    }
     if (run.status === 'dayDone' || confirm('Gün yarıda bırakılsın mı? (Bu günün ilerlemesi kaydedilmez)')) {
       run.leave()
       go('play')
@@ -67,13 +84,21 @@ export function RunScreen() {
   return (
     <div className="run">
       <header className="run__top">
-        <div className="run__day panel">
-          <b>GÜN {dayIndex + (run.status === 'dayDone' ? 0 : 1)}</b>
-          <span className="muted">{calendarLabel(run.dayIndex)}</span>
-          <span>
-            {weather ? WEATHER_ICON[weather.icon] : ''} {weather?.name} · <span className="muted">{weather?.text}</span>
-          </span>
-        </div>
+        {lesson ? (
+          <div className="run__day panel">
+            <b>EĞİTİM</b>
+            <span>{lesson.title}</span>
+            <span className="muted">Hava ve Tamer etkisi yok · ilerleme kaydedilmez</span>
+          </div>
+        ) : (
+          <div className="run__day panel">
+            <b>GÜN {dayIndex + (run.status === 'dayDone' ? 0 : 1)}</b>
+            <span className="muted">{calendarLabel(run.dayIndex)}</span>
+            <span>
+              {weather ? WEATHER_ICON[weather.icon] : ''} {weather?.name} · <span className="muted">{weather?.text}</span>
+            </span>
+          </div>
+        )}
         <div className="run__round panel">
           <small>TUR</small>
           <b>
@@ -82,12 +107,15 @@ export function RunScreen() {
           <small>GEÇİŞ {view.pass || '–'}</small>
         </div>
         <div className="run__score panel">
-          <small>BUGÜN</small>
+          <small>{tutorial ? 'TOPLAM' : 'BUGÜN'}</small>
           <b className="gold">+{dayTotal}</b>
           {view.heat > 0 && <small>Isı {view.heat}</small>}
         </div>
+        <button className="btn small run__help" aria-label="Nasıl oynanır" title="Nasıl oynanır" onClick={() => setGuide(true)}>
+          ?
+        </button>
         <button className="btn small run__leave" onClick={leaveDay}>
-          Günden çık
+          {tutorial ? 'Eğitimden çık' : 'Günden çık'}
         </button>
       </header>
 
@@ -100,6 +128,7 @@ export function RunScreen() {
         hand={run.hand}
         slots={run.slots}
         view={view}
+        focus={focus}
         onPlace={run.place}
         onUnplace={run.unplace}
       />
@@ -134,24 +163,30 @@ export function RunScreen() {
         </section>
       )}
 
-      <aside className="run__who panel">
-        <b>{tamer.name}</b>
-        <span className="muted">{tamer.text}</span>
-        <span>
-          {deck?.name} · destede kalan <b>{remainingCards(run.plan, run.roundIndex)}</b> kart
-        </span>
-      </aside>
+      {tamer ? (
+        <aside className="run__who panel">
+          <b>{tamer.name}</b>
+          <span className="muted">{tamer.text}</span>
+          <span>
+            {deck?.name} · destede kalan <b>{remainingCards(run.plan, run.roundIndex)}</b> kart
+          </span>
+        </aside>
+      ) : (
+        <TutorialCoach status={run.status} roundIndex={run.roundIndex} ids={slotIds} />
+      )}
 
       <aside className="run__controls panel">
         {arrange && (
           <>
-            <button className="btn primary run__action" disabled={!allPlaced} onClick={() => run.play()}>
-              {allPlaced ? 'BAŞLAT' : `${placed}/${run.slots.length} YERLEŞTİR`}
+            <button className="btn primary run__action" disabled={!allPlaced || !goalMet} onClick={() => run.play()}>
+              {!allPlaced ? `${placed}/${run.slots.length} YERLEŞTİR` : goalMet ? 'BAŞLAT' : 'SIRAYI DÜZELT'}
             </button>
             <div className="chip-row">
-              <button className="btn small" onClick={run.autoFill} disabled={allPlaced}>
-                Otomatik diz
-              </button>
+              {!tutorial && (
+                <button className="btn small" onClick={run.autoFill} disabled={allPlaced}>
+                  Otomatik diz
+                </button>
+              )}
               <button className="btn small" onClick={run.clearSlots} disabled={placed === 0}>
                 Ele al
               </button>
@@ -169,7 +204,7 @@ export function RunScreen() {
         )}
         {run.status === 'roundDone' && (
           <button className="btn primary run__action" onClick={() => run.next()}>
-            {run.roundIndex + 1 < run.plan.hands.length ? 'DEVAM ET' : 'GÜNÜ BİTİR'}
+            {run.roundIndex + 1 < run.plan.hands.length ? 'DEVAM ET' : tutorial ? 'EĞİTİMİ BİTİR' : 'GÜNÜ BİTİR'}
           </button>
         )}
         <div className="chip-row run__speed">
@@ -182,7 +217,8 @@ export function RunScreen() {
         </div>
       </aside>
 
-      {run.status === 'dayDone' && <DaySummary onNext={leaveDay} />}
+      {run.status === 'dayDone' && (tutorial ? <TutorialDone onGuide={() => setGuide(true)} /> : <DaySummary onNext={leaveDay} />)}
+      {guide && <HowToPlay onClose={() => setGuide(false)} />}
     </div>
   )
 }

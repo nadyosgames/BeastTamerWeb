@@ -1,0 +1,48 @@
+.coach {
+  position: absolute;
+  left: 30px;
+  bottom: 30px;
+  width: 420px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #071018f2;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 1px #0009, 0 0 26px #ffbe5433, 0 10px 30px #000a;
+  z-index: 6;
+}
+.coach__head { display: flex; flex-direction: column; gap: 4px; }
+.coach__badge {
+  align-self: flex-start;
+  padding: 2px 10px;
+  border-radius: 2px;
+  background: var(--gold);
+  color: #1a1208;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+.coach__head b { font-family: var(--font-display); font-size: 26px; color: var(--gold-hi); }
+.coach__text { margin: 0; font-size: 18px; line-height: 1.45; color: var(--text); }
+.coach__task {
+  margin: 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--gold-lo);
+  background: #ffffff08;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold-hi);
+}
+.coach__task.is-hint { border-left-color: #ffbd54; background: #ffbd5414; }
+.coach__task.is-ready { border-left-color: #8fe08a; color: #b9f0b4; animation: coach-pulse 1.6s ease-in-out infinite; }
+@keyframes coach-pulse {
+  50% { background: #8fe08a1f; }
+}
+.coach__done ul { margin: 0; padding-left: 24px; display: flex; flex-direction: column; gap: 6px; }
+.coach__done p { margin: 0; }
+.coach__actions { justify-content: flex-end; }
+
+/* Eğitimin dikkat çektiği kartlar (elde ve slotta). */
+.board__card.is-focus .card { box-shadow: 0 0 0 2px var(--gold-hi), 0 0 30px #ffd88a99, 0 12px 28px #0009; }
