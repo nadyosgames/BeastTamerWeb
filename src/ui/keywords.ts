@@ -1,6 +1,7 @@
 import type { AbilityTrigger, CardDef, Keyword } from '../core/types.ts'
 
-type RuleKeyword = Keyword | AbilityTrigger | 'slumber'
+/** `heat`: Ateş'in element mekaniği; anahtar kelime değil ama kart metninde aynı şekilde açıklanır. */
+type RuleKeyword = Keyword | AbilityTrigger | 'slumber' | 'heat'
 export const KEYWORD_INFO: Record<RuleKeyword, { label: string; description: string }> = {
   swift: { label: 'Swift', description: 'Her geçişte diğer kartlardan önce tetiklenir.' },
   heavy: { label: 'Heavy', description: 'Her geçişte diğer kartlardan sonra tetiklenir.' },
@@ -14,15 +15,18 @@ export const KEYWORD_INFO: Record<RuleKeyword, { label: string; description: str
   aura: { label: 'Aura', description: 'Masadayken sürekli etkilidir. Pasifken de devam eder.' },
   epilogue: { label: 'Epilogue', description: 'Tur sonunda tetiklenir.' },
   haunt: { label: 'Haunt', description: 'Başka bir kart pasife geçince tetiklenir.' },
+  heat: { label: 'Isı', description: 'Masada biriken ortak sayaç. Isı ekleyen kartlar artırır, "Isı kadar" bonus alan kartlar ondan beslenir. Her tur 0 ile başlar.' },
 }
 
 const info = Object.entries(KEYWORD_INFO) as [RuleKeyword, typeof KEYWORD_INFO[RuleKeyword]][]
-const tokenPattern = '\\b(Last Breath|Slumber(?:\\s+\\d+)?|Swift|Heavy|Ward|Rebirth|Overload|Howl|Harvest|Aura|Epilogue|Haunt)\\b'
+// \b Türkçe harflerde (Isı) çalışmaz; kelime sınırı Unicode harf lookaround'u ile kurulur.
+const wordRe = (word: string, flags = '') => new RegExp(`(?<!\\p{L})${word}(?!\\p{L})`, `u${flags}`)
+const tokenPattern = '(Last Breath|Slumber(?:\\s+\\d+)?|Swift|Heavy|Ward|Rebirth|Overload|Howl|Harvest|Aura|Epilogue|Haunt|Isı)'
 
 export function keywordTextParts(text: string) {
-  return text.split(new RegExp(tokenPattern, 'g')).filter(Boolean).map((value) => ({
+  return text.split(wordRe(tokenPattern, 'g')).filter(Boolean).map((value) => ({
     text: value,
-    keyword: new RegExp(`^${tokenPattern}$`).test(value),
+    keyword: wordRe(`^${tokenPattern}$`).test(value),
   }))
 }
 
@@ -37,7 +41,7 @@ export function cardKeywordInfo(card: CardDef) {
   const used = new Set<RuleKeyword>(card.keywords ?? [])
   if (card.slumber) used.add('slumber')
   for (const ability of card.abilities) used.add(ability.on)
-  for (const [key, entry] of info) if (new RegExp(`\\b${entry.label}\\b`).test(card.text)) used.add(key)
+  for (const [key, entry] of info) if (wordRe(entry.label).test(card.text)) used.add(key)
   return [...used].map((key) => ({
     ...KEYWORD_INFO[key],
     label: key === 'slumber' && card.slumber ? `Slumber ${card.slumber}` : KEYWORD_INFO[key].label,

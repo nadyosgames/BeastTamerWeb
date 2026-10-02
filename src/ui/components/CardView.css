@@ -250,3 +250,5 @@
 .card.is-passive .card__gem { filter: saturate(.35); }
 .card__passive { border-radius: 2px; font-family: Georgia,serif; background: #18344aee; border-color: #7ea6c8; font-size: 14px; }
 .rarity-ancient { border-image: none; }
+.card__type { position: absolute; right: 6px; bottom: 6px; z-index: 2; padding: 2px 9px; border-radius: 2px; background: #071018e6; border: 1px solid color-mix(in srgb,var(--el) 60%,var(--gold-lo)); color: var(--gold-hi); font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; pointer-events: none; }
+.card--sm .card__type { right: 4px; bottom: 4px; padding: 1px 6px; font-size: 10px; }

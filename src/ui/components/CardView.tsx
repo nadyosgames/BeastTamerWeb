@@ -10,6 +10,9 @@ import { CardKeywordTooltip } from './CardKeywordTooltip.tsx'
 import { cardKeywordInfo, cardTextParagraphs } from '../keywords.ts'
 import './CardView.css'
 
+/** Kart metinleri türleri İngilizce yazar ("Sağındaki kart Dragon ise"); etiket de aynı dili kullanır. */
+const TYPE_NAME: Record<CardDef['type'], string> = { beast: 'Beast', ghost: 'Ghost', golem: 'Golem', dragon: 'Dragon', flora: 'Flora', swarm: 'Swarm', avian: 'Avian', serpent: 'Serpent', neutral: 'Neutral' }
+
 /**
  * Kart yüzü. Görsel yalnızca yaratık illüstrasyonudur (art pipeline); çerçeve, isim,
  * dayanıklılık kalkanı, element taşı ve yetenek metni burada kurulur — Unity'de kart prefab'ı.
@@ -73,6 +76,7 @@ export function CardView({ card, durability, passive, active, income, pulse, war
             <span className="card__art-ornament">✦</span>
           </div>
         )}
+        {card.type !== 'neutral' && <div className="card__type">{TYPE_NAME[card.type]}</div>}
         {passive && <div className="card__passive">PASİF</div>}
       </div>
 
