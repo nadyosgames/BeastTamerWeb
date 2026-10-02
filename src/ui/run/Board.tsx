@@ -12,9 +12,9 @@ import './Board.css'
  * yer değiştirir ya da ele geri sürüklenir. Tıklama kısayolu: elden → ilk boş slot, slottan → ele.
  * Konumlar sahne koordinatında hesaplanır (Stage ölçeği ne olursa olsun doğru), geçişleri motion çizer.
  */
-export const CARD_W = 270
-export const CARD_H = 400
-const GAP = 34
+export const CARD_W = 320
+export const CARD_H = 475
+const GAP = 24
 const SLOT_TOP = 250
 const HAND_SCALE = 0.75
 const HAND_SPACING = 190
@@ -57,21 +57,24 @@ export function Board(p: BoardProps) {
   const [hoverHand, setHoverHand] = useState<number | null>(null)
   const arrange = p.status === 'arrange'
   const n = p.slots.length
+  // Six-slot Tamers must still fit the row inside the stage.
+  const cardW = Math.min(CARD_W, (p.stageW - 100 - (n - 1) * GAP) / n)
+  const cardH = cardW * CARD_H / CARD_W
 
-  const rowW = n * CARD_W + (n - 1) * GAP
-  const slotCenter = (i: number) => ({ x: (p.stageW - rowW) / 2 + i * (CARD_W + GAP) + CARD_W / 2, y: SLOT_TOP + CARD_H / 2 })
+  const rowW = n * cardW + (n - 1) * GAP
+  const slotCenter = (i: number) => ({ x: (p.stageW - rowW) / 2 + i * (cardW + GAP) + cardW / 2, y: SLOT_TOP + cardH / 2 })
   const handIdx = p.hand.map((_, k) => k).filter((k) => !p.slots.includes(k))
   const handPos = (j: number, m: number) => {
     const o = j - (m - 1) / 2
     return { x: p.stageW / 2 + o * HAND_SPACING, y: p.stageH - 200 + o * o * 7, rotate: o * 3.5 }
   }
-  const handZoneY = SLOT_TOP + CARD_H + 80
+  const handZoneY = SLOT_TOP + cardH + 40
 
   const toStage = (e: PointerEvent) => ({ x: e.clientX / p.scale, y: e.clientY / p.scale })
   const slotAt = (x: number, y: number) => {
     for (let i = 0; i < n; i++) {
       const c = slotCenter(i)
-      if (Math.abs(x - c.x) <= CARD_W / 2 + GAP / 2 && Math.abs(y - c.y) <= CARD_H / 2 + 40) return i
+      if (Math.abs(x - c.x) <= cardW / 2 + GAP / 2 && Math.abs(y - c.y) <= cardH / 2 + 40) return i
     }
     return -1
   }
@@ -135,7 +138,7 @@ export function Board(p: BoardProps) {
           <div
             key={i}
             className={`board__slot ${k !== null ? 'is-filled' : ''} ${hoverSlot === i ? 'is-hover' : ''} ${i < n - 1 ? 'has-next' : ''}`}
-            style={{ left: c.x - CARD_W / 2, top: c.y - CARD_H / 2, width: CARD_W, height: CARD_H }}
+            style={{ left: c.x - cardW / 2, top: c.y - cardH / 2, width: cardW, height: cardH }}
           >
             <div className="board__slotnum">{i + 1}</div>
             {k === null && <span>Kartı buraya sürükle</span>}
@@ -150,7 +153,7 @@ export function Board(p: BoardProps) {
           <div
             key={`${l.left}-${l.right}`}
             className={`board__link board__link--${l.state}`}
-            style={{ left: a, width: b - a, top: SLOT_TOP + CARD_H + 6 }}
+            style={{ left: a, width: b - a, top: SLOT_TOP + cardH + 6 }}
           >
             <span>{l.state === 'compatible' ? '⚡ uyumlu' : '✕ çakışan'}</span>
           </div>
@@ -159,7 +162,7 @@ export function Board(p: BoardProps) {
 
       {!arrange &&
         p.slots.map((_, i) => (
-          <div key={`t${i}`} className="board__slottotal" style={{ left: slotCenter(i).x, top: SLOT_TOP + CARD_H + 34 }}>
+          <div key={`t${i}`} className="board__slottotal" style={{ left: slotCenter(i).x, top: SLOT_TOP + cardH + 34 }}>
             +{p.view.slots[i]?.total ?? 0}
           </div>
         ))}
@@ -182,9 +185,9 @@ export function Board(p: BoardProps) {
             data-x={Math.round(r.x)}
             data-y={Math.round(r.y)}
             data-slot={slot}
-            style={{ width: CARD_W, height: CARD_H, zIndex: dragging ? 1000 : hoverHand === k ? 60 : slot >= 0 ? 10 : 20 + k }}
-            initial={{ x: 60, y: p.stageH - CARD_H, scale: 0.4, rotate: -12, opacity: 0 }}
-            animate={{ x: r.x - CARD_W / 2, y: r.y - CARD_H / 2, rotate: r.rotate, scale: r.scale, opacity: 1 }}
+            style={{ width: cardW, height: cardH, zIndex: dragging ? 1000 : hoverHand === k ? 60 : slot >= 0 ? 10 : 20 + k }}
+            initial={{ x: 60, y: p.stageH - cardH, scale: 0.4, rotate: -12, opacity: 0 }}
+            animate={{ x: r.x - cardW / 2, y: r.y - cardH / 2, rotate: r.rotate, scale: r.scale, opacity: 1 }}
             transition={dragging ? { duration: 0 } : { type: 'spring', stiffness: 520, damping: 38, delay: 0 }}
             onPointerDown={onDown(k)}
             onPointerMove={onMove(k)}

@@ -30,7 +30,7 @@ export function MainMenu() {
     <div className="menu">
       <header className="menu__title panel">
         <GameIcon name="compass" size={88} />
-        <h1>BEAST TAMER</h1>
+        <h1><span>B</span>EAST <span>T</span>AMER</h1>
         <span className="ornament">✦</span>
       </header>
       <div className="menu__resource resource-badge panel">

@@ -1,0 +1,252 @@
+/* Approved 1930s ink-and-parchment art direction. Layout and game state stay in
+   their screen modules; this layer owns the shared surface/interaction style. */
+:root {
+  --bg-0: #17120f;
+  --bg-1: #efdbb5;
+  --bg-2: #e6c995;
+  --bg-3: #f6e8cb;
+  --paper: #edd6a7;
+  --paper-hi: #f6e8cb;
+  --ink: #281c13;
+  --red: #a43c2c;
+  --red-hi: #bd4b35;
+  --line: #8d6b45;
+  --gold: #9a6829;
+  --gold-hi: #382419;
+  --gold-lo: #8a5d31;
+  --text: #281c13;
+  --text-dim: #65503a;
+  --text-mute: #79634b;
+  --good: #386338;
+  --bad: #9e342b;
+  --fire: #ba5138;
+  --water: #4c8094;
+  --earth: #77834b;
+  --wind: #92729e;
+  --electric: #b99132;
+  --common: #82796b;
+  --uncommon: #58724c;
+  --rare: #426f99;
+  --epic: #815699;
+  --legendary: #ad7c26;
+  --mythic: #a63c30;
+  --ancient: #3c877d;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --radius: 18px;
+  --paper-image: url('/art/ui/parchment.svg');
+  --paper-shadow: inset 0 0 0 3px #c9a568, inset 0 0 0 5px #674526, 0 5px 0 #160e0ab0, 0 12px 26px #0005;
+}
+h1, h2, h3 { font-weight: 900; letter-spacing: -.025em; }
+button, [role='button'], select { cursor: url('/art/ui/glove.svg') 12 5, pointer; }
+button:disabled, [aria-disabled='true'] { cursor: not-allowed; }
+.game-stage { background-color: #24190f; }
+.game-stage::before { background: linear-gradient(180deg, #17110c18, transparent 45%, #17110c44); }
+.panel {
+  color: var(--ink);
+  background: var(--paper-image) repeat;
+  border: 3px solid var(--ink);
+  border-radius: 20px 17px 23px 16px;
+  box-shadow: var(--paper-shadow);
+}
+.panel::before, .panel::after {
+  width: 6px; height: 6px; background: #b88a45; border: 1.5px solid var(--ink);
+  border-radius: 50%; box-shadow: 0 1px 0 #fce2a2; z-index: 2;
+}
+.panel::before { left: 10px; top: 10px; }
+.panel::after { right: 10px; bottom: 10px; }
+.btn {
+  color: var(--ink); background: var(--paper-image) repeat;
+  border: 2px solid var(--ink); border-radius: 14px 11px 16px 12px;
+  clip-path: none; box-shadow: inset 0 0 0 2px #f8e6bc, inset 0 0 0 3px #926a38, 0 3px 0 #281c1355;
+  font-weight: 900; letter-spacing: -.02em;
+  transition: background-color .15s, transform .15s, box-shadow .15s;
+}
+.btn:hover:not(:disabled) { border-color: var(--ink); box-shadow: inset 0 0 0 2px #ffe6a6, inset 0 0 0 3px #805328, 0 0 0 2px #d9aa51, 0 4px 0 #281c1366; transform: translateY(-2px); }
+.btn:active:not(:disabled) { transform: translateY(2px); }
+.btn:disabled { opacity: .55; filter: saturate(.55); }
+.btn.primary { color: var(--paper-hi); border-color: var(--ink); background: var(--red); box-shadow: inset 0 0 0 3px #d09750, inset 0 0 0 5px #52261b, 0 4px 0 #1b110aa6; text-shadow: 1px 2px 0 #542719; }
+.btn.primary:hover:not(:disabled) { background: var(--red-hi); box-shadow: inset 0 0 0 3px #e7b565, inset 0 0 0 5px #52261b, 0 0 0 2px #efc267, 0 5px 0 #1b110aa6; }
+.btn.active { color: var(--paper-hi); background: var(--red); border-color: var(--ink); box-shadow: inset 0 0 0 2px #d5a966; }
+.btn.small { font-weight: 700; }
+.btn.primary .game-icon { color: var(--paper-hi); }
+input, select { color: var(--ink); background: #f4e4c3; border: 2px solid var(--ink); border-radius: 10px; accent-color: var(--red); }
+input::placeholder { color: #766044; }
+select option { background: var(--paper-hi); color: var(--ink); }
+button:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible { outline: 3px solid #ddab48; outline-offset: 5px; }
+.game-icon { color: var(--ink); stroke-width: 1.9; filter: none; }
+.resource-badge .game-icon { color: #8652b1; filter: drop-shadow(1px 2px 0 #42233c); }
+.resource-badge small { font-size: 14px; }
+.resource-badge b { font-size: 36px; }
+.ornament { color: #9f612c; }
+.screen-heading h2 { font-size: 42px; }
+.overlay { background: #17100bd6; backdrop-filter: blur(5px); }
+.overlay__panel { border-radius: 25px 19px 28px 22px; }
+.overlay__panel h3 { color: var(--ink); }
+.scroll { scrollbar-color: #816442 #debf88; }
+/* Main menu: the scene is the hero; the buttons each own their parchment. */
+.menu__title { top: 60px; left: 50px; width: 840px; height: 155px; justify-content: center; transform: rotate(-3deg); border-radius: 65px 25px 70px 24px; }
+.menu__title h1 { font-size: 76px; letter-spacing: -.045em; color: var(--ink); text-shadow: none; white-space: nowrap; }
+.menu__title > .game-icon { width: 62px; height: 62px; filter: none; }
+.menu__title h1 > span { color: var(--red); }
+.menu__resource { min-width: 205px; top: 36px; }
+.menu__nav.panel { top: 220px; width: 525px; padding: 0; gap: 20px; border: 0; border-radius: 0; background: none; box-shadow: none; }
+.menu__nav.panel::before, .menu__nav.panel::after { display: none; }
+.menu__btn { background: var(--paper-image) repeat; color: var(--ink); min-height: 145px; border: 3px solid var(--ink); border-radius: 25px 18px 27px 20px; box-shadow: var(--paper-shadow); padding: 20px 28px; }
+.menu__btn span:first-of-type { font-size: 43px; font-weight: 900; }
+.menu__btn small { color: #65503a; font-size: 18px; margin-top: 4px; }
+.menu__arrow { color: var(--ink); font-size: 42px; }
+.menu__btn--play { min-height: 155px; background: var(--red); color: var(--paper-hi); box-shadow: inset 0 0 0 3px #cd9b53, inset 0 0 0 5px #53281a, 0 6px 0 #1b110aa6; }
+.menu__btn--play span:first-of-type { color: var(--paper-hi); font-size: 56px; text-shadow: 2px 2px 0 #52271b; }
+.menu__btn--play small, .menu__btn--play .game-icon, .menu__btn--play .menu__arrow { color: var(--paper-hi); }
+.menu__btn:hover { border-color: var(--ink); transform: rotate(-.6deg) translateY(-2px); box-shadow: var(--paper-shadow), 0 0 0 3px #d6a348; }
+.menu__chapter { color: var(--paper-hi); text-shadow: 0 2px 2px #16100e; }
+.menu__chapter > span { color: #e8c48a; letter-spacing: .08em; }
+.menu__footer > .btn { background: var(--paper-image) repeat; min-width: 220px; height: 78px; }
+.menu__tools button, .menu__tools > span { color: #edd6b0; }
+.menu__tools button:hover { color: #ffd879; }
+.menu__footer > .menu__settings { min-width: 80px; border-radius: 50%; }
+/* Forecast and decks. No painted landscape is placed behind the weather text. */
+.plan { background: linear-gradient(#17110c22,#17110c33),url('/art/ui/board.webp') center / cover no-repeat; }
+.plan__top h2 { font-size: 42px; }
+.plan__day.weather-scene { background: var(--paper-image) repeat; }
+.plan__day::before { display: none; }
+.plan__day b, .plan__day small, .plan__weffect { color: var(--ink); }
+.plan__day small { font-weight: 900; }
+.plan__day.is-today { border-color: var(--ink); box-shadow: var(--paper-shadow),0 0 0 3px #e8b455,0 0 18px #e8b45588; }
+.weather-icon { filter: none; color: var(--ink); }
+.plan__wicon { height: 75px; margin: 3px 0; }
+.plan__wicon .weather-icon { width: 80px; height: 80px; }
+.plan__portrait { background: #e5c99b; border-radius: 50% 50% 17px 17px; border: 2px solid var(--ink); }
+.plan__portrait img { object-fit: contain; }
+.plan__deck { color: var(--ink); background: var(--paper-image) repeat; border: 2px solid var(--ink); border-radius: 13px; }
+.plan__deck.is-selected { border-color: var(--ink); box-shadow: 0 0 0 3px #dca94a,0 0 14px #e1b25077; }
+.plan__deck:hover { border-color: var(--ink); box-shadow: 0 0 0 2px #dca94a; }
+.plan__deck.is-incomplete, .plan__deck.is-incomplete:hover { border-color: var(--bad); background-color: #e4c1ad; box-shadow: inset 0 0 0 2px #a43c2c33; }
+.plan__deck.is-incomplete > p, .plan__invalidcount, .plan__deckerror, .plan__starterror { color: var(--bad); }
+.plan__deckart { opacity: 1; mask-image: linear-gradient(90deg,transparent,#000 55%); }
+.plan__deckhead > span { background: #f4e4c3e6; border: 1px solid #aa8555; border-radius: 6px; }
+.plan__bar { background: #33291f; border: 2px solid var(--ink); height: 20px; }
+.plan__bar div { background: #d9aa53; box-shadow: none; }
+.plan__actions .chip-row .btn { background: var(--paper-image) repeat; }
+.plan__start .game-icon { color: var(--paper-hi); }
+/* Collection keeps its filters and pagination on paper, but the gallery floats
+   over the darker scene like the approved references. */
+.collection { background: linear-gradient(#17110c22,#17110c22),url('/art/ui/board.webp') center / cover no-repeat; }
+.collection__catalog.panel { background: transparent; border: 0; box-shadow: none; border-radius: 0; }
+.collection__catalog.panel::before, .collection__catalog.panel::after { display: none; }
+.collection__filters, .collection__pagination { background: var(--paper-image) repeat; border: 3px solid var(--ink); border-radius: 16px; box-shadow: var(--paper-shadow); }
+.collection__filters { gap: 14px; }
+.collection__search { border: 2px solid var(--ink); border-radius: 10px; }
+.collection__search .game-icon { color: var(--ink); }
+.element-filter { background: #f3e1bb; border: 2px solid var(--ink); border-radius: 50%; box-shadow: inset 0 0 0 2px var(--element-color); }
+.element-filter.is-selected { box-shadow: inset 0 0 0 3px var(--element-color),0 0 0 3px #d9a347; outline: none; }
+.collection__grid { padding: 20px 0; gap: 18px; grid-template-columns: repeat(6,minmax(0,1fr)); grid-template-rows: repeat(2,minmax(0,1fr)); }
+.collection--decks .collection__grid { grid-template-columns: repeat(4,minmax(0,1fr)); grid-template-rows: repeat(2,minmax(0,1fr)); }
+.collection--tall .collection__grid { grid-template-columns: repeat(4,minmax(0,1fr)); grid-template-rows: repeat(3,minmax(0,1fr)); }
+.collection--tall.collection--decks .collection__grid { grid-template-columns: repeat(3,minmax(0,1fr)); grid-template-rows: repeat(4,minmax(0,1fr)); }
+.collection__cell { border: 2px solid var(--ink); border-radius: 13px; background: var(--paper-image) repeat; box-shadow: 0 5px 14px #0005; overflow: visible; }
+.collection__cell .card--sm { border-radius: 11px 11px 0 0; padding: 5px; }
+.collection__cell .card--sm .card__name { font-size: 17px; }
+.collection__cell:hover { border-color: var(--ink); box-shadow: 0 0 0 3px #dba94c,0 8px 18px #0007; }
+.collection__count { color: var(--text-dim); padding: 0 6px 4px; }
+.collection__decklist button { background: #f4e2bd; border: 2px solid var(--ink); border-radius: 8px; }
+.collection__deckrow .collection__remove { color: var(--ink); background: #e2c598; }
+.collection__remove:hover { color: var(--paper-hi); background: var(--red); }
+.collection__deckstatus { border-color: var(--bad); background: #a43c2c16; color: var(--bad); }
+.collection__deckstatus.is-ready { border-color: var(--good); background: #38633816; color: var(--good); }
+.collection__deck.is-incomplete .collection__decksize { color: var(--bad); text-shadow: none; }
+.collection__tamergallery button { background: #eed7a9; border: 2px solid var(--ink); border-radius: 12px; }
+.collection__tamergallery button.is-selected { background: #e5c78e; border-color: var(--ink); box-shadow: 0 0 0 3px #dbaa51; }
+.collection__tamer > img { border: 2px solid var(--ink); border-radius: 50%; background: var(--paper); object-fit: contain; }
+.collection__dragbanner, .collection__feedback, .collection__dragpreview { background: var(--paper-image) repeat; color: var(--ink); border: 2px solid var(--ink); border-radius: 12px; }
+.collection__dragpreview span { color: var(--ink); }
+.collection__deck > .btn:last-child, .collection__pagination > .btn:last-child { color: var(--paper-hi); background: var(--red); text-shadow: 1px 1px 0 #52271b; }
+.collection__rarityhelp { background: var(--paper-image) repeat; }
+/* Packs are drawn as reusable vector props, so all five element variants share
+   the same wrap, line weight and medallion placement. */
+.market { background: linear-gradient(#17110c11,#17110c11),url('/art/ui/board.webp') center / cover no-repeat; }
+.market__pack { background: var(--paper-image) repeat; border-radius: 22px 17px 25px 20px; }
+.market__art { background: none; min-height: 240px; }
+.market__art > svg { width: 100%; height: 100%; max-height: 415px; filter: drop-shadow(0 7px 3px #281c1333); }
+.market__price { background: #f4e4c3; border: 2px solid var(--ink); border-radius: 12px; }
+.market__price .game-icon { color: #8652b1; filter: none; }
+.market__footer { text-shadow: none; color: var(--paper-hi); }
+.market__footer > button { color: var(--ink); background: var(--paper-image) repeat; border: 2px solid var(--ink); border-radius: 12px; padding: 3px 16px; }
+.market__footer > button span { font-size: 30px; }
+.market__intro > .muted { color: #f1dfc1; text-shadow: 0 2px 2px #17110c; }
+/* Secondary screens, tutorial, help and popovers use the same readable paper. */
+.lab, .art { color: var(--paper-hi); background: linear-gradient(#21170e80,#21170e80),url('/art/ui/board.webp') center / cover no-repeat; }
+.lab__top, .art__top { color: var(--ink); background: var(--paper-image) repeat; border: 3px solid var(--ink); border-radius: 17px; box-shadow: var(--paper-shadow); }
+.lab__sub select { color: var(--ink); }
+.lab__top h2, .art__top h2 { color: var(--ink); }
+.lab__sub .muted { color: #e2caa6; }
+.lab__slotnum { color: var(--ink); border-color: var(--ink); }
+.lab__slottotal, .lab__verdict b { color: #f0cf83; }
+.lab__slot--empty { color: #f3dfb4; border-color: #d5b77c; background: #22190f66; }
+.art__drop { background: #edd6a7ed; color: var(--ink); border: 3px dashed var(--ink); }
+.card-keywords { color: var(--ink); background: var(--paper-image) repeat; border: 2px solid var(--ink); border-radius: 13px; box-shadow: 0 8px 24px #0007; }
+.card-keywords strong { color: var(--ink); }
+.howto__tab { color: var(--ink); background: #efdbb5; border: 2px solid var(--ink); border-radius: 11px; }
+.howto__tab.is-active { color: var(--paper-hi); background: var(--red); border-color: var(--ink); }
+.howto__tab.is-active .game-icon { color: var(--paper-hi); }
+.howto__element { background: color-mix(in srgb,var(--el) 12%,var(--paper-hi)); }
+.howto__element b { color: color-mix(in srgb,var(--el) 65%,var(--ink)); }
+.coach { background: var(--paper-image) repeat; border-color: var(--ink); box-shadow: var(--paper-shadow); }
+.coach__task { background: #b78d4a15; }
+.coach__task.is-ready { color: var(--good); }
+.rlog__card { color: color-mix(in srgb,var(--el,var(--ink)) 60%,var(--ink)); }
+.rlog__income, .rlog__mult, .rlog__pos, .rlog__status--rebirth, .rlog__status--reactivated { color: var(--good); }
+.rlog__neg, .rlog__dur-down, .rlog__status--exhausted { color: var(--bad); }
+.rlog__kw--howl, .rlog__kw--epilogue, .rlog__dur-up { color: #386888; }
+.rlog__kw--lastBreath, .rlog__kw--haunt { color: #70468d; }
+.rlog__kw--retrigger { color: #306b65; }
+.rlog__row:hover { background: #8b603511; }
+/* Gameplay ink badges and paper cards, with passive/active states readable
+   without relying solely on element color. */
+.run { background: linear-gradient(#17110c11,#17110c22),url('/art/ui/board.webp') center / cover no-repeat; }
+.run__day, .run__score, .run__who, .run__controls { background: var(--paper-image) repeat; }
+.run__day > span:last-child { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.run__score { padding-left: 36px; }
+.run__score > .game-icon { position: absolute; left: 12px; top: 29px; color: #8652b1; }
+.run__who:has(.run__portrait) { padding-left: 92px; min-height: 120px; }
+.run__portrait { position: absolute; left: 10px; top: 15px; width: 72px; height: 84px; object-fit: contain; background: var(--paper); border: 2px solid var(--ink); border-radius: 50%; }
+.run__round { background: var(--paper-image) repeat; border: 3px solid var(--ink); box-shadow: inset 0 0 0 4px #c49b60,0 0 0 2px #d8b677,0 6px 15px #0006; }
+.run__round.panel::before, .run__round.panel::after { display: none; }
+.run__speed .btn.active { color: var(--paper-hi); background: var(--red); box-shadow: inset 0 0 0 2px #d7ae6a; }
+.board__slot { border-color: #d9bd87aa; color: var(--paper-hi); background: #21170e44; }
+.board__slot.is-filled { border-color: transparent; background: none; }
+.board__card > .card { width: 100%; height: 100%; }
+.board__slotnum { background: var(--paper-image) repeat; color: var(--ink); border: 2px solid var(--ink); width: 44px; height: 44px; top: -52px; font-size: 27px; box-shadow: 0 0 0 2px #ddc395; }
+.board__slot.has-next::after { color: #ead2a3; text-shadow: 1px 1px 0 #20140e; }
+.board__slot.has-next::after { width: calc(100% - 20px); }
+.card.rarity-ancient { border-image: none; }
+.board__handhint { color: var(--paper-hi); background: #26190dd9; border: 1px solid #ab8855; border-radius: 12px; text-shadow: none; }
+.board__slottotal { color: #f1d490; text-shadow: 1px 2px 0 #20140e; }
+.board__link span { background: var(--paper-image) repeat; color: var(--ink); border: 1px solid var(--ink); }
+.card {
+  color: var(--ink); background: var(--paper-image) repeat; border: 3px solid var(--ink); border-radius: 17px 13px 19px 14px;
+  box-shadow: inset 0 0 0 3px var(--el),inset 0 0 0 5px #f0dbaf,0 8px 20px #0006; padding: 7px;
+}
+.card::before, .card::after { display: none; }
+.card__art { background: var(--paper); border: 0; border-radius: 9px; }
+.card__art img { object-fit: contain; }
+.card__name { background: var(--paper-image) repeat; color: var(--ink); border: 2px solid var(--ink); border-radius: 12px 4px 14px 4px; font-size: 20px; padding: 5px 3px; font-weight: 900; }
+.card--sm .card__name { font-family: var(--font-display); font-weight: 900; }
+.card__text { background: #f3e1bd; color: var(--ink); border: 1px solid #826543; border-radius: 9px; padding: 6px 8px; }
+.card__keyword, .card__kw { color: var(--ink); }
+.card__gem { background: var(--paper-hi); border: 2px solid var(--ink); box-shadow: inset 0 0 0 2px var(--el),0 2px 4px #0003; }
+.card__shield { color: var(--ink); background: var(--paper-hi); border: 2px solid var(--ink); border-radius: 6px 6px 18px 18px; font-size: 20px; font-weight: 900; }
+.card__shield .game-icon { color: var(--ink); }
+.card__shield.has-ward { border-color: #407190; box-shadow: 0 0 0 2px #88b4c4; }
+.card__type { color: var(--ink); background: #efdbb5eb; border-color: #947347; border-radius: 6px; letter-spacing: 0; }
+.card__placeholder { background: var(--paper-image) repeat; }
+.card__placeholder::before { border-color: #98754b; box-shadow: none; }
+.card__passive { color: var(--ink); background: var(--paper-hi); border: 2px solid var(--ink); border-radius: 4px; transform: translateX(-50%) rotate(-8deg); font-weight: 900; font-size: 18px; }
+.card.is-passive .card__art img, .card.is-passive .card__placeholder { filter: grayscale(.9) contrast(.8); opacity: .75; }
+.card.is-passive { border-color: #6f6659; box-shadow: inset 0 0 0 3px #aba394,0 8px 20px #0005; }
+.card.is-active { border-color: var(--ink); box-shadow: inset 0 0 0 3px var(--el),0 0 0 3px #efc164,0 0 25px #efc16499,0 14px 24px #0007; }
+.card__pole { background: #f0dbaf; color: var(--ink); border-color: var(--ink); }
+.card__income { color: #f7df99; text-shadow: -2px -2px 0 #281c13,2px -2px 0 #281c13,-2px 2px 0 #281c13,2px 2px 0 #281c13; }
+.lab__pool, .lab__log { height: 320px; }
+.lab__slot { flex: 1; min-width: 0; max-width: 270px; }
+.lab__slot > .card { width: 100%; }

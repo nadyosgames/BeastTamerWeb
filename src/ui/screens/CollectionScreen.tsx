@@ -51,7 +51,7 @@ export function CollectionScreen({ decks = false }: { decks?: boolean }) {
   const isPreset = content.deckById.has(deck.id)
   const tamerArt = artUrl('tamers', tamer.id, true)
   const counts = elementCounts(playerDeckCards(game, deck.id))
-  const pageSize = decks ? (tall ? 20 : 18) : 24
+  const pageSize = decks ? (tall ? 12 : 8) : 12
   const filtered = useMemo(() => {
     const q = query.trim().toLocaleLowerCase('tr-TR')
     const cards = content.cards.filter((c) => (!q || c.name.toLocaleLowerCase('tr-TR').includes(q)) && (!element || c.elements.includes(element)) && (!rarity || c.rarity === rarity) && (!type || c.type === type))

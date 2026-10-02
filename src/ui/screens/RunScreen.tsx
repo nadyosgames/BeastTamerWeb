@@ -14,7 +14,9 @@ import { TutorialCoach, TutorialDone } from '../tutorial/TutorialCoach.tsx'
 import { coachStep } from '../tutorial/flow.ts'
 import { TUTORIAL } from '../tutorial/script.ts'
 import { useStage } from '../stage-context.ts'
-import { WEATHER_ICON } from '../weather.ts'
+import { WeatherIcon } from '../components/WeatherIcon.tsx'
+import { GameIcon } from '../components/GameIcon.tsx'
+import { artUrl } from '../art.ts'
 import './RunScreen.css'
 
 /**
@@ -95,7 +97,7 @@ export function RunScreen() {
             <b>GÜN {dayIndex + (run.status === 'dayDone' ? 0 : 1)}</b>
             <span className="muted">{calendarLabel(run.dayIndex)}</span>
             <span>
-              {weather ? WEATHER_ICON[weather.icon] : ''} {weather?.name} · <span className="muted">{weather?.text}</span>
+              {weather && <WeatherIcon icon={weather.icon} size={30} />} {weather?.name} · <span className="muted">{weather?.text}</span>
             </span>
           </div>
         )}
@@ -107,6 +109,7 @@ export function RunScreen() {
           <small>GEÇİŞ {view.pass || '–'}</small>
         </div>
         <div className="run__score panel">
+          <GameIcon name="gem" size={34} />
           <small>{tutorial ? 'TOPLAM' : 'BUGÜN'}</small>
           <b className="gold">+{dayTotal}</b>
           {view.heat > 0 && <small>Isı {view.heat}</small>}
@@ -165,6 +168,7 @@ export function RunScreen() {
 
       {tamer ? (
         <aside className="run__who panel">
+          {artUrl('tamers', tamer.id, true) && <img className="run__portrait" src={artUrl('tamers', tamer.id, true)!} alt={tamer.name} />}
           <b>{tamer.name}</b>
           <span className="muted">{tamer.text}</span>
           <span>

@@ -1,0 +1,38 @@
+{
+  "key": "cards/thistle_ball",
+  "kind": "cards",
+  "id": "thistle_ball",
+  "name": "Diken Topu",
+  "status": "reviewed-and-imported",
+  "prompt": "Use art/style-ref/retro-run.png and retro-menu.png as the authoritative 1930s ink-and-parchment cartoon style references. Match thick black linework, flat dusty cel colors, coherent pie-cut eyes and cream paper. Draw the requested original species and correct anatomy; do not copy UI, lettering, frame, numbers or gameplay symbols. Generate and visually review ONE asset at a time. Reject and repair extra, fused or misplaced limbs, eyes or pupils before importing a master. Original 1930s hand-inked rubber-hose cartoon creature illustration for Beast Tamer, matching the approved retro-run reference. Creature: a round fluffy thistle seed creature rolling in the wind with tiny eyes. Element: wind: lavender, cream and storm-grey accents, restrained breeze, varied natural atmospheric habitats. Power level: small but sturdy, simple markings. Thick crisp warm-black contours, flat muted cel colors, simple expressive pie-cut eyes and a coherent smiling face; subtle paper grain. Full body centered on nearly bare warm cream parchment (#edd6a7), only a few small elemental ink doodles and a quiet contact shadow. No landscape or detailed scenic background. Preserve the specified species and its distinct silhouette. Anatomy quality is mandatory: one coherent head and face, exactly two properly aligned eyes unless the species explicitly differs; each pupil lies inside its own eye, one clean pie-cut notch per pupil. Every limb attaches correctly to the body; correct species-specific limb, wing, fin and tail count, no duplicated or fused paws, feet, hands, eyes, mouths, wings or tails. Use a simple clear pose rather than hiding anatomy behind effects. Keep open spaces between limbs and both wings readable. Whole body, every foot, wing and tail tip inside central 80% with breathing room. Readable at 170px. One square 1:1 illustration. No text, letters, numbers, watermark, frame, border or UI. Do not include text, letters, numbers, watermark, signature or logo. Avoid extra limbs, extra eyes or pupils, fused hands or paws, disconnected joints, deformed anatomy, blurry or cropped subjects. Creature paws stay species-appropriate; Tamer hands are clearly drawn cartoon hands. Species QC: a PLANT body made of stems, leaves, bark and roots. Do not invent a fox-like torso, fur, animal paws or tail. Walking plants may have two leaf/branch arms and two root feet, each attached to a single stem/trunk. Keep one coherent face.",
+  "references": [
+    "art/style-ref/retro-run.png",
+    "art/style-ref/retro-menu.png"
+  ],
+  "checks": [
+    "face-eyes-pupils",
+    "limb-count-and-attachments",
+    "wings-tail-and-silhouette",
+    "safe-framing",
+    "thumbnail-readability"
+  ],
+  "output": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f9c0-a137-7b43-a1a9-56c50307644d\\exec-f38e707d-f836-4f96-ac55-997469d46f52.png",
+  "master": "art/source/cards/thistle_ball.png",
+  "review": "Visually reviewed: One rounded seed body, two intact eyes, no animal limbs. Retro ink and parchment match reference. Approved.",
+  "generationPrompt": "Use art/style-ref/retro-run.png and retro-menu.png as the authoritative 1930s ink-and-parchment cartoon style references. Match thick black linework, flat dusty cel colors, coherent pie-cut eyes and cream paper. Draw the requested original species and correct anatomy; do not copy UI, lettering, frame, numbers or gameplay symbols. Generate and visually review ONE asset at a time. Reject and repair extra, fused or misplaced limbs, eyes or pupils before importing a master. Original 1930s hand-inked rubber-hose cartoon creature illustration for Beast Tamer, matching the approved retro-run reference. Creature: a round fluffy thistle seed creature rolling in the wind with tiny eyes. Element: wind: lavender, cream and storm-grey accents, restrained breeze, varied natural atmospheric habitats. Power level: small but sturdy, simple markings. Thick crisp warm-black contours, flat muted cel colors, simple expressive pie-cut eyes and a coherent smiling face; subtle paper grain. Full body centered on nearly bare warm cream parchment (#edd6a7), only a few small elemental ink doodles and a quiet contact shadow. No landscape or detailed scenic background. Preserve the specified species and its distinct silhouette. Anatomy quality is mandatory: one coherent head and face, exactly two properly aligned eyes unless the species explicitly differs; each pupil lies inside its own eye, one clean pie-cut notch per pupil. Every limb attaches correctly to the body; correct species-specific limb, wing, fin and tail count, no duplicated or fused paws, feet, hands, eyes, mouths, wings or tails. Use a simple clear pose rather than hiding anatomy behind effects. Keep open spaces between limbs and both wings readable. Whole body, every foot, wing and tail tip inside central 80% with breathing room. Readable at 170px. One square 1:1 illustration. No text, letters, numbers, watermark, frame, border or UI. Do not include text, letters, numbers, watermark, signature or logo. Avoid extra limbs, extra eyes or pupils, fused hands or paws, disconnected joints, deformed anatomy, blurry or cropped subjects. Creature paws stay species-appropriate; Tamer hands are clearly drawn cartoon hands. Species QC: a PLANT body made of stems, leaves, bark and roots. Do not invent a fox-like torso, fur, animal paws or tail. Walking plants may have two leaf/branch arms and two root feet, each attached to a single stem/trunk. Keep one coherent face. Attached screenshot ONLY visualstyle reference; new square creature illustration, no frame, UI, words or numbers. Preserve described distinct species. Round fluffy thistle seed body with two small eyes, no animal legs or face copied from golem; little drifting seeds.",
+  "reviewedAt": "2026-10-02T15:52:56.961Z",
+  "result": {
+    "key": "cards/thistle_ball",
+    "master": "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\art\\source\\cards\\thistle_ball.png",
+    "web": [
+      "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\src\\generated\\art\\cards\\thistle_ball.webp",
+      "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\src\\generated\\art\\cards\\thistle_ball@thumb.webp"
+    ],
+    "width": 1024,
+    "height": 1024,
+    "sourceSize": {
+      "width": 1254,
+      "height": 1254
+    }
+  }
+}

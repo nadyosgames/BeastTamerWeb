@@ -1,0 +1,38 @@
+{
+  "key": "cards/flock_finch",
+  "kind": "cards",
+  "id": "flock_finch",
+  "name": "Sürü İspinozu",
+  "status": "reviewed-and-imported",
+  "prompt": "Use art/style-ref/retro-run.png and retro-menu.png as the authoritative 1930s ink-and-parchment cartoon style references. Match thick black linework, flat dusty cel colors, coherent pie-cut eyes and cream paper. Draw the requested original species and correct anatomy; do not copy UI, lettering, frame, numbers or gameplay symbols. Generate and visually review ONE asset at a time. Reject and repair extra, fused or misplaced limbs, eyes or pupils before importing a master. Original 1930s hand-inked rubber-hose cartoon creature illustration for Beast Tamer, matching the approved retro-run reference. Creature: a cheerful little finch with lavender wings, part of a small flock flying together. Element: wind: lavender, cream and storm-grey accents, restrained breeze, varied natural atmospheric habitats. Power level: small, young, simple, playful. Thick crisp warm-black contours, flat muted cel colors, simple expressive pie-cut eyes and a coherent smiling face; subtle paper grain. Full body centered on nearly bare warm cream parchment (#edd6a7), only a few small elemental ink doodles and a quiet contact shadow. No landscape or detailed scenic background. Preserve the specified species and its distinct silhouette. Anatomy quality is mandatory: one coherent head and face, exactly two properly aligned eyes unless the species explicitly differs; each pupil lies inside its own eye, one clean pie-cut notch per pupil. Every limb attaches correctly to the body; correct species-specific limb, wing, fin and tail count, no duplicated or fused paws, feet, hands, eyes, mouths, wings or tails. Use a simple clear pose rather than hiding anatomy behind effects. Keep open spaces between limbs and both wings readable. Whole body, every foot, wing and tail tip inside central 80% with breathing room. Readable at 170px. One square 1:1 illustration. No text, letters, numbers, watermark, frame, border or UI. Do not include text, letters, numbers, watermark, signature or logo. Avoid extra limbs, extra eyes or pupils, fused hands or paws, disconnected joints, deformed anatomy, blurry or cropped subjects. Creature paws stay species-appropriate; Tamer hands are clearly drawn cartoon hands. Species QC: exactly TWO feathered wings and TWO taloned feet; no human arms/hands. Single head, coherent beak and two eyes. Full wings inside frame.",
+  "references": [
+    "art/style-ref/retro-run.png",
+    "art/style-ref/retro-menu.png"
+  ],
+  "checks": [
+    "face-eyes-pupils",
+    "limb-count-and-attachments",
+    "wings-tail-and-silhouette",
+    "safe-framing",
+    "thumbnail-readability"
+  ],
+  "output": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f9c0-a137-7b43-a1a9-56c50307644d\\exec-2bbe029e-a451-4824-af7a-371c2ff2ae3d.png",
+  "master": "art/source/cards/flock_finch.png",
+  "review": "Visually reviewed: Three separate finches, each with two wings and two feet; no fused bodies. Warm retro ink and cream parchment match reference. Approved.",
+  "generationPrompt": "Use art/style-ref/retro-run.png and retro-menu.png as the authoritative 1930s ink-and-parchment cartoon style references. Match thick black linework, flat dusty cel colors, coherent pie-cut eyes and cream paper. Draw the requested original species and correct anatomy; do not copy UI, lettering, frame, numbers or gameplay symbols. Generate and visually review ONE asset at a time. Reject and repair extra, fused or misplaced limbs, eyes or pupils before importing a master. Original 1930s hand-inked rubber-hose cartoon creature illustration for Beast Tamer, matching the approved retro-run reference. Creature: a cheerful little finch with lavender wings, part of a small flock flying together. Element: wind: lavender, cream and storm-grey accents, restrained breeze, varied natural atmospheric habitats. Power level: small, young, simple, playful. Thick crisp warm-black contours, flat muted cel colors, simple expressive pie-cut eyes and a coherent smiling face; subtle paper grain. Full body centered on nearly bare warm cream parchment (#edd6a7), only a few small elemental ink doodles and a quiet contact shadow. No landscape or detailed scenic background. Preserve the specified species and its distinct silhouette. Anatomy quality is mandatory: one coherent head and face, exactly two properly aligned eyes unless the species explicitly differs; each pupil lies inside its own eye, one clean pie-cut notch per pupil. Every limb attaches correctly to the body; correct species-specific limb, wing, fin and tail count, no duplicated or fused paws, feet, hands, eyes, mouths, wings or tails. Use a simple clear pose rather than hiding anatomy behind effects. Keep open spaces between limbs and both wings readable. Whole body, every foot, wing and tail tip inside central 80% with breathing room. Readable at 170px. One square 1:1 illustration. No text, letters, numbers, watermark, frame, border or UI. Do not include text, letters, numbers, watermark, signature or logo. Avoid extra limbs, extra eyes or pupils, fused hands or paws, disconnected joints, deformed anatomy, blurry or cropped subjects. Creature paws stay species-appropriate; Tamer hands are clearly drawn cartoon hands. Species QC: exactly TWO feathered wings and TWO taloned feet; no human arms/hands. Single head, coherent beak and two eyes. Full wings inside frame. The attached screenshot is ONLY a visual style reference: make a new single square creature illustration, no frame, no UI, no lettering. Use the subject's distinct species rather than copying faces/species from screenshot. Exactly THREE separate small finches, each one head, two wings, two feet, one tail. No fused flock.",
+  "reviewedAt": "2026-10-02T15:38:03.497Z",
+  "result": {
+    "key": "cards/flock_finch",
+    "master": "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\art\\source\\cards\\flock_finch.png",
+    "web": [
+      "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\src\\generated\\art\\cards\\flock_finch.webp",
+      "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\src\\generated\\art\\cards\\flock_finch@thumb.webp"
+    ],
+    "width": 1024,
+    "height": 1024,
+    "sourceSize": {
+      "width": 1254,
+      "height": 1254
+    }
+  }
+}

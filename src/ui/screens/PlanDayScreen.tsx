@@ -81,7 +81,7 @@ export function PlanDayScreen() {
           const w = content.weatherById.get(g.weekWeather[i])
           const played = weekDays.find((d) => d.dayIndex % content.calendar.daysPerWeek === i)
           return (
-            <div key={i} className={`plan__day panel weather-scene weather-scene--${w?.icon ?? 'calm'} ${i === dayInWeek ? 'is-today' : ''} ${played ? 'is-played' : ''}`} style={w && artUrl('weather', w.id) ? { backgroundImage: `linear-gradient(180deg, #08121a15, #05101bed), url("${artUrl('weather', w.id)}")`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}>
+            <div key={i} className={`plan__day panel weather-scene weather-scene--${w?.icon ?? 'calm'} ${i === dayInWeek ? 'is-today' : ''} ${played ? 'is-played' : ''}`}>
               <small>GÜN {i + 1}</small>
               <div className="plan__wicon">{w && <WeatherIcon icon={w.icon} size={62} />}</div>
               <b>{w?.name ?? '—'}</b>

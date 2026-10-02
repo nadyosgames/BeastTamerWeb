@@ -1,0 +1,44 @@
+{
+  "key": "cards/leviathan_calf",
+  "kind": "cards",
+  "id": "leviathan_calf",
+  "name": "Leviathan Yavrusu",
+  "status": "reviewed-and-imported",
+  "prompt": "Use art/style-ref/retro-run.png and retro-menu.png as the authoritative 1930s ink-and-parchment cartoon style references. Match thick black linework, flat dusty cel colors, coherent pie-cut eyes and cream paper. Draw the requested original species and correct anatomy; do not copy UI, lettering, frame, numbers or gameplay symbols. Generate and visually review ONE asset at a time. Reject and repair extra, fused or misplaced limbs, eyes or pupils before importing a master. Original 1930s hand-inked rubber-hose cartoon creature illustration for Beast Tamer, matching the approved retro-run reference. Creature: a young leviathan with deep blue armored scales and glowing bioluminescent spots, emerging from the deep. Element: water: blue, turquoise and pearl accents, calm aquatic habitats, sparse small bubbles or ripples. Power level: majestic, imposing, distinctive mature anatomy. Thick crisp warm-black contours, flat muted cel colors, simple expressive pie-cut eyes and a coherent smiling face; subtle paper grain. Full body centered on nearly bare warm cream parchment (#edd6a7), only a few small elemental ink doodles and a quiet contact shadow. No landscape or detailed scenic background. Preserve the specified species and its distinct silhouette. Anatomy quality is mandatory: one coherent head and face, exactly two properly aligned eyes unless the species explicitly differs; each pupil lies inside its own eye, one clean pie-cut notch per pupil. Every limb attaches correctly to the body; correct species-specific limb, wing, fin and tail count, no duplicated or fused paws, feet, hands, eyes, mouths, wings or tails. Use a simple clear pose rather than hiding anatomy behind effects. Keep open spaces between limbs and both wings readable. Whole body, every foot, wing and tail tip inside central 80% with breathing room. Readable at 170px. One square 1:1 illustration. No text, letters, numbers, watermark, frame, border or UI. Do not include text, letters, numbers, watermark, signature or logo. Avoid extra limbs, extra eyes or pupils, fused hands or paws, disconnected joints, deformed anatomy, blurry or cropped subjects. Creature paws stay species-appropriate; Tamer hands are clearly drawn cartoon hands. Species QC: correct species-specific limbs and tail. If bipedal, two arms and two legs; if quadrupedal, four legs. Clearly show attachment of each visible limb; no extras, fused joints, split paws or duplicated pupils.",
+  "references": [
+    "art/style-ref/retro-run.png",
+    "art/style-ref/retro-menu.png"
+  ],
+  "checks": [
+    "face-eyes-pupils",
+    "limb-count-and-attachments",
+    "wings-tail-and-silhouette",
+    "safe-framing",
+    "thumbnail-readability"
+  ],
+  "output": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f9c0-a137-7b43-a1a9-56c50307644d\\exec-bb0f6752-0715-4dcd-9f9a-4ae2d3c90b49.png",
+  "master": "art/source/cards/leviathan_calf.png",
+  "review": "Repaired four separate flippers, one tail and horned reptilian head; paired eyes (far eye partly occluded), safe paper margin. Approved.",
+  "generationPrompt": "Use art/style-ref/retro-run.png and retro-menu.png as the authoritative 1930s ink-and-parchment cartoon style references. Match thick black linework, flat dusty cel colors, coherent pie-cut eyes and cream paper. Draw the requested original species and correct anatomy; do not copy UI, lettering, frame, numbers or gameplay symbols. Generate and visually review ONE asset at a time. Reject and repair extra, fused or misplaced limbs, eyes or pupils before importing a master. Original 1930s hand-inked rubber-hose cartoon creature illustration for Beast Tamer, matching the approved retro-run reference. Creature: a young leviathan with deep blue armored scales and glowing bioluminescent spots, emerging from the deep. Element: water: blue, turquoise and pearl accents, calm aquatic habitats, sparse small bubbles or ripples. Power level: majestic, imposing, distinctive mature anatomy. Thick crisp warm-black contours, flat muted cel colors, simple expressive pie-cut eyes and a coherent smiling face; subtle paper grain. Full body centered on nearly bare warm cream parchment (#edd6a7), only a few small elemental ink doodles and a quiet contact shadow. No landscape or detailed scenic background. Preserve the specified species and its distinct silhouette. Anatomy quality is mandatory: one coherent head and face, exactly two properly aligned eyes unless the species explicitly differs; each pupil lies inside its own eye, one clean pie-cut notch per pupil. Every limb attaches correctly to the body; correct species-specific limb, wing, fin and tail count, no duplicated or fused paws, feet, hands, eyes, mouths, wings or tails. Use a simple clear pose rather than hiding anatomy behind effects. Keep open spaces between limbs and both wings readable. Whole body, every foot, wing and tail tip inside central 80% with breathing room. Readable at 170px. One square 1:1 illustration. No text, letters, numbers, watermark, frame, border or UI. Do not include text, letters, numbers, watermark, signature or logo. Avoid extra limbs, extra eyes or pupils, fused hands or paws, disconnected joints, deformed anatomy, blurry or cropped subjects. Creature paws stay species-appropriate; Tamer hands are clearly drawn cartoon hands. Species QC: correct species-specific limbs and tail. If bipedal, two arms and two legs; if quadrupedal, four legs. Clearly show attachment of each visible limb; no extras, fused joints, split paws or duplicated pupils. Input image is ONLY the approved visual style reference, not an edit target. Illustrate just the requested creature on square cream paper; no card frame/UI/text/landscape. Do not copy any reference animal's silhouette. Final species constraints: Young blue armored marine leviathan, four flippers, one tapered tail, one horned reptilian head; not an eel clone.",
+  "repairs": [
+    {
+      "source": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f9c0-a137-7b43-a1a9-56c50307644d\\exec-3e261999-20f6-4a81-aa17-f63580e563ae.png",
+      "prompt": "Edit this original marine leviathan: add the missing fourth flipper on the far rear side of the body, emerging behind the left rear flipper with a clearly separate visible tip above it. Final exactly four flippers in two pairs, no feet; one tail. Preserve head, paired eyes, spots and vintage style; slightly reduce subject scale to allow 8% paper margin all sides."
+    }
+  ],
+  "reviewedAt": "2026-10-02T14:57:01.603Z",
+  "result": {
+    "key": "cards/leviathan_calf",
+    "master": "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\art\\source\\cards\\leviathan_calf.png",
+    "web": [
+      "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\src\\generated\\art\\cards\\leviathan_calf.webp",
+      "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\src\\generated\\art\\cards\\leviathan_calf@thumb.webp"
+    ],
+    "width": 1024,
+    "height": 1024,
+    "sourceSize": {
+      "width": 1254,
+      "height": 1254
+    }
+  }
+}

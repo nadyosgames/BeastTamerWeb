@@ -7,6 +7,7 @@ import { currentWeek, useGame, weekQuota } from '../../state/game.ts'
 import { useNav } from '../../state/nav.ts'
 import { CardView } from '../components/CardView.tsx'
 import { GameIcon } from '../components/GameIcon.tsx'
+import { PackArt } from '../components/PackArt.tsx'
 import { content } from '../content.ts'
 import { ELEMENT_LABEL } from '../labels.ts'
 import './MarketScreen.css'
@@ -30,7 +31,7 @@ export function MarketScreen() {
       <section className="market__grid">
         {content.economy.packs.map((pack) => <article key={pack.id} className={`market__pack panel market__pack--${pack.id}`}>
           <h3><span>✧</span>{pack.name.toLocaleUpperCase('tr-TR')}<span>✧</span></h3>
-          <div className="market__art"><img src={`/art/ui/pack_${pack.id}${pack.element && element !== 'water' ? `_${element}` : ''}.webp`} alt={`${pack.name}${pack.element ? ` · ${ELEMENT_LABEL[element]}` : ''} kart paketi`} /></div>
+          <div className="market__art"><PackArt id={pack.id} element={element} label={`${pack.name}${pack.element ? ` · ${ELEMENT_LABEL[element]}` : ''} kart paketi`} /></div>
           {pack.element && <select aria-label="Paket elementi" value={element} onChange={(e) => setElement(e.target.value as Element)}>{ELEMENTS.map((el) => <option key={el} value={el}>{ELEMENT_LABEL[el].toLocaleUpperCase('tr-TR')}</option>)}</select>}
           <div className="market__description"><b>{pack.cards} KART</b><span>{pack.element ? `${pack.cards} ${ELEMENT_LABEL[element]} kartı` : pack.guarantee ? `En az ${pack.guarantee.count} ${pack.guarantee.rarityAtLeast === 'epic' ? 'Epic' : 'Rare'}+` : 'Eksik kart önceliği'}</span></div>
           <div className="market__price"><GameIcon name="gem" size={37} /><b>{packPrice(pack, quota, content.economy).toLocaleString('tr-TR')}</b></div>

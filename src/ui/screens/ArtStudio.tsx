@@ -92,8 +92,8 @@ export function ArtStudio() {
       </header>
 
       <div className="art__help panel">
-        <b>Akış:</b> 1) <i>Prompt'u kopyala</i> → ChatGPT'de üret (her istekte tek görsel, hep aynı sohbet) · 2) beğendiğin ilk
-        görseli <code>art/style-ref/{kind}.png</code> olarak sakla ve sonraki isteklere ekle · 3) indirilen dosyayı karta
+        <b>Akış:</b> 1) <i>Prompt'u kopyala</i> → onaylı retro referanslarla tek görsel üret · 2) gözleri ve türe uygun
+        uzuvları kontrol et; stil örneği <code>art/style-ref/{kind}.png</code> · 3) kontrol edilen dosyayı karta
         sürükle · ChatGPT boyutu <b>{content.art.kinds[kind].chatgptSize}</b> → master{' '}
         <b>
           {content.art.kinds[kind].master.width}×{content.art.kinds[kind].master.height}

@@ -9,7 +9,7 @@
         { "suffix": "", "width": 512 },
         { "suffix": "@thumb", "width": 192 }
       ],
-      "template": "Stylized hand-painted creature illustration for a collectible monster card game. Creature: {CREATURE}. Element: {ELEMENT}. Power level: {POWER}. Unique habitat: {HABITAT}. Draw the specified species accurately, with a distinct personality and correct anatomy. Harmonious natural hues; separate the subject with light and shadow, not clashing colors. Crisp well-lit creature, softly blurred lower-detail environment. Calm negative space around the whole outline and between limbs, wings or coils. Solid readable material surfaces and broad painted planes. Restrained elemental accents attached to the creature only; no surrounding wall of flames, splashes, lightning, debris or energy ribbons. Full body, both wings, every foot and tail tip inside central 75% with at least 10% breathing room on each edge; partly fold wings if necessary. Readable at 170px. Square 1:1 illustration. No text, letters, numbers, watermark, frame, border or UI."
+      "template": "Original 1930s hand-inked rubber-hose cartoon creature illustration for Beast Tamer, matching the approved retro-run reference. Creature: {CREATURE}. Element: {ELEMENT}. Power level: {POWER}. Thick crisp warm-black contours, flat muted cel colors, simple expressive pie-cut eyes and a coherent smiling face; subtle paper grain. Full body centered on nearly bare warm cream parchment (#edd6a7), only a few small elemental ink doodles and a quiet contact shadow. No landscape or detailed scenic background. Preserve the specified species and its distinct silhouette. Anatomy quality is mandatory: one coherent head and face, exactly two properly aligned eyes unless the species explicitly differs; each pupil lies inside its own eye, one clean pie-cut notch per pupil. Every limb attaches correctly to the body; correct species-specific limb, wing, fin and tail count, no duplicated or fused paws, feet, hands, eyes, mouths, wings or tails. Use a simple clear pose rather than hiding anatomy behind effects. Keep open spaces between limbs and both wings readable. Whole body, every foot, wing and tail tip inside central 80% with breathing room. Readable at 170px. One square 1:1 illustration. No text, letters, numbers, watermark, frame, border or UI."
     },
     "tamers": {
       "label": "Tamer portresi",
@@ -19,7 +19,7 @@
         { "suffix": "", "width": 512 },
         { "suffix": "@thumb", "width": 160 }
       ],
-      "template": "Stylized hand-painted character portrait for the hero selection screen of a collectible monster card game. Character: {SUBJECT}. Waist-up portrait, friendly confident expression, rich saturated colors, warm candle-lit rim lighting, subtle painterly brush texture, softly blurred background of a cozy fantasy library, portrait 2:3 composition with the face in the upper third. Original character design. No text, no letters, no logo, no watermark, no frame, no border."
+      "template": "Original 1930s hand-inked cartoon Tamer portrait matching the approved retro UI. Character: {SUBJECT}. Thick warm-black contours, flat muted cel colors, coherent expressive face and classic pie-cut eyes. Waist-up portrait on nearly bare warm cream parchment (#edd6a7), subtle paper grain. Portrait 2:3 composition, face in upper third, all visible hands and props comfortably in frame. Exactly two aligned eyes with pupils fully inside each eye; correct arms/hands, no duplicates, fused fingers or broken joints. Friendly confident personality; preserve distinctive costume and specified companion. No detailed library scene, photorealism or glossy rendering. Original character design. No text, letters, logo, watermark, frame or border."
     },
     "weather": {
       "label": "Hava durumu bandı",
@@ -29,7 +29,7 @@
         { "suffix": "", "width": 768 },
         { "suffix": "@thumb", "width": 320 }
       ],
-      "template": "Stylized hand-painted fantasy landscape banner for a card game weather calendar. Scene: {SUBJECT}. Wide panoramic composition, no characters or creatures, rich saturated colors, painterly brush texture, strong mood lighting, simple shapes that stay readable when small, important elements in the vertical middle so the image can be cropped to 16:9. No text, no letters, no logo, no watermark, no frame, no border."
+      "template": "Original 1930s hand-inked cartoon weather vignette on warm cream parchment for Beast Tamer. Weather: {SUBJECT}. Thick black contours, flat muted cel color, a few simple large symbols with clear expressive faces if appropriate, sparse atmosphere marks. Wide 16:9 composition, all symbols fully in frame, no detailed scenic landscape, no photorealism or glossy effects. No text, letters, numbers, logo, watermark, frame or border."
     }
   },
   "elements": {
@@ -48,6 +48,6 @@
     "mythic": "ancient and awe-inspiring, restrained luminous markings",
     "ancient": "primordial and awe-inspiring, grand readable form, restrained luminous markings"
   },
-  "negative": "Do not include any text, letters, numbers, watermark, signature or logo. Avoid extra limbs, deformed anatomy, blurry or cropped subjects and human hands.",
-  "styleAnchor": "Use the attached reference ONLY for polished painterly fantasy rendering and readable silhouettes. Draw the requested species and its own habitat. Do not copy the reference creature, background composition, interface or exact palette. Keep the subject's described colors and a harmonious environment; establish clear tonal separation."
+  "negative": "Do not include text, letters, numbers, watermark, signature or logo. Avoid extra limbs, extra eyes or pupils, fused hands or paws, disconnected joints, deformed anatomy, blurry or cropped subjects. Creature paws stay species-appropriate; Tamer hands are clearly drawn cartoon hands.",
+  "styleAnchor": "Use art/style-ref/retro-run.png and retro-menu.png as the authoritative 1930s ink-and-parchment cartoon style references. Match thick black linework, flat dusty cel colors, coherent pie-cut eyes and cream paper. Draw the requested original species and correct anatomy; do not copy UI, lettering, frame, numbers or gameplay symbols. Generate and visually review ONE asset at a time. Reject and repair extra, fused or misplaced limbs, eyes or pupils before importing a master."
 }

@@ -1,0 +1,48 @@
+{
+  "key": "cards/conductor_crab",
+  "kind": "cards",
+  "id": "conductor_crab",
+  "name": "İletken Yengeç",
+  "status": "reviewed-and-imported",
+  "prompt": "Use art/style-ref/retro-run.png and retro-menu.png as the authoritative 1930s ink-and-parchment cartoon style references. Match thick black linework, flat dusty cel colors, coherent pie-cut eyes and cream paper. Draw the requested original species and correct anatomy; do not copy UI, lettering, frame, numbers or gameplay symbols. Generate and visually review ONE asset at a time. Reject and repair extra, fused or misplaced limbs, eyes or pupils before importing a master. Original 1930s hand-inked rubber-hose cartoon creature illustration for Beast Tamer, matching the approved retro-run reference. Creature: a crab with copper claws connected by arcs of electricity. Element: electric: restrained gold static accents, readable solid anatomy, varied subdued natural habitats; no lightning curtain. Power level: majestic, imposing, distinctive mature anatomy. Thick crisp warm-black contours, flat muted cel colors, simple expressive pie-cut eyes and a coherent smiling face; subtle paper grain. Full body centered on nearly bare warm cream parchment (#edd6a7), only a few small elemental ink doodles and a quiet contact shadow. No landscape or detailed scenic background. Preserve the specified species and its distinct silhouette. Anatomy quality is mandatory: one coherent head and face, exactly two properly aligned eyes unless the species explicitly differs; each pupil lies inside its own eye, one clean pie-cut notch per pupil. Every limb attaches correctly to the body; correct species-specific limb, wing, fin and tail count, no duplicated or fused paws, feet, hands, eyes, mouths, wings or tails. Use a simple clear pose rather than hiding anatomy behind effects. Keep open spaces between limbs and both wings readable. Whole body, every foot, wing and tail tip inside central 80% with breathing room. Readable at 170px. One square 1:1 illustration. No text, letters, numbers, watermark, frame, border or UI. Do not include text, letters, numbers, watermark, signature or logo. Avoid extra limbs, extra eyes or pupils, fused hands or paws, disconnected joints, deformed anatomy, blurry or cropped subjects. Creature paws stay species-appropriate; Tamer hands are clearly drawn cartoon hands. Species QC: two distinct front claws and eight small walking legs, one shell/body, one coherent pair of eyes; no extra claws.",
+  "references": [
+    "art/style-ref/retro-run.png",
+    "art/style-ref/retro-menu.png"
+  ],
+  "checks": [
+    "face-eyes-pupils",
+    "limb-count-and-attachments",
+    "wings-tail-and-silhouette",
+    "safe-framing",
+    "thumbnail-readability"
+  ],
+  "output": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f9c0-a137-7b43-a1a9-56c50307644d\\exec-ddf09dbc-f95f-4972-ace1-294c504ad0cb.png",
+  "master": "art/source/cards/conductor_crab.png",
+  "review": "Reviewed final anatomy repair: eight walking legs (four per side), two claw arms and two eyes on stalks; no extra face eyes. Approved.",
+  "generationPrompt": "Use art/style-ref/retro-run.png and retro-menu.png as the authoritative 1930s ink-and-parchment cartoon style references. Match thick black linework, flat dusty cel colors, coherent pie-cut eyes and cream paper. Draw the requested original species and correct anatomy; do not copy UI, lettering, frame, numbers or gameplay symbols. Generate and visually review ONE asset at a time. Reject and repair extra, fused or misplaced limbs, eyes or pupils before importing a master. Original 1930s hand-inked rubber-hose cartoon creature illustration for Beast Tamer, matching the approved retro-run reference. Creature: a crab with copper claws connected by arcs of electricity. Element: electric: restrained gold static accents, readable solid anatomy, varied subdued natural habitats; no lightning curtain. Power level: majestic, imposing, distinctive mature anatomy. Thick crisp warm-black contours, flat muted cel colors, simple expressive pie-cut eyes and a coherent smiling face; subtle paper grain. Full body centered on nearly bare warm cream parchment (#edd6a7), only a few small elemental ink doodles and a quiet contact shadow. No landscape or detailed scenic background. Preserve the specified species and its distinct silhouette. Anatomy quality is mandatory: one coherent head and face, exactly two properly aligned eyes unless the species explicitly differs; each pupil lies inside its own eye, one clean pie-cut notch per pupil. Every limb attaches correctly to the body; correct species-specific limb, wing, fin and tail count, no duplicated or fused paws, feet, hands, eyes, mouths, wings or tails. Use a simple clear pose rather than hiding anatomy behind effects. Keep open spaces between limbs and both wings readable. Whole body, every foot, wing and tail tip inside central 80% with breathing room. Readable at 170px. One square 1:1 illustration. No text, letters, numbers, watermark, frame, border or UI. Do not include text, letters, numbers, watermark, signature or logo. Avoid extra limbs, extra eyes or pupils, fused hands or paws, disconnected joints, deformed anatomy, blurry or cropped subjects. Creature paws stay species-appropriate; Tamer hands are clearly drawn cartoon hands. Species QC: two distinct front claws and eight small walking legs, one shell/body, one coherent pair of eyes; no extra claws. Attached screenshot ONLY visualstyle reference; new square creature illustration, no frame, UI, text, numbers or scenic background. Preserve distinct species. Exactly TWO copper claw arms and EIGHT walking legs, FOUR walking legs on each side. Exactly TWO separate eye stalks with ONE eye each, no additional face eyes. No duplicate claws.",
+  "repairs": [
+    {
+      "source": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f9c0-a137-7b43-a1a9-56c50307644d\\exec-ff4f26c1-42e8-466c-bb75-8d1f788afc08.png",
+      "prompt": "Fix only excess walking-leg anatomy. The crab currently has NINE walking feet (four on image left, five on image right). Keep the four image-left legs. On image right, remove the small extra narrow leg/foot peeking from immediately behind the large foreground walking leg, between that large foreground leg and the outermost right leg. Retain exactly FOUR walking legs on image right, giving EIGHT walking legs total. Keep TWO claw arms and TWO eyes on stalks, no extra eyes. Preserve copper colors, sparks, pose and all other details. No text."
+    },
+    {
+      "source": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f9c0-a137-7b43-a1a9-56c50307644d\\exec-e1bf2a46-0256-4a8b-9301-f8dba7d09d97.png",
+      "prompt": "Correct only missing crab walking leg: current image has FOUR walking legs on image LEFT, but only THREE walking legs on image RIGHT. Keep all seven existing walking legs unchanged. ADD ONE small far-side walking leg on image RIGHT, attached to the underside of the right body, visible in the empty gap between the existing tiny under-body right foot and the large foreground right foot. After adding this one leg, final has EIGHT walking legs: four left, four right. Keep TWO claw arms and TWO eyes on stalks unchanged. No extra limbs/eyes. Preserve pose, colors, ink and parchment."
+    }
+  ],
+  "reviewedAt": "2026-10-02T16:49:40.781Z",
+  "result": {
+    "key": "cards/conductor_crab",
+    "master": "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\art\\source\\cards\\conductor_crab.png",
+    "web": [
+      "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\src\\generated\\art\\cards\\conductor_crab.webp",
+      "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\src\\generated\\art\\cards\\conductor_crab@thumb.webp"
+    ],
+    "width": 1024,
+    "height": 1024,
+    "sourceSize": {
+      "width": 1254,
+      "height": 1254
+    }
+  }
+}

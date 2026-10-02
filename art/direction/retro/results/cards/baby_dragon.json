@@ -1,0 +1,38 @@
+{
+  "key": "cards/baby_dragon",
+  "kind": "cards",
+  "id": "baby_dragon",
+  "name": "Yavru Ejder",
+  "status": "reviewed-and-imported",
+  "prompt": "Use art/style-ref/retro-run.png and retro-menu.png as the authoritative 1930s ink-and-parchment cartoon style references. Match thick black linework, flat dusty cel colors, coherent pie-cut eyes and cream paper. Draw the requested original species and correct anatomy; do not copy UI, lettering, frame, numbers or gameplay symbols. Generate and visually review ONE asset at a time. Reject and repair extra, fused or misplaced limbs, eyes or pupils before importing a master. Original 1930s hand-inked rubber-hose cartoon creature illustration for Beast Tamer, matching the approved retro-run reference. Creature: a chubby baby red dragon with tiny wings puffing a small flame, playful expression. Element: fire: restrained amber accents on the subject; preserve its described colors, natural tan, brown, grey or muted olive habitat is allowed; not every background is red. Power level: small, young, simple, playful. Thick crisp warm-black contours, flat muted cel colors, simple expressive pie-cut eyes and a coherent smiling face; subtle paper grain. Full body centered on nearly bare warm cream parchment (#edd6a7), only a few small elemental ink doodles and a quiet contact shadow. No landscape or detailed scenic background. Preserve the specified species and its distinct silhouette. Anatomy quality is mandatory: one coherent head and face, exactly two properly aligned eyes unless the species explicitly differs; each pupil lies inside its own eye, one clean pie-cut notch per pupil. Every limb attaches correctly to the body; correct species-specific limb, wing, fin and tail count, no duplicated or fused paws, feet, hands, eyes, mouths, wings or tails. Use a simple clear pose rather than hiding anatomy behind effects. Keep open spaces between limbs and both wings readable. Whole body, every foot, wing and tail tip inside central 80% with breathing room. Readable at 170px. One square 1:1 illustration. No text, letters, numbers, watermark, frame, border or UI. Do not include text, letters, numbers, watermark, signature or logo. Avoid extra limbs, extra eyes or pupils, fused hands or paws, disconnected joints, deformed anatomy, blurry or cropped subjects. Creature paws stay species-appropriate; Tamer hands are clearly drawn cartoon hands. Species QC: one head, one tail; if the described dragon is winged, exactly two wings and four correctly attached limbs, all separately readable. If serpentine, preserve one continuous long body without inventing mammal limbs.",
+  "references": [
+    "art/style-ref/retro-run.png",
+    "art/style-ref/retro-menu.png"
+  ],
+  "checks": [
+    "face-eyes-pupils",
+    "limb-count-and-attachments",
+    "wings-tail-and-silhouette",
+    "safe-framing",
+    "thumbnail-readability"
+  ],
+  "output": "C:\\Users\\canbe\\.codex\\generated_images\\01a0f9c0-a137-7b43-a1a9-56c50307644d\\exec-02e085a3-48c3-495c-b5a8-4f122887d5d8.png",
+  "master": "art/source/cards/baby_dragon.png",
+  "review": "Four separate feet, two wing tips (far wing partly behind head), one tail, coherent two eyes and two horns. Approved.",
+  "generationPrompt": "Use art/style-ref/retro-run.png and retro-menu.png as the authoritative 1930s ink-and-parchment cartoon style references. Match thick black linework, flat dusty cel colors, coherent pie-cut eyes and cream paper. Draw the requested original species and correct anatomy; do not copy UI, lettering, frame, numbers or gameplay symbols. Generate and visually review ONE asset at a time. Reject and repair extra, fused or misplaced limbs, eyes or pupils before importing a master. Original 1930s hand-inked rubber-hose cartoon creature illustration for Beast Tamer, matching the approved retro-run reference. Creature: a chubby baby red dragon with tiny wings puffing a small flame, playful expression. Element: fire: restrained amber accents on the subject; preserve its described colors, natural tan, brown, grey or muted olive habitat is allowed; not every background is red. Power level: small, young, simple, playful. Thick crisp warm-black contours, flat muted cel colors, simple expressive pie-cut eyes and a coherent smiling face; subtle paper grain. Full body centered on nearly bare warm cream parchment (#edd6a7), only a few small elemental ink doodles and a quiet contact shadow. No landscape or detailed scenic background. Preserve the specified species and its distinct silhouette. Anatomy quality is mandatory: one coherent head and face, exactly two properly aligned eyes unless the species explicitly differs; each pupil lies inside its own eye, one clean pie-cut notch per pupil. Every limb attaches correctly to the body; correct species-specific limb, wing, fin and tail count, no duplicated or fused paws, feet, hands, eyes, mouths, wings or tails. Use a simple clear pose rather than hiding anatomy behind effects. Keep open spaces between limbs and both wings readable. Whole body, every foot, wing and tail tip inside central 80% with breathing room. Readable at 170px. One square 1:1 illustration. No text, letters, numbers, watermark, frame, border or UI. Do not include text, letters, numbers, watermark, signature or logo. Avoid extra limbs, extra eyes or pupils, fused hands or paws, disconnected joints, deformed anatomy, blurry or cropped subjects. Creature paws stay species-appropriate; Tamer hands are clearly drawn cartoon hands. Species QC: one head, one tail; if the described dragon is winged, exactly two wings and four correctly attached limbs, all separately readable. If serpentine, preserve one continuous long body without inventing mammal limbs. Attached image is ONLY linework, flat cel color and paper style reference. Do not copy fox species unless explicitly requested. Draw only the specified subject with original distinct silhouette. Whole body readable in square, all limb and wing tips within safe margins, no clothes, no letters/frame or badges. Dragon has exactly FOUR legs plus TWO wings and ONE tail; show both wing tips, no duplicated hands or head.",
+  "reviewedAt": "2026-10-02T13:24:45.396Z",
+  "result": {
+    "key": "cards/baby_dragon",
+    "master": "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\art\\source\\cards\\baby_dragon.png",
+    "web": [
+      "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\src\\generated\\art\\cards\\baby_dragon.webp",
+      "C:\\Users\\canbe\\Documents\\Github\\BeastTamerWeb\\src\\generated\\art\\cards\\baby_dragon@thumb.webp"
+    ],
+    "width": 1024,
+    "height": 1024,
+    "sourceSize": {
+      "width": 1254,
+      "height": 1254
+    }
+  }
+}

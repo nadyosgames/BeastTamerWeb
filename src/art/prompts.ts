@@ -49,8 +49,8 @@ export function weatherPrompt(weather: WeatherDef, art: ArtConfig): string {
 }
 
 /**
- * ChatGPT'ye yapıştırılacak tam metin. Stil referansı ilk beğenilen görseldir
- * (art/style-ref/<kind>.png): aynı sohbette ya da yeniden yükleyerek kullanılır.
+ * Tam üretim metni. Yetkili stil referansları retro-run.png ve retro-menu.png'dir;
+ * art/style-ref/<kind>.png güncel onaylı tekil çizim örneğini içerir.
  */
 export function fullPrompt(asset: ArtAssetRef, art: ArtConfig, withStyleAnchor: boolean): string {
   return [withStyleAnchor ? art.styleAnchor : null, asset.prompt, art.negative].filter(Boolean).join(' ')
