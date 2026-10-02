@@ -8,6 +8,7 @@ import { createRng, shuffle } from '../../core/rng.ts'
 import type { CardDef } from '../../core/types.ts'
 import { masterArranger } from '../../sim/arrangers.ts'
 import { useNav } from '../../state/nav.ts'
+import { RoundLog } from '../run/RoundLog.tsx'
 import { CardView } from '../components/CardView.tsx'
 import { useRoundPlayback, type Speed } from '../playback/useRoundPlayback.ts'
 import './LabScreen.css'
@@ -172,6 +173,7 @@ export function LabScreen() {
                 <CardView
                   card={c}
                   durability={run ? view.slots[i]?.durability : undefined}
+                  maxDurability={run ? view.slots[i]?.maxDurability : undefined}
                   passive={run ? view.slots[i]?.passive : false}
                   ward={run ? view.slots[i]?.ward : undefined}
                   active={run ? view.active === i : selected === i}
@@ -236,7 +238,7 @@ export function LabScreen() {
         ))}
       </section>
 
-      <aside className="lab__log panel scroll">
+      <aside className="lab__log panel">
         {view.passTotals.length > 0 && (
           <div className="lab__passes">
             {view.passTotals.map((t, i) => (
@@ -246,14 +248,14 @@ export function LabScreen() {
             ))}
           </div>
         )}
-        {view.log.length ? (
-          view.log.map((l, i) => <div key={i}>{l}</div>)
-        ) : (
-          <div className="muted">
+        <RoundLog
+          view={view}
+          cards={shown}
+          empty={<div className="muted">
             Havuzdan kart tıkla → slota eklenir. Slottaki iki kartı sırayla tıkla → yer değiştirir. Başlat ile motorun olay
             akışını izle; olay kaydı burada.
-          </div>
-        )}
+          </div>}
+        />
       </aside>
     </div>
   )

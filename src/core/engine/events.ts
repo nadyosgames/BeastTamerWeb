@@ -23,7 +23,7 @@ export type RoundEvent =
   | { t: 'exhausted'; slot: number }
   | { t: 'rebirth'; slot: number }
   | { t: 'reactivated'; slot: number }
-  | { t: 'heat'; value: number }
+  | { t: 'heat'; value: number; slot: number }
   | { t: 'passEnd'; pass: number }
   | { t: 'cap' }
   | { t: 'roundEnd'; total: number; triggers: number; passes: number }

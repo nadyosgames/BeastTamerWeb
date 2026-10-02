@@ -1,0 +1,63 @@
+/* Kapsayıcı (run__log, lab__log) dikey flex; kayıt kalan alanı doldurup kendi içinde kayar. */
+.run__log, .lab__log { display: flex; flex-direction: column; min-height: 0; }
+.rlog {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 15px;
+  line-height: 1.35;
+}
+.rlog__section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 3px;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.rlog__section:first-child { margin-top: 0; }
+.rlog__section::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold-lo), transparent); order: 1; }
+.rlog__section b { order: 2; color: var(--gold-hi); font-size: 15px; letter-spacing: 0; }
+.rlog__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  padding: 2px 6px;
+  border-left: 2px solid transparent;
+}
+.rlog__row:hover { background: #ffffff08; border-left-color: var(--gold-lo); }
+.rlog__sub { padding-left: 18px; font-size: 14px; }
+.rlog__arrow { color: var(--text-mute); }
+.rlog__card { font-weight: 700; color: color-mix(in srgb, var(--el, var(--text)) 55%, #fff); }
+.rlog__kw { font-weight: 700; color: var(--gold-hi); }
+.rlog__kw--howl, .rlog__kw--epilogue { color: #9fd8ff; }
+.rlog__kw--lastBreath, .rlog__kw--haunt { color: #c9a8ff; }
+.rlog__kw--retrigger { color: #7ef0e0; }
+.rlog__income { font-weight: 700; color: #8fe08a; }
+.rlog__income.is-zero { color: var(--text-mute); }
+.rlog__why { color: var(--text-mute); font-size: 13px; }
+.rlog__why i { font-style: normal; font-weight: 700; }
+.rlog__mult, .rlog__pos { color: #8fe08a; }
+.rlog__neg { color: #ff8f7a; }
+.rlog__cost { margin-left: auto; color: var(--text-mute); font-size: 13px; white-space: nowrap; }
+.rlog__dur-up { color: #9fd8ff; font-weight: 700; }
+.rlog__dur-down { color: #ff8f7a; font-weight: 700; }
+.rlog__heat { color: var(--fire); font-weight: 700; }
+.rlog__by { color: var(--text-mute); font-size: 13px; }
+.rlog__status { font-size: 14px; color: var(--text-dim); }
+.rlog__status--exhausted { color: #ff8f7a; }
+.rlog__status--rebirth, .rlog__status--reactivated { color: #8fe08a; }
+.rlog__end {
+  margin-top: 8px;
+  padding: 6px 8px;
+  border-top: 1px solid var(--gold-lo);
+  color: var(--text-dim);
+}
+.rlog__end b { color: var(--gold-hi); font-size: 17px; }

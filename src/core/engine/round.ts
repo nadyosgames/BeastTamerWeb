@@ -260,7 +260,7 @@ function evaluate(
       case 'addHeat':
         if (evalCond(rs, s, e.if, env)) {
           rs.heat += e.amount
-          rs.emit?.({ t: 'heat', value: rs.heat })
+          rs.emit?.({ t: 'heat', value: rs.heat, slot: s.index })
         }
         break
       case 'addDurability':

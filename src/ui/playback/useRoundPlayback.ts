@@ -33,7 +33,7 @@ export function useRoundPlayback(cards: readonly CardDef[], events: Events, spee
       let next = viewRef.current ?? initialView(cards)
       while (idx.current < events.length) {
         const e = events[idx.current++]
-        next = applyEvent(next, e, cards)
+        next = applyEvent(next, e)
         if (isBeat(e)) break
       }
       viewRef.current = next
@@ -51,7 +51,7 @@ export function useRoundPlayback(cards: readonly CardDef[], events: Events, spee
     if (!events) return
     if (timer.current !== null) window.clearTimeout(timer.current)
     let next = viewRef.current ?? initialView(cards)
-    while (idx.current < events.length) next = applyEvent(next, events[idx.current++], cards)
+    while (idx.current < events.length) next = applyEvent(next, events[idx.current++])
     viewRef.current = next
     setState({ events, view: next })
   }, [events, cards])

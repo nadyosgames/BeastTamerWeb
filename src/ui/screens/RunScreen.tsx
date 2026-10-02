@@ -8,6 +8,7 @@ import { remainingCards, useRun } from '../../state/run.ts'
 import { content } from '../content.ts'
 import { useRoundPlayback, type Speed } from '../playback/useRoundPlayback.ts'
 import { Board } from '../run/Board.tsx'
+import { RoundLog } from '../run/RoundLog.tsx'
 import { useStage } from '../stage-context.ts'
 import { WEATHER_ICON } from '../weather.ts'
 import './RunScreen.css'
@@ -127,13 +128,8 @@ export function RunScreen() {
               <div className="run__resultline">Tur oynanıyor…</div>
             )}
           </div>
-          <div className="run__log panel scroll">
-            {view.log
-              .slice(-40)
-              .reverse()
-              .map((l, i) => (
-                <div key={i}>{l}</div>
-              ))}
+          <div className="run__log panel">
+            <RoundLog view={view} cards={run.arrangement} />
           </div>
         </section>
       )}

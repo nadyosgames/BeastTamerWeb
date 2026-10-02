@@ -20,6 +20,8 @@ const TYPE_NAME: Record<CardDef['type'], string> = { beast: 'Beast', ghost: 'Gho
 export interface CardViewProps {
   card: CardDef
   durability?: number
+  /** Tur içinde dayanıklılık kazanan kartın kalkan paydası (verilmezse basılı dayanıklılık). */
+  maxDurability?: number
   passive?: boolean
   active?: boolean
   /** Son tetik geliri (+N balonu). `pulse` değişince animasyon yeniden oynar. */
@@ -34,7 +36,7 @@ export interface CardViewProps {
   keywordTooltip?: boolean
 }
 
-export function CardView({ card, durability, passive, active, income, pulse, ward, size = 'md', onClick, actionLabel, hoverPreview = false, keywordTooltip = true }: CardViewProps) {
+export function CardView({ card, durability, maxDurability, passive, active, income, pulse, ward, size = 'md', onClick, actionLabel, hoverPreview = false, keywordTooltip = true }: CardViewProps) {
   const anchor = useRef<HTMLDivElement>(null)
   const timer = useRef<number | undefined>(undefined)
   const tooltipId = useId()
@@ -90,7 +92,7 @@ export function CardView({ card, durability, passive, active, income, pulse, war
       <span className="card__rarity"><RarityBadge rarity={card.rarity} size={size === 'sm' ? 42 : 44} /></span>
       <div className={`card__shield ${ward ? 'has-ward' : ''}`} title="Dayanıklılık">
         {size === 'md' && <GameIcon name="shield" size={23} />}
-        {durability !== undefined ? `${dur}/${card.durability}` : card.durability}
+        {durability !== undefined ? `${dur}/${maxDurability ?? card.durability}` : card.durability}
       </div>
       {card.polarity && (
         <>

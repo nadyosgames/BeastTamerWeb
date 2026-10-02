@@ -194,6 +194,7 @@ export function Board(p: BoardProps) {
             <CardView
               card={card}
               durability={v?.durability}
+              maxDurability={v?.maxDurability}
               passive={v?.passive}
               ward={v?.ward}
               active={!arrange && p.view.active === slot}
