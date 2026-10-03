@@ -43,10 +43,12 @@ export function RarityBadge({ rarity, label = false, size = 40 }: { rarity: Rari
         <path d={`M${points([table[table.length - 1]])}L${points([table[0]])}L${points([table[1]])}`} fill="none" stroke="#fff" strokeOpacity=".8" strokeWidth="1.3" strokeLinecap="round" />
         <polygon points={points(vertices)} fill="none" stroke="#c6a875" strokeWidth="2.3" strokeLinejoin="round" />
       </> : <>
-        <ellipse cx="24" cy="24" rx="15" ry="17" fill="#c6a875" stroke="#271b12" strokeWidth="4" />
-        <ellipse cx="24" cy="24" rx="12.5" ry="14.5" fill="var(--rarity-color)" stroke="#c6a875" strokeWidth="1.5" />
-        <path d="M15 25C14 18 18 13 24 13" fill="none" stroke="#fff" strokeOpacity=".7" strokeWidth="2" strokeLinecap="round" />
-        <path d="M21 35C27 37 32 31 32 26" fill="none" stroke="#08131d" strokeOpacity=".5" strokeWidth="2" strokeLinecap="round" />
+        <path d="m24 3 14 17-5 16-9 9-9-9-5-16Z" fill="#d5cec1" stroke="#271b12" strokeWidth="3" strokeLinejoin="round" />
+        <path d="m24 7 10 14-4 13-6 7-6-7-4-13Z" fill="#999b96" />
+        <path d="m24 7-4 15 4 19 6-7 4-13Z" fill="#d8d9ce" />
+        <path d="m24 7-10 14 6 1Z" fill="#f6f4e8" />
+        <path d="m14 21 4 13 6 7-4-19Z" fill="#636b69" />
+        <path d="m24 7-4 15 4 19m-10-20 6 1 14-1" fill="none" stroke="#4b514e" strokeWidth="1" />
       </>}
     </svg>
     {label && <span>{RARITY_LABEL[rarity]}</span>}

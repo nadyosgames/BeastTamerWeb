@@ -55,7 +55,7 @@ export function CardView({ card, durability, maxDurability, passive, active, inc
   return (
     <div
       ref={anchor}
-      className={`card card--${size} rarity-${card.rarity} ${cardTextParagraphs(card.text).length > 2 ? 'card--many-rules' : ''} ${passive ? 'is-passive' : ''} ${active ? 'is-active' : ''} ${onClick ? 'is-clickable' : ''}`}
+      className={`card card--${size} card--${el} ${card.elements.length > 1 ? 'card--dual' : ''} rarity-${card.rarity} ${cardTextParagraphs(card.text).length > 2 ? 'card--many-rules' : ''} ${passive ? 'is-passive' : ''} ${active ? 'is-active' : ''} ${onClick ? 'is-clickable' : ''}`}
       style={{ ['--el' as string]: `var(--${el})`, ['--el2' as string]: `var(--${card.elements[1] ?? el})` }}
       onClick={onClick}
       role={onClick ? 'button' : undefined}
@@ -85,7 +85,7 @@ export function CardView({ card, durability, maxDurability, passive, active, inc
       <div className="card__gems">
         {card.elements.map((e) => (
           <div key={e} className="card__gem" style={{ ['--el' as string]: `var(--${e})` }}>
-            <ElementIcon element={e} size={size === 'sm' ? 18 : 24} />
+            <ElementIcon element={e} size={size === 'sm' ? 52 : 58} />
           </div>
         ))}
       </div>
@@ -101,7 +101,7 @@ export function CardView({ card, durability, maxDurability, passive, active, inc
         </>
       )}
 
-      <div className="card__name">{card.name}</div>
+      <div className={`card__name ${card.name.length > 18 ? 'card__name--long' : ''}`}>{card.name}</div>
       {size === 'md' && (
         <div className="card__text">
           <CardText text={card.text} paragraphs />

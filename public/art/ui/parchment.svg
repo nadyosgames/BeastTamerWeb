@@ -1,1 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".11"/></feComponentTransfer></filter><path fill="#edd6a7" d="M0 0h256v256H0z"/><path fill="#6d4728" filter="url(#grain)" d="M0 0h256v256H0z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".5" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".17"/></feComponentTransfer></filter>
+    <filter id="mottle"><feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="3" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 .49 0 0 0 0 .30 0 0 0 0 .13 0 0 0 .18 0"/></filter>
+  </defs>
+  <path fill="#efd7a7" d="M0 0h256v256H0z"/>
+  <path filter="url(#mottle)" d="M0 0h256v256H0z"/>
+  <path filter="url(#grain)" d="M0 0h256v256H0z"/>
+</svg>

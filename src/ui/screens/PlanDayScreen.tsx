@@ -6,6 +6,7 @@ import { playerDeck, playerDeckCards, playerDecks, playerDeckStatus } from '../.
 import { CardView } from '../components/CardView.tsx'
 import { ElementIcon } from '../components/ElementIcon.tsx'
 import { GameIcon } from '../components/GameIcon.tsx'
+import { IllustratedHeader } from '../components/IllustratedHeader.tsx'
 import { WeatherIcon } from '../components/WeatherIcon.tsx'
 import { artUrl } from '../art.ts'
 import { useStage } from '../stage-context.ts'
@@ -65,16 +66,9 @@ export function PlanDayScreen() {
 
   return (
     <div className={`plan${tall ? ' plan--tall' : ''}`}>
-      <header className="plan__top panel">
-        <button className="btn small" onClick={() => go('menu')}>
-          ← GERİ
-        </button>
-        <GameIcon name="compass" size={44} /><h2>GÜNÜ PLANLA</h2>
-        <span className="muted">{calendarLabel(g.dayIndex)}</span>
-        <span className="plan__lifetime">
-          Toplam kazanç <b>{g.lifetime.toLocaleString('tr-TR')}</b>
-        </span>
-      </header>
+      <IllustratedHeader title="GÜNÜ PLANLA" resource={g.lifetime}>
+        <button className="btn" onClick={() => go('menu')}>⬅ GERİ</button>
+      </IllustratedHeader>
 
       <section className="plan__week">
         {Array.from({ length: content.calendar.daysPerWeek }, (_, i) => {
@@ -93,7 +87,7 @@ export function PlanDayScreen() {
       </section>
 
       <section className="plan__tamer panel">
-          <h3><span className="ornament">✧</span> DESTENİN TAMER'I</h3>
+          <h3>TAMER</h3>
         <div className="plan__portrait">
           {artUrl('tamers', tamer.id) ? <img src={artUrl('tamers', tamer.id)!} alt={tamer.name} /> : <><GameIcon name="shield" size={120} /><span>{tamer.name}</span></>}
         </div>
@@ -101,24 +95,27 @@ export function PlanDayScreen() {
           <div className="plan__tamername">{tamer.name}</div>
         </div>
         <div className={activeDeckStatus.ready ? 'muted' : 'plan__invalidcount'}>
-          {deckSize} / {tamer.deckSize} KART · {tamer.slots} SLOT
+          {tamer.slots} SLOT · {deckSize} / {tamer.deckSize} KART
         </div>
         <p className="plan__passive">{tamer.text}</p>
-        <button className="btn small" onClick={() => go('decks')}>DESTEYİ DÜZENLE →</button>
+        <button className="btn" onClick={() => go('decks')}>TAMER SEÇ</button>
       </section>
 
-      <section className="plan__decks panel">
-        <h3><GameIcon name="cards" size={30} /> DESTE SEÇ <span className="plan__deckhint">Havaya uygun desteni seç</span></h3>
+      <section className="plan__decks" aria-label="Deste seç">
         <div className="plan__deckgrid">
           {decks.map(({ d, cards, showcase }) => {
             const deckTamer = content.tamer(d.tamer)
             const fit = deckWeatherPct(cards, weather)
             const counts = elementCounts(cards)
+            const dominant = ELEMENTS.reduce((best, el) => (counts[el] ?? 0) > (counts[best] ?? 0) ? el : best, ELEMENTS[0])
+            const deckElements = ELEMENTS.filter((el) => (counts[el] ?? 0) > 0)
+            const mixed = deckElements.length > 1 && (counts[dominant] ?? 0) < cards.length / 2
             const status = playerDeckStatus(g, d.id)
             return (
               <div
                 key={d.id}
                 className={`plan__deck ${g.deckId === d.id && status.ready ? 'is-selected' : ''} ${!status.ready ? 'is-incomplete' : ''}`}
+                style={{ ['--deck-element' as string]: mixed ? '#a59372' : `var(--${dominant})` }}
                 role="button"
                 tabIndex={0}
                 aria-pressed={g.deckId === d.id && status.ready}
@@ -138,6 +135,7 @@ export function PlanDayScreen() {
                     {fit.toFixed(0)}%
                   </span>
                 </div>
+                <div className={`plan__deckmedallion ${mixed ? 'plan__deckmedallion--mixed' : ''}`}>{(mixed ? deckElements.slice(0, 3) : [dominant]).map((el) => <ElementIcon key={el} element={el} size={mixed ? 47 : 90} />)}</div>
                 <div className="plan__decktamer"><GameIcon name="shield" size={18} />{deckTamer.name} · {deckTamer.slots} slot</div>
                 <div className="plan__elements">
                   {ELEMENTS.filter((e) => counts[e]).map((e) => (
@@ -165,7 +163,7 @@ export function PlanDayScreen() {
 
       <section className="plan__quota panel">
         <div className="plan__quotahead">
-          <GameIcon name="star" size={42} /><b>HAFTALIK KOTA</b>
+          <GameIcon name="scroll" size={42} /><b>HAFTALIK KOTA</b>
           <span>
             {g.weekIncome.toLocaleString('tr-TR')} / {quota.toLocaleString('tr-TR')}
           </span>
@@ -186,9 +184,9 @@ export function PlanDayScreen() {
       <section className="plan__actions">
         {!activeDeckStatus.ready && <p className="plan__starterror" role="status">{activeDeckStatus.reason}. Tam bir deste seç.</p>}
         <button className="btn primary plan__start" onClick={begin} disabled={!weather || !activeDeckStatus.ready}>
-          <GameIcon name="compass" size={52} /> GÜNÜ BAŞLAT
+          GÜNÜ BAŞLAT
         </button>
-        <div className="chip-row">
+        <details className="plan__tools"><summary>{calendarLabel(g.dayIndex)} · Seçenekler</summary><div className="chip-row">
           <button className="btn small" onClick={() => setHelp(true)}>
             Nasıl oynanır
           </button>
@@ -203,7 +201,7 @@ export function PlanDayScreen() {
           >
             Sıfırla
           </button>
-        </div>
+        </div></details>
       </section>
 
       {viewDeck && (

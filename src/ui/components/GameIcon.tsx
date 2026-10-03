@@ -1,6 +1,7 @@
-export type GameIconName = 'compass' | 'swords' | 'cards' | 'book' | 'shop' | 'scroll' | 'settings' | 'gem' | 'shield' | 'search' | 'star' | 'lock'
+export type GameIconName = 'compass' | 'swords' | 'cards' | 'book' | 'shop' | 'scroll' | 'settings' | 'gem' | 'shield' | 'search' | 'star' | 'lock' | 'pencil'
 
 const paths: Record<GameIconName, string> = {
+  pencil: 'm4 16 12-12 4 4L8 20l-6 2 2-6Zm10-10 4 4M4 16l4 4M2 22l4-1M16 4l2-2 4 4-2 2',
   compass: 'M12 1v3m0 16v3M1 12h3m16 0h3M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16ZM15 9l-2 4-4 2 2-4 4-2Z',
   swords: 'm3 2 13 13-2 2L1 4l2-2Zm18 0L8 15l2 2L23 4l-2-2ZM12 17l5-5m-6 7 3-3m-7-4 5 5M3 21l5-5m13 5-5-5M1 19l4 4m14 0 4-4',
   cards: 'm4 6-2 14 10 2 2-14-10-2Zm4-3L6 6m2-3 10 2-1 12M12 1l10 4-4 13',
