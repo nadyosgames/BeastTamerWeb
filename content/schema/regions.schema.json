@@ -5,53 +5,36 @@
     "$schema": {
       "type": "string"
     },
-    "daysPerWeek": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 9007199254740991
-    },
-    "weeksPerMonth": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 9007199254740991
-    },
-    "monthsPerYear": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 9007199254740991
-    },
-    "yearsPerCycle": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 9007199254740991
-    },
-    "cycles": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 9007199254740991
-    },
-    "weatherRules": {
+    "world": {
       "type": "object",
       "properties": {
-        "minDistinctPerWeek": {
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 9007199254740991
+        "name": {
+          "type": "string"
         },
-        "maxSameInARow": {
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 9007199254740991
+        "size": {
+          "type": "array",
+          "prefixItems": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          ],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2
         }
       },
       "required": [
-        "minDistinctPerWeek",
-        "maxSameInARow"
+        "name",
+        "size"
       ],
       "additionalProperties": false
     },
-    "zodiac": {
-      "minItems": 1,
+    "regions": {
       "type": "array",
       "items": {
         "type": "object",
@@ -63,7 +46,90 @@
           "name": {
             "type": "string"
           },
-          "albumPassive": {
+          "text": {
+            "type": "string"
+          },
+          "level": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 9007199254740991
+          },
+          "biome": {
+            "type": "string",
+            "enum": [
+              "volcanic",
+              "coast",
+              "forest",
+              "highlands",
+              "desert",
+              "caves",
+              "marsh",
+              "summit"
+            ]
+          },
+          "unlock": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "start"
+                  }
+                },
+                "required": [
+                  "kind"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "finals"
+                  },
+                  "regions": {
+                    "minItems": 1,
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "kind",
+                  "regions"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          },
+          "elements": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "fire",
+                "water",
+                "earth",
+                "wind",
+                "electric"
+              ]
+            }
+          },
+          "climate": {
+            "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "buff": {
             "type": "object",
             "properties": {
               "text": {
@@ -123,6 +189,31 @@
                       "required": [
                         "kind",
                         "amount"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "slumberAtStart"
+                        },
+                        "passes": {
+                          "type": "integer",
+                          "minimum": 2,
+                          "maximum": 9007199254740991
+                        },
+                        "filter": {
+                          "$ref": "#/$defs/__schema0"
+                        },
+                        "if": {
+                          "$ref": "#/$defs/__schema1"
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "passes"
                       ],
                       "additionalProperties": false
                     },
@@ -209,9 +300,6 @@
                     }
                   ]
                 }
-              },
-              "duplicateBonusPct": {
-                "type": "number"
               }
             },
             "required": [
@@ -219,27 +307,279 @@
               "modifiers"
             ],
             "additionalProperties": false
+          },
+          "area": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            ],
+            "items": false,
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "map": {
+            "type": "object",
+            "properties": {
+              "camp": {
+                "type": "array",
+                "prefixItems": [
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  }
+                ],
+                "items": false,
+                "minItems": 2,
+                "maxItems": 2
+              },
+              "paths": {
+                "type": "array",
+                "items": {
+                  "type": "array",
+                  "prefixItems": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "items": false,
+                  "minItems": 2,
+                  "maxItems": 2
+                }
+              },
+              "features": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "river"
+                        },
+                        "points": {
+                          "minItems": 2,
+                          "type": "array",
+                          "items": {
+                            "type": "array",
+                            "prefixItems": [
+                              {
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 1
+                              },
+                              {
+                                "type": "number",
+                                "minimum": 0,
+                                "maximum": 1
+                              }
+                            ],
+                            "items": false,
+                            "minItems": 2,
+                            "maxItems": 2
+                          }
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "points"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "lake"
+                        },
+                        "pos": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 1
+                            },
+                            {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 1
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "size": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number",
+                              "exclusiveMinimum": 0
+                            },
+                            {
+                              "type": "number",
+                              "exclusiveMinimum": 0
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "pos",
+                        "size"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "landmark"
+                        },
+                        "style": {
+                          "type": "string",
+                          "enum": [
+                            "mountain",
+                            "volcano",
+                            "hill",
+                            "mesa",
+                            "crystal",
+                            "snowpeak",
+                            "ruin",
+                            "lighthouse"
+                          ]
+                        },
+                        "pos": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 1
+                            },
+                            {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 1
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "scale": {
+                          "type": "number",
+                          "exclusiveMinimum": 0
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "style",
+                        "pos"
+                      ],
+                      "additionalProperties": false
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "kind": {
+                          "type": "string",
+                          "const": "label"
+                        },
+                        "pos": {
+                          "type": "array",
+                          "prefixItems": [
+                            {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 1
+                            },
+                            {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 1
+                            }
+                          ],
+                          "items": false,
+                          "minItems": 2,
+                          "maxItems": 2
+                        },
+                        "text": {
+                          "type": "string"
+                        },
+                        "rotate": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "pos",
+                        "text"
+                      ],
+                      "additionalProperties": false
+                    }
+                  ]
+                }
+              }
+            },
+            "required": [
+              "camp",
+              "paths"
+            ],
+            "additionalProperties": false
           }
         },
         "required": [
           "id",
           "name",
-          "albumPassive"
+          "text",
+          "level",
+          "biome",
+          "unlock",
+          "elements",
+          "climate",
+          "buff",
+          "area",
+          "map"
         ],
         "additionalProperties": false
       }
     }
   },
   "required": [
-    "daysPerWeek",
-    "weeksPerMonth",
-    "monthsPerYear",
-    "yearsPerCycle",
-    "cycles",
-    "weatherRules",
-    "zodiac"
+    "world",
+    "regions"
   ],
-  "additionalProperties": false,
   "$defs": {
     "__schema0": {
       "type": "object",
@@ -352,10 +692,41 @@
                     },
                     "excludeSelf": {
                       "type": "boolean"
+                    },
+                    "side": {
+                      "type": "string",
+                      "enum": [
+                        "left",
+                        "right"
+                      ]
                     }
                   },
                   "required": [
                     "kind"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "chain"
+                    },
+                    "side": {
+                      "type": "string",
+                      "enum": [
+                        "left",
+                        "right"
+                      ]
+                    },
+                    "filter": {
+                      "$ref": "#/$defs/__schema0"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "side"
                   ],
                   "additionalProperties": false
                 },
@@ -677,5 +1048,6 @@
         }
       ]
     }
-  }
+  },
+  "additionalProperties": false
 }

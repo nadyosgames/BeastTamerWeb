@@ -76,3 +76,6 @@
 .howto__element b { color: color-mix(in srgb, var(--el) 60%, #fff); }
 .howto__footer { display: flex; gap: 12px; align-items: center; }
 .howto__spacer { flex: 1; }
+.howto__intents { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 18px; }
+.howto__intents p { margin: 0; display: flex; align-items: flex-start; gap: 10px; font-size: 17px; line-height: 1.25; }
+.howto__intents b { font-family: var(--font-display); }

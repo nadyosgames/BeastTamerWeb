@@ -132,28 +132,12 @@
         "additionalProperties": false
       }
     },
-    "packPricePctOfQuota": {
+    "packBasePrice": {
       "type": "number",
       "exclusiveMinimum": 0
     },
-    "weeklyPack": {
+    "basePack": {
       "type": "string"
-    },
-    "quotaFallback": {
-      "type": "object",
-      "properties": {
-        "base": {
-          "type": "number"
-        },
-        "growthPerWeek": {
-          "type": "number"
-        }
-      },
-      "required": [
-        "base",
-        "growthPerWeek"
-      ],
-      "additionalProperties": false
     },
     "pity": {
       "type": "object",
@@ -166,24 +150,6 @@
       },
       "required": [
         "packsWithoutRarePlus"
-      ],
-      "additionalProperties": false
-    },
-    "softFail": {
-      "type": "object",
-      "properties": {
-        "missedWeeks": {
-          "type": "integer",
-          "minimum": -9007199254740991,
-          "maximum": 9007199254740991
-        },
-        "quotaReductionPct": {
-          "type": "number"
-        }
-      },
-      "required": [
-        "missedWeeks",
-        "quotaReductionPct"
       ],
       "additionalProperties": false
     },
@@ -202,17 +168,106 @@
         "secPerStep"
       ],
       "additionalProperties": false
+    },
+    "expedition": {
+      "type": "object",
+      "properties": {
+        "rations": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "restHealPct": {
+          "type": "number",
+          "minimum": 0
+        },
+        "speedBonusPct": {
+          "type": "number",
+          "minimum": 0
+        },
+        "streakBonusPct": {
+          "type": "number",
+          "minimum": 0
+        },
+        "bagLossPct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "woundCarryPct": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "siegeNightHealPct": {
+          "type": "number",
+          "minimum": 0
+        },
+        "essenceByRarity": {
+          "type": "object",
+          "properties": {
+            "common": {
+              "type": "number",
+              "minimum": 0
+            },
+            "uncommon": {
+              "type": "number",
+              "minimum": 0
+            },
+            "rare": {
+              "type": "number",
+              "minimum": 0
+            },
+            "epic": {
+              "type": "number",
+              "minimum": 0
+            },
+            "legendary": {
+              "type": "number",
+              "minimum": 0
+            },
+            "mythic": {
+              "type": "number",
+              "minimum": 0
+            },
+            "ancient": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "common",
+            "uncommon",
+            "rare",
+            "epic",
+            "legendary",
+            "mythic",
+            "ancient"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "rations",
+        "restHealPct",
+        "speedBonusPct",
+        "streakBonusPct",
+        "bagLossPct",
+        "woundCarryPct",
+        "siegeNightHealPct",
+        "essenceByRarity"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [
     "rarities",
     "packs",
-    "packPricePctOfQuota",
-    "weeklyPack",
-    "quotaFallback",
+    "packBasePrice",
+    "basePack",
     "pity",
-    "softFail",
-    "timing"
+    "timing",
+    "expedition"
   ],
   "additionalProperties": false
 }

@@ -1,21 +1,21 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { parseArgs } from 'node:util'
-import { weeksPerYear } from '../../src/core/calendar.ts'
+import { deriveSeed } from '../../src/core/rng.ts'
 import {
   arrangementExperiment,
-  calibrateQuota,
+  calibrateWorld,
   cardPowerReport,
   checkBalance,
   presetMatrix,
-  PROFILES,
   reviewSet,
-  runAgents,
-  summarize,
-  validate,
+  simulateHunt,
   weatherFitExperiment,
+  worldReport,
+  type HuntBot,
 } from '../../src/sim/index.ts'
 import { loadContentFromDisk, ROOT } from '../art/lib.ts'
+import { workerPool } from './pool.ts'
 import { reviewToMarkdown } from './review-md.ts'
 
 /**
@@ -25,8 +25,10 @@ import { reviewToMarkdown } from './review-md.ts'
  *   npm run sim -- arrange --days 500    dizilim becerisi: usta / acemi / rastgele
  *   npm run sim -- weather               hava uyumu: uygun deste / uygunsuz deste
  *   npm run sim -- cards                 kart gücü tablosu (nadirlik içi aykırılar)
- *   npm run sim -- campaign --profile good --weeks 144
- *   npm run sim -- calibrate             kota eğrisini üret → content/generated/balance.json
+ *   npm run sim -- hunts                 her av: hedef profil, başlangıç destesi, Sakin gün (bayıltma turu, Tamer kaybı)
+ *   npm run sim -- hunts --hunt storm_hound --deck firtina --weather stormy --bot master
+ *   npm run sim -- world                 dünya ilerlemesi: tipik oyuncu kaç saatte nereye varır (--samples 32 --bot casual|aware)
+ *   npm run sim -- calibrate             referans desteleri + yaratık canları, bölge bölge → content/generated/hunts.json
  *   npm run sim -- decks                 preset desteler: dizilim etkisi + hava matrisi
  *   npm run sim -- review --set v1       öneri kart setini incele → Docs/proposals/kart-seti-v1.md
  *
@@ -40,15 +42,18 @@ const { positionals, values } = parseArgs({
   options: {
     seed: { type: 'string' },
     days: { type: 'string' },
-    weeks: { type: 'string' },
-    agents: { type: 'string' },
     iterations: { type: 'string' },
     samples: { type: 'string' },
-    profile: { type: 'string', default: 'good' },
+    hunt: { type: 'string' },
+    deck: { type: 'string' },
+    weather: { type: 'string' },
+    bot: { type: 'string', default: 'aware' },
     collection: { type: 'string', default: 'full' },
     strict: { type: 'boolean', default: false },
     dry: { type: 'boolean', default: false },
     set: { type: 'string' },
+    threads: { type: 'string' },
+    hours: { type: 'string' },
   },
 })
 
@@ -58,8 +63,6 @@ const cmd = positionals[0] ?? 'check'
 const seed = Number(values.seed ?? db.targets.seed)
 const num = (v: string | undefined, d: number) => (v === undefined ? d : Number(v))
 const sim = db.targets.simulation
-const wpy = weeksPerYear(db.calendar)
-const cycleWeeks = wpy * db.calendar.yearsPerCycle
 const progress = (m: string) => console.log(`  · ${m}`)
 const f1 = (n: number) => n.toFixed(1)
 const f2 = (n: number) => n.toFixed(2)
@@ -74,7 +77,7 @@ async function save(name: string, data: unknown) {
 }
 
 function summaryOfContent() {
-  return { cards: db.cards.length, tamers: db.tamers.length, calibratedAt: db.balance.generatedAt }
+  return { cards: db.cards.length, tamers: db.tamers.length, hunts: db.hunts.length, calibratedAt: db.huntBalance.generatedAt }
 }
 
 const t0 = performance.now()
@@ -128,35 +131,36 @@ switch (cmd) {
     await save('cards', rows)
     break
   }
-  case 'campaign': {
-    const profile = values.profile ?? 'good'
-    if (!PROFILES[profile]) throw new Error(`Profil yok: ${profile} (${Object.keys(PROFILES).join(', ')})`)
-    const weeks = num(values.weeks, cycleWeeks)
-    const agents = num(values.agents, 2)
-    const runs = runAgents(db, profile, undefined, { weeks, agents }, seed)
-    const years = Math.ceil(weeks / wpy)
-    console.log(`\nKampanya · ${PROFILES[profile].label} · ${agents} ajan · ${weeks} hafta`)
-    console.table(
-      Array.from({ length: years }, (_, y) => {
-        const ws = runs.flatMap((r) => r.weeks.filter((w) => w.year === y + 1))
-        const ratio = summarize(ws.map((w) => w.income / w.quota))
+  case 'hunts': {
+    const samples = num(values.samples, sim.huntSamples)
+    const bot = (values.bot ?? 'aware') as HuntBot
+    const list = values.hunt ? [db.hunt(values.hunt)] : db.hunts
+    const rows = list.flatMap((h) => {
+      const profiles = values.deck || values.weather
+        ? [{ label: 'seçilen', deck: values.deck ?? h.target?.deck ?? db.starter.deck, weather: values.weather ?? h.target?.weather ?? 'calm' }]
+        : [
+            ...(h.target ? [{ label: 'hedef', deck: h.target.deck, weather: h.target.weather }] : []),
+            { label: 'başlangıç', deck: db.starter.deck, weather: 'calm' },
+          ]
+      return profiles.map((p) => {
+        const r = simulateHunt(db, h.id, { deck: p.deck, weather: p.weather, bot }, { seed, samples })
         return {
-          yıl: y + 1,
-          'kota (ort)': Math.round(ws.reduce((a, w) => a + w.quota, 0) / ws.length),
-          'gelir (ort)': Math.round(ws.reduce((a, w) => a + w.income, 0) / ws.length),
-          'gelir/kota p50': f2(ratio.p50),
-          'kota tutma': pct(ws.filter((w) => w.passed).length / ws.length),
-          'paket/hafta': f1(ws.reduce((a, w) => a + w.packsOpened, 0) / ws.length),
-          koleksiyon: pct(Math.max(...ws.map((w) => w.completion))),
-          saat: f1(ws.reduce((a, w) => a + w.minutes, 0) / 60 / agents),
+          av: db.card(h.card).name,
+          kademe: h.tier,
+          can: r.hp,
+          profil: `${p.label}: ${p.deck}/${h.weather ?? p.weather}`,
+          bayıltma: pct(r.captureRate),
+          'tur p50': f1(r.killRound.p50),
+          'hedef': h.target && p.label === 'hedef' ? h.target.round : '',
+          'Tamer kaybı p50': Math.round(r.tamerDamage.p50),
+          dk: f1(r.minutes.p50),
+          sonuçlar: Object.entries(r.outcomes).map(([k, v]) => `${k}:${v}`).join(' '),
         }
-      }),
-    )
-    const v = validate(profile, runs)
-    console.log(`toplam: ${f1(v.hours)} saat · kota tutma ${pct(v.passRate)} · koleksiyon ${pct(v.finalCompletion)}`)
-    console.log(`Tamer kullanımı (hafta): ${JSON.stringify(runs[0].tamersUsed)}`)
-    if (!db.balance.quotaByWeek.length) console.log('Not: kota eğrisi kalibre edilmemiş (geçici formül). `npm run sim -- calibrate`')
-    await save(`campaign-${profile}`, { validation: v, runs })
+      })
+    })
+    console.log(`\nAvlar · bot: ${bot} · ${samples} örnek · Tamer: ${db.tamer(db.starter.tamer).name}`)
+    console.table(rows)
+    await save('hunts', rows)
     break
   }
   case 'decks': {
@@ -196,35 +200,60 @@ switch (cmd) {
     await save(`review-${set}`, r)
     break
   }
-  case 'calibrate': {
-    if (values.set && !values.dry) throw new Error('Öneri setiyle kalibrasyon yalnızca --dry ile çalışır (oyun dengesine yazmaz).')
-    const weeks = num(values.weeks, cycleWeeks)
-    console.log(`\nKota kalibrasyonu · ${weeks} hafta · ${num(values.agents, sim.campaignAgents)} ajan`)
-    const r = calibrateQuota(db, {
-      seed,
-      weeks,
-      agents: num(values.agents, sim.campaignAgents),
-      iterations: num(values.iterations, sim.calibrationIterations),
-      ratio: db.targets.targets.quota.calibrationRatio,
-      onProgress: progress,
-    })
+  case 'world': {
+    const samples = num(values.samples, 32)
+    // Varsayılan "ortalama oyuncu"; --bot aware ile usta oyuncu.
+    const bot = (process.argv.includes('--bot') ? values.bot : 'casual') as HuntBot
+    const pool = workerPool({ set: values.set, threads: values.threads ? Number(values.threads) : undefined })
+    console.log(`\nDünya ilerlemesi · ${samples} oyun · bot: ${bot} · ${pool.size} iş parçacığı`)
+    const runs = await pool.world(Array.from({ length: samples }, (_, i) => ({ seed: deriveSeed(seed, i, 501), bot, maxHours: num(values.hours, 160) })))
+    await pool.close()
+    const r = worldReport(db, runs, bot)
+    const h = (n: number) => (Number.isFinite(n) ? n.toFixed(1) : '—')
     console.table(
-      r.validation.map((v) => ({
-        profil: PROFILES[v.profile].label,
-        'kota tutma': pct(v.passRate),
-        'gelir/kota p10': f2(v.ratio.p10),
-        p50: f2(v.ratio.p50),
-        p90: f2(v.ratio.p90),
-        saat: f1(v.hours),
-        koleksiyon: pct(v.finalCompletion),
+      r.regions.map((x) => ({
+        bölge: x.name,
+        sev: x.level,
+        'giriş sa': h(x.entry),
+        'Final sa': h(x.final),
+        'kitap sa': h(x.book),
+        'tamam sa': h(x.complete),
+        'bölgede sa': h(x.hoursIn),
+        ulaşan: pct(x.reached),
       })),
     )
-    const q = r.balance.quotaByWeek
-    console.log(`kota: hafta 1 = ${q[0]}, yıl 1 sonu = ${q[wpy - 1]}, son = ${q[q.length - 1]}`)
+    const span = (x: { p10: number; p50: number; p90: number; n: number }) => (x.n ? `${h(x.p50)} sa (p10 ${h(x.p10)} · p90 ${h(x.p90)}) · ${x.n}/${samples} oyun` : '— (hiçbir oyun ulaşmadı)')
+    console.log(`Ana hikâye (tüm Finaller): ${span(r.hours.allFinals)}`)
+    console.log(`Bölge kitapları:           ${span(r.hours.allBooks)}`)
+    console.log(`Tüm avlar:                 ${span(r.hours.allHunts)}`)
+    console.log(`Oyun başına: ${f1(r.per.hunts)} av (${f1(r.per.quickHunts)} hızlı) · ${f1(r.per.expeditions)} sefer · ${f1(r.per.packs)} paket · Tamer ${f1(r.per.tamerDowns)} kez düştü · ${f1(r.per.threeStars)} ★★★ · koleksiyon ${pct(r.per.collection)} · ${f1(r.per.days)} gün`)
+    if (r.unfinished) console.log(`! ${r.unfinished}/${samples} oyun süre sınırında bitmedi`)
+    await save(`world-${bot}`, r)
+    break
+  }
+  case 'calibrate': {
+    if (values.set && !values.dry) throw new Error('Öneri setiyle kalibrasyon yalnızca --dry ile çalışır (oyun dengesine yazmaz).')
+    const huntSamples = num(values.samples, Math.max(60, Math.floor(sim.huntSamples / 2)))
+    const worlds = num(values.days, 24)
+    const pool = workerPool({ set: values.set, threads: values.threads ? Number(values.threads) : undefined })
+    console.log(`\nDünya kalibrasyonu · an başına ${worlds} oyun · av başına ${huntSamples} örnek · aware usta bot · ${pool.size} iş parçacığı`)
+    const r = await calibrateWorld(db, pool, { seed, samples: worlds, huntSamples, iterations: num(values.iterations, sim.calibrationIterations), onProgress: progress })
+    await pool.close()
+    console.table(
+      r.rows.map((x) => ({
+        av: db.card(db.hunt(x.hunt).card).name,
+        bölge: db.region(x.region).name,
+        an: x.phase,
+        'varış sa': Number.isFinite(x.hours) ? f1(x.hours) : '—',
+        hedef: x.target,
+        'kalibre can': x.hp,
+        'ölçülen tur': f2(x.killRound),
+      })),
+    )
     if (!values.dry) {
-      const file = path.join(ROOT, 'content/generated/balance.json')
+      const file = path.join(ROOT, 'content/generated/hunts.json')
       await writeFile(file, JSON.stringify(r.balance, null, 2) + '\n')
-      console.log(`Yazıldı: ${path.relative(ROOT, file)} (oyun ve sonraki simülasyonlar bu eğriyi kullanır)`)
+      console.log(`Yazıldı: ${path.relative(ROOT, file)} (oyun ve sonraki simülasyonlar bu canları kullanır)`)
     }
     await save('calibrate', r)
     break
@@ -234,15 +263,14 @@ switch (cmd) {
     const checks = checkBalance(db, {
       seed,
       days: num(values.days, sim.daysPerCheck),
-      weeks: num(values.weeks, wpy * 2),
-      agents: num(values.agents, Math.min(4, sim.campaignAgents)),
+      samples: num(values.samples, sim.huntSamples),
       onProgress: progress,
     })
     console.table(
       checks.map((c) => ({
         '': c.pass ? '✓' : '✗',
         hedef: c.id,
-        değer: c.id === 'dayLength' ? `${f1(c.value)} dk` : c.id === 'presetDominance' ? (c.pass ? 'yok' : 'var') : c.id.startsWith('quota') || c.id === 'duplicates' ? pct(c.value) : `x${f2(c.value)}`,
+        değer: c.shown,
         aralık: c.target,
         detay: c.detail ?? '',
       })),
@@ -254,7 +282,7 @@ switch (cmd) {
     break
   }
   default:
-    console.error(`Bilinmeyen komut: ${cmd}. Komutlar: check, arrange, weather, cards, campaign, calibrate`)
+    console.error(`Bilinmeyen komut: ${cmd}. Komutlar: check, arrange, weather, cards, decks, hunts, world, calibrate, review`)
     process.exitCode = 1
 }
 console.log(`(${((performance.now() - t0) / 1000).toFixed(1)} sn)`)

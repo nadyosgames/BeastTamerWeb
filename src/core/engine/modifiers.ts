@@ -14,18 +14,26 @@ export interface StartDurabilityMod {
   if?: Cond
 }
 
+export interface StartSlumberMod {
+  passes: number
+  filter?: CardFilter
+  if?: Cond
+}
+
 /**
- * Bir gün boyunca sabit kalan global etkiler (hava + Tamer + albüm/burç pasifleri),
- * gün başında bir kez derlenir. Çarpım sırası GDD'ye göre: hava, albüm, en son Tamer.
+ * Tur boyunca sabit kalan global etkiler (hava + Tamer + pasifler: bölge buff'ı, av niyeti ve
+ * yaratığın direnç/zayıflığı). Çarpım sırası GDD'ye göre: hava, pasifler, en son Tamer.
  */
 export interface ModifierSet {
   /** Hava yüzdeleri kart başına toplanır (hibrit kart: iki elementin bonus/cezası toplanır). */
   weatherIncome: IncomeMod[]
-  /** Albüm pasifleri toplanır ("birbirine eklenir"). */
+  /** Pasifler (bölge buff'ı, yaratığın direnç/zayıflığı) toplanır. */
   passiveIncome: IncomeMod[]
   /** Tamer çarpanları ayrı ayrı çarpılır, son çarpandır. */
   tamerIncome: IncomeMod[]
   startDurability: StartDurabilityMod[]
+  /** Tur başı uyutma (av niyeti: Kükreme). */
+  startSlumber: StartSlumberMod[]
   /** Yetenek türü başına çarpan (1 = etkisiz). */
   abilityScale: Record<AbilityTrigger, number>
   /** Yetenek türü başına kaç kez çalışır (Hasatçı: Epilogue ×2). */
@@ -44,6 +52,7 @@ export function compileModifiers({ weather, tamer, passives = [] }: ModifierSour
     passiveIncome: [],
     tamerIncome: [],
     startDurability: [],
+    startSlumber: [],
     abilityScale: Object.fromEntries(ABILITY_TRIGGERS.map((t) => [t, 1])) as Record<AbilityTrigger, number>,
     repeat: Object.fromEntries(ABILITY_TRIGGERS.map((t) => [t, 1])) as Record<AbilityTrigger, number>,
   }
@@ -65,6 +74,9 @@ export function compileModifiers({ weather, tamer, passives = [] }: ModifierSour
         break
       case 'durabilityAtStart':
         set.startDurability.push({ amount: m.amount, min: m.min ?? 0, filter: m.filter, if: m.if })
+        break
+      case 'slumberAtStart':
+        set.startSlumber.push({ passes: m.passes, filter: m.filter, if: m.if })
         break
       case 'abilityScale':
         set.abilityScale[m.on] *= 1 + m.pct / 100

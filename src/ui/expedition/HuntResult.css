@@ -1,0 +1,29 @@
+.hunt-result { width: 1240px; max-height: 960px; gap: 10px; }
+.hunt-result__head { display: flex; flex-direction: column; align-items: center !important; gap: 4px; }
+.hunt-result__head h3 {
+  font-family: 'Grenze', Georgia, serif; font-size: 96px !important; line-height: 1; letter-spacing: -.03em;
+  color: var(--red) !important; -webkit-text-stroke: 2px var(--ink); text-shadow: 3px 4px 0 #281c1355;
+}
+.hunt-result--tamerDown .hunt-result__head h3, .hunt-result--escaped .hunt-result__head h3, .hunt-result--fled .hunt-result__head h3 { color: #6a5640 !important; }
+.hunt-result--nightfall .hunt-result__head h3 { color: #2f5f7a !important; }
+.hunt-result__head .muted { font-size: 22px; }
+.hunt-result__body { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 34px; align-items: start; min-height: 0; overflow-y: auto; }
+.hunt-result__hero { display: grid; place-items: center; padding-top: 6px; }
+.hunt-result__hero .card { width: 300px; height: 445px; }
+.hunt-result__info { display: flex; flex-direction: column; gap: 10px; font-size: 22px; line-height: 1.35; }
+.hunt-result__info p { margin: 0; }
+.hunt-result__stars { font-size: 54px; line-height: 1; color: #c28a24; letter-spacing: 4px; text-shadow: 2px 2px 0 var(--ink), -1px -1px 0 var(--ink), 1px -1px 0 var(--ink), -1px 1px 0 var(--ink); }
+.hunt-result__note { font-size: 18px; color: var(--text-dim); }
+.hunt-result__reward { border-collapse: collapse; font-size: 21px; min-width: 420px; }
+.hunt-result__reward td { padding: 4px 10px; border-bottom: 1px dashed #a88a62; }
+.hunt-result__reward td:last-child { text-align: right; font-family: var(--font-display); font-weight: 900; }
+.hunt-result__total td { border-bottom: 0; border-top: 2px solid var(--ink); font-size: 26px; font-weight: 900; }
+.hunt-result__total .game-icon { color: #8652b1; vertical-align: -5px; }
+.hunt-result__tamer b { font-family: var(--font-display); }
+.hunt-result__unlock { padding: 8px 14px; border: 2px solid var(--ink); border-radius: 12px 6px 13px 7px; background: #f3d98f; font-weight: 700; }
+.hunt-result__rounds { border-collapse: collapse; font-size: 17px; margin-top: 4px; }
+.hunt-result__rounds th, .hunt-result__rounds td { padding: 3px 10px; border-bottom: 1px solid #c9a568; text-align: right; }
+.hunt-result__rounds th:nth-child(2), .hunt-result__rounds td:nth-child(2) { text-align: left; }
+.hunt-result__rounds th { font-family: var(--font-display); color: var(--text-dim); }
+.hunt-result__actions { display: flex; justify-content: flex-end; }
+.hunt-result__actions .btn { min-width: 360px; height: 80px; font-size: 38px; }

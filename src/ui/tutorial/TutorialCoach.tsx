@@ -1,6 +1,6 @@
 import { useGame } from '../../state/game.ts'
 import { useNav } from '../../state/nav.ts'
-import { useRun, type RunStatus } from '../../state/run.ts'
+import { useHunt, type HuntStatus } from '../../state/hunt.ts'
 import { coachStep } from './flow.ts'
 import { TUTORIAL } from './script.ts'
 import './TutorialCoach.css'
@@ -9,7 +9,7 @@ import './TutorialCoach.css'
  * Eğitim anlatıcısı: oyun ekranının sol alt panelinin yerini alır. Turun aşamasına
  * (dizme / oynatma / sonuç) göre anlatır, dizim aşamasında bir sonraki adımı söyler.
  */
-export function TutorialCoach({ status, roundIndex, ids }: { status: RunStatus; roundIndex: number; ids: (string | null)[] }) {
+export function TutorialCoach({ status, roundIndex, ids }: { status: HuntStatus; roundIndex: number; ids: (string | null)[] }) {
   const round = TUTORIAL[roundIndex]
   if (!round) return null
   const step = coachStep(round, ids)
@@ -33,30 +33,30 @@ export function TutorialCoach({ status, roundIndex, ids }: { status: RunStatus; 
   )
 }
 
-/** Eğitim sonu: profile işlenir, oyuncu gerçek güne ya da rehbere yönlendirilir. */
+/** Eğitim sonu: profile işlenir, oyuncu haritaya ya da rehbere yönlendirilir. */
 export function TutorialDone({ onGuide }: { onGuide: () => void }) {
   const go = useNav((s) => s.go)
-  const leave = useRun((s) => s.leave)
-  const rounds = useRun((s) => s.rounds)
+  const leave = useHunt((s) => s.leave)
+  const rounds = useHunt((s) => s.rounds)
   const setTutorialDone = useGame((s) => s.setTutorialDone)
   const finish = (to: 'menu' | 'play') => {
     setTutorialDone(true)
     leave()
     go(to)
   }
-  const total = rounds.reduce((a, r) => a + r.total, 0)
+  const total = rounds.reduce((a, r) => a + r.damage, 0)
   const best = rounds.reduce((a, r) => a + r.best, 0)
   return (
     <div className="overlay">
       <div className="overlay__panel overlay__panel--text panel coach__done">
         <h3>Eğitim tamamlandı!</h3>
         <p>
-          3 turda <b className="gold">+{total}</b> kaynak topladın (en iyi dizilimlerle +{best}).
+          3 turda <b className="gold">⚔{total}</b> hasarla ilk yaratığını bayılttın (en iyi dizilimlerle ⚔{best}).
         </p>
         <ul>
-          <li>Her gün desten karılır; 5 kartlık eller gelir, 6 tur oynarsın.</li>
-          <li>Günün havası bazı elementleri güçlendirir: desteni ona göre seç.</li>
-          <li>5 günlük haftanın toplamı kotayı tutarsa paket kazanırsın.</li>
+          <li>Haritada bir yaratık seç ve ava çık. Her av bir gün sürer, hava her gün değişir ve 5 gün önceden görünür.</li>
+          <li>Yaratığın niyetine bak: Pençe Tamer'ı vurur, Yırtma ve Kükreme belirli slotlardaki kartları hedefler.</li>
+          <li>Tamer'ın canı sefer boyunca taşınır. Yorulunca dinlen ya da kampa dön; çantadaki öz kampta bakiyene geçer.</li>
           <li>Kuralları unutursan oyun ekranındaki <b>?</b> düğmesi rehberi açar.</li>
         </ul>
         <div className="chip-row coach__actions">
@@ -67,7 +67,7 @@ export function TutorialDone({ onGuide }: { onGuide: () => void }) {
             Ana menü
           </button>
           <button className="btn primary" onClick={() => finish('play')}>
-            İLK GÜNE BAŞLA
+            HARİTAYA GİT
           </button>
         </div>
       </div>

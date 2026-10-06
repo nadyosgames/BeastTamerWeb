@@ -51,12 +51,12 @@ for (const a of assets.filter(hasMaster)) {
 // 2. İçerik
 const contentDir = path.join(base, 'Content')
 await mkdir(contentDir, { recursive: true })
-for (const f of ['cards', 'tamers', 'weather', 'decks', 'economy', 'calendar', 'starter', 'art', 'balance-targets']) {
+for (const f of ['cards', 'tamers', 'weather', 'decks', 'economy', 'hunts', 'regions', 'starter', 'art', 'balance-targets']) {
   const json = JSON.parse(await readFile(path.join(PATHS.content, `${f}.json`), 'utf8'))
   delete json.$schema
   await writeFile(path.join(contentDir, `${f}.json`), JSON.stringify(json, null, 2))
 }
-await copyFile(path.join(PATHS.content, 'generated/balance.json'), path.join(contentDir, 'balance.json'))
+await copyFile(path.join(PATHS.content, 'generated/hunts.json'), path.join(contentDir, 'hunts-balance.json'))
 await writeFile(path.join(contentDir, 'art-manifest.json'), JSON.stringify({ generatedAt: new Date().toISOString(), assets: manifest }, null, 2))
 
 // 3. Golden testler: rastgele turlar + beklenen olay akışı. C# motoru aynı girdiden aynı çıktıyı üretmeli.
@@ -77,7 +77,7 @@ for (let i = 0; i < 300; i++) {
   )
   golden.push({
     input: { cards: ids, weather: weather?.id ?? null, tamer: i < fixed.length ? null : tamer.id, roundIndex, roundCount, triggerCap: 60 },
-    expected: { total: result.total, triggers: result.triggers, steps: result.steps, passes: result.passes, slots: result.slots, events },
+    expected: { total: result.total, guard: result.guard, triggers: result.triggers, steps: result.steps, passes: result.passes, slots: result.slots, events },
   })
 }
 await writeFile(path.join(contentDir, 'golden-rounds.json'), JSON.stringify({ seed: db.targets.seed, rounds: golden }))

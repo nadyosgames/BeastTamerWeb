@@ -9,7 +9,7 @@ import type { CompiledCard, RoundContext, RoundState, SlotState } from './state.
 /**
  * Tur çözücü (GDD "Tur ve gün" + "Hesaplama sırası").
  *
- *  1. Tur başı: hava/Tamer/albüm dayanıklılık etkileri, Elektrik kutup bağlantıları, Howl.
+ *  1. Tur başı: hava/Tamer/niyet dayanıklılık ve uyutma etkileri, Elektrik kutup bağlantıları, Howl.
  *  2. Geçişler: aktif kartlar Swift → soldan sağa → Heavy sırasıyla Harvest tetikler,
  *     her tetikte 1 (Overload: 2) dayanıklılık kaybeder (Ward ilk kaybı engeller).
  *     Dayanıklılığı 0 olan kart: Last Breath → (Rebirth ile geri dönüş | pasif + Haunt).
@@ -28,6 +28,8 @@ export interface SlotResult {
 
 export interface RoundResult {
   total: number
+  /** Turda üretilen toplam Koruma (av: tur sonu saldırısını emer). */
+  guard: number
   /** Harvest tetik sayısı. */
   triggers: number
   /** Tüm yetenek çözümleri (Howl, Last Breath, Haunt, Epilogue dahil). Animasyon süresi bundan. */
@@ -71,6 +73,7 @@ export function resolveRound(cards: readonly CardDef[], ctx: RoundContext, emit?
       card,
       c,
       durability: card.durability,
+      slumber: c.slumber,
       ward: c.ward,
       rebirth: c.rebirth,
       lastBreathDone: false,
@@ -78,6 +81,7 @@ export function resolveRound(cards: readonly CardDef[], ctx: RoundContext, emit?
       passRaw: 0,
       passRawPass: -1,
       income: 0,
+      guard: 0,
       leftLink: null,
       rightLink: null,
     }
@@ -94,6 +98,7 @@ export function resolveRound(cards: readonly CardDef[], ctx: RoundContext, emit?
     steps: 0,
     triggers: 0,
     total: 0,
+    guard: 0,
     capped: false,
     distinctElements: elements.size,
     auraSources: slots.filter((s) => s.c.aura.length > 0),
@@ -110,6 +115,17 @@ export function resolveRound(cards: readonly CardDef[], ctx: RoundContext, emit?
       else if (m.amount < 0) {
         const loss = Math.min(-m.amount, Math.max(0, s.durability - m.min))
         if (loss > 0) loseDurability(rs, s, loss, 'start')
+      }
+    }
+  }
+
+  // 1a'. Tur başı uyutma (av niyeti: Kükreme). Kartın kendi Slumber'ından uzunsa geçerli olur.
+  for (const m of ctx.mods.startSlumber) {
+    for (const s of slots) {
+      if (s.durability <= 0 || !matchFilter(s, m.filter) || !evalCond(rs, s, m.if, NOT_LAST)) continue
+      if (m.passes > s.slumber) {
+        s.slumber = m.passes
+        emit?.({ t: 'slumber', slot: s.index, until: m.passes })
       }
     }
   }
@@ -140,10 +156,11 @@ export function resolveRound(cards: readonly CardDef[], ctx: RoundContext, emit?
   // 3. Epilogue (tetik sınırına takılsa bile tur kapanırken çalışır).
   for (const s of slots) runAbility(rs, s, 'epilogue', NOT_LAST, true)
 
-  emit?.({ t: 'roundEnd', total: rs.total, triggers: rs.triggers, passes: rs.pass })
+  emit?.({ t: 'roundEnd', total: rs.total, guard: rs.guard, triggers: rs.triggers, passes: rs.pass })
 
   return {
     total: rs.total,
+    guard: rs.guard,
     triggers: rs.triggers,
     steps: rs.steps,
     passes: rs.pass,
@@ -183,7 +200,7 @@ function passOrder(rs: RoundState): SlotState[] {
   const heavy: SlotState[] = []
   for (const s of rs.slots) {
     if (s.durability <= 0) continue
-    if (s.c.slumber > 0 && rs.pass < s.c.slumber) continue
+    if (s.slumber > 0 && rs.pass < s.slumber) continue
     if (s.c.swift) swift.push(s)
     else if (s.c.heavy) heavy.push(s)
     else normal.push(s)
@@ -238,6 +255,7 @@ function evaluate(
   retrigger: boolean,
 ) {
   const acc: IncomeAccumulator = { flat: 0, mult: 1, copied: 0 }
+  let guardRaw = 0
   let actions: Effect[] | null = null
 
   for (const e of effects) {
@@ -269,6 +287,9 @@ function evaluate(
         break
       case 'aura':
         break
+      case 'guard':
+        if (evalCond(rs, s, e.if, env)) guardRaw += e.per ? e.amount * evalCount(rs, s, e.per) : e.amount
+        break
       case 'custom': {
         const fn = CUSTOM_OPS[e.id]
         if (!fn) throw new Error(`Bilinmeyen custom op: ${e.id} (kart ${s.card.id})`)
@@ -295,6 +316,7 @@ function evaluate(
   const scale = rs.ctx.mods.abilityScale[on]
   const global = globalMultiplier(rs, s)
   const income = roundIncome(raw * scale * global)
+  const guard = guardRaw > 0 ? roundIncome(guardRaw * scale * global) : 0
 
   if (on === 'harvest') {
     s.passRaw = raw
@@ -302,6 +324,8 @@ function evaluate(
   }
   s.income += income
   rs.total += income
+  s.guard += guard
+  rs.guard += guard
 
   rs.emit?.({
     t: 'ability',
@@ -309,8 +333,10 @@ function evaluate(
     on: retrigger ? 'retrigger' : on,
     pass: rs.pass,
     income,
+    guard,
     detail: { flat: acc.flat, mult: acc.mult, copied: acc.copied, scale, global, raw },
   })
+  rs.ctx.hit?.(s.index, retrigger ? 'retrigger' : on, rs.pass, income, guard)
 
   if (actions) for (const a of actions) runAction(rs, s, a)
 }

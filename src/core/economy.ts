@@ -1,10 +1,11 @@
+import type { ExpeditionConfig } from './expedition.ts'
 import type { CardDef, Element, Rarity, TamerDef } from './types.ts'
 import { RARITIES } from './types.ts'
 
 /**
- * Ekonomi kuralları. Sayıların kendisi content/economy.json'da (tasarımcı ayarları)
- * ve content/generated/balance.json'da (simülasyon kalibrasyonu çıktısı) durur.
- * Kural: oyun içinde elle yazılmış denge sayısı yok; kota eğrisi kalibrasyondan gelir.
+ * Ekonomi kuralları (GDD v0.8: öz yalnızca av ödülüdür, paketler sabit öz fiyatıyla alınır).
+ * Sayıların kendisi content/economy.json'da (tasarımcı ayarları) ve
+ * content/generated/hunts.json'da (simülasyonla kalibre edilen yaratık canları) durur.
  */
 export interface PackDef {
   id: string
@@ -22,47 +23,45 @@ export interface PackDef {
 export interface EconomyConfig {
   rarities: Record<Rarity, { deckLimit: number; duplicatePct: number }>
   packs: PackDef[]
-  packPricePctOfQuota: number
-  weeklyPack: string
-  /** Kalibrasyon yokken kullanılan geçici kota formülü. */
-  quotaFallback: { base: number; growthPerWeek: number }
+  /** Standart paketin öz fiyatı; diğer paketler priceMult ile çarpılır. */
+  packBasePrice: number
+  /** Kopya → öz oranlarının ölçüldüğü paket. */
+  basePack: string
   pity: { packsWithoutRarePlus: number }
-  softFail: { missedWeeks: number; quotaReductionPct: number }
   timing: { planningSecPerRound: number; secPerStep: number }
+  expedition: ExpeditionConfig
 }
 
-/** Simülasyonla üretilen denge verisi (content/generated/balance.json). */
-export interface CalibratedBalance {
+/** Simülasyonla kalibre edilen yaratık canları (content/generated/hunts.json). */
+export interface CalibratedHunts {
   generatedAt: string
   seed: number
-  agents: number
-  quotaByWeek: number[]
+  samples: number
+  /** Av id → can. */
+  hp: Record<string, number>
+  /** Referans desteler (anahtar → kartlar): ilerleme simülasyonunda tipik oyuncunun o noktadaki koleksiyonundan kurulan deste. */
+  refDecks?: Record<string, { card: string; count: number }[]>
+  /** Av id → kalibrasyonda kullanılan referans deste anahtarı (hedef destesi "ref" olan avlar). */
+  huntDecks?: Record<string, string>
   notes?: string[]
 }
 
-export function quotaForWeek(weekIndex: number, eco: EconomyConfig, calibrated?: CalibratedBalance | null): number {
-  const curve = calibrated?.quotaByWeek
-  if (curve && curve.length) return curve[Math.min(weekIndex, curve.length - 1)]
-  const { base, growthPerWeek } = eco.quotaFallback
-  return Math.round(base * Math.pow(1 + growthPerWeek, weekIndex))
+export function packPrice(pack: PackDef, eco: EconomyConfig): number {
+  return Math.round(eco.packBasePrice * pack.priceMult)
 }
 
-export function packPrice(pack: PackDef, quota: number, eco: EconomyConfig): number {
-  return Math.round(((quota * eco.packPricePctOfQuota) / 100) * pack.priceMult)
-}
-
-export function standardPackPrice(quota: number, eco: EconomyConfig): number {
-  const std = eco.packs.find((p) => p.id === eco.weeklyPack) ?? eco.packs[0]
-  return packPrice(std, quota, eco)
+export function standardPackPrice(eco: EconomyConfig): number {
+  const std = eco.packs.find((p) => p.id === eco.basePack) ?? eco.packs[0]
+  return packPrice(std, eco)
 }
 
 export function deckLimit(card: CardDef, eco: EconomyConfig): number {
   return eco.rarities[card.rarity].deckLimit
 }
 
-/** Destede kullanılabilecek sayıyı aşan kopyanın kaynak karşılığı. */
-export function duplicateValue(card: CardDef, quota: number, eco: EconomyConfig): number {
-  return Math.round((standardPackPrice(quota, eco) * eco.rarities[card.rarity].duplicatePct) / 100)
+/** Destede kullanılabilecek sayıyı aşan kopyanın öz karşılığı. */
+export function duplicateValue(card: CardDef, eco: EconomyConfig): number {
+  return Math.round((standardPackPrice(eco) * eco.rarities[card.rarity].duplicatePct) / 100)
 }
 
 export type Collection = Record<string, number>

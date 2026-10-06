@@ -26,6 +26,10 @@ export interface CardViewProps {
   active?: boolean
   /** Son tetik geliri (+N balonu). `pulse` değişince animasyon yeniden oynar. */
   income?: number | null
+  /** Balonun metni (av: "⚔6", "SAVUŞTU"). Verilirse income yerine gösterilir; null ise balon yok. */
+  bubble?: string | null
+  /** Uyuyor (Slumber ya da Kükreme): rozet gösterilir. */
+  sleeping?: boolean
   pulse?: number
   ward?: boolean
   size?: 'md' | 'sm'
@@ -36,7 +40,9 @@ export interface CardViewProps {
   keywordTooltip?: boolean
 }
 
-export function CardView({ card, durability, maxDurability, passive, active, income, pulse, ward, size = 'md', onClick, actionLabel, hoverPreview = false, keywordTooltip = true }: CardViewProps) {
+export function CardView({ card, durability, maxDurability, passive, active, income, bubble, sleeping, pulse, ward, size = 'md', onClick, actionLabel, hoverPreview = false, keywordTooltip = true }: CardViewProps) {
+  const bubbleText = bubble !== undefined ? bubble : income != null ? `+${income}` : null
+  const isNote = bubble != null && !/^[+⚔\d]/.test(bubble)
   const anchor = useRef<HTMLDivElement>(null)
   const timer = useRef<number | undefined>(undefined)
   const tooltipId = useId()
@@ -80,6 +86,7 @@ export function CardView({ card, durability, maxDurability, passive, active, inc
         )}
         {card.type !== 'neutral' && <div className="card__type">{TYPE_NAME[card.type]}</div>}
         {passive && <div className="card__passive">PASİF</div>}
+        {!passive && sleeping && <div className="card__passive card__sleep">UYUYOR</div>}
       </div>
 
       <div className="card__gems">
@@ -109,16 +116,16 @@ export function CardView({ card, durability, maxDurability, passive, active, inc
       )}
 
       <AnimatePresence>
-        {income != null && (
+        {bubbleText != null && (
           <motion.div
             key={pulse}
-            className="card__income"
+            className={`card__income ${isNote ? 'card__income--note' : ''}`}
             initial={{ opacity: 0, y: 10, scale: 0.7 }}
             animate={{ opacity: 1, y: -18, scale: 1 }}
             exit={{ opacity: 0, y: -40 }}
             transition={{ duration: 0.25 }}
           >
-            +{income}
+            {bubbleText}
           </motion.div>
         )}
       </AnimatePresence>

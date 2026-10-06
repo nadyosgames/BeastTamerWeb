@@ -48,11 +48,12 @@ export async function loadContentFromDisk(opts: { set?: string } = {}): Promise<
     weather: await read('weather.json'),
     decks: await read(setDir && existsSync(path.join(setDir, 'decks.json')) ? setFile('decks.json') : 'decks.json'),
     economy: await read('economy.json'),
-    calendar: await read('calendar.json'),
+    hunts: await read('hunts.json'),
+    regions: await read('regions.json'),
     starter: await read('starter.json'),
     targets: await read('balance-targets.json'),
     art: await read('art.json'),
-    balance: await read('generated/balance.json'),
+    huntBalance: await read('generated/hunts.json'),
   })
 }
 

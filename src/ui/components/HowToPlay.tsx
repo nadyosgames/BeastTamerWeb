@@ -1,5 +1,7 @@
 import { useState, type ReactNode } from 'react'
-import { ELEMENTS } from '../../core/types.ts'
+import { ELEMENTS, type Intent } from '../../core/types.ts'
+import { intentName, intentText } from '../hunt.ts'
+import { IntentIcon } from './HuntBits.tsx'
 import { KEYWORD_INFO } from '../keywords.ts'
 import { ELEMENT_LABEL } from '../labels.ts'
 import { ElementIcon } from './ElementIcon.tsx'
@@ -18,7 +20,17 @@ const ELEMENT_RULE: Record<(typeof ELEMENTS)[number], string> = {
 }
 
 const TRIGGERS = ['howl', 'harvest', 'lastBreath', 'aura', 'epilogue', 'haunt'] as const
-const STATES = ['swift', 'heavy', 'ward', 'rebirth', 'overload', 'slumber'] as const
+const STATES = ['swift', 'heavy', 'ward', 'rebirth', 'overload', 'slumber', 'guard'] as const
+const INTENTS: Intent[] = [
+  { kind: 'claw', damage: 8 },
+  { kind: 'rend', slot: 1 },
+  { kind: 'tailSweep', count: 2 },
+  { kind: 'roar', slot: 3 },
+  { kind: 'evade' },
+  { kind: 'charge' },
+  { kind: 'recover', amount: 20 },
+  { kind: 'flee', damage: 80, belowPct: 30 },
+]
 
 const PAGES: { id: string; title: string; body: () => ReactNode }[] = [
   {
@@ -27,27 +39,29 @@ const PAGES: { id: string; title: string; body: () => ReactNode }[] = [
     body: () => (
       <>
         <p>
-          Yaratık kartlarından bir deste kurar, her gün kartlarını en verimli sırayla dizerek <b>kaynak</b> toplarsın.
+          Yaratık kartlarından bir deste kurar, sefere çıkar ve vahşi yaratıkları <b>bayıltırsın</b>. Bayılan yaratık
+          koleksiyonuna katılır ve desteni güçlendirir.
         </p>
         <ul>
-          <li>Hafta 5 gündür. Haftanın toplam kazancı <b>haftalık kotayı</b> tutarsa paket kazanırsın.</li>
-          <li>Paketlerden yeni kartlar çıkar; koleksiyonun büyüdükçe desteni güçlendirirsin.</li>
-          <li>Kart oyunlarındaki gibi rakip yoktur: senin kararın, kartların <b>sırasıdır</b>.</li>
+          <li>Kartlarının Strike'ı yaratığa <b>hasar</b> verir. Can 0'a inince yaratık bayılır; 6 tur biterse kaçar.</li>
+          <li>Yaratık da karşılık verir: her turun sonunda niyetini uygular, <b>Tamer'ın canı</b> düşer.</li>
+          <li>Kart oyunlarındaki gibi elinden kart seçmezsin: senin kararın, kartların <b>sırasıdır</b>.</li>
         </ul>
       </>
     ),
   },
   {
     id: 'round',
-    title: 'Gün ve tur',
+    title: 'Av ve tur',
     body: () => (
       <>
         <ul>
-          <li>Her gün desten karılır. Deste 30 kart, Tamer'ın 5 slotu varsa gün <b>6 tur</b> sürer.</li>
+          <li>Av başında desten karılır. Deste 30 kart, Tamer'ın 5 slotu varsa av en fazla <b>6 tur</b> sürer.</li>
           <li>Her turda slot sayısı kadar kart ele gelir ve <b>hepsini</b> slotlara dizmen gerekir.</li>
           <li>Kartı sürükleyip slota bırak; tıklarsan ilk boş slota gider. Slottaki kartları sürükleyerek yer değiştir.</li>
-          <li>BAŞLAT'a basınca tur kendi kendine çözülür; tur sonunda dizilimin, aynı elle mümkün olan en iyi dizilimle karşılaştırılır.</li>
+          <li>BAŞLAT'a basınca tur kendi kendine çözülür. Yaratık o tur bayılırsa niyetini uygulayamaz; hızlı bayıltmak hem Tamer'ı korur hem ödülü artırır.</li>
         </ul>
+        <p className="muted">Tur sonunda dizilimin, aynı elle mümkün olan en iyi dizilimle (yaratığı hesaba katan) karşılaştırılır.</p>
       </>
     ),
   },
@@ -57,19 +71,31 @@ const PAGES: { id: string; title: string; body: () => ReactNode }[] = [
     body: () => (
       <>
         <ul>
-          <li>
-            Tur başında <b>Howl</b> yetenekleri bir kez çalışır.
-          </li>
-          <li>
-            Sonra <b>geçişler</b> başlar: aktif kartlar soldan sağa sırayla tetiklenir (<b>Swift</b> kartlar önce, <b>Heavy</b> kartlar sonra).
-          </li>
-          <li>
-            Her tetik kartın <b>Harvest</b> yeteneğini çalıştırır ve 1 <b>dayanıklılık</b> (🛡, kartın sağ üstü) harcar.
-          </li>
+          <li>Tur başında <b>Howl</b> yetenekleri bir kez çalışır.</li>
+          <li>Sonra <b>geçişler</b> başlar: aktif kartlar soldan sağa sırayla tetiklenir (<b>Swift</b> kartlar önce, <b>Heavy</b> kartlar sonra).</li>
+          <li>Her tetik kartın <b>Strike</b> yeteneğini çalıştırır, yaratığa hasar verir ve 1 <b>dayanıklılık</b> (🛡) harcar.</li>
           <li>Dayanıklılığı 0 olan kart <b>pasife</b> geçer. Tüm kartlar pasif olunca tur biter.</li>
-          <li>Yani bir kartın dayanıklılığı, o turda kaç kez gelir getireceğidir.</li>
+          <li>Bazı kartlar hasarın yanında <b>Koruma</b> üretir: tur sonundaki saldırıyı emer, sonra sıfırlanır.</li>
         </ul>
-        <p className="muted">Gelir hesabı: (taban gelir) × (kart çarpanları) × (hava, Tamer). Tur kaydında her tetiğin hesabı yazar.</p>
+        <p className="muted">Hasar hesabı: (taban) × (kart çarpanları) × (hava, Tamer), sonra yaratığın özellikleri (Zırh, Çevik...). Tur kaydında her vuruş yazar.</p>
+      </>
+    ),
+  },
+  {
+    id: 'prey',
+    title: 'Yaratığın niyeti',
+    body: () => (
+      <>
+        <p>Her turdan önce yaratığın <b>niyeti</b> sağ üstte görünür. Kartlara dokunan niyetler dizimde hedef slotun üstünde işaretlenir.</p>
+        <div className="howto__intents">
+          {INTENTS.map((it) => (
+            <p key={it.kind}>
+              <IntentIcon kind={it.kind} size={40} />
+              <span><b>{intentName(it).replace(/ \d+$/, '')}</b> {intentText(it)}</span>
+            </p>
+          ))}
+        </div>
+        <p className="muted">Zorlu ve üstü yaratıkların <b>özellikleri</b> de vardır (Zırh, Çevik, Direnç...). Final yaratıkları iki fazlıdır; Efsanevi yaratıklar kendi havasını getirir, Kadim yaratıklar günlerce süren kuşatma ister.</p>
       </>
     ),
   },
@@ -120,19 +146,43 @@ const PAGES: { id: string; title: string; body: () => ReactNode }[] = [
     ),
   },
   {
-    id: 'meta',
-    title: 'Hava ve Tamer',
+    id: 'world',
+    title: 'Dünya ve biyomlar',
     body: () => (
       <ul>
         <li>
-          Her günün bir <b>havası</b> vardır: bazı elementleri güçlendirir (ör. Güneşli: Ateş +%40), bazılarını zayıflatır. Haftanın
-          havasını önceden görür, desteni ona göre seçersin.
+          <b>Bilinen Topraklar</b> sekiz bölgeden oluşur: Kül Vadisi'nden Ejder Zirvesi'ne her biyomun kendi iklimi, yaratıkları ve Final avı vardır. Haritayı sürükle, tekerlekle ya da düğmelerle yakınlaş; uzaktan bölge rozetlerini, yakından yaratıkları görürsün.
         </li>
         <li>
-          Her deste bir <b>Tamer</b> ile oynanır. Tamer'ın pasifi destedeki tüm kartları etkiler; birkaç Tamer slot sayısını ya da
-          deste boyutunu da değiştirir.
+          Bir bölgenin <b>Final</b> yaratığını bayıltınca yolun devamındaki bölge açılır. Kül Vadisi'nden sonra yol ikiye ayrılır (Kıyı → Yayla → Bataklık ve Orman → Çöl → Mağaralar) ve Ejder Zirvesi'nde birleşir.
         </li>
-        <li>Desteler ekranında kendi desteni kurabilir, hazır destelerden birini seçebilirsin.</li>
+        <li>
+          Bölgenin bütün Sıradan, Zorlu ve Final yaratıklarını bayıltınca <b>bölge kitabı</b> tamamlanır: kalıcı bonusu dünyadaki tüm avlarda geçerlidir ve gizli Efsanevi yaratık iz bırakmaya başlar.
+        </li>
+        <li>
+          Sefere çıkacağın bölgeyi haritadan seç. Seferdeyken yalnızca o bölgede avlanırsın; başka bölgeye gitmek için kampa dön.
+        </li>
+      </ul>
+    ),
+  },
+  {
+    id: 'meta',
+    title: 'Sefer ve hava',
+    body: () => (
+      <ul>
+        <li>
+          Kamptan <b>sefere</b> çıkarsın. Seferde her gün bir av, bir dinlenme (1 <b>Erzak</b>) ya da kampa dönüş seçersin; her biri bir gün geçirir.
+        </li>
+        <li>
+          Her günün bir <b>havası</b> vardır ve 5 gün önceden görünür: bazı elementleri güçlendirir (Güneşli: Ateş +%40), bazılarını zayıflatır. Bazı yaratıklar yalnızca belirli havalarda iz verir.
+        </li>
+        <li>
+          <b>Tamer'ın canı</b> sefer boyunca taşınır; kampta dolar. Tamer düşerse <b>çantadaki</b> özün yarısı kaybolur, bayılttığın yaratıklar asla kaybolmaz.
+        </li>
+        <li>
+          Kazanılan her av bir <b>İz</b> verir. Bölge kitabı tamamsa aynı seferde 3 İz, gizli Efsanevi yaratığı ortaya çıkarır.
+        </li>
+        <li><b>Öz</b> ile Market'ten paket alırsın. ★★★ ile bayılttığın yaratıklar Hızlı Av ile tek tıkla yeniden avlanabilir.</li>
       </ul>
     ),
   },

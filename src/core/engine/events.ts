@@ -16,17 +16,21 @@ export type RoundEvent =
       on: AbilityTrigger | 'retrigger'
       pass: number
       income: number
+      /** Bu çözümün ürettiği Koruma (yoksa 0). */
+      guard: number
       detail: IncomeDetail
     }
   | { t: 'durability'; slot: number; from: number; to: number; source: DurabilitySource }
   | { t: 'ward'; slot: number }
+  /** Tur başında uyutuldu (Kükreme): bu geçişe kadar tetiklenmez. */
+  | { t: 'slumber'; slot: number; until: number }
   | { t: 'exhausted'; slot: number }
   | { t: 'rebirth'; slot: number }
   | { t: 'reactivated'; slot: number }
   | { t: 'heat'; value: number; slot: number }
   | { t: 'passEnd'; pass: number }
   | { t: 'cap' }
-  | { t: 'roundEnd'; total: number; triggers: number; passes: number }
+  | { t: 'roundEnd'; total: number; guard: number; triggers: number; passes: number }
 
 export type DurabilitySource = 'start' | 'trigger' | 'ability'
 

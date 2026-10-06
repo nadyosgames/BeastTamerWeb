@@ -1,0 +1,64 @@
+.world-map {
+  position: relative; margin: auto; overflow: hidden; border-radius: 10px;
+  cursor: grab; touch-action: none; user-select: none;
+  background: #b8cfc4;
+}
+.world-map:active { cursor: grabbing; }
+.world-map__art { position: absolute; inset: 0; display: block; }
+
+/* Yaratık düğümleri (yakından) */
+.map-node {
+  position: absolute; translate: -50% -50%; display: flex; flex-direction: column; align-items: center; gap: 0;
+  padding: 0; border: 0; background: none; color: var(--ink); z-index: 1; cursor: pointer;
+  transition: transform .15s;
+}
+.map-node:hover { transform: translateY(-3px); z-index: 3; }
+.map-node.is-selected { z-index: 4; }
+.map-node.is-selected .prey-medallion { box-shadow: inset 0 0 0 3px #f2d39b, 0 0 0 4px #ffe283, 0 0 26px #ffc842, 0 4px 0 #281c1366; }
+.map-node--open .prey-medallion { animation: map-node-pulse 2.4s ease-in-out infinite; }
+@keyframes map-node-pulse { 50% { box-shadow: inset 0 0 0 3px #f2d39b, 0 0 0 3px var(--ring), 0 0 16px #ffd56a, 0 4px 0 #281c1366; } }
+.map-node.is-selected.map-node--open .prey-medallion { animation: none; }
+.map-node--elsewhere { opacity: .82; }
+
+.map-node__name {
+  position: relative; margin-top: -10px; padding: 4px 18px 7px; min-width: 120px;
+  background: url('/art/ui/name-ribbon.svg') center / 100% 100% no-repeat;
+  font-family: var(--font-display); font-weight: 900; font-size: 19px; line-height: 1; white-space: nowrap;
+}
+.map-node--legendary .map-node__name, .map-node--ancient .map-node__name, .map-node--final .map-node__name { font-size: 21px; }
+.map-node--locked .map-node__name { color: #6a5640; }
+.map-node__stars { margin-top: 1px; font-size: 18px; line-height: 1; color: #c28a24; text-shadow: 1px 1px 0 var(--ink), -1px -1px 0 var(--ink), 1px -1px 0 var(--ink), -1px 1px 0 var(--ink); letter-spacing: 1px; }
+.map-node__lock, .map-node__weather, .map-node__wound {
+  position: absolute; top: -6px; right: -8px; display: grid; place-items: center;
+  width: 40px; height: 40px; border: 2.5px solid var(--ink); border-radius: 50%;
+  background: var(--paper-image) repeat; box-shadow: 0 2px 0 #281c1366;
+}
+.map-node__lock .game-icon { color: var(--ink); stroke-width: 2.2; }
+.map-node__weather { width: 46px; height: 46px; }
+.map-node__wound { top: auto; bottom: 26px; right: -10px; width: 32px; height: 32px; color: var(--paper-hi); background: var(--red); font-size: 18px; font-weight: 900; }
+.map-node__wound--siege { background: #2f7a70; }
+
+/* Bölge rozetleri (uzaktan) ve kilitli bölge levhası (yakından) */
+.world-badge {
+  position: absolute; translate: -50% -50%; z-index: 5; min-width: 200px; max-width: 260px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px 16px 12px;
+  background: var(--paper-image) repeat; color: var(--ink);
+  border: 3px solid var(--ink); border-radius: 14px 8px 16px 9px; box-shadow: var(--paper-shadow), 0 4px 0 #281c1355;
+  text-align: center; cursor: pointer; transition: transform .15s;
+}
+.world-badge:hover { transform: translateY(-3px); }
+.world-badge small { font-size: 12px; font-weight: 800; letter-spacing: .08em; color: var(--text-dim); }
+.world-badge b { font-family: var(--font-display); font-size: 27px; line-height: 1; white-space: nowrap; }
+.world-badge.is-selected { box-shadow: var(--paper-shadow), 0 0 0 4px #ffe283, 0 0 26px #ffc842; }
+.world-badge.is-active { border-color: #2f7a70; }
+.world-badge.is-locked { background: #d8c4a0; color: #4e3b29; }
+.world-badge.is-locked b { color: #4e3b29; }
+.world-badge.is-plaque { min-width: 280px; max-width: 360px; }
+.world-badge__progress { position: relative; width: 100%; height: 24px; border: 2px solid var(--ink); border-radius: 12px; background: #f5e7c8; overflow: hidden; }
+.world-badge__progress i { position: absolute; inset: 0 auto 0 0; background: linear-gradient(180deg, #8cae5a, #5d7f34); }
+.world-badge__progress em { position: relative; display: block; font-style: normal; font-size: 14px; font-weight: 800; line-height: 20px; }
+.world-badge__lock { display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; line-height: 1.2; text-align: left; }
+.world-badge__flag { position: absolute; top: -14px; right: -10px; padding: 3px 10px; background: #2f7a70; color: #f4ecd9; border: 2px solid var(--ink); border-radius: 10px; font-size: 13px; font-weight: 900; letter-spacing: .08em; }
+
+.world-map__controls { position: absolute; right: 12px; bottom: 12px; z-index: 6; display: flex; gap: 6px; }
+.world-map__controls .btn.small { min-width: 46px; height: 42px; padding: 0 10px; font-size: 16px; }

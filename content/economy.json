@@ -16,7 +16,7 @@
       "priceMult": 1,
       "cards": 5,
       "smart": true,
-      "odds": { "common": 55, "uncommon": 25, "rare": 12, "epic": 5, "legendary": 2.5, "mythic": 0.45, "ancient": 0.05 }
+      "odds": { "common": 55, "uncommon": 25, "rare": 12, "epic": 5, "legendary": 3 }
     },
     {
       "id": "element",
@@ -24,7 +24,7 @@
       "priceMult": 1.5,
       "cards": 5,
       "element": true,
-      "odds": { "common": 55, "uncommon": 25, "rare": 12, "epic": 5, "legendary": 2.5, "mythic": 0.45, "ancient": 0.05 }
+      "odds": { "common": 55, "uncommon": 25, "rare": 12, "epic": 5, "legendary": 3 }
     },
     {
       "id": "lucky",
@@ -32,7 +32,7 @@
       "priceMult": 2.5,
       "cards": 5,
       "guarantee": { "rarityAtLeast": "rare", "count": 1 },
-      "odds": { "common": 35, "uncommon": 28, "rare": 22, "epic": 10, "legendary": 4, "mythic": 0.9, "ancient": 0.1 }
+      "odds": { "common": 35, "uncommon": 28, "rare": 22, "epic": 10, "legendary": 5 }
     },
     {
       "id": "sealed",
@@ -40,13 +40,21 @@
       "priceMult": 6,
       "cards": 5,
       "guarantee": { "rarityAtLeast": "epic", "count": 1 },
-      "odds": { "rare": 50, "epic": 35, "legendary": 12, "mythic": 2.7, "ancient": 0.3 }
+      "odds": { "rare": 50, "epic": 35, "legendary": 15 }
     }
   ],
-  "packPricePctOfQuota": 20,
-  "weeklyPack": "standard",
-  "quotaFallback": { "base": 1200, "growthPerWeek": 0.02 },
+  "packBasePrice": 120,
+  "basePack": "standard",
   "pity": { "packsWithoutRarePlus": 6 },
-  "softFail": { "missedWeeks": 2, "quotaReductionPct": 15 },
-  "timing": { "planningSecPerRound": 40, "secPerStep": 0.5 }
+  "timing": { "planningSecPerRound": 40, "secPerStep": 0.5 },
+  "expedition": {
+    "rations": 2,
+    "restHealPct": 35,
+    "speedBonusPct": 10,
+    "streakBonusPct": 10,
+    "bagLossPct": 50,
+    "woundCarryPct": 25,
+    "siegeNightHealPct": 100,
+    "essenceByRarity": { "common": 40, "uncommon": 60, "rare": 100, "epic": 160, "legendary": 300, "mythic": 500, "ancient": 800 }
+  }
 }

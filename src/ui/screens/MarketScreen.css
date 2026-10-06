@@ -27,3 +27,11 @@
 .market__odds { border-collapse: collapse; font-size: 21px; }
 .market__odds td,.market__odds th { padding: 12px 18px; text-align: left; border-bottom: 1px solid var(--line); }
 .market__odds th { color: var(--gold-hi); }
+.market__card { position: relative; }
+.market__tag {
+  position: absolute; left: 50%; top: -14px; translate: -50% 0; z-index: 5; padding: 3px 12px; white-space: nowrap;
+  border: 2px solid var(--ink); border-radius: 9px 3px 10px 4px; background: var(--paper-image) repeat;
+  font-family: var(--font-display); font-weight: 900; font-size: 20px; line-height: 1; color: var(--ink);
+}
+.market__tag--new { color: var(--paper-hi); background: var(--red); }
+.market__pack > .btn:disabled { font-size: 30px; }

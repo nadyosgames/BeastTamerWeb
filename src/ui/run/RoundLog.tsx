@@ -1,6 +1,7 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 import type { CardDef } from '../../core/types.ts'
-import type { LogEntry, RoundView } from '../playback/roundView.ts'
+import { intentName } from '../hunt.ts'
+import { BLOCK_LABEL, type LogEntry, type RoundView } from '../playback/roundView.ts'
 import './RoundLog.css'
 
 /**
@@ -8,7 +9,7 @@ import './RoundLog.css'
  * son satıra kendiliğinden kayar. Kart adları element rengiyle, yetenekler anahtar kelime rengiyle yazılır.
  */
 const ON_LABEL: Record<string, string> = {
-  harvest: 'Harvest',
+  harvest: 'Strike',
   howl: 'Howl',
   lastBreath: 'Last Breath',
   epilogue: 'Epilogue',
@@ -58,10 +59,41 @@ export function RoundLog({ view, cards, empty }: { view: Pick<RoundView, 'log' |
                 {d.global !== 1 && <> × <i className={d.global < 1 ? 'rlog__neg' : 'rlog__pos'}>{fmt(d.global)}</i> hava/Tamer</>}
               </span>
             )}
+            {e.hit && (
+              <span className={`rlog__hit ${e.hit.damage ? '' : 'is-zero'}`} title="Yaratığa işleyen hasar">
+                ⚔ {e.hit.damage}
+                {e.hit.blocked && <i> ({BLOCK_LABEL[e.hit.blocked].toLocaleLowerCase('tr-TR')})</i>}
+              </span>
+            )}
+            {e.guard ? <span className="rlog__guard" title="Koruma: tur sonundaki saldırıyı emer">+{e.guard} Koruma</span> : null}
             {e.cost && <span className="rlog__cost" title="Tetik dayanıklılık harcadı">🛡 {e.cost.from}→{e.cost.to}</span>}
           </div>
         )
       }
+      case 'action':
+        return (
+          <div key={key} className="rlog__action">
+            <b>Yaratık: {intentName(e.intent)}</b>
+            {e.attack > 0 && <span> · saldırı {e.attack}{e.absorbed ? `, Koruma ${e.absorbed} emdi` : ''} → <b className="rlog__neg">Tamer −{e.tamerDamage}</b></span>}
+            {e.recovered > 0 && <span> · <b className="rlog__neg">+{e.recovered} can</b></span>}
+            {e.intent.kind === 'charge' && <span> · sonraki Pençe iki katı</span>}
+            {e.fled && <span> · <b className="rlog__neg">kaçtı!</b></span>}
+          </div>
+        )
+      case 'prey':
+        return (
+          <div key={key} className={`rlog__action rlog__action--${e.what}`}>
+            {e.what === 'down' && <b>Yaratık bayıldı! Tur burada biter.</b>}
+            {e.what === 'revive' && <b>Yaratık küllerinden doğdu: {e.hp} can.</b>}
+            {e.what === 'phase' && <><b>Yeni faz:</b> {e.text}</>}
+          </div>
+        )
+      case 'huntEnd':
+        return (
+          <div key={key} className="rlog__end">
+            Tur bitti: <b>⚔ {e.damage}</b> hasar{e.guard ? ` · 🛡 ${e.guard} Koruma` : ''}
+          </div>
+        )
       case 'durability': {
         const gain = e.to > e.from
         return (
@@ -92,6 +124,7 @@ export function RoundLog({ view, cards, empty }: { view: Pick<RoundView, 'log' |
               {e.what === 'ward' && <><b className="rlog__kw">Ward</b> dayanıklılık kaybını engelledi</>}
               {e.what === 'rebirth' && <><b className="rlog__kw">Rebirth</b> ile 1 dayanıklılıkla döndü</>}
               {e.what === 'reactivated' && 'yeniden aktif'}
+              {e.what === 'slumber' && 'Kükreme ile uyudu (ilk geçişte vurmaz)'}
             </span>
           </div>
         )
@@ -100,7 +133,7 @@ export function RoundLog({ view, cards, empty }: { view: Pick<RoundView, 'log' |
       case 'end':
         return (
           <div key={key} className="rlog__end">
-            Tur bitti: <b>+{e.total}</b> kaynak · {e.triggers} tetik · {e.passes} geçiş
+            Tur bitti: <b>+{e.total}</b> hasar · {e.triggers} tetik · {e.passes} geçiş
           </div>
         )
     }

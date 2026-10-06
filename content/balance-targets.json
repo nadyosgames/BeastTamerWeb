@@ -3,31 +3,50 @@
   "seed": 20261001,
   "targets": {
     "arrangementSkill": {
-      "text": "Usta bot (tüm dizilimleri dener) acemiden (tek geçişli açgözlü) %25-50 fazla kazanmalı.",
+      "text": "Usta bot (tüm dizilimleri dener) acemiden (tek geçişli açgözlü) %25-50 fazla hasar vermeli.",
       "masterOverNovice": [1.25, 1.5]
     },
     "weatherFit": {
-      "text": "Havaya uygun deste, uygunsuzdan %30-50 fazla kazanmalı.",
+      "text": "Havaya uygun deste, uygunsuzdan %30-50 fazla hasar vermeli.",
       "matchedOverMismatched": [1.3, 1.5]
     },
     "dayLength": {
-      "text": "Bir gün (maç) 4-8 dakika sürmeli.",
-      "minutes": [4, 8]
+      "text": "Bir av 3-8 dakika sürmeli (yaratık bayılınca av erken biter; hızlı bayıltma ödüllendirilir).",
+      "minutes": [3, 8]
     },
     "duplicates": {
-      "text": "Tamamı kopya Standart paket, fiyatının en fazla %30'u kadar kaynak vermeli.",
+      "text": "Tamamı kopya Standart paket, fiyatının en fazla %30'u kadar öz vermeli.",
       "maxRatio": 0.3
     },
-    "quota": {
-      "text": "İyi oyuncu kotanın %100-130'unu, uyumsuz destede oynayan %70-90'ını yapmalı.",
-      "goodPlayerRatio": [1.0, 1.3],
-      "mismatchedRatio": [0.7, 0.9],
-      "calibrationRatio": 1.15
+    "huntRound": {
+      "text": "Kalibre edilen her av, hedef deste ve havada usta botla hedef turun ±0,5 içinde bayılmalı (medyan).",
+      "tolerance": 0.5
+    },
+    "starterHunts": {
+      "text": "Başlangıç destesi (usta, Sakin gün) başlangıç bölgesindeki Sıradan avların her birini en az %80 bayıltmalı.",
+      "captureRate": 0.8
+    },
+    "intentAwareness": {
+      "text": "Niyetin dizilim sorduğu turlarda (Yırtma, Kuyruk Savurma, Kükreme, Savuşturma), niyeti bilerek dizen usta bot aynı elle en az %4 fazla hasar vermeli.",
+      "minGain": 0.04
+    },
+    "weatherHunt": {
+      "text": "Zırhı belli bir havada sönen yaratıklarda o hava, bayıltmayı Sakin güne göre en az 1 tur öne çekmeli (hava tahmini plan kararı yaratmalı).",
+      "minRounds": 1
+    },
+    "expedition": {
+      "text": "İyi oyuncu (başlangıç destesi) Sıradan avlarda kampa dönmeden 3 av yapabilmeli ama canın taşındığını hissetmeli: 3. avdan sonra Tamer canı %20-60 (medyan).",
+      "hunts": 3,
+      "hpPct": [20, 60]
+    },
+    "tamerSafety": {
+      "text": "Ortalama oyuncu (casual bot), referans destesi ve hedef havada, her avı tam canla başlarsa Tamer en fazla %10 bayılmalı: av zor olabilir ama tek avda ölüm olmamalı.",
+      "maxDownRate": 0.1
     }
   },
   "simulation": {
     "daysPerCheck": 300,
-    "campaignAgents": 6,
-    "calibrationIterations": 3
+    "huntSamples": 200,
+    "calibrationIterations": 8
   }
 }

@@ -61,3 +61,11 @@
   color: var(--text-dim);
 }
 .rlog__end b { color: var(--gold-hi); font-size: 17px; }
+/* Av satırları */
+.rlog__hit { font-weight: 900; color: var(--bad); }
+.rlog__hit.is-zero { color: var(--text-mute); }
+.rlog__hit i { font-style: normal; font-weight: 700; font-size: 13px; }
+.rlog__guard { font-weight: 700; color: #386888; }
+.rlog__action { margin: 6px 0 2px; padding: 5px 8px; border: 2px solid #a43c2c66; border-radius: 9px 3px 10px 4px; background: #a43c2c12; font-size: 15px; }
+.rlog__action--down { border-color: #38633888; background: #38633818; color: var(--good); }
+.rlog__action--revive, .rlog__action--phase { border-color: #ad7c2688; background: #ad7c2618; }

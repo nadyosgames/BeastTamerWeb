@@ -21,3 +21,4 @@
 .menu__tools button:hover { color: var(--gold-hi); }
 .menu__footer > .menu__settings { min-width: 88px; }
 .menu__tutorial-actions { justify-content: flex-end; }
+.menu__toggle { display: flex; align-items: center; gap: 12px; font-size: 20px; font-weight: 700; }

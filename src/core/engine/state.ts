@@ -2,13 +2,20 @@ import type { AbilityTrigger, CardDef, Effect, LinkState } from '../types.ts'
 import type { EventSink } from './events.ts'
 import type { ModifierSet } from './modifiers.ts'
 
+/**
+ * Her yetenek çözümünden hemen sonra çağrılır (olay akışındaki `ability` olayıyla aynı sırada).
+ * Av katmanı vuruşları bununla hasara çevirir; olay nesnesi oluşturmadığı için simülasyonda ucuzdur.
+ */
+export type HitSink = (slot: number, on: AbilityTrigger | 'retrigger', pass: number, income: number, guard: number) => void
+
 export interface RoundContext {
   mods: ModifierSet
-  /** 0 tabanlı tur indeksi ve gündeki toplam tur (round: first/last koşulları). */
+  /** 0 tabanlı tur indeksi ve avdaki toplam tur (round: first/last koşulları). */
   roundIndex: number
   roundCount: number
   /** Sonsuz döngü koruması: turdaki yetenek çözümü sınırı (GDD önerisi 60). */
   triggerCap: number
+  hit?: HitSink
 }
 
 /** Kartın derlenmiş hali (her CardDef için bir kez, WeakMap önbelleği). */
@@ -28,6 +35,8 @@ export interface SlotState {
   card: CardDef
   c: CompiledCard
   durability: number
+  /** Bu turdaki Slumber (kartın kendi Slumber'ı ya da Kükreme gibi tur başı uyutma). */
+  slumber: number
   ward: boolean
   rebirth: boolean
   lastBreathDone: boolean
@@ -38,6 +47,8 @@ export interface SlotState {
   passRawPass: number
   /** Bu turdaki toplam gelir (istatistik / UI). */
   income: number
+  /** Bu turda ürettiği Koruma. */
+  guard: number
   leftLink: LinkState | null
   rightLink: LinkState | null
 }
@@ -52,6 +63,8 @@ export interface RoundState {
   /** Harvest tetik sayısı (süre tahmini bununla yapılır). */
   triggers: number
   total: number
+  /** Turda üretilen toplam Koruma. */
+  guard: number
   capped: boolean
   distinctElements: number
   auraSources: SlotState[]

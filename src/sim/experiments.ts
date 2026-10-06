@@ -205,7 +205,7 @@ export function cardPowerReport(db: ContentDB, opts: { seed: number; samples: nu
 
 /** Tamamı kopya bir Standart paketin fiyatına oranla verdiği kaynak. */
 export function duplicateRatio(db: ContentDB): number {
-  const std = db.economy.packs.find((p) => p.id === db.economy.weeklyPack)!
+  const std = db.economy.packs.find((p) => p.id === db.economy.basePack)!
   const totalOdds = Object.values(std.odds).reduce((a, b) => a + (b ?? 0), 0)
   let perCard = 0
   for (const r of RARITIES) perCard += ((std.odds[r] ?? 0) / totalOdds) * (db.economy.rarities[r].duplicatePct / 100)
