@@ -175,10 +175,41 @@
                                   },
                                   "excludeSelf": {
                                     "type": "boolean"
+                                  },
+                                  "side": {
+                                    "type": "string",
+                                    "enum": [
+                                      "left",
+                                      "right"
+                                    ]
                                   }
                                 },
                                 "required": [
                                   "kind"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "type": "string",
+                                    "const": "chain"
+                                  },
+                                  "side": {
+                                    "type": "string",
+                                    "enum": [
+                                      "left",
+                                      "right"
+                                    ]
+                                  },
+                                  "filter": {
+                                    "$ref": "#/$defs/__schema1"
+                                  }
+                                },
+                                "required": [
+                                  "kind",
+                                  "side"
                                 ],
                                 "additionalProperties": false
                               },
@@ -436,6 +467,133 @@
                           "id"
                         ],
                         "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "op": {
+                            "type": "string",
+                            "const": "guard"
+                          },
+                          "amount": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "per": {
+                            "oneOf": [
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "type": "string",
+                                    "const": "cards"
+                                  },
+                                  "filter": {
+                                    "$ref": "#/$defs/__schema1"
+                                  },
+                                  "excludeSelf": {
+                                    "type": "boolean"
+                                  },
+                                  "side": {
+                                    "type": "string",
+                                    "enum": [
+                                      "left",
+                                      "right"
+                                    ]
+                                  }
+                                },
+                                "required": [
+                                  "kind"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "type": "string",
+                                    "const": "chain"
+                                  },
+                                  "side": {
+                                    "type": "string",
+                                    "enum": [
+                                      "left",
+                                      "right"
+                                    ]
+                                  },
+                                  "filter": {
+                                    "$ref": "#/$defs/__schema1"
+                                  }
+                                },
+                                "required": [
+                                  "kind",
+                                  "side"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "type": "string",
+                                    "const": "distinctElements"
+                                  }
+                                },
+                                "required": [
+                                  "kind"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "type": "string",
+                                    "const": "heat"
+                                  }
+                                },
+                                "required": [
+                                  "kind"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "type": "string",
+                                    "const": "selfTriggers"
+                                  }
+                                },
+                                "required": [
+                                  "kind"
+                                ],
+                                "additionalProperties": false
+                              },
+                              {
+                                "type": "object",
+                                "properties": {
+                                  "kind": {
+                                    "type": "string",
+                                    "const": "pass"
+                                  }
+                                },
+                                "required": [
+                                  "kind"
+                                ],
+                                "additionalProperties": false
+                              }
+                            ]
+                          },
+                          "if": {
+                            "$ref": "#/$defs/__schema0"
+                          }
+                        },
+                        "required": [
+                          "op",
+                          "amount"
+                        ],
+                        "additionalProperties": false
                       }
                     ]
                   }
@@ -456,7 +614,8 @@
             "enum": [
               "pack",
               "quest",
-              "starter"
+              "starter",
+              "hunt"
             ]
           },
           "art": {
@@ -517,10 +676,41 @@
                     },
                     "excludeSelf": {
                       "type": "boolean"
+                    },
+                    "side": {
+                      "type": "string",
+                      "enum": [
+                        "left",
+                        "right"
+                      ]
                     }
                   },
                   "required": [
                     "kind"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "chain"
+                    },
+                    "side": {
+                      "type": "string",
+                      "enum": [
+                        "left",
+                        "right"
+                      ]
+                    },
+                    "filter": {
+                      "$ref": "#/$defs/__schema1"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "side"
                   ],
                   "additionalProperties": false
                 },

@@ -116,3 +116,14 @@
 .collection__dragpreview img { display: block; width: 100%; aspect-ratio: 1; object-fit: contain; }
 .collection__dragpreview span { display: block; margin-top: 4px; color: var(--gold-hi); font-family: var(--font-display); font-size: 13px; text-align: center; }
 
+/* Sahiplik (GDD v0.8): koleksiyonda olmayan kartlar soluk ve kilitli. */
+.collection__cell.is-unowned .card { filter: grayscale(.85) brightness(.85); opacity: .72; }
+.collection__lock {
+  position: absolute; left: 50%; top: 38%; translate: -50% -50%; z-index: 4; display: grid; place-items: center;
+  width: 54px; height: 54px; border: 3px solid var(--ink); border-radius: 50%; background: var(--paper-image) repeat; box-shadow: 0 2px 0 #281c1366; pointer-events: none;
+}
+.collection__lock .game-icon { color: var(--ink); stroke-width: 2.2; }
+.collection__count small { font-size: .7em; color: var(--text-dim); }
+.collection__add:disabled { opacity: .35; cursor: not-allowed; }
+.collection__source { margin: 0; font-weight: 700; color: #6d4a85; }
+.collection__tamergallery button:disabled { opacity: .45; filter: grayscale(.8); }

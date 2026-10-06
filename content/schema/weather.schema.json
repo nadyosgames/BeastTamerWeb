@@ -82,6 +82,31 @@
                   "properties": {
                     "kind": {
                       "type": "string",
+                      "const": "slumberAtStart"
+                    },
+                    "passes": {
+                      "type": "integer",
+                      "minimum": 2,
+                      "maximum": 9007199254740991
+                    },
+                    "filter": {
+                      "$ref": "#/$defs/__schema0"
+                    },
+                    "if": {
+                      "$ref": "#/$defs/__schema1"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "passes"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
                       "const": "abilityScale"
                     },
                     "on": {
@@ -308,10 +333,41 @@
                     },
                     "excludeSelf": {
                       "type": "boolean"
+                    },
+                    "side": {
+                      "type": "string",
+                      "enum": [
+                        "left",
+                        "right"
+                      ]
                     }
                   },
                   "required": [
                     "kind"
+                  ],
+                  "additionalProperties": false
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "const": "chain"
+                    },
+                    "side": {
+                      "type": "string",
+                      "enum": [
+                        "left",
+                        "right"
+                      ]
+                    },
+                    "filter": {
+                      "$ref": "#/$defs/__schema0"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "side"
                   ],
                   "additionalProperties": false
                 },

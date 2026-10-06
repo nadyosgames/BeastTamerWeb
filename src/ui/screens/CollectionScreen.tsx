@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type PointerEvent } from 'react'
 import { createPortal } from 'react-dom'
 import { CREATURE_TYPES, ELEMENTS, RARITIES, type CardDef, type Element } from '../../core/types.ts'
-import { useGame } from '../../state/game.ts'
+import { tamerUnlocked, useGame } from '../../state/game.ts'
 import { useNav } from '../../state/nav.ts'
 import { playerDeck, playerDeckCards, playerDecks, playerDeckStatus } from '../../state/decks.ts'
 import { CardView } from '../components/CardView.tsx'
@@ -13,6 +13,7 @@ import { RarityBadge } from '../components/RarityBadge.tsx'
 import { content } from '../content.ts'
 import { artUrl } from '../art.ts'
 import { ELEMENT_LABEL } from '../labels.ts'
+import { TIER_LABEL } from '../hunt.ts'
 import { elementCounts } from '../weather.ts'
 import { useStage } from '../stage-context.ts'
 import './CollectionScreen.css'
@@ -61,8 +62,11 @@ export function CollectionScreen({ decks = false }: { decks?: boolean }) {
     if (sort === 'default') cards.sort((a, b) => (featured.indexOf(a.id) < 0 ? featured.length : featured.indexOf(a.id)) - (featured.indexOf(b.id) < 0 ? featured.length : featured.indexOf(b.id)))
     if (sort === 'name') cards.sort((a, b) => a.name.localeCompare(b.name, 'tr'))
     if (sort === 'rarity') cards.sort((a, b) => RARITIES.indexOf(b.rarity) - RARITIES.indexOf(a.rarity))
+    // Sahip olunan kartlar önde (sıralama kararlıdır, seçilen sıra korunur).
+    if (!game.sandbox) cards.sort((a, b) => Number((game.collection[b.id] ?? 0) > 0) - Number((game.collection[a.id] ?? 0) > 0))
     return cards
-  }, [query, element, rarity, type, sort, decks])
+  }, [query, element, rarity, type, sort, decks, game.collection, game.sandbox])
+  const owned = (id: string) => (game.sandbox ? content.economy.rarities[content.card(id).rarity].deckLimit : (game.collection[id] ?? 0))
   const pages = Math.max(1, Math.ceil(filtered.length / pageSize))
   const currentPage = Math.min(page, pages - 1)
   const resetPage = () => setPage(0)
@@ -75,7 +79,9 @@ export function CollectionScreen({ decks = false }: { decks?: boolean }) {
     const card = content.card(id)
     const count = deck.cards.find((c) => c.card === id)?.count ?? 0
     if (game.addDeckCard(deck.id, id)) { setFeedback(`${card.name} desteye eklendi`) }
-    else setFeedback(count >= content.economy.rarities[card.rarity].deckLimit ? `${card.name}: aynı karttan en fazla ${content.economy.rarities[card.rarity].deckLimit} adet` : `${tamer.name} için ${tamer.deckSize} kart sınırına ulaşıldı`)
+    else setFeedback(count >= content.economy.rarities[card.rarity].deckLimit ? `${card.name}: aynı karttan en fazla ${content.economy.rarities[card.rarity].deckLimit} adet`
+      : count >= owned(id) ? `${card.name}: koleksiyonunda ${owned(id)} kopya var. Avla ya da paketten bul.`
+      : `${tamer.name} için ${tamer.deckSize} kart sınırına ulaşıldı`)
   }
   const removeCard = (id: string) => { game.removeDeckCard(deck.id, id); setFeedback(`${content.card(id).name} desteden çıkarıldı`) }
   const dragZone = (e: PointerEvent) => {
@@ -117,7 +123,7 @@ export function CollectionScreen({ decks = false }: { decks?: boolean }) {
   })
   return (
     <div className={`collection ${decks ? 'collection--decks' : ''} ${tall ? 'collection--tall' : ''}`}>
-      <IllustratedHeader title={decks ? 'DESTELER' : 'KOLEKSİYON'} icon={decks ? undefined : 'cards'} resource={game.lifetime}>
+      <IllustratedHeader title={decks ? 'DESTELER' : 'KOLEKSİYON'} icon={decks ? undefined : 'cards'} resource={game.essence}>
         <button className="btn" onClick={() => go('menu')}>⬅ GERİ</button>
       </IllustratedHeader>
       {decks && <button className="btn collection__newdeck" onClick={() => setCreateOpen(true)}>＋ YENİ DESTE</button>}
@@ -130,7 +136,11 @@ export function CollectionScreen({ decks = false }: { decks?: boolean }) {
           {!decks && <select aria-label="Sıralama" value={sort} onChange={(e) => { setSort(e.target.value); resetPage() }}><option value="default">SIRALA</option><option value="name">A–Z</option><option value="rarity">NADİRLİK ↓</option></select>}
         </div>
         <div className="collection__grid">
-          {filtered.slice(currentPage * pageSize, (currentPage + 1) * pageSize).map((card) => <div key={card.id} className="collection__cell" draggable={false} {...(decks ? pointerDrag(card.id, 'catalog') : {})}><CardView card={card} size="sm" hoverPreview actionLabel={decks ? `${card.name} desteye ekle` : undefined} onClick={() => decks ? addCard(card.id) : setDetail(card)} /><span className="collection__count">{decks ? <><b>×{deck.cards.find((c) => c.card === card.id)?.count ?? 0}</b><button className="collection__inspect" aria-label={`${card.name} kartını incele`} onClick={() => setDetail(card)}>ⓘ</button><button className="collection__add" aria-label={`${card.name} desteye ekle`} onClick={() => addCard(card.id)}>＋</button></> : TYPE_LABEL[card.type]}</span></div>)}
+          {filtered.slice(currentPage * pageSize, (currentPage + 1) * pageSize).map((card) => {
+            const have = owned(card.id)
+            const inDeck = deck.cards.find((c) => c.card === card.id)?.count ?? 0
+            return <div key={card.id} className={`collection__cell ${have ? '' : 'is-unowned'}`} draggable={false} {...(decks ? pointerDrag(card.id, 'catalog') : {})}><CardView card={card} size="sm" hoverPreview actionLabel={decks ? `${card.name} desteye ekle` : undefined} onClick={() => decks ? addCard(card.id) : setDetail(card)} />{!have && <span className="collection__lock" title="Henüz sende yok: avla ya da paketten bul"><GameIcon name="lock" size={30} /></span>}<span className="collection__count">{decks ? <><b>×{inDeck}<small>/{have}</small></b><button className="collection__inspect" aria-label={`${card.name} kartını incele`} onClick={() => setDetail(card)}>ⓘ</button><button className="collection__add" aria-label={`${card.name} desteye ekle`} disabled={inDeck >= have} onClick={() => addCard(card.id)}>＋</button></> : have ? `Sende ×${have}` : 'Yok'}</span></div>
+          })}
           {!filtered.length && <div className="collection__empty"><GameIcon name="search" size={56} /><h3>Kart bulunamadı</h3><p>Farklı bir isim ya da element dene.</p><button className="btn" onClick={() => { setQuery(''); setElement(null); setRarity(''); setType('') }}>Filtreleri temizle</button></div>}
         </div>
         <footer className="collection__pagination"><span className="panel collection__total">{filtered.length} KART</span><div className="panel"><button className="btn small" aria-label="Önceki sayfa" disabled={currentPage === 0} onClick={() => setPage(currentPage - 1)}>◀</button><span>{currentPage + 1} / {pages}</span><button className="btn small" aria-label="Sonraki sayfa" disabled={currentPage + 1 >= pages} onClick={() => setPage(currentPage + 1)}>▶</button></div>{!decks && <button className="btn primary" onClick={() => go('decks')}>DESTELERİM</button>}</footer>
@@ -142,7 +152,7 @@ export function CollectionScreen({ decks = false }: { decks?: boolean }) {
           {tamerArt && <img src={tamerArt} alt={tamer.name} />}
           <div className="collection__tamerbody">
             <label htmlFor="deck-tamer">DESTENİN TAMER'I</label>
-            <select id="deck-tamer" aria-label="Destenin Tamer'ı" value={tamer.id} onChange={(e) => game.setDeckTamer(deck.id, e.target.value)}>{content.tamers.map((t) => <option key={t.id} value={t.id} disabled={cardCount > t.deckSize}>{t.name}{cardCount > t.deckSize ? ' — kapasite yetersiz' : ''}</option>)}</select>
+            <select id="deck-tamer" aria-label="Destenin Tamer'ı" value={tamer.id} onChange={(e) => game.setDeckTamer(deck.id, e.target.value)}>{content.tamers.map((t) => { const locked = !tamerUnlocked(game, t); return <option key={t.id} value={t.id} disabled={locked || cardCount > t.deckSize}>{t.name}{locked && t.unlock.kind === 'captures' ? ` — ${t.unlock.count} yaratık bayılt` : cardCount > t.deckSize ? ' — kapasite yetersiz' : ''}</option> })}</select>
             <div className="collection__tamerstats"><span><GameIcon name="shield" size={23} /><b>{tamer.slots}</b> SLOT</span><span><GameIcon name="cards" size={23} /><b>{tamer.deckSize}</b> KART LİMİTİ</span></div>
           </div>
           <p>{tamer.text}</p><small>Bu Tamer desteyle birlikte kaydedilir. Slot ve deste limiti ona bağlıdır.</small>
@@ -153,15 +163,15 @@ export function CollectionScreen({ decks = false }: { decks?: boolean }) {
         <div className="collection__distribution">{ELEMENTS.map((e) => <span key={e}><ElementIcon element={e} size={29} />{counts[e] ?? 0}</span>)}</div>
         <small className="collection__autosave">✓ Değişiklikler otomatik kaydedilir</small>
         {isPreset && <button className="btn small collection__reset" title="Preset destenin kartlarını, adını ve Tamer'ını varsayılana döndür" onClick={() => { game.resetPresetDeck(deck.id); setEditingName(false); setFeedback('Preset deste varsayılana döndürüldü') }}>↺ VARSAYILANA DÖNDÜR</button>}
-        <button className="btn small" onClick={() => go('play')}>GÜNÜ PLANLA →</button>
+        <button className="btn small" onClick={() => go('play')}>HARİTAYA DÖN →</button>
       </aside>}
       {dragging && <div className="collection__dragbanner">Desteye bırak: ekle · Koleksiyona bırak: çıkar</div>}
       {dragPreview && createPortal(<div className="collection__dragpreview" style={{ left: Math.min(dragPreview.x + 16, window.innerWidth - 136), top: Math.min(dragPreview.y + 16, window.innerHeight - 150) }}><img src={artUrl('cards', dragPreview.id, true) ?? ''} alt="" draggable={false} /><span>{content.card(dragPreview.id).name}</span></div>, document.body)}
       {feedback && <div className="collection__feedback" role="status" aria-live="polite">{feedback}</div>}
-      {createOpen && <div className="overlay" onClick={() => setCreateOpen(false)}><section className="panel collection__create" role="dialog" aria-modal="true" aria-label="Yeni deste oluştur" onClick={(e) => e.stopPropagation()}><h2>YENİ DESTE OLUŞTUR</h2><p>Önce Tamer'ını seç. Slot sayısı ve deste kart limiti ona bağlıdır.</p><label className="collection__newname">DESTE ADI<input aria-label="Yeni deste adı" value={newName} maxLength={40} onChange={(e) => setNewName(e.target.value)} /></label><div className="collection__tamergallery">{content.tamers.map((t) => <button key={t.id} className={newTamer === t.id ? 'is-selected' : ''} aria-pressed={newTamer === t.id} aria-label={`${t.name} ile deste oluştur`} onClick={() => setNewTamer(t.id)}><img src={artUrl('tamers', t.id, true) ?? ''} alt={t.name} /><b>{t.name}</b><span>{t.slots} slot · {t.deckSize} kart</span></button>)}</div><p className="collection__newpassive">{content.tamer(newTamer).text}</p><div className="collection__createactions"><button className="btn" onClick={() => setCreateOpen(false)}>VAZGEÇ</button><button className="btn primary" onClick={() => { const id = game.createDeck(newName, newTamer); if (!id) return; setPreviewDeck(id); setCreateOpen(false); setPage(0); setQuery(''); setElement(null); setRarity(''); setType(''); setFeedback('Yeni deste oluşturuldu. Kartları tıkla veya sürükle.') }}>DESTEYİ OLUŞTUR</button></div></section></div>}
+      {createOpen && <div className="overlay" onClick={() => setCreateOpen(false)}><section className="panel collection__create" role="dialog" aria-modal="true" aria-label="Yeni deste oluştur" onClick={(e) => e.stopPropagation()}><h2>YENİ DESTE OLUŞTUR</h2><p>Önce Tamer'ını seç. Slot sayısı ve deste kart limiti ona bağlıdır.</p><label className="collection__newname">DESTE ADI<input aria-label="Yeni deste adı" value={newName} maxLength={40} onChange={(e) => setNewName(e.target.value)} /></label><div className="collection__tamergallery">{content.tamers.map((t) => <button key={t.id} className={newTamer === t.id ? 'is-selected' : ''} aria-pressed={newTamer === t.id} aria-label={`${t.name} ile deste oluştur`} disabled={!tamerUnlocked(game, t)} title={!tamerUnlocked(game, t) && t.unlock.kind === 'captures' ? `${t.unlock.count} farklı yaratık bayıltınca açılır` : undefined} onClick={() => setNewTamer(t.id)}><img src={artUrl('tamers', t.id, true) ?? ''} alt={t.name} /><b>{t.name}</b><span>{t.slots} slot · {t.deckSize} kart</span></button>)}</div><p className="collection__newpassive">{content.tamer(newTamer).text}</p><div className="collection__createactions"><button className="btn" onClick={() => setCreateOpen(false)}>VAZGEÇ</button><button className="btn primary" onClick={() => { const id = game.createDeck(newName, newTamer); if (!id) return; setPreviewDeck(id); setCreateOpen(false); setPage(0); setQuery(''); setElement(null); setRarity(''); setType(''); setFeedback('Yeni deste oluşturuldu. Kartları tıkla veya sürükle.') }}>DESTEYİ OLUŞTUR</button></div></section></div>}
       <button className="btn small collection__rarityhelp" onClick={() => setRarityGuide(true)}>ⓘ NADİRLİK ROZETLERİ</button>
       {rarityGuide && <div className="overlay" onClick={() => setRarityGuide(false)}><section className="panel collection__rarityguide" role="dialog" aria-modal="true" aria-label="Nadirlik rozetleri" onClick={(e) => e.stopPropagation()}><h2>NADİRLİK ROZETLERİ</h2><p>Nadirliği taşın rengi, kesimi ve metal çerçevesi gösterir.</p><div>{RARITIES.map((r) => <article key={r}><RarityBadge rarity={r} label size={58} /><span>Aynı karttan en fazla <b>{content.economy.rarities[r].deckLimit}</b> adet / deste</span></article>)}</div><button className="btn" onClick={() => setRarityGuide(false)}>KAPAT</button></section></div>}
-      {detail && <div className="overlay" onClick={() => setDetail(null)}><section role="dialog" aria-modal="true" aria-label={detail.name} className="panel collection__detail" onClick={(e) => e.stopPropagation()}><CardView card={detail} /><div><RarityBadge rarity={detail.rarity} label size={48} /><small className="muted"> · {TYPE_LABEL[detail.type]}</small><h2>{detail.name}</h2><div className="collection__rules"><CardText text={detail.text} paragraphs /></div><div className="chip-row">{detail.elements.map((e) => <span key={e} className="collection__detail-element"><ElementIcon element={e} size={32} />{ELEMENT_LABEL[e]}</span>)}</div><p className="muted">Dayanıklılık: {detail.durability}</p><button className="btn" onClick={() => setDetail(null)}>KAPAT</button></div></section></div>}
+      {detail && <div className="overlay" onClick={() => setDetail(null)}><section role="dialog" aria-modal="true" aria-label={detail.name} className="panel collection__detail" onClick={(e) => e.stopPropagation()}><CardView card={detail} /><div><RarityBadge rarity={detail.rarity} label size={48} /><small className="muted"> · {TYPE_LABEL[detail.type]}</small><h2>{detail.name}</h2><div className="collection__rules"><CardText text={detail.text} paragraphs /></div><div className="chip-row">{detail.elements.map((e) => <span key={e} className="collection__detail-element"><ElementIcon element={e} size={32} />{ELEMENT_LABEL[e]}</span>)}</div><p className="muted">Dayanıklılık: {detail.durability} · Sende: {owned(detail.id)}</p><p className="collection__source">{(() => { const h = content.hunts.find((x) => x.card === detail.id); return h ? `${content.region(h.region).name} avı: ${TIER_LABEL[h.tier]}` : (detail.source ?? 'pack') === 'pack' || detail.source === 'starter' ? 'Paketlerden çıkar' : 'Yalnızca özel yollarla bulunur' })()}</p><button className="btn" onClick={() => setDetail(null)}>KAPAT</button></div></section></div>}
     </div>
   )
 }

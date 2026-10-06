@@ -1,0 +1,108 @@
+/* Sefer / bölge haritası. Ölçüler 1920 × 1080 tasarım alanında; sahne genişleyince harita büyür. */
+.exp { position: absolute; inset: 0; --font-display: 'Grenze', Georgia, serif; background: linear-gradient(#1b100b12, #1b100b24), url('/art/ui/board.webp') center / cover no-repeat; }
+.exp .illustrated-header__title { left: 470px; width: 760px; }
+.exp .illustrated-header__title h2 { font-size: 96px; }
+
+.exp__day {
+  position: absolute; right: 300px; top: 44px; height: 62px; padding: 6px 22px; z-index: 3;
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-end;
+  color: var(--paper-hi); text-shadow: 0 2px 2px #17100b;
+}
+.exp__day b { font-family: var(--font-display); font-size: 34px; line-height: 1; font-weight: 900; }
+.exp__day span { font-size: 19px; color: #ead7b4; }
+
+/* 5 günlük tahmin */
+.exp__forecast { position: absolute; top: 186px; left: 450px; right: 40px; height: 150px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+.exp__fday { position: relative; padding: 24px 14px 8px; display: flex; flex-direction: column; gap: 2px; overflow: visible; border-image: url('/art/ui/panel-frame.svg') 24 / 24px / 2px stretch; }
+.exp__fday small {
+  position: absolute; left: 50%; top: -16px; translate: -50% 0; min-width: 118px; padding: 4px 10px; text-align: center;
+  border: 2px solid var(--ink); border-radius: 12px 8px 13px 8px; background: var(--paper-image) repeat; box-shadow: inset 0 0 0 3px #cda568;
+  font-family: var(--font-display); font-size: 22px; font-weight: 900; line-height: 1; color: var(--ink);
+}
+.exp__fday.is-today { box-shadow: var(--paper-shadow), 0 0 0 4px #ffe283, 0 0 22px #ffc842; }
+.exp__fday.is-today small { color: var(--paper-hi); background: var(--red); }
+.exp__fbody { display: flex; align-items: center; gap: 10px; }
+.exp__fbody > div { display: flex; flex-direction: column; min-width: 0; }
+.exp__fbody b { font-family: var(--font-display); font-size: 30px; line-height: 1; font-weight: 900; text-transform: uppercase; }
+.exp__fbody span { font-size: 17px; font-weight: 700; line-height: 1.1; color: var(--text-dim); }
+.exp__fprey { position: absolute; right: 10px; bottom: 8px; display: flex; }
+.exp__fprey .prey-medallion { border-width: 2.5px; box-shadow: inset 0 0 0 2px #f2d39b; margin-left: -8px; }
+
+/* Sol: Tamer ve sefer durumu */
+.exp__tamer.panel { position: absolute; left: 40px; top: 186px; bottom: 40px; width: 390px; padding: 16px 22px 20px; display: flex; flex-direction: column; gap: 10px; border-image: url('/art/ui/panel-frame.svg') 24 / 24px / 2px stretch; }
+.exp__tamer h3 { text-align: center; font-size: 60px; line-height: 1; font-family: var(--font-display); }
+.exp__portrait { flex: 1; min-height: 140px; display: grid; place-items: center; overflow: hidden; margin: 0 -6px; border: 3px solid var(--ink); border-radius: 50%; background: #dfc18b; }
+.exp__portrait img { width: 100%; height: 100%; object-fit: contain; transform: scale(1.18); transform-origin: 50% 25%; }
+.exp__tamername { position: relative; z-index: 1; margin: -26px -10px 0; padding: 7px 4px 12px; text-align: center; background: url('/art/ui/name-ribbon.svg') center / 100% 100% no-repeat; font-family: var(--font-display); font-size: 44px; line-height: 1; font-weight: 900; }
+.exp__stats { margin: 4px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; }
+.exp__stats > div { display: flex; flex-direction: column; padding: 5px 10px; border: 2px solid #8a6a43; border-radius: 10px 4px 11px 5px; background: #f4e2bd99; }
+.exp__stats dt { font-size: 15px; font-weight: 700; color: var(--text-dim); letter-spacing: .04em; text-transform: uppercase; }
+.exp__stats dd { margin: 0; display: flex; align-items: center; gap: 4px; font-family: var(--font-display); font-size: 28px; font-weight: 900; line-height: 1.05; color: var(--ink); }
+.exp__stats dd .game-icon { color: #8652b1; }
+.exp__camptext { margin: 2px 0; font-size: 19px; line-height: 1.3; text-align: center; }
+.exp__deckline { margin: 0; display: flex; align-items: center; gap: 8px; font-size: 17px; }
+.exp__deckline span { color: var(--text-dim); font-weight: 700; text-transform: uppercase; }
+.exp__deckline b { flex: 1; font-family: var(--font-display); font-size: 26px; line-height: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.exp__deckline .btn { font-size: 15px; padding: 5px 10px; }
+.exp__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.exp__actions .btn { height: 64px; font-size: 26px; padding: 4px; }
+.exp__go { height: 84px; font-size: 44px; line-height: 1; border-radius: 22px; }
+.exp__warn { margin: 0; color: var(--bad); font-weight: 700; font-size: 17px; line-height: 1.2; text-align: center; }
+
+/* Orta: harita */
+.exp__map.panel {
+  position: absolute; left: 450px; right: 600px; top: 356px; bottom: 40px; padding: 18px; display: grid; place-items: center;
+  border-image: url('/art/ui/panel-frame.svg') 24 / 24px / 2px stretch; overflow: hidden;
+}
+.exp__help { position: absolute; right: 18px; top: 16px; width: 46px; height: 46px; padding: 0; font-size: 26px; border-radius: 50%; z-index: 5; }
+
+/* Sağ: av kartı */
+.exp__detail.panel {
+  position: absolute; right: 40px; top: 356px; bottom: 40px; width: 545px; padding: 16px 22px 18px; display: flex; flex-direction: column; gap: 9px;
+  border-image: url('/art/ui/panel-frame.svg') 24 / 24px / 2px stretch; overflow: hidden;
+}
+.exp__dhead { display: flex; align-items: center; gap: 16px; }
+.exp__dhead > div { min-width: 0; display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+.exp__dhead h2 { font-family: var(--font-display); font-size: 46px; line-height: .95; letter-spacing: -.03em; color: var(--ink); }
+.exp__dhead p { margin: 0; font-size: 17px; font-weight: 700; }
+.exp__small { margin: -2px 0 0; font-size: 16px; color: var(--text-dim); }
+.exp__block { display: flex; flex-direction: column; gap: 5px; }
+.exp__block h4 { margin: 0; font-family: var(--font-display); font-size: 20px; letter-spacing: .06em; color: var(--text-dim); }
+.exp__intents { display: flex; align-items: center; flex-wrap: wrap; gap: 2px; }
+.exp__intent { display: inline-flex; align-items: center; gap: 2px; }
+.exp__intent i, .exp__loop { font-style: normal; font-size: 26px; font-weight: 900; color: #8a6a43; margin: 0 2px; }
+.exp__phase { display: flex; align-items: center; gap: 8px; padding: 4px 8px; border: 2px dashed #a88a62; border-radius: 10px; }
+.exp__phase small { font-size: 15px; font-weight: 700; color: var(--bad); white-space: nowrap; }
+.exp__traits { display: flex; flex-wrap: wrap; gap: 6px; }
+.exp__trait { padding: 3px 10px; border: 2px solid var(--ink); border-radius: 9px 3px 10px 4px; background: #f3d98f; font-weight: 700; font-size: 17px; cursor: help; }
+.exp__trait--weather { background: #cfe0e2; }
+.exp__lore { margin: 0; font-style: italic; font-size: 17px; line-height: 1.3; color: #4e3b29; flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #a88a62 transparent; }
+.exp__reward { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-top: 6px; border-top: 2px dashed #a88a62; font-weight: 700; font-size: 18px; }
+.exp__reward .game-icon { color: #8652b1; vertical-align: -5px; }
+.exp__record { color: #8a5f1a; }
+.exp__deck { display: flex; align-items: flex-end; gap: 10px; }
+.exp__deck label { flex: 1; display: flex; flex-direction: column; gap: 3px; font-size: 14px; font-weight: 700; color: var(--text-dim); }
+.exp__deck select { height: 52px; font-family: var(--font-display); font-size: 26px; font-weight: 900; padding: 4px 12px; }
+.exp__fit { display: flex; align-items: center; gap: 2px; padding-bottom: 8px; font-weight: 700; font-size: 18px; white-space: nowrap; }
+.exp__fit span { margin-left: 6px; }
+.exp__go-row { display: flex; gap: 10px; }
+.exp__go-row .btn { height: 78px; font-size: 32px; padding: 4px 12px; }
+.exp__go-row .btn.primary { flex: 1; font-size: 46px; line-height: 1; border-radius: 22px; }
+
+.exp__feedback {
+  position: absolute; left: 50%; bottom: 60px; translate: -50% 0; z-index: 8; padding: 14px 26px;
+  background: var(--paper-image) repeat; color: var(--ink); border: 3px solid var(--ink); border-radius: 16px; box-shadow: var(--paper-shadow);
+  font-size: 22px; font-weight: 700;
+}
+/* Uzun av kartlarında (fazlı Kadim) can çubuğu ve uyarı ezilmesin; yalnız hikâye metni daralsın. */
+.exp__detail.panel > * { flex-shrink: 0; }
+.exp__detail.panel > .exp__lore { flex-shrink: 1; }
+.exp__detail--ancient.panel { gap: 5px; }
+/* Dünya haritası: harita paneli kenara kadar */
+.exp__map.panel { padding: 6px; }
+.exp__target { margin: 0; text-align: center; font-size: 19px; }
+.exp__target b { font-family: var(--font-display); font-size: 26px; }
+.exp__detail--region .exp__region-go { height: 72px; font-size: 40px; line-height: 1; border-radius: 22px; margin-top: 8px; }
+/* Hikâye metni sığmazsa en az iki satır kalır (kesik şerit görünmesin); fazlası kaydırılır. */
+.exp__detail.panel > .exp__lore { min-height: 44px; }
+.exp__detail--final.panel, .exp__detail--legendary.panel { gap: 6px; }

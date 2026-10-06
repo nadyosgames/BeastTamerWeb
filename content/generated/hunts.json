@@ -1,0 +1,3938 @@
+{
+  "generatedAt": "2026-10-06T13:07:01.267Z",
+  "seed": 20261001,
+  "samples": 100,
+  "hp": {
+    "torch_lizard": 250,
+    "ash_crow": 230,
+    "magma_pup": 260,
+    "storm_snail": 260,
+    "blaze_hound": 290,
+    "rock_lizard": 290,
+    "steam_turtle": 240,
+    "storm_hound": 240,
+    "ember_thunder_dragon": 270,
+    "sun_dragon": 160,
+    "primordial_ninetail": 610,
+    "bubble_fish": 250,
+    "tide_otter": 290,
+    "reef_seal": 330,
+    "river_eel": 280,
+    "breeze_sparrow": 280,
+    "flock_finch": 340,
+    "wave_dolphin": 260,
+    "pearl_seahorse": 290,
+    "tidal_serpent": 290,
+    "rain_bird": 240,
+    "mirror_jelly": 260,
+    "leviathan_calf": 320,
+    "kraken": 230,
+    "moon_whale": 940,
+    "root_keeper": 330,
+    "sprout": 350,
+    "mushroom_toad": 440,
+    "burrow_badger": 330,
+    "pebble_mole": 360,
+    "mist_wisp": 390,
+    "thorn_bush": 330,
+    "vine_serpent": 360,
+    "elder_oak": 480,
+    "moss_giant": 400,
+    "mud_turtle": 470,
+    "ancient_tree": 470,
+    "world_tree": 280,
+    "gaia_tortoise": 1250,
+    "breeze_fox": 370,
+    "dandelion_bunny": 410,
+    "storm_moth": 530,
+    "static_rabbit": 430,
+    "jolt_pup": 470,
+    "storm_eagle": 490,
+    "chime_bird": 440,
+    "thunder_ram": 440,
+    "thunder_hawk": 560,
+    "griffin_chick": 510,
+    "sage_owl": 530,
+    "sky_serpent": 490,
+    "hurricane_eagle": 610,
+    "roc": 430,
+    "four_winds": 1720,
+    "flame_swarm": 580,
+    "cinder_beetle": 520,
+    "whirl_wisp": 630,
+    "flame_lily": 600,
+    "phoenix_chick": 520,
+    "forge_golem": 730,
+    "gale_hound": 550,
+    "thistle_ball": 610,
+    "fire_hawk": 590,
+    "crimson_wolf": 640,
+    "lava_salamander": 570,
+    "phoenix": 530,
+    "magma_titan": 890,
+    "sandstorm_eagle": 710,
+    "volcano_serpent": 470,
+    "eternal_flame": 2110,
+    "clay_golem": 630,
+    "boulder_beetle": 670,
+    "copper_worm": 830,
+    "zap_beetle": 680,
+    "crystal_golem": 660,
+    "iron_tortoise": 690,
+    "capacitor_golem": 680,
+    "quake_mole": 720,
+    "granite_golem": 870,
+    "magnet_golem": 760,
+    "mountain_tortoise": 680,
+    "conductor_crab": 570,
+    "plasma_serpent": 890,
+    "stone_colossus": 530,
+    "storm_colossus": 610,
+    "volt_mouse": 730,
+    "spark_coil": 780,
+    "mist_ghost": 710,
+    "tide_caller": 710,
+    "kelp_guardian": 690,
+    "whirl_octopus": 950,
+    "surge_weasel": 800,
+    "coil_tortoise": 710,
+    "electric_eel": 1000,
+    "abyss_angler": 670,
+    "lightning_wisp": 740,
+    "vortex_spirit": 680,
+    "elder_tortoise": 920,
+    "mist_queen": 840,
+    "sea_dragon": 630,
+    "raijin_wolf": 530,
+    "wyvern": 640,
+    "fire_wisp": 680,
+    "seed_finch": 850,
+    "cyclone_ferret": 720,
+    "sky_whale_calf": 680,
+    "arc_lynx": 940,
+    "tension_lizard": 750,
+    "dynamo_hamster": 720,
+    "cinder_drake": 930,
+    "volcano_tortoise": 810,
+    "swarm_mother": 880,
+    "cloud_dragon": 740,
+    "thunder_dragon": 920,
+    "tornado_dragon": 480,
+    "tempest_dragon": 2320
+  },
+  "refDecks": {
+    "ash_valley:entry:calm": [
+      {
+        "card": "baby_dragon",
+        "count": 3
+      },
+      {
+        "card": "charge_bat",
+        "count": 3
+      },
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "coral_crab",
+        "count": 3
+      },
+      {
+        "card": "coral_turtle",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "ember_hedgehog",
+        "count": 3
+      },
+      {
+        "card": "gust_cat",
+        "count": 3
+      },
+      {
+        "card": "spark_fox",
+        "count": 3
+      },
+      {
+        "card": "stone_golem",
+        "count": 3
+      }
+    ],
+    "ash_valley:mid:rainy": [
+      {
+        "card": "baby_dragon",
+        "count": 3
+      },
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "coral_crab",
+        "count": 3
+      },
+      {
+        "card": "coral_turtle",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "gust_cat",
+        "count": 3
+      },
+      {
+        "card": "spark_fox",
+        "count": 3
+      },
+      {
+        "card": "stone_golem",
+        "count": 3
+      },
+      {
+        "card": "ember_hedgehog",
+        "count": 2
+      },
+      {
+        "card": "ash_crow",
+        "count": 1
+      },
+      {
+        "card": "magma_pup",
+        "count": 1
+      },
+      {
+        "card": "storm_snail",
+        "count": 1
+      },
+      {
+        "card": "torch_lizard",
+        "count": 1
+      }
+    ],
+    "ash_valley:mid:stormy": [
+      {
+        "card": "baby_dragon",
+        "count": 3
+      },
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "coral_crab",
+        "count": 3
+      },
+      {
+        "card": "coral_turtle",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "ember_hedgehog",
+        "count": 3
+      },
+      {
+        "card": "gust_cat",
+        "count": 3
+      },
+      {
+        "card": "spark_fox",
+        "count": 3
+      },
+      {
+        "card": "stone_golem",
+        "count": 3
+      },
+      {
+        "card": "ash_crow",
+        "count": 1
+      },
+      {
+        "card": "storm_snail",
+        "count": 1
+      },
+      {
+        "card": "torch_lizard",
+        "count": 1
+      }
+    ],
+    "ash_valley:mid:quake": [
+      {
+        "card": "baby_dragon",
+        "count": 3
+      },
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "coral_crab",
+        "count": 3
+      },
+      {
+        "card": "coral_turtle",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "ember_hedgehog",
+        "count": 3
+      },
+      {
+        "card": "gust_cat",
+        "count": 3
+      },
+      {
+        "card": "spark_fox",
+        "count": 3
+      },
+      {
+        "card": "stone_golem",
+        "count": 3
+      },
+      {
+        "card": "ash_crow",
+        "count": 1
+      },
+      {
+        "card": "magma_pup",
+        "count": 1
+      },
+      {
+        "card": "torch_lizard",
+        "count": 1
+      }
+    ],
+    "ash_valley:late:sunny": [
+      {
+        "card": "baby_dragon",
+        "count": 3
+      },
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "ember_hedgehog",
+        "count": 3
+      },
+      {
+        "card": "gust_cat",
+        "count": 3
+      },
+      {
+        "card": "spark_fox",
+        "count": 3
+      },
+      {
+        "card": "stone_golem",
+        "count": 3
+      },
+      {
+        "card": "ash_crow",
+        "count": 1
+      },
+      {
+        "card": "blaze_hound",
+        "count": 1
+      },
+      {
+        "card": "coral_turtle",
+        "count": 1
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "magma_pup",
+        "count": 1
+      },
+      {
+        "card": "rock_lizard",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "storm_hound",
+        "count": 1
+      },
+      {
+        "card": "torch_lizard",
+        "count": 1
+      }
+    ],
+    "ash_valley:late:stormy": [
+      {
+        "card": "baby_dragon",
+        "count": 3
+      },
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "coral_turtle",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "ember_hedgehog",
+        "count": 3
+      },
+      {
+        "card": "gust_cat",
+        "count": 3
+      },
+      {
+        "card": "stone_golem",
+        "count": 3
+      },
+      {
+        "card": "ash_crow",
+        "count": 1
+      },
+      {
+        "card": "blaze_hound",
+        "count": 1
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "magma_pup",
+        "count": 1
+      },
+      {
+        "card": "rock_lizard",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "storm_hound",
+        "count": 1
+      },
+      {
+        "card": "storm_snail",
+        "count": 1
+      },
+      {
+        "card": "torch_lizard",
+        "count": 1
+      }
+    ],
+    "ash_valley:late:foggy": [
+      {
+        "card": "baby_dragon",
+        "count": 3
+      },
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "coral_turtle",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "ember_hedgehog",
+        "count": 3
+      },
+      {
+        "card": "gust_cat",
+        "count": 3
+      },
+      {
+        "card": "stone_golem",
+        "count": 3
+      },
+      {
+        "card": "ash_crow",
+        "count": 1
+      },
+      {
+        "card": "blaze_hound",
+        "count": 1
+      },
+      {
+        "card": "coral_crab",
+        "count": 1
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "magma_pup",
+        "count": 1
+      },
+      {
+        "card": "rock_lizard",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "storm_hound",
+        "count": 1
+      },
+      {
+        "card": "torch_lizard",
+        "count": 1
+      }
+    ],
+    "coral_coast:entry:calm": [
+      {
+        "card": "baby_dragon",
+        "count": 3
+      },
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "coral_turtle",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "ember_hedgehog",
+        "count": 3
+      },
+      {
+        "card": "gust_cat",
+        "count": 3
+      },
+      {
+        "card": "stone_golem",
+        "count": 3
+      },
+      {
+        "card": "ash_crow",
+        "count": 2
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "magma_pup",
+        "count": 1
+      },
+      {
+        "card": "rock_lizard",
+        "count": 1
+      },
+      {
+        "card": "spark_fox",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "torch_lizard",
+        "count": 1
+      }
+    ],
+    "coral_coast:mid:rainy": [
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "coral_crab",
+        "count": 3
+      },
+      {
+        "card": "coral_turtle",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "gust_cat",
+        "count": 3
+      },
+      {
+        "card": "stone_golem",
+        "count": 3
+      },
+      {
+        "card": "storm_snail",
+        "count": 2
+      },
+      {
+        "card": "breeze_fox",
+        "count": 1
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "jolt_pup",
+        "count": 1
+      },
+      {
+        "card": "mist_wisp",
+        "count": 1
+      },
+      {
+        "card": "rock_lizard",
+        "count": 1
+      },
+      {
+        "card": "sky_whale_calf",
+        "count": 1
+      },
+      {
+        "card": "spark_coil",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "wave_dolphin",
+        "count": 1
+      }
+    ],
+    "coral_coast:mid:windy": [
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "coral_crab",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "gust_cat",
+        "count": 3
+      },
+      {
+        "card": "stone_golem",
+        "count": 3
+      },
+      {
+        "card": "ash_crow",
+        "count": 2
+      },
+      {
+        "card": "magma_pup",
+        "count": 2
+      },
+      {
+        "card": "breeze_fox",
+        "count": 1
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "flock_finch",
+        "count": 1
+      },
+      {
+        "card": "jolt_pup",
+        "count": 1
+      },
+      {
+        "card": "mist_wisp",
+        "count": 1
+      },
+      {
+        "card": "rock_lizard",
+        "count": 1
+      },
+      {
+        "card": "seed_finch",
+        "count": 1
+      },
+      {
+        "card": "sky_whale_calf",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "whirl_wisp",
+        "count": 1
+      }
+    ],
+    "coral_coast:mid:foggy": [
+      {
+        "card": "baby_dragon",
+        "count": 3
+      },
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "coral_turtle",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "gust_cat",
+        "count": 3
+      },
+      {
+        "card": "spark_fox",
+        "count": 3
+      },
+      {
+        "card": "stone_golem",
+        "count": 3
+      },
+      {
+        "card": "blaze_hound",
+        "count": 1
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "jolt_pup",
+        "count": 1
+      },
+      {
+        "card": "mist_wisp",
+        "count": 1
+      },
+      {
+        "card": "rock_lizard",
+        "count": 1
+      },
+      {
+        "card": "sky_whale_calf",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "whirl_wisp",
+        "count": 1
+      }
+    ],
+    "coral_coast:late:stormy": [
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "stone_golem",
+        "count": 3
+      },
+      {
+        "card": "rain_bird",
+        "count": 2
+      },
+      {
+        "card": "storm_snail",
+        "count": 2
+      },
+      {
+        "card": "capacitor_golem",
+        "count": 1
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "fire_hawk",
+        "count": 1
+      },
+      {
+        "card": "iron_tortoise",
+        "count": 1
+      },
+      {
+        "card": "jolt_pup",
+        "count": 1
+      },
+      {
+        "card": "kelp_guardian",
+        "count": 1
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 1
+      },
+      {
+        "card": "mirror_jelly",
+        "count": 1
+      },
+      {
+        "card": "mist_ghost",
+        "count": 1
+      },
+      {
+        "card": "rock_lizard",
+        "count": 1
+      },
+      {
+        "card": "seed_finch",
+        "count": 1
+      },
+      {
+        "card": "spark_coil",
+        "count": 1
+      },
+      {
+        "card": "static_rabbit",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "storm_hound",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "surge_weasel",
+        "count": 1
+      },
+      {
+        "card": "thorn_bush",
+        "count": 1
+      },
+      {
+        "card": "tidal_serpent",
+        "count": 1
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 1
+      }
+    ],
+    "coral_coast:late:rainy": [
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "coral_turtle",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "rain_bird",
+        "count": 2
+      },
+      {
+        "card": "reef_seal",
+        "count": 2
+      },
+      {
+        "card": "wave_dolphin",
+        "count": 2
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "gust_cat",
+        "count": 1
+      },
+      {
+        "card": "iron_tortoise",
+        "count": 1
+      },
+      {
+        "card": "jolt_pup",
+        "count": 1
+      },
+      {
+        "card": "kelp_guardian",
+        "count": 1
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 1
+      },
+      {
+        "card": "mirror_jelly",
+        "count": 1
+      },
+      {
+        "card": "mist_ghost",
+        "count": 1
+      },
+      {
+        "card": "mist_wisp",
+        "count": 1
+      },
+      {
+        "card": "pearl_seahorse",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "surge_weasel",
+        "count": 1
+      },
+      {
+        "card": "thorn_bush",
+        "count": 1
+      },
+      {
+        "card": "tidal_serpent",
+        "count": 1
+      }
+    ],
+    "coral_coast:late:foggy": [
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "stone_golem",
+        "count": 3
+      },
+      {
+        "card": "rain_bird",
+        "count": 2
+      },
+      {
+        "card": "storm_snail",
+        "count": 2
+      },
+      {
+        "card": "burrow_badger",
+        "count": 1
+      },
+      {
+        "card": "capacitor_golem",
+        "count": 1
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "fire_hawk",
+        "count": 1
+      },
+      {
+        "card": "iron_tortoise",
+        "count": 1
+      },
+      {
+        "card": "jolt_pup",
+        "count": 1
+      },
+      {
+        "card": "kelp_guardian",
+        "count": 1
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 1
+      },
+      {
+        "card": "mirror_jelly",
+        "count": 1
+      },
+      {
+        "card": "mist_ghost",
+        "count": 1
+      },
+      {
+        "card": "mist_wisp",
+        "count": 1
+      },
+      {
+        "card": "pearl_seahorse",
+        "count": 1
+      },
+      {
+        "card": "rock_lizard",
+        "count": 1
+      },
+      {
+        "card": "seed_finch",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "surge_weasel",
+        "count": 1
+      },
+      {
+        "card": "thorn_bush",
+        "count": 1
+      },
+      {
+        "card": "tidal_serpent",
+        "count": 1
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 1
+      }
+    ],
+    "coral_coast:late:windy": [
+      {
+        "card": "ash_crow",
+        "count": 3
+      },
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "gust_cat",
+        "count": 3
+      },
+      {
+        "card": "flock_finch",
+        "count": 2
+      },
+      {
+        "card": "rain_bird",
+        "count": 2
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "fire_hawk",
+        "count": 1
+      },
+      {
+        "card": "iron_tortoise",
+        "count": 1
+      },
+      {
+        "card": "kelp_guardian",
+        "count": 1
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 1
+      },
+      {
+        "card": "mist_ghost",
+        "count": 1
+      },
+      {
+        "card": "seed_finch",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "surge_weasel",
+        "count": 1
+      },
+      {
+        "card": "thorn_bush",
+        "count": 1
+      },
+      {
+        "card": "tidal_serpent",
+        "count": 1
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 1
+      },
+      {
+        "card": "whirl_wisp",
+        "count": 1
+      }
+    ],
+    "whisper_forest:entry:calm": [
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "gust_cat",
+        "count": 3
+      },
+      {
+        "card": "rain_bird",
+        "count": 3
+      },
+      {
+        "card": "mirror_jelly",
+        "count": 2
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "fire_hawk",
+        "count": 1
+      },
+      {
+        "card": "iron_tortoise",
+        "count": 1
+      },
+      {
+        "card": "jolt_pup",
+        "count": 1
+      },
+      {
+        "card": "kraken",
+        "count": 1
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 1
+      },
+      {
+        "card": "mist_ghost",
+        "count": 1
+      },
+      {
+        "card": "pearl_seahorse",
+        "count": 1
+      },
+      {
+        "card": "rock_lizard",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "surge_weasel",
+        "count": 1
+      },
+      {
+        "card": "tension_lizard",
+        "count": 1
+      },
+      {
+        "card": "thorn_bush",
+        "count": 1
+      },
+      {
+        "card": "tidal_serpent",
+        "count": 1
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 1
+      }
+    ],
+    "whisper_forest:mid:sunny": [
+      {
+        "card": "ember_hedgehog",
+        "count": 3
+      },
+      {
+        "card": "rain_bird",
+        "count": 3
+      },
+      {
+        "card": "torch_lizard",
+        "count": 3
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 2
+      },
+      {
+        "card": "thorn_bush",
+        "count": 2
+      },
+      {
+        "card": "crimson_wolf",
+        "count": 1
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "fire_hawk",
+        "count": 1
+      },
+      {
+        "card": "fire_wisp",
+        "count": 1
+      },
+      {
+        "card": "griffin_chick",
+        "count": 1
+      },
+      {
+        "card": "kraken",
+        "count": 1
+      },
+      {
+        "card": "lava_salamander",
+        "count": 1
+      },
+      {
+        "card": "moss_giant",
+        "count": 1
+      },
+      {
+        "card": "sage_owl",
+        "count": 1
+      },
+      {
+        "card": "seed_finch",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 1
+      },
+      {
+        "card": "thunder_ram",
+        "count": 1
+      },
+      {
+        "card": "tidal_serpent",
+        "count": 1
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 1
+      },
+      {
+        "card": "vortex_spirit",
+        "count": 1
+      }
+    ],
+    "whisper_forest:mid:quake": [
+      {
+        "card": "breeze_fox",
+        "count": 3
+      },
+      {
+        "card": "gust_cat",
+        "count": 3
+      },
+      {
+        "card": "rain_bird",
+        "count": 3
+      },
+      {
+        "card": "clay_golem",
+        "count": 2
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 2
+      },
+      {
+        "card": "thorn_bush",
+        "count": 2
+      },
+      {
+        "card": "crimson_wolf",
+        "count": 1
+      },
+      {
+        "card": "crystal_golem",
+        "count": 1
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "griffin_chick",
+        "count": 1
+      },
+      {
+        "card": "iron_tortoise",
+        "count": 1
+      },
+      {
+        "card": "kraken",
+        "count": 1
+      },
+      {
+        "card": "lava_salamander",
+        "count": 1
+      },
+      {
+        "card": "lightning_wisp",
+        "count": 1
+      },
+      {
+        "card": "moss_giant",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "surge_weasel",
+        "count": 1
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 1
+      },
+      {
+        "card": "tidal_serpent",
+        "count": 1
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 1
+      },
+      {
+        "card": "vortex_spirit",
+        "count": 1
+      }
+    ],
+    "whisper_forest:mid:rainy": [
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "rain_bird",
+        "count": 3
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 2
+      },
+      {
+        "card": "mirror_jelly",
+        "count": 2
+      },
+      {
+        "card": "pearl_seahorse",
+        "count": 2
+      },
+      {
+        "card": "thorn_bush",
+        "count": 2
+      },
+      {
+        "card": "cloud_owl",
+        "count": 1
+      },
+      {
+        "card": "crimson_wolf",
+        "count": 1
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "griffin_chick",
+        "count": 1
+      },
+      {
+        "card": "iron_tortoise",
+        "count": 1
+      },
+      {
+        "card": "kraken",
+        "count": 1
+      },
+      {
+        "card": "mist_ghost",
+        "count": 1
+      },
+      {
+        "card": "moss_giant",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "surge_weasel",
+        "count": 1
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 1
+      },
+      {
+        "card": "thunder_ram",
+        "count": 1
+      },
+      {
+        "card": "tidal_serpent",
+        "count": 1
+      },
+      {
+        "card": "vortex_spirit",
+        "count": 1
+      },
+      {
+        "card": "whirl_octopus",
+        "count": 1
+      }
+    ],
+    "whisper_forest:late:foggy": [
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "mist_wisp",
+        "count": 3
+      },
+      {
+        "card": "ancient_tree",
+        "count": 2
+      },
+      {
+        "card": "iron_tortoise",
+        "count": 2
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 2
+      },
+      {
+        "card": "mist_ghost",
+        "count": 2
+      },
+      {
+        "card": "moss_giant",
+        "count": 2
+      },
+      {
+        "card": "surge_weasel",
+        "count": 2
+      },
+      {
+        "card": "crimson_wolf",
+        "count": 1
+      },
+      {
+        "card": "elder_oak",
+        "count": 1
+      },
+      {
+        "card": "fire_wisp",
+        "count": 1
+      },
+      {
+        "card": "griffin_chick",
+        "count": 1
+      },
+      {
+        "card": "kraken",
+        "count": 1
+      },
+      {
+        "card": "lava_salamander",
+        "count": 1
+      },
+      {
+        "card": "lightning_wisp",
+        "count": 1
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 1
+      },
+      {
+        "card": "tidal_serpent",
+        "count": 1
+      },
+      {
+        "card": "vortex_spirit",
+        "count": 1
+      }
+    ],
+    "whisper_forest:late:quake": [
+      {
+        "card": "rain_bird",
+        "count": 3
+      },
+      {
+        "card": "root_keeper",
+        "count": 3
+      },
+      {
+        "card": "ancient_tree",
+        "count": 2
+      },
+      {
+        "card": "clay_golem",
+        "count": 2
+      },
+      {
+        "card": "iron_tortoise",
+        "count": 2
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 2
+      },
+      {
+        "card": "mist_ghost",
+        "count": 2
+      },
+      {
+        "card": "moss_giant",
+        "count": 2
+      },
+      {
+        "card": "surge_weasel",
+        "count": 2
+      },
+      {
+        "card": "crimson_wolf",
+        "count": 1
+      },
+      {
+        "card": "crystal_golem",
+        "count": 1
+      },
+      {
+        "card": "elder_oak",
+        "count": 1
+      },
+      {
+        "card": "granite_golem",
+        "count": 1
+      },
+      {
+        "card": "kelp_guardian",
+        "count": 1
+      },
+      {
+        "card": "kraken",
+        "count": 1
+      },
+      {
+        "card": "lava_salamander",
+        "count": 1
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 1
+      },
+      {
+        "card": "seed_finch",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      }
+    ],
+    "whisper_forest:late:rainy": [
+      {
+        "card": "cloud_owl",
+        "count": 3
+      },
+      {
+        "card": "drop_frog",
+        "count": 3
+      },
+      {
+        "card": "rain_bird",
+        "count": 3
+      },
+      {
+        "card": "ancient_tree",
+        "count": 2
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 2
+      },
+      {
+        "card": "mist_ghost",
+        "count": 2
+      },
+      {
+        "card": "moss_giant",
+        "count": 2
+      },
+      {
+        "card": "mud_turtle",
+        "count": 2
+      },
+      {
+        "card": "thorn_bush",
+        "count": 2
+      },
+      {
+        "card": "crimson_wolf",
+        "count": 1
+      },
+      {
+        "card": "elder_oak",
+        "count": 1
+      },
+      {
+        "card": "griffin_chick",
+        "count": 1
+      },
+      {
+        "card": "kraken",
+        "count": 1
+      },
+      {
+        "card": "lava_salamander",
+        "count": 1
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 1
+      },
+      {
+        "card": "tidal_serpent",
+        "count": 1
+      }
+    ],
+    "storm_plateau:entry:calm": [
+      {
+        "card": "rain_bird",
+        "count": 3
+      },
+      {
+        "card": "thorn_bush",
+        "count": 3
+      },
+      {
+        "card": "ancient_tree",
+        "count": 2
+      },
+      {
+        "card": "cloud_owl",
+        "count": 2
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 2
+      },
+      {
+        "card": "iron_tortoise",
+        "count": 2
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 2
+      },
+      {
+        "card": "mist_ghost",
+        "count": 2
+      },
+      {
+        "card": "moss_giant",
+        "count": 2
+      },
+      {
+        "card": "elder_oak",
+        "count": 1
+      },
+      {
+        "card": "kraken",
+        "count": 1
+      },
+      {
+        "card": "lava_salamander",
+        "count": 1
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "thunder_ram",
+        "count": 1
+      },
+      {
+        "card": "tidal_serpent",
+        "count": 1
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 1
+      },
+      {
+        "card": "vortex_spirit",
+        "count": 1
+      },
+      {
+        "card": "world_tree",
+        "count": 1
+      }
+    ],
+    "storm_plateau:mid:stormy": [
+      {
+        "card": "rain_bird",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "lava_salamander",
+        "count": 2
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 2
+      },
+      {
+        "card": "surge_weasel",
+        "count": 2
+      },
+      {
+        "card": "thunder_ram",
+        "count": 2
+      },
+      {
+        "card": "tidal_serpent",
+        "count": 2
+      },
+      {
+        "card": "cloud_dragon",
+        "count": 1
+      },
+      {
+        "card": "conductor_crab",
+        "count": 1
+      },
+      {
+        "card": "crimson_wolf",
+        "count": 1
+      },
+      {
+        "card": "elder_tortoise",
+        "count": 1
+      },
+      {
+        "card": "electric_eel",
+        "count": 1
+      },
+      {
+        "card": "lightning_wisp",
+        "count": 1
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 1
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sky_serpent",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 1
+      },
+      {
+        "card": "world_tree",
+        "count": 1
+      }
+    ],
+    "storm_plateau:mid:windy": [
+      {
+        "card": "rain_bird",
+        "count": 3
+      },
+      {
+        "card": "ancient_tree",
+        "count": 2
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "lava_salamander",
+        "count": 2
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 2
+      },
+      {
+        "card": "mud_turtle",
+        "count": 2
+      },
+      {
+        "card": "cloud_dragon",
+        "count": 1
+      },
+      {
+        "card": "fire_hawk",
+        "count": 1
+      },
+      {
+        "card": "griffin_chick",
+        "count": 1
+      },
+      {
+        "card": "magma_titan",
+        "count": 1
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 1
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sage_owl",
+        "count": 1
+      },
+      {
+        "card": "sky_serpent",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 1
+      },
+      {
+        "card": "volcano_serpent",
+        "count": 1
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 1
+      },
+      {
+        "card": "world_tree",
+        "count": 1
+      }
+    ],
+    "storm_plateau:late:windy": [
+      {
+        "card": "rain_bird",
+        "count": 3
+      },
+      {
+        "card": "griffin_chick",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "lava_salamander",
+        "count": 2
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 2
+      },
+      {
+        "card": "moss_giant",
+        "count": 2
+      },
+      {
+        "card": "sage_owl",
+        "count": 2
+      },
+      {
+        "card": "sky_serpent",
+        "count": 2
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 2
+      },
+      {
+        "card": "cloud_dragon",
+        "count": 1
+      },
+      {
+        "card": "hurricane_eagle",
+        "count": 1
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 1
+      },
+      {
+        "card": "phoenix",
+        "count": 1
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 1
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 1
+      },
+      {
+        "card": "volcano_serpent",
+        "count": 1
+      },
+      {
+        "card": "world_tree",
+        "count": 1
+      }
+    ],
+    "storm_plateau:late:stormy": [
+      {
+        "card": "surge_weasel",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 2
+      },
+      {
+        "card": "sky_serpent",
+        "count": 2
+      },
+      {
+        "card": "sun_dragon",
+        "count": 2
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 2
+      },
+      {
+        "card": "cloud_dragon",
+        "count": 1
+      },
+      {
+        "card": "conductor_crab",
+        "count": 1
+      },
+      {
+        "card": "electric_eel",
+        "count": 1
+      },
+      {
+        "card": "magnet_golem",
+        "count": 1
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 1
+      },
+      {
+        "card": "phoenix",
+        "count": 1
+      },
+      {
+        "card": "plasma_serpent",
+        "count": 1
+      },
+      {
+        "card": "raijin_wolf",
+        "count": 1
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 1
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 1
+      },
+      {
+        "card": "world_tree",
+        "count": 1
+      }
+    ],
+    "storm_plateau:late:foggy": [
+      {
+        "card": "mist_ghost",
+        "count": 3
+      },
+      {
+        "card": "ancient_tree",
+        "count": 2
+      },
+      {
+        "card": "crimson_wolf",
+        "count": 2
+      },
+      {
+        "card": "fire_wisp",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "lava_salamander",
+        "count": 2
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 2
+      },
+      {
+        "card": "sky_serpent",
+        "count": 2
+      },
+      {
+        "card": "sun_dragon",
+        "count": 2
+      },
+      {
+        "card": "cloud_dragon",
+        "count": 1
+      },
+      {
+        "card": "lightning_wisp",
+        "count": 1
+      },
+      {
+        "card": "mist_queen",
+        "count": 1
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 1
+      },
+      {
+        "card": "phoenix",
+        "count": 1
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 1
+      },
+      {
+        "card": "vortex_spirit",
+        "count": 1
+      },
+      {
+        "card": "world_tree",
+        "count": 1
+      }
+    ],
+    "crimson_desert:entry:calm": [
+      {
+        "card": "sky_serpent",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "lava_salamander",
+        "count": 2
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 2
+      },
+      {
+        "card": "sun_dragon",
+        "count": 2
+      },
+      {
+        "card": "surge_weasel",
+        "count": 2
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 2
+      },
+      {
+        "card": "cloud_dragon",
+        "count": 1
+      },
+      {
+        "card": "crimson_wolf",
+        "count": 1
+      },
+      {
+        "card": "elder_tortoise",
+        "count": 1
+      },
+      {
+        "card": "moss_giant",
+        "count": 1
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 1
+      },
+      {
+        "card": "phoenix",
+        "count": 1
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 1
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 1
+      },
+      {
+        "card": "world_tree",
+        "count": 1
+      }
+    ],
+    "crimson_desert:mid:sunny": [
+      {
+        "card": "crimson_wolf",
+        "count": 2
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 2
+      },
+      {
+        "card": "griffin_chick",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "lava_salamander",
+        "count": 2
+      },
+      {
+        "card": "steam_turtle",
+        "count": 2
+      },
+      {
+        "card": "sun_dragon",
+        "count": 2
+      },
+      {
+        "card": "thunder_ram",
+        "count": 2
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 2
+      },
+      {
+        "card": "cloud_dragon",
+        "count": 1
+      },
+      {
+        "card": "magma_titan",
+        "count": 1
+      },
+      {
+        "card": "phoenix",
+        "count": 1
+      },
+      {
+        "card": "raijin_wolf",
+        "count": 1
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 1
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "stone_colossus",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 1
+      },
+      {
+        "card": "volcano_serpent",
+        "count": 1
+      },
+      {
+        "card": "world_tree",
+        "count": 1
+      }
+    ],
+    "crimson_desert:mid:drought": [
+      {
+        "card": "sky_serpent",
+        "count": 3
+      },
+      {
+        "card": "crimson_wolf",
+        "count": 2
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "lava_salamander",
+        "count": 2
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 2
+      },
+      {
+        "card": "sun_dragon",
+        "count": 2
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 2
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 2
+      },
+      {
+        "card": "cloud_dragon",
+        "count": 1
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 1
+      },
+      {
+        "card": "phoenix",
+        "count": 1
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "stone_colossus",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 1
+      },
+      {
+        "card": "volcano_serpent",
+        "count": 1
+      },
+      {
+        "card": "world_tree",
+        "count": 1
+      }
+    ],
+    "crimson_desert:mid:windy": [
+      {
+        "card": "rain_bird",
+        "count": 3
+      },
+      {
+        "card": "sage_owl",
+        "count": 3
+      },
+      {
+        "card": "sky_serpent",
+        "count": 3
+      },
+      {
+        "card": "griffin_chick",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "steam_turtle",
+        "count": 2
+      },
+      {
+        "card": "sun_dragon",
+        "count": 2
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 2
+      },
+      {
+        "card": "cloud_dragon",
+        "count": 1
+      },
+      {
+        "card": "lava_salamander",
+        "count": 1
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 1
+      },
+      {
+        "card": "phoenix",
+        "count": 1
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 1
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "stone_colossus",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 1
+      },
+      {
+        "card": "world_tree",
+        "count": 1
+      }
+    ],
+    "crimson_desert:late:drought": [
+      {
+        "card": "crimson_wolf",
+        "count": 3
+      },
+      {
+        "card": "lava_salamander",
+        "count": 3
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 2
+      },
+      {
+        "card": "sun_dragon",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "cloud_dragon",
+        "count": 1
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "stone_colossus",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 1
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 1
+      },
+      {
+        "card": "volcano_serpent",
+        "count": 1
+      }
+    ],
+    "crimson_desert:late:sunny": [
+      {
+        "card": "crimson_wolf",
+        "count": 3
+      },
+      {
+        "card": "lava_salamander",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "magma_titan",
+        "count": 2
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 2
+      },
+      {
+        "card": "sun_dragon",
+        "count": 2
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 1
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "stone_colossus",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 1
+      },
+      {
+        "card": "volcano_serpent",
+        "count": 1
+      }
+    ],
+    "crimson_desert:late:windy": [
+      {
+        "card": "griffin_chick",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "rain_bird",
+        "count": 3
+      },
+      {
+        "card": "sage_owl",
+        "count": 3
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 3
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 2
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "cloud_dragon",
+        "count": 1
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "stone_colossus",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "sun_dragon",
+        "count": 1
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 1
+      }
+    ],
+    "crystal_caves:entry:calm": [
+      {
+        "card": "leviathan_calf",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "surge_weasel",
+        "count": 3
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 2
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "cloud_dragon",
+        "count": 1
+      },
+      {
+        "card": "lava_salamander",
+        "count": 1
+      },
+      {
+        "card": "plasma_serpent",
+        "count": 1
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "stone_colossus",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 1
+      }
+    ],
+    "crystal_caves:mid:stormy": [
+      {
+        "card": "leviathan_calf",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "sky_serpent",
+        "count": 3
+      },
+      {
+        "card": "cloud_dragon",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "lightning_wisp",
+        "count": 2
+      },
+      {
+        "card": "magnet_golem",
+        "count": 2
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 2
+      },
+      {
+        "card": "sun_dragon",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "plasma_serpent",
+        "count": 1
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "stone_colossus",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "thunder_dragon",
+        "count": 1
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 1
+      }
+    ],
+    "crystal_caves:mid:quake": [
+      {
+        "card": "elder_oak",
+        "count": 3
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 3
+      },
+      {
+        "card": "moss_giant",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 3
+      },
+      {
+        "card": "ancient_tree",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "granite_golem",
+        "count": 1
+      },
+      {
+        "card": "iron_tortoise",
+        "count": 1
+      },
+      {
+        "card": "roc",
+        "count": 1
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "stone_colossus",
+        "count": 1
+      },
+      {
+        "card": "storm_colossus",
+        "count": 1
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 1
+      }
+    ],
+    "crystal_caves:late:quake": [
+      {
+        "card": "ancient_tree",
+        "count": 3
+      },
+      {
+        "card": "granite_golem",
+        "count": 3
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 3
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "storm_colossus",
+        "count": 2
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "moss_giant",
+        "count": 1
+      }
+    ],
+    "crystal_caves:late:stormy": [
+      {
+        "card": "lava_salamander",
+        "count": 3
+      },
+      {
+        "card": "magnet_golem",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "plasma_serpent",
+        "count": 3
+      },
+      {
+        "card": "steam_turtle",
+        "count": 3
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 3
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "storm_colossus",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      }
+    ],
+    "mist_marsh:entry:calm": [
+      {
+        "card": "leviathan_calf",
+        "count": 3
+      },
+      {
+        "card": "magnet_golem",
+        "count": 3
+      },
+      {
+        "card": "mirror_jelly",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 3
+      },
+      {
+        "card": "cloud_dragon",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "storm_colossus",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "steam_turtle",
+        "count": 1
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 1
+      }
+    ],
+    "mist_marsh:mid:stormy": [
+      {
+        "card": "cloud_dragon",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 3
+      },
+      {
+        "card": "magnet_golem",
+        "count": 3
+      },
+      {
+        "card": "surge_weasel",
+        "count": 3
+      },
+      {
+        "card": "electric_eel",
+        "count": 2
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "raijin_wolf",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "storm_colossus",
+        "count": 2
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      },
+      {
+        "card": "thunder_dragon",
+        "count": 1
+      }
+    ],
+    "mist_marsh:mid:foggy": [
+      {
+        "card": "cloud_dragon",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 3
+      },
+      {
+        "card": "lightning_wisp",
+        "count": 3
+      },
+      {
+        "card": "mist_queen",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "mist_ghost",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "storm_colossus",
+        "count": 2
+      },
+      {
+        "card": "sun_dragon",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 1
+      }
+    ],
+    "mist_marsh:late:rainy": [
+      {
+        "card": "elder_tortoise",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 3
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 3
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "storm_colossus",
+        "count": 2
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "moon_whale",
+        "count": 1
+      }
+    ],
+    "mist_marsh:late:stormy": [
+      {
+        "card": "cloud_dragon",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 3
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 3
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "magnet_golem",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "storm_colossus",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "moon_whale",
+        "count": 1
+      }
+    ],
+    "dragon_peak:entry:calm": [
+      {
+        "card": "electric_eel",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 3
+      },
+      {
+        "card": "lightning_wisp",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "storm_colossus",
+        "count": 2
+      },
+      {
+        "card": "sun_dragon",
+        "count": 2
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 2
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      }
+    ],
+    "dragon_peak:mid:rainy": [
+      {
+        "card": "leviathan_calf",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 3
+      },
+      {
+        "card": "tidal_serpent",
+        "count": 3
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "storm_colossus",
+        "count": 2
+      },
+      {
+        "card": "sun_dragon",
+        "count": 2
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 2
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      }
+    ],
+    "dragon_peak:mid:sunny": [
+      {
+        "card": "cloud_dragon",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 3
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "storm_colossus",
+        "count": 2
+      },
+      {
+        "card": "sun_dragon",
+        "count": 2
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 2
+      },
+      {
+        "card": "volcano_serpent",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      }
+    ],
+    "dragon_peak:mid:windy": [
+      {
+        "card": "cloud_dragon",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 3
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 3
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "storm_colossus",
+        "count": 2
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "mirror_jelly",
+        "count": 1
+      }
+    ],
+    "dragon_peak:mid:quake": [
+      {
+        "card": "ancient_tree",
+        "count": 3
+      },
+      {
+        "card": "electric_eel",
+        "count": 3
+      },
+      {
+        "card": "moss_giant",
+        "count": 3
+      },
+      {
+        "card": "mountain_tortoise",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 3
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "storm_colossus",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      }
+    ],
+    "dragon_peak:late:windy": [
+      {
+        "card": "ember_thunder_dragon",
+        "count": 3
+      },
+      {
+        "card": "fire_hawk",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "sandstorm_eagle",
+        "count": 3
+      },
+      {
+        "card": "steam_turtle",
+        "count": 3
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "lava_salamander",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "moon_whale",
+        "count": 1
+      }
+    ],
+    "dragon_peak:late:stormy": [
+      {
+        "card": "cloud_dragon",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 3
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "volcano_tortoise",
+        "count": 3
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "magnet_golem",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "storm_colossus",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "moon_whale",
+        "count": 1
+      }
+    ],
+    "dragon_peak:late:rainy": [
+      {
+        "card": "elder_tortoise",
+        "count": 3
+      },
+      {
+        "card": "ember_thunder_dragon",
+        "count": 3
+      },
+      {
+        "card": "leviathan_calf",
+        "count": 3
+      },
+      {
+        "card": "phoenix",
+        "count": 3
+      },
+      {
+        "card": "thunder_hawk",
+        "count": 3
+      },
+      {
+        "card": "kraken",
+        "count": 2
+      },
+      {
+        "card": "roc",
+        "count": 2
+      },
+      {
+        "card": "sea_dragon",
+        "count": 2
+      },
+      {
+        "card": "stone_colossus",
+        "count": 2
+      },
+      {
+        "card": "storm_colossus",
+        "count": 2
+      },
+      {
+        "card": "tornado_dragon",
+        "count": 2
+      },
+      {
+        "card": "world_tree",
+        "count": 2
+      },
+      {
+        "card": "moon_whale",
+        "count": 1
+      }
+    ]
+  },
+  "huntDecks": {
+    "torch_lizard": "ash_valley:entry:calm",
+    "ash_crow": "ash_valley:entry:calm",
+    "magma_pup": "ash_valley:entry:calm",
+    "storm_snail": "ash_valley:entry:calm",
+    "blaze_hound": "ash_valley:entry:calm",
+    "rock_lizard": "ash_valley:entry:calm",
+    "steam_turtle": "ash_valley:mid:rainy",
+    "storm_hound": "ash_valley:mid:stormy",
+    "ember_thunder_dragon": "ash_valley:mid:quake",
+    "sun_dragon": "ash_valley:late:sunny",
+    "primordial_ninetail": "ash_valley:late:sunny",
+    "primordial_ninetail@1": "ash_valley:late:stormy",
+    "primordial_ninetail@2": "ash_valley:late:foggy",
+    "bubble_fish": "coral_coast:entry:calm",
+    "tide_otter": "coral_coast:entry:calm",
+    "reef_seal": "coral_coast:entry:calm",
+    "river_eel": "coral_coast:entry:calm",
+    "breeze_sparrow": "coral_coast:entry:calm",
+    "flock_finch": "coral_coast:entry:calm",
+    "wave_dolphin": "coral_coast:entry:calm",
+    "pearl_seahorse": "coral_coast:entry:calm",
+    "tidal_serpent": "coral_coast:mid:rainy",
+    "rain_bird": "coral_coast:mid:windy",
+    "mirror_jelly": "coral_coast:mid:foggy",
+    "leviathan_calf": "coral_coast:mid:windy",
+    "kraken": "coral_coast:late:stormy",
+    "moon_whale": "coral_coast:late:rainy",
+    "moon_whale@1": "coral_coast:late:foggy",
+    "moon_whale@2": "coral_coast:late:windy",
+    "root_keeper": "whisper_forest:entry:calm",
+    "sprout": "whisper_forest:entry:calm",
+    "mushroom_toad": "whisper_forest:entry:calm",
+    "burrow_badger": "whisper_forest:entry:calm",
+    "pebble_mole": "whisper_forest:entry:calm",
+    "mist_wisp": "whisper_forest:entry:calm",
+    "thorn_bush": "whisper_forest:entry:calm",
+    "vine_serpent": "whisper_forest:entry:calm",
+    "elder_oak": "whisper_forest:mid:sunny",
+    "moss_giant": "whisper_forest:mid:quake",
+    "mud_turtle": "whisper_forest:mid:rainy",
+    "ancient_tree": "whisper_forest:mid:sunny",
+    "world_tree": "whisper_forest:late:foggy",
+    "gaia_tortoise": "whisper_forest:late:quake",
+    "gaia_tortoise@1": "whisper_forest:late:rainy",
+    "gaia_tortoise@2": "whisper_forest:late:foggy",
+    "breeze_fox": "storm_plateau:entry:calm",
+    "dandelion_bunny": "storm_plateau:entry:calm",
+    "storm_moth": "storm_plateau:entry:calm",
+    "static_rabbit": "storm_plateau:entry:calm",
+    "jolt_pup": "storm_plateau:entry:calm",
+    "storm_eagle": "storm_plateau:entry:calm",
+    "chime_bird": "storm_plateau:entry:calm",
+    "thunder_ram": "storm_plateau:entry:calm",
+    "thunder_hawk": "storm_plateau:mid:stormy",
+    "griffin_chick": "storm_plateau:mid:stormy",
+    "sage_owl": "storm_plateau:mid:windy",
+    "sky_serpent": "storm_plateau:mid:stormy",
+    "hurricane_eagle": "storm_plateau:mid:stormy",
+    "roc": "storm_plateau:late:windy",
+    "four_winds": "storm_plateau:late:windy",
+    "four_winds@1": "storm_plateau:late:stormy",
+    "four_winds@2": "storm_plateau:late:foggy",
+    "flame_swarm": "crimson_desert:entry:calm",
+    "cinder_beetle": "crimson_desert:entry:calm",
+    "whirl_wisp": "crimson_desert:entry:calm",
+    "flame_lily": "crimson_desert:entry:calm",
+    "phoenix_chick": "crimson_desert:entry:calm",
+    "forge_golem": "crimson_desert:entry:calm",
+    "gale_hound": "crimson_desert:entry:calm",
+    "thistle_ball": "crimson_desert:entry:calm",
+    "fire_hawk": "crimson_desert:mid:sunny",
+    "crimson_wolf": "crimson_desert:mid:sunny",
+    "lava_salamander": "crimson_desert:mid:drought",
+    "phoenix": "crimson_desert:mid:sunny",
+    "magma_titan": "crimson_desert:mid:windy",
+    "sandstorm_eagle": "crimson_desert:mid:sunny",
+    "volcano_serpent": "crimson_desert:late:drought",
+    "eternal_flame": "crimson_desert:late:sunny",
+    "eternal_flame@1": "crimson_desert:late:drought",
+    "eternal_flame@2": "crimson_desert:late:windy",
+    "clay_golem": "crystal_caves:entry:calm",
+    "boulder_beetle": "crystal_caves:entry:calm",
+    "copper_worm": "crystal_caves:entry:calm",
+    "zap_beetle": "crystal_caves:entry:calm",
+    "crystal_golem": "crystal_caves:entry:calm",
+    "iron_tortoise": "crystal_caves:entry:calm",
+    "capacitor_golem": "crystal_caves:entry:calm",
+    "quake_mole": "crystal_caves:entry:calm",
+    "granite_golem": "crystal_caves:mid:stormy",
+    "magnet_golem": "crystal_caves:mid:quake",
+    "mountain_tortoise": "crystal_caves:mid:stormy",
+    "conductor_crab": "crystal_caves:mid:stormy",
+    "plasma_serpent": "crystal_caves:mid:quake",
+    "stone_colossus": "crystal_caves:late:quake",
+    "storm_colossus": "crystal_caves:late:stormy",
+    "volt_mouse": "mist_marsh:entry:calm",
+    "spark_coil": "mist_marsh:entry:calm",
+    "mist_ghost": "mist_marsh:entry:calm",
+    "tide_caller": "mist_marsh:entry:calm",
+    "kelp_guardian": "mist_marsh:entry:calm",
+    "whirl_octopus": "mist_marsh:entry:calm",
+    "surge_weasel": "mist_marsh:entry:calm",
+    "coil_tortoise": "mist_marsh:entry:calm",
+    "electric_eel": "mist_marsh:mid:stormy",
+    "abyss_angler": "mist_marsh:mid:foggy",
+    "lightning_wisp": "mist_marsh:mid:stormy",
+    "vortex_spirit": "mist_marsh:mid:foggy",
+    "elder_tortoise": "mist_marsh:mid:stormy",
+    "mist_queen": "mist_marsh:mid:stormy",
+    "sea_dragon": "mist_marsh:late:rainy",
+    "raijin_wolf": "mist_marsh:late:stormy",
+    "wyvern": "dragon_peak:entry:calm",
+    "fire_wisp": "dragon_peak:entry:calm",
+    "seed_finch": "dragon_peak:entry:calm",
+    "cyclone_ferret": "dragon_peak:entry:calm",
+    "sky_whale_calf": "dragon_peak:entry:calm",
+    "arc_lynx": "dragon_peak:entry:calm",
+    "tension_lizard": "dragon_peak:entry:calm",
+    "dynamo_hamster": "dragon_peak:entry:calm",
+    "cinder_drake": "dragon_peak:mid:rainy",
+    "volcano_tortoise": "dragon_peak:mid:rainy",
+    "swarm_mother": "dragon_peak:mid:sunny",
+    "cloud_dragon": "dragon_peak:mid:windy",
+    "thunder_dragon": "dragon_peak:mid:quake",
+    "tornado_dragon": "dragon_peak:late:windy",
+    "tempest_dragon": "dragon_peak:late:stormy",
+    "tempest_dragon@1": "dragon_peak:late:windy",
+    "tempest_dragon@2": "dragon_peak:late:rainy"
+  },
+  "notes": [
+    "Can = referans destesi ve hedef havada, niyeti bilen usta botun medyan olarak hedef turda bayılttığı değer (Tamer ölümsüz).",
+    "Referans destesi: dünya ilerleme simülasyonunda tipik oyuncunun bölgeye girdiği (Sıradan), 4. yakalamaya ulaştığı (Zorlu, Final) ve kitabı bitirdiği (Efsanevi, Kadim) andaki medyan koleksiyonundan kurulan deste.",
+    "İkinci can çubuğu (revive) ana çubukla aynı oranda ölçeklenir."
+  ]
+}

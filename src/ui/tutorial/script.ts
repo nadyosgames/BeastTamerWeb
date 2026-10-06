@@ -1,8 +1,10 @@
 /**
- * Eğitim senaryosu: hava ve Tamer'sız, 3 slotluk sabit eller. Her tur tek bir fikir öğretir
- * (dizme ve geçiş → sıra → Howl ve Isı). `goal` verilen turda BAŞLAT ancak hedef dizilimle açılır.
- * Metinler kart adlarını içerikten alır; kart yeniden adlandırılırsa eğitim de güncel kalır.
+ * Eğitim senaryosu (GDD v0.8: av): hava ve Tamer pasifi olmadan, 3 slotluk sabit ellerle bir Kor Böceği
+ * avlanır. Her tur tek bir fikir öğretir (dizme ve geçiş → sıra → Howl ve Isı); yaratığın canı, hedef
+ * dizilimlerle 3. turda bayılacak şekilde seçilmiştir (27 + 44 + 29 hasar). `goal` verilen turda BAŞLAT
+ * ancak hedef dizilimle açılır. Metinler kart adlarını içerikten alır; kart yeniden adlandırılırsa eğitim de güncel kalır.
  */
+import type { HuntDef } from '../../core/types.ts'
 import { content } from '../content.ts'
 
 export interface TutorialRound {
@@ -25,15 +27,31 @@ const leftOf = (ids: (string | null)[], a: string, b: string) => {
   return i >= 0 && ids[i + 1] === b
 }
 
+/** Eğitim avının yaratığı: 90 can, her tur biraz daha sert Pençe. */
+export const TUTORIAL_HUNT: HuntDef = {
+  id: 'tutorial',
+  card: 'cinder_beetle',
+  region: content.regions[0].id,
+  tier: 'ordinary',
+  hp: 90,
+  intents: [
+    { kind: 'claw', damage: 3 },
+    { kind: 'claw', damage: 4 },
+    { kind: 'claw', damage: 5 },
+  ],
+  unlock: { kind: 'start' },
+  pos: [0, 0],
+  lore: '',
+}
+
 export const TUTORIAL: TutorialRound[] = [
   {
     title: 'Kartları diz',
     cards: ['magma_pup', 'clay_golem', 'bubble_fish'],
-    intro:
-      'Her turda elindeki tüm kartları yukarıdaki slotlara dizersin. Bir kartı tutup boş bir slota sürükle; tıklarsan ilk boş slota gider. Slottaki kartları sürükleyerek yer değiştirebilirsin.',
+    intro: `Ava hoş geldin! Karşında bir ${n(TUTORIAL_HUNT.card)} var: canını 0'a indirirsen bayılır ve koleksiyonuna katılır. Elindeki tüm kartları yukarıdaki slotlara diz: bir kartı tutup boş slota sürükle ya da tıkla.`,
     playing:
-      'Kartlar soldan sağa sırayla tetiklenir; bir tam sıraya geçiş denir. Her tetik 1 dayanıklılık (🛡) harcar. Dayanıklılığı biten kart pasife geçer, hepsi bitince tur kapanır.',
-    done: `Bir kartın dayanıklılığı kaç kez tetikleneceğidir. ${n('bubble_fish')} tek dayanıklılıkla erken bitti, ama Last Breath yeteneği ona son bir +3 verdi. Bu turda sıra fark etmedi; sıradakinde edecek.`,
+      'Kartlar soldan sağa sırayla tetiklenir; bir tam sıraya geçiş denir. Her Strike yaratığa hasar verir (⚔) ve 1 dayanıklılık (🛡) harcar. Dayanıklılığı biten kart pasife geçer.',
+    done: `Tur sonunda yaratık niyetini uyguladı: Pençe 3, Tamer'ın canından düştü. Sağ üstte her zaman yaratığın sıradaki niyeti yazar. ${n('bubble_fish')} erken bitti ama Last Breath ile son bir vuruş yaptı.`,
   },
   {
     title: 'Sıra önemlidir',
@@ -43,16 +61,16 @@ export const TUTORIAL: TutorialRound[] = [
     goalHint: `${n('torch_lizard')} en sola, ${n('spark_fox')} ise ${n('baby_dragon')} kartının hemen soluna.`,
     focus: ['spark_fox', 'torch_lizard'],
     playing: `${n('spark_fox')} her tetikte x2,5 alıyor, çünkü sağında bir Dragon var. Kartın altındaki tür etiketi (BEAST, DRAGON…) bu koşullar için önemlidir.`,
-    done: 'Tur sonunda dizilimin, aynı elle bulunabilecek en iyi dizilimle karşılaştırılır. Amaç her elde en yüksek geliri bulmaktır.',
+    done: 'Tur sonunda dizilimin, aynı elle bulunabilecek en iyi dizilimle karşılaştırılır. Yaratığın canı azaldı: bir tur daha!',
   },
   {
     title: 'Howl ve Isı',
     cards: ['coral_crab', 'ember_hedgehog', 'baby_dragon'],
-    intro: `Howl tur başında bir kez çalışır: ${n('coral_crab')} sağındaki kartın dayanıklılığını +1 yapar, yani o kart bir kez daha tetiklenir. Isı masada biriken ortak bir sayaçtır: ${n('ember_hedgehog')} ve ${n('baby_dragon')} Isı ekler, ${n('ember_hedgehog')} Isı kadar bonus alır.`,
+    intro: `Howl tur başında bir kez çalışır: ${n('coral_crab')} sağındaki kartın dayanıklılığını +1 yapar, yani o kart bir kez daha vurur. Isı masada biriken ortak bir sayaçtır: ${n('ember_hedgehog')} ve ${n('baby_dragon')} Isı ekler, ${n('ember_hedgehog')} Isı kadar bonus alır.`,
     goal: (ids) => ids[0] === 'baby_dragon' && leftOf(ids, 'coral_crab', 'ember_hedgehog'),
     goalHint: `${n('baby_dragon')} en sola: Isı'yı erkenden başlatır. ${n('coral_crab')} ise ${n('ember_hedgehog')} kartının hemen soluna: fazladan tetik en çok Isı'dan beslenen karta yarar.`,
     focus: ['coral_crab', 'ember_hedgehog'],
-    playing: 'Sağdaki kayıtta "↳" satırlarını izle: Howl\'un verdiği dayanıklılık ve biriken Isı orada, kaynağıyla birlikte yazar. Üstte de masadaki Isı görünür.',
-    done: 'Gerçek oyunda her gün 30 kartlık desteden 5\'erli eller gelir ve 6 tur oynarsın. Hava bazı elementleri güçlendirir, Tamer\'ın pasifi tüm desteyi etkiler.',
+    playing: 'Sağdaki kayıtta "↳" satırlarını izle: Howl\'un verdiği dayanıklılık ve biriken Isı orada yazar. Yaratığın canı biterse tur o anda biter: bayılan yaratık niyetini uygulayamaz.',
+    done: 'Yaratık bayıldı! Gerçek avlarda 30 kartlık desteden 5\'erli eller gelir, en fazla 6 tur oynarsın. Yaratığın niyetine göre diz; Koruma üreten kartlar Tamer\'ı korur.',
   },
 ]

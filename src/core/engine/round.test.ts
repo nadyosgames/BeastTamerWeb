@@ -276,6 +276,7 @@ describe('Global etkiler', () => {
       name: 'Gezgin',
       deckSize: 30,
       slots: 5,
+      hp: 60,
       text: '',
       unlock: { kind: 'start' },
       modifiers: [{ kind: 'incomePct', pct: 10, if: { kind: 'round', which: 'first' } }],

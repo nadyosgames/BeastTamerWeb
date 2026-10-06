@@ -84,17 +84,13 @@ export function openPack(
 export interface AddCardsResult {
   added: CardDef[]
   duplicates: CardDef[]
-  resource: number
+  /** Kopya fazlasından gelen öz. */
+  essence: number
 }
 
-/** Kartları koleksiyona ekler; deste sınırını aşan kopyalar kaynağa dönüşür. */
-export function addToCollection(
-  collection: Collection,
-  cards: readonly CardDef[],
-  quota: number,
-  eco: EconomyConfig,
-): AddCardsResult {
-  const res: AddCardsResult = { added: [], duplicates: [], resource: 0 }
+/** Kartları koleksiyona ekler (yerinde); deste sınırını aşan kopyalar öze dönüşür. */
+export function addToCollection(collection: Collection, cards: readonly CardDef[], eco: EconomyConfig): AddCardsResult {
+  const res: AddCardsResult = { added: [], duplicates: [], essence: 0 }
   for (const c of cards) {
     const have = collection[c.id] ?? 0
     if (have < deckLimit(c, eco)) {
@@ -102,7 +98,7 @@ export function addToCollection(
       res.added.push(c)
     } else {
       res.duplicates.push(c)
-      res.resource += duplicateValue(c, quota, eco)
+      res.essence += duplicateValue(c, eco)
     }
   }
   return res

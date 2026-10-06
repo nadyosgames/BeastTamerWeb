@@ -1,6 +1,5 @@
 import { z } from 'zod'
-import type { CalendarConfig } from '../core/calendar.ts'
-import type { EconomyConfig } from '../core/economy.ts'
+import type { CalibratedHunts, EconomyConfig } from '../core/economy.ts'
 import type {
   Ability,
   CardDef,
@@ -8,11 +7,18 @@ import type {
   Cond,
   Count,
   Effect,
+  HuntDef,
+  HuntPhase,
+  Intent,
+  MapFeature,
   Modifier,
+  PreyTrait,
+  RegionDef,
   TamerDef,
   WeatherDef,
+  WorldDef,
 } from '../core/types.ts'
-import { ABILITY_TRIGGERS, CREATURE_TYPES, ELEMENTS, KEYWORDS, RARITIES } from '../core/types.ts'
+import { ABILITY_TRIGGERS, BIOMES, CREATURE_TYPES, ELEMENTS, HUNT_TIERS, KEYWORDS, RARITIES } from '../core/types.ts'
 
 /**
  * content/*.json şemaları. core/types.ts'teki tiplerle derleme zamanında eşleşir
@@ -98,6 +104,7 @@ export const EffectSchema: z.ZodType<Effect> = z.discriminatedUnion('op', [
     id: z.string(),
     params: z.record(z.string(), z.union([z.number(), z.string(), z.boolean()])).optional(),
   }),
+  z.strictObject({ op: z.literal('guard'), amount: z.number().min(0), per: CountSchema.optional(), if: CondSchema.optional() }),
 ])
 
 export const AbilitySchema: z.ZodType<Ability> = z.strictObject({ on: trigger, effects: z.array(EffectSchema) })
@@ -118,7 +125,7 @@ export const CardSchema: z.ZodType<CardDef> = z.strictObject({
   polarity: z.strictObject({ left: pole, right: pole }).optional(),
   abilities: z.array(AbilitySchema),
   text: z.string(),
-  source: z.enum(['pack', 'quest', 'starter']).optional(),
+  source: z.enum(['pack', 'quest', 'starter', 'hunt']).optional(),
   art: z.strictObject({ creature: z.string().min(10) }).optional(),
   draft: z.boolean().optional(),
 })
@@ -137,6 +144,12 @@ export const ModifierSchema: z.ZodType<Modifier> = z.discriminatedUnion('kind', 
     filter: CardFilterSchema.optional(),
     if: CondSchema.optional(),
   }),
+  z.strictObject({
+    kind: z.literal('slumberAtStart'),
+    passes: z.int().min(2),
+    filter: CardFilterSchema.optional(),
+    if: CondSchema.optional(),
+  }),
   z.strictObject({ kind: z.literal('abilityScale'), on: trigger, pct: z.number() }),
   z.strictObject({ kind: z.literal('repeatAbility'), on: trigger, times: z.int().min(1) }),
   z.strictObject({ kind: z.literal('weatherScale'), bonusPct: z.number(), penaltyPct: z.number() }),
@@ -147,13 +160,12 @@ export const TamerSchema: z.ZodType<TamerDef> = z.strictObject({
   name: z.string(),
   deckSize: z.int().min(5),
   slots: z.int().min(1).max(8),
+  hp: z.int().min(1),
   modifiers: z.array(ModifierSchema),
   text: z.string(),
   unlock: z.discriminatedUnion('kind', [
     z.strictObject({ kind: z.literal('start') }),
-    z.strictObject({ kind: z.literal('year'), year: z.int().min(1) }),
-    z.strictObject({ kind: z.literal('quest'), quest: z.string() }),
-    z.strictObject({ kind: z.literal('lifetime'), amount: z.number() }),
+    z.strictObject({ kind: z.literal('captures'), count: z.int().min(1) }),
   ]),
   art: z.strictObject({ subject: z.string() }).optional(),
 })
@@ -169,6 +181,7 @@ export const WeatherSchema: z.ZodType<WeatherDef> = z.strictObject({
 })
 
 const range = z.tuple([z.number(), z.number()])
+const rarityNumbers = z.strictObject(Object.fromEntries(RARITIES.map((r) => [r, z.number().min(0)])) as Record<(typeof RARITIES)[number], z.ZodNumber>)
 
 export const EconomySchema: z.ZodType<EconomyConfig> = z.strictObject({
   rarities: z.record(rarity, z.strictObject({ deckLimit: z.int().min(1), duplicatePct: z.number().min(0) })),
@@ -184,34 +197,116 @@ export const EconomySchema: z.ZodType<EconomyConfig> = z.strictObject({
       smart: z.boolean().optional(),
     }),
   ),
-  packPricePctOfQuota: z.number().positive(),
-  weeklyPack: z.string(),
-  quotaFallback: z.strictObject({ base: z.number(), growthPerWeek: z.number() }),
+  packBasePrice: z.number().positive(),
+  basePack: z.string(),
   pity: z.strictObject({ packsWithoutRarePlus: z.int().min(1) }),
-  softFail: z.strictObject({ missedWeeks: z.int(), quotaReductionPct: z.number() }),
   timing: z.strictObject({ planningSecPerRound: z.number(), secPerStep: z.number() }),
+  expedition: z.strictObject({
+    rations: z.int().min(0),
+    restHealPct: z.number().min(0),
+    speedBonusPct: z.number().min(0),
+    streakBonusPct: z.number().min(0),
+    bagLossPct: z.number().min(0).max(100),
+    woundCarryPct: z.number().min(0).max(100),
+    siegeNightHealPct: z.number().min(0),
+    essenceByRarity: rarityNumbers,
+  }),
 })
 
-export const CalendarSchema: z.ZodType<CalendarConfig> = z.strictObject({
-  daysPerWeek: z.int().min(1),
-  weeksPerMonth: z.int().min(1),
-  monthsPerYear: z.int().min(1),
-  yearsPerCycle: z.int().min(1),
-  cycles: z.int().min(1),
-  weatherRules: z.strictObject({ minDistinctPerWeek: z.int().min(1), maxSameInARow: z.int().min(1) }),
-  zodiac: z
-    .array(
-      z.strictObject({
-        id,
-        name: z.string(),
-        albumPassive: z.strictObject({
-          text: z.string(),
-          modifiers: z.array(ModifierSchema),
-          duplicateBonusPct: z.number().optional(),
-        }),
-      }),
-    )
-    .min(1),
+const slotNo = z.int().min(1).max(8)
+
+export const IntentSchema: z.ZodType<Intent> = z.discriminatedUnion('kind', [
+  z.strictObject({ kind: z.literal('claw'), damage: z.int().min(1) }),
+  z.strictObject({ kind: z.literal('rend'), slot: slotNo }),
+  z.strictObject({ kind: z.literal('tailSweep'), count: z.int().min(1).max(8) }),
+  z.strictObject({ kind: z.literal('roar'), slot: slotNo }),
+  z.strictObject({ kind: z.literal('evade') }),
+  z.strictObject({ kind: z.literal('recover'), amount: z.int().min(1) }),
+  z.strictObject({ kind: z.literal('charge') }),
+  z.strictObject({ kind: z.literal('flee'), damage: z.int().min(1), belowPct: z.number().min(1).max(100) }),
+  z.strictObject({ kind: z.literal('scorch') }),
+])
+
+export const PreyTraitSchema: z.ZodType<PreyTrait> = z.discriminatedUnion('kind', [
+  z.strictObject({ kind: z.literal('armor'), amount: z.int().min(1), offIn: z.array(z.string()).optional() }),
+  z.strictObject({ kind: z.literal('shell'), amount: z.int().min(1) }),
+  z.strictObject({ kind: z.literal('veiled') }),
+  z.strictObject({ kind: z.literal('agile') }),
+  z.strictObject({ kind: z.literal('thorns'), amount: z.int().min(1) }),
+  z.strictObject({ kind: z.literal('resist'), element, pct: z.number().min(1).max(100) }),
+  z.strictObject({ kind: z.literal('weak'), element, pct: z.number().min(1) }),
+])
+
+const HuntPhaseSchema: z.ZodType<HuntPhase> = z.strictObject({
+  belowPct: z.number().min(1).max(99),
+  intents: z.array(IntentSchema).min(1),
+  traits: z.array(PreyTraitSchema).optional(),
+  text: z.string(),
+})
+
+export const HuntSchema: z.ZodType<HuntDef> = z.strictObject({
+  id,
+  card: z.string(),
+  region: z.string(),
+  tier: z.enum(HUNT_TIERS),
+  hp: z.int().min(1),
+  revive: z.int().min(1).optional(),
+  intents: z.array(IntentSchema).min(1),
+  traits: z.array(PreyTraitSchema).optional(),
+  phases: z.array(HuntPhaseSchema).optional(),
+  weather: z.string().optional(),
+  siege: z.strictObject({ weathers: z.array(z.string()).min(2), decks: z.array(z.string()).optional() }).optional(),
+  appearsIn: z.array(z.string()).min(1).optional(),
+  unlock: z.discriminatedUnion('kind', [
+    z.strictObject({ kind: z.literal('start') }),
+    z.strictObject({ kind: z.literal('captures'), count: z.int().min(1) }),
+    z.strictObject({ kind: z.literal('book'), trail: z.int().min(0) }),
+    z.strictObject({ kind: z.literal('after'), hunt: z.string() }),
+  ]),
+  pos: z.tuple([z.number().min(0).max(1), z.number().min(0).max(1)]),
+  target: z.strictObject({ deck: z.string(), weather: z.string(), round: z.number().positive() }).optional(),
+  lore: z.string(),
+})
+
+const unit = z.number().min(0).max(1)
+const unitPos = z.tuple([unit, unit])
+
+const MapFeatureSchema: z.ZodType<MapFeature> = z.discriminatedUnion('kind', [
+  z.strictObject({ kind: z.literal('river'), points: z.array(unitPos).min(2) }),
+  z.strictObject({ kind: z.literal('lake'), pos: unitPos, size: z.tuple([z.number().positive(), z.number().positive()]) }),
+  z.strictObject({
+    kind: z.literal('landmark'),
+    style: z.enum(['mountain', 'volcano', 'hill', 'mesa', 'crystal', 'snowpeak', 'ruin', 'lighthouse']),
+    pos: unitPos,
+    scale: z.number().positive().optional(),
+  }),
+  z.strictObject({ kind: z.literal('label'), pos: unitPos, text: z.string(), rotate: z.number().optional() }),
+])
+
+export const RegionSchema: z.ZodType<RegionDef> = z.strictObject({
+  id,
+  name: z.string(),
+  text: z.string(),
+  level: z.int().min(1),
+  biome: z.enum(BIOMES),
+  unlock: z.discriminatedUnion('kind', [
+    z.strictObject({ kind: z.literal('start') }),
+    z.strictObject({ kind: z.literal('finals'), regions: z.array(z.string()).min(1) }),
+  ]),
+  elements: z.array(element).min(1),
+  climate: z.record(z.string(), z.number().min(0)),
+  buff: z.strictObject({ text: z.string(), modifiers: z.array(ModifierSchema) }),
+  area: z.tuple([z.number().min(0), z.number().min(0), z.number().positive(), z.number().positive()]),
+  map: z.strictObject({
+    camp: unitPos,
+    paths: z.array(z.tuple([z.string(), z.string()])),
+    features: z.array(MapFeatureSchema).optional(),
+  }),
+})
+
+export const WorldSchema: z.ZodType<WorldDef> = z.strictObject({
+  name: z.string(),
+  size: z.tuple([z.number().positive(), z.number().positive()]),
 })
 
 export const DeckPresetSchema = z.strictObject({
@@ -238,16 +333,16 @@ export const BalanceTargetsSchema = z.strictObject({
     weatherFit: z.strictObject({ text: z.string(), matchedOverMismatched: range }),
     dayLength: z.strictObject({ text: z.string(), minutes: range }),
     duplicates: z.strictObject({ text: z.string(), maxRatio: z.number() }),
-    quota: z.strictObject({
-      text: z.string(),
-      goodPlayerRatio: range,
-      mismatchedRatio: range,
-      calibrationRatio: z.number(),
-    }),
+    huntRound: z.strictObject({ text: z.string(), tolerance: z.number().positive() }),
+    starterHunts: z.strictObject({ text: z.string(), captureRate: z.number().min(0).max(1) }),
+    intentAwareness: z.strictObject({ text: z.string(), minGain: z.number() }),
+    weatherHunt: z.strictObject({ text: z.string(), minRounds: z.number() }),
+    expedition: z.strictObject({ text: z.string(), hunts: z.int().min(1), hpPct: range }),
+    tamerSafety: z.strictObject({ text: z.string(), maxDownRate: z.number().min(0).max(1) }),
   }),
   simulation: z.strictObject({
     daysPerCheck: z.int().min(1),
-    campaignAgents: z.int().min(1),
+    huntSamples: z.int().min(1),
     calibrationIterations: z.int().min(1),
   }),
 })
@@ -271,11 +366,13 @@ export const ArtConfigSchema = z.strictObject({
 export type ArtConfig = z.infer<typeof ArtConfigSchema>
 export type ArtKind = keyof ArtConfig['kinds']
 
-export const CalibratedBalanceSchema = z.strictObject({
+export const CalibratedHuntsSchema: z.ZodType<CalibratedHunts> = z.strictObject({
   generatedAt: z.string(),
   seed: z.int(),
-  agents: z.int(),
-  quotaByWeek: z.array(z.number()),
+  samples: z.int(),
+  hp: z.record(z.string(), z.int().min(1)),
+  refDecks: z.record(z.string(), z.array(z.strictObject({ card: z.string(), count: z.int().min(1) }))).optional(),
+  huntDecks: z.record(z.string(), z.string()).optional(),
   notes: z.array(z.string()).optional(),
 })
 
@@ -286,7 +383,8 @@ export const FILE_SCHEMAS = {
   weather: z.object({ weather: z.array(WeatherSchema) }),
   decks: z.object({ decks: z.array(DeckPresetSchema) }),
   economy: EconomySchema,
-  calendar: CalendarSchema,
+  hunts: z.object({ hunts: z.array(HuntSchema) }),
+  regions: z.object({ world: WorldSchema, regions: z.array(RegionSchema) }),
   starter: StarterSchema,
   'balance-targets': BalanceTargetsSchema,
   art: ArtConfigSchema,

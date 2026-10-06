@@ -250,3 +250,6 @@ button:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focu
 .lab__pool, .lab__log { height: 320px; }
 .lab__slot { flex: 1; min-width: 0; max-width: 270px; }
 .lab__slot > .card { width: 100%; }
+/* Av: vuruş etiketi ve uyuyan kart. */
+.card__income--note { font-size: 30px; color: #f2c6b8; letter-spacing: .02em; }
+.card__sleep { background: #cfe0e2; transform: translateX(-50%) rotate(6deg); }

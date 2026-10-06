@@ -1,0 +1,59 @@
+/* Av arayüzünün küçük parçaları: mürekkep kontur, krem kağıt, tuğla kırmızı vurgu. */
+.intent-icon { flex-shrink: 0; overflow: visible; filter: drop-shadow(1px 2px 0 #281c1355); }
+.intent-badge { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); white-space: nowrap; }
+.intent-badge b { font-family: var(--font-display); font-weight: 900; font-size: 22px; line-height: 1; }
+.intent-badge--compact { gap: 0; }
+
+.hp-bar {
+  position: relative; display: block; height: 30px; min-width: 120px;
+  border: 3px solid var(--ink); border-radius: 12px 8px 13px 9px;
+  background: #3a2c20; overflow: hidden;
+  box-shadow: inset 0 2px 0 #00000055, 0 2px 0 #281c1340;
+}
+.hp-bar--sm { height: 20px; border-width: 2px; border-radius: 8px; }
+.hp-bar--lg { height: 38px; }
+.hp-bar__ghost, .hp-bar__fill { position: absolute; left: 0; top: 0; bottom: 0; }
+.hp-bar__ghost { background: #f2d39b; opacity: .75; transition: width .9s ease-out .25s; }
+.hp-bar__fill { width: 100%; border-right: 2px solid var(--ink); }
+.hp-bar--prey .hp-bar__fill { background: linear-gradient(180deg, #d0614a, #a43c2c 60%, #86301f); }
+.hp-bar--tamer .hp-bar__fill { background: linear-gradient(180deg, #7aa35f, #4f7a3c 60%, #3c5f2c); }
+.hp-bar__text {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 900; font-size: 20px; line-height: 1; color: #fff4dc;
+  text-shadow: -1.5px -1.5px 0 var(--ink), 1.5px -1.5px 0 var(--ink), -1.5px 1.5px 0 var(--ink), 1.5px 1.5px 0 var(--ink);
+}
+.hp-bar--sm .hp-bar__text { font-size: 14px; }
+.hp-bar--lg .hp-bar__text { font-size: 26px; }
+
+.tier-badge {
+  display: inline-block; padding: 3px 12px 4px; border: 2px solid var(--ink); border-radius: 10px 4px 11px 4px;
+  font-family: var(--font-display); font-weight: 900; font-size: 16px; line-height: 1; letter-spacing: .02em;
+  color: var(--ink); background: #e9d3a6; box-shadow: inset 0 0 0 2px #f8e6bc; white-space: nowrap;
+}
+.tier-badge--hard { background: #c9d6db; }
+.tier-badge--final { color: var(--paper-hi); background: #6d4a85; box-shadow: inset 0 0 0 2px #b394c7; }
+.tier-badge--legendary { background: #e7b74e; box-shadow: inset 0 0 0 2px #fbe39b; }
+.tier-badge--mythic { color: var(--paper-hi); background: var(--red); box-shadow: inset 0 0 0 2px #d79a5c; }
+.tier-badge--ancient { color: #f4fffb; background: #2f7a70; box-shadow: inset 0 0 0 2px #8fd6c9; }
+
+.prey-medallion {
+  --ring: var(--ink);
+  position: relative; display: inline-grid; place-items: center; flex-shrink: 0; overflow: hidden;
+  border-radius: 50%; border: 4px solid var(--ink);
+  background: var(--paper-image) repeat;
+  box-shadow: inset 0 0 0 3px #f2d39b, 0 0 0 3px var(--ring), 0 4px 0 #281c1366;
+}
+.prey-medallion img { width: 112%; height: 112%; object-fit: cover; object-position: 50% 45%; }
+.prey-medallion--hard { --ring: #6f8fa2; }
+.prey-medallion--final { --ring: #7a5096; }
+.prey-medallion--legendary { --ring: #e2ac3c; box-shadow: inset 0 0 0 3px #f2d39b, 0 0 0 3px var(--ring), 0 0 18px #ffcc5a, 0 4px 0 #281c1366; }
+.prey-medallion--ancient { --ring: #3c877d; box-shadow: inset 0 0 0 3px #f2d39b, 0 0 0 3px var(--ring), 0 0 20px #7ef0e0aa, 0 4px 0 #281c1366; }
+.prey-medallion.is-dim img, .prey-medallion.is-dim svg { filter: grayscale(.85) contrast(.75) brightness(.9); opacity: .7; }
+.intent-badge--compact { position: relative; }
+.intent-badge__value {
+  position: absolute; right: -6px; bottom: -6px; min-width: 22px; padding: 1px 4px; text-align: center;
+  border: 2px solid var(--ink); border-radius: 8px; background: var(--paper-hi);
+  font-family: var(--font-display); font-style: normal; font-weight: 900; font-size: 15px; line-height: 1.1; color: var(--ink);
+}
+.prey-medallion.is-secret { background: #4a3a2b; }
+.prey-medallion__secret { font-family: var(--font-display); font-weight: 900; line-height: 1; color: #e8c48a; text-shadow: 2px 3px 0 var(--ink); }

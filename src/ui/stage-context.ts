@@ -17,6 +17,8 @@ export interface StageSize {
  * pencere 16:9'dan genişse sahne yatayda, darsa dikeyde uzar. Siyah bant yok.
  */
 export function stageSizeFor(vw: number, vh: number): StageSize {
+  // Gizli/küçültülmüş pencerede boyut 0 gelebilir: 0/0 ölçek yerine referans boyut.
+  if (!(vw > 0) || !(vh > 0)) return { scale: 1, width: REF_W, height: REF_H }
   const scale = Math.min(vw / REF_W, vh / REF_H)
   return { scale, width: vw / scale, height: vh / scale }
 }

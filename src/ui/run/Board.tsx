@@ -1,11 +1,18 @@
 import { motion } from 'motion/react'
 import { useRef, useState, type PointerEvent } from 'react'
 import { polarityLinks } from '../../core/engine/round.ts'
-import type { CardDef } from '../../core/types.ts'
-import type { RunStatus } from '../../state/run.ts'
+import type { CardDef, Intent } from '../../core/types.ts'
+import type { HuntStatus } from '../../state/hunt.ts'
 import { CardView } from '../components/CardView.tsx'
-import type { RoundView } from '../playback/roundView.ts'
+import { IntentIcon } from '../components/HuntBits.tsx'
+import type { RoundView, SlotView } from '../playback/roundView.ts'
 import './Board.css'
+
+/** Yaratığın niyetinin hedeflediği slot (Yırtma, Kuyruk Savurma, Kükreme): dizimde slotun üstünde görünür. */
+export interface SlotMark {
+  kind: Intent['kind']
+  label: string
+}
 
 /**
  * Oyun tahtası: üstte slotlar, altta el. Kartlar elden slota sürüklenir, slotlar arasında
@@ -25,12 +32,18 @@ interface BoardProps {
   stageH: number
   scale: number
   round: number
-  status: RunStatus
+  status: HuntStatus
   hand: CardDef[]
   slots: (number | null)[]
   view: RoundView
   /** Vurgulanan el kartları (eğitim); dizim aşamasında parlar. */
   focus?: readonly number[]
+  /** Av: niyetin hedeflediği slotlar. */
+  marks?: (SlotMark | null)[]
+  /** Av: kart balonunun metni (hasar ya da engel). Verilmezse +gelir gösterilir. */
+  bubble?: (v: SlotView) => string | null
+  /** Slotun altındaki tur toplamı. Verilmezse +gelir toplamı. */
+  slotTotal?: (v: SlotView) => string
   onPlace(k: number, slot: number): void
   onUnplace(k: number): void
 }
@@ -137,11 +150,17 @@ export function Board(p: BoardProps) {
         return (
           <div
             key={i}
-            className={`board__slot ${k !== null ? 'is-filled' : ''} ${hoverSlot === i ? 'is-hover' : ''} ${i < n - 1 ? 'has-next' : ''}`}
+            className={`board__slot ${k !== null ? 'is-filled' : ''} ${hoverSlot === i ? 'is-hover' : ''} ${i < n - 1 ? 'has-next' : ''} ${arrange && p.marks?.[i] ? 'has-mark' : ''}`}
             style={{ left: c.x - cardW / 2, top: c.y - cardH / 2, width: cardW, height: cardH }}
           >
             <div className="board__slotnum">{i + 1}</div>
             {k === null && <span>Kartı buraya sürükle</span>}
+            {arrange && p.marks?.[i] && (
+              <div className={`board__mark board__mark--${p.marks[i]!.kind}`} title={p.marks[i]!.label}>
+                <IntentIcon kind={p.marks[i]!.kind} size={64} />
+                <span>{p.marks[i]!.label}</span>
+              </div>
+            )}
           </div>
         )
       })}
@@ -163,7 +182,7 @@ export function Board(p: BoardProps) {
       {!arrange &&
         p.slots.map((_, i) => (
           <div key={`t${i}`} className="board__slottotal" style={{ left: slotCenter(i).x, top: SLOT_TOP + cardH + 34 }}>
-            +{p.view.slots[i]?.total ?? 0}
+            {p.view.slots[i] ? (p.slotTotal ? p.slotTotal(p.view.slots[i]) : `+${p.view.slots[i].total}`) : ''}
           </div>
         ))}
 
@@ -204,6 +223,8 @@ export function Board(p: BoardProps) {
               ward={v?.ward}
               active={!arrange && p.view.active === slot}
               income={v ? v.income : null}
+              bubble={p.bubble ? (v ? p.bubble(v) : null) : undefined}
+              sleeping={!!v && !v.passive && v.sleepUntil > Math.max(1, p.view.pass)}
               pulse={v?.pulse}
             />
           </motion.div>

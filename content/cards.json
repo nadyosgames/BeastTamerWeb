@@ -11,7 +11,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"mult","value":2.5,"if":{"kind":"neighbor","side":"right","filter":{"type":"dragon"}}}]}
       ],
-      "text": "Harvest: +4. Sağındaki kart Dragon ise x2,5.",
+      "text": "Strike: +4. Sağındaki kart Dragon ise x2,5.",
       "art": {"creature":"a small fox cub with ember-tipped orange fur, big curious eyes and a glowing spark at the tip of its fluffy flame tail"}
     },
     {
@@ -24,7 +24,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"addHeat","amount":1},{"op":"gain","amount":2},{"op":"gainPer","amount":1,"per":{"kind":"heat"}}]}
       ],
-      "text": "Harvest: masaya +1 Isı. +2 ve masadaki Isı kadar +1.",
+      "text": "Strike: masaya +1 Isı. +2 ve masadaki Isı kadar +1.",
       "art": {"creature":"a round hedgehog whose spines glow like smoldering embers, rosy cheeks, sitting on warm coals"}
     },
     {
@@ -37,7 +37,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":3,"per":{"kind":"chain","side":"left","filter":{"element":"fire"}}}]}
       ],
-      "text": "Harvest: +2 ve solundaki ardışık her Ateş kartı için +3 (Alev Zinciri).",
+      "text": "Strike: +2 ve solundaki ardışık her Ateş kartı için +3 (Alev Zinciri).",
       "art": {"creature":"a pack of three tiny fire fox kits huddled together, flame tails flickering"}
     },
     {
@@ -50,7 +50,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"addHeat","amount":1},{"op":"gain","amount":3},{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"type":"dragon"},"excludeSelf":true}}]}
       ],
-      "text": "Harvest: masaya +1 Isı. +3 ve masadaki her başka Dragon için +2.",
+      "text": "Strike: masaya +1 Isı. +3 ve masadaki her başka Dragon için +2.",
       "art": {"creature":"a chubby baby red dragon with tiny wings puffing a small flame, playful expression"}
     },
     {
@@ -63,7 +63,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"gainPer","amount":3,"per":{"kind":"cards","filter":{"type":"swarm"},"excludeSelf":true}}]}
       ],
-      "text": "Harvest: +4 ve masadaki her başka Swarm için +3.",
+      "text": "Strike: +4 ve masadaki her başka Swarm için +3.",
       "art": {"creature":"a tiny beetle with a glowing ember shell and smoking antennae"}
     },
     {
@@ -76,7 +76,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"mult","value":2,"if":{"kind":"position","where":"first"}}]}
       ],
-      "text": "Harvest: +3. En soldaysa x2.",
+      "text": "Strike: +3. En soldaysa x2.",
       "art": {"creature":"a small lizard with a flickering flame crest on its head like a torch"}
     },
     {
@@ -90,7 +90,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":3}]},
         {"on":"lastBreath","effects":[{"op":"retrigger","target":"right"}]}
       ],
-      "text": "Harvest: +3. Last Breath: sağındaki kartı bir kez daha tetikler.",
+      "text": "Strike: +3. Last Breath: sağındaki kartı bir kez daha tetikler.",
       "art": {"creature":"a sleek black crow with ash-grey feathers and glowing ember eyes, sparks trailing from its wings"}
     },
     {
@@ -103,7 +103,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":5}]}
       ],
-      "text": "Harvest: +5.",
+      "text": "Strike: +5.",
       "art": {"creature":"a small round golem pup made of cooling magma rock with glowing orange cracks"}
     },
     {
@@ -116,7 +116,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":2,"per":{"kind":"cards","side":"right","filter":{"element":"fire"}}}]}
       ],
-      "text": "Harvest: +3 ve sağındaki her Ateş kartı için +2.",
+      "text": "Strike: +3 ve sağındaki her Ateş kartı için +2.",
       "art": {"creature":"a lean hound with a mane and tail of roaring flames, running pose"}
     },
     {
@@ -130,7 +130,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":3,"per":{"kind":"cards","side":"right","filter":{"element":"fire"}}}]}
       ],
-      "text": "Slumber 2. Harvest: +2 ve sağındaki her Ateş kartı için +3.",
+      "text": "Slumber 2. Strike: +2 ve sağındaki her Ateş kartı için +3.",
       "art": {"creature":"a living lily flower with petals of flickering fire and a sleepy face in its bud"}
     },
     {
@@ -144,7 +144,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":3}]},
         {"on":"haunt","effects":[{"op":"addHeat","amount":1},{"op":"gain","amount":2}]}
       ],
-      "text": "Harvest: +3. Haunt: masaya +1 Isı ve +2.",
+      "text": "Strike: +3. Haunt: masaya +1 Isı ve +2.",
       "art": {"creature":"a small floating ghost made of blue-orange flame with a mischievous smile"}
     },
     {
@@ -158,7 +158,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":2,"per":{"kind":"chain","side":"left","filter":{"element":"fire"}}}]}
       ],
-      "text": "Heavy. Harvest: +2 ve solundaki ardışık her Ateş kartı için +2 (Alev Zinciri).",
+      "text": "Heavy. Strike: +2 ve solundaki ardışık her Ateş kartı için +2 (Alev Zinciri).",
       "art": {"creature":"a stout golem shaped like a blacksmith forge with a glowing furnace belly"}
     },
     {
@@ -171,7 +171,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"mult","value":2,"if":{"kind":"neighbor","side":"left","filter":{"type":"dragon"}}}]}
       ],
-      "text": "Harvest: +4. Solundaki kart Dragon ise x2.",
+      "text": "Strike: +4. Solundaki kart Dragon ise x2.",
       "art": {"creature":"a young red wyvern with leathery wings and a flaming tail tip, perched on rocks"}
     },
     {
@@ -186,7 +186,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":4}]},
         {"on":"lastBreath","effects":[{"op":"addHeat","amount":1}]}
       ],
-      "text": "Rebirth. Harvest: +4. Last Breath: masaya +1 Isı.",
+      "text": "Rebirth. Strike: +4. Last Breath: masaya +1 Isı.",
       "art": {"creature":"a fluffy baby phoenix chick with downy flame feathers hatching from a glowing egg shell"}
     },
     {
@@ -200,7 +200,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"mult","value":6,"if":{"kind":"lastTrigger"}},{"op":"mult","value":0.5,"if":{"kind":"not","cond":{"kind":"lastTrigger"}}}]}
       ],
-      "text": "Harvest: +3. Son tetikte x6, önceki tetiklerde x0,5.",
+      "text": "Strike: +3. Son tetikte x6, önceki tetiklerde x0,5.",
       "art": {"creature":"a sleek salamander with dark volcanic skin split by glowing lava cracks, molten drips"}
     },
     {
@@ -215,7 +215,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":5},{"op":"gainPer","amount":2,"per":{"kind":"chain","side":"left","filter":{"element":"fire"}}}]}
       ],
-      "text": "Overload. Harvest: +5 ve solundaki ardışık her Ateş kartı için +2 (Alev Zinciri).",
+      "text": "Overload. Strike: +5 ve solundaki ardışık her Ateş kartı için +2 (Alev Zinciri).",
       "art": {"creature":"a muscular ember drake with smoldering scales and smoke pouring from its nostrils"}
     },
     {
@@ -230,7 +230,7 @@
         {"on":"aura","effects":[{"op":"aura","filter":{"type":"swarm"},"gain":3}]},
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"type":"swarm"},"excludeSelf":true}}]}
       ],
-      "text": "Aura: diğer Swarm kartları Harvest'te +3. Harvest: +3 ve masadaki her başka Swarm için +2.",
+      "text": "Aura: diğer Swarm kartları Strike'te +3. Strike: +3 ve masadaki her başka Swarm için +2.",
       "art": {"creature":"a large glowing fire beetle queen surrounded by tiny ember beetles"}
     },
     {
@@ -244,7 +244,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":1,"per":{"kind":"heat"}},{"op":"mult","value":1.5,"if":{"kind":"passParity","parity":"odd"}}]}
       ],
-      "text": "Harvest: +3 ve masadaki Isı kadar +1. Tek geçişlerde x1,5.",
+      "text": "Strike: +3 ve masadaki Isı kadar +1. Tek geçişlerde x1,5.",
       "art": {"creature":"a stocky turtle with a shell like a bubbling hot spring, steam vents puffing white clouds, ember glow under the water"}
     },
     {
@@ -258,7 +258,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"gain","amount":4,"if":{"kind":"neighbor","side":"left","filter":{"type":"beast"}}},{"op":"gain","amount":4,"if":{"kind":"neighbor","side":"right","filter":{"type":"beast"}}}]}
       ],
-      "text": "Harvest: +4. Her Beast komşusu için +4.",
+      "text": "Strike: +4. Her Beast komşusu için +4.",
       "art": {"creature":"a proud crimson wolf with a blazing mane, howling with embers swirling around it"}
     },
     {
@@ -273,7 +273,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"addHeat","amount":1},{"op":"gain","amount":4},{"op":"gainPer","amount":1,"per":{"kind":"heat"}},{"op":"mult","value":1.5,"if":{"kind":"link","side":"right","state":"compatible"}}]}
       ],
-      "text": "Harvest: masaya +1 Isı. +4 ve masadaki Isı kadar +1. Sağ bağlantı uyumluysa x1,5.",
+      "text": "Strike: masaya +1 Isı. +4 ve masadaki Isı kadar +1. Sağ bağlantı uyumluysa x1,5.",
       "art": {"creature":"a sleek armored dragon with charcoal scales split by glowing ember cracks, crackling yellow lightning arcs along its horns and wings, and a mane of living flame"}
     },
     {
@@ -289,7 +289,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":4}]},
         {"on":"epilogue","effects":[{"op":"gainPer","amount":4,"per":{"kind":"cards","side":"left","filter":{"element":"fire"}}}]}
       ],
-      "text": "Heavy. Harvest: +4. Epilogue: solundaki her Ateş kartı için +4.",
+      "text": "Heavy. Strike: +4. Epilogue: solundaki her Ateş kartı için +4.",
       "art": {"creature":"a towering golem of black basalt with rivers of lava flowing through its body"}
     },
     {
@@ -305,7 +305,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":5}]},
         {"on":"lastBreath","effects":[{"op":"retrigger","target":"left"},{"op":"retrigger","target":"right"}]}
       ],
-      "text": "Rebirth. Harvest: +5. Last Breath: solundaki ve sağındaki kartı bir kez daha tetikler.",
+      "text": "Rebirth. Strike: +5. Last Breath: solundaki ve sağındaki kartı bir kez daha tetikler.",
       "art": {"creature":"a majestic phoenix with long flowing tail feathers of gold and crimson fire, wings spread wide"}
     },
     {
@@ -320,7 +320,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":10},{"op":"mult","value":3,"if":{"kind":"allCards","filter":{"element":"fire"}}}]}
       ],
-      "text": "Overload. Harvest: +10. Dizilen tüm kartlar Ateş ise x3.",
+      "text": "Overload. Strike: +10. Dizilen tüm kartlar Ateş ise x3.",
       "art": {"creature":"a majestic red and gold dragon with a radiant sun-like crest and wings glowing with sunfire"}
     },
     {
@@ -334,7 +334,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"addHeat","amount":1},{"op":"gain","amount":3},{"op":"gainPer","amount":2,"per":{"kind":"chain","side":"left","filter":{"element":"fire"}}},{"op":"mult","value":3,"if":{"kind":"lastTrigger"}}]}
       ],
-      "text": "Harvest: masaya +1 Isı. +3 ve solundaki ardışık her Ateş kartı için +2. Son tetikte x3.",
+      "text": "Strike: masaya +1 Isı. +3 ve solundaki ardışık her Ateş kartı için +2. Son tetikte x3.",
       "art": {"creature":"a colossal serpent coiled around an erupting volcano, its scales glowing like molten rock"}
     },
     {
@@ -344,12 +344,13 @@
       "type": "dragon",
       "rarity": "mythic",
       "durability": 3,
+      "source": "hunt",
       "unlockYear": 5,
       "abilities": [
         {"on":"howl","effects":[{"op":"addDurability","target":"others","amount":1,"filter":{"element":"fire"}}]},
         {"on":"harvest","effects":[{"op":"gain","amount":5},{"op":"gainPer","amount":1,"per":{"kind":"heat"}}]}
       ],
-      "text": "Howl: diğer tüm Ateş kartlarına +1 dayanıklılık. Harvest: +5 ve masadaki Isı kadar +1.",
+      "text": "Howl: diğer tüm Ateş kartlarına +1 dayanıklılık. Strike: +5 ve masadaki Isı kadar +1.",
       "art": {"creature":"an ancient serpentine dragon made entirely of white-gold eternal fire, glowing runes along its body, cosmic embers"}
     },
     {
@@ -362,7 +363,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"copyIncome","from":"left","pct":100}]}
       ],
-      "text": "Harvest: +2 ve soldaki kartın bu geçişteki gelirinin tamamı.",
+      "text": "Strike: +2 ve soldaki kartın bu geçişteki gelirinin tamamı.",
       "art": {"creature":"a young sea turtle with a shell covered in pink and orange coral, friendly round eyes, water droplets around it"}
     },
     {
@@ -375,7 +376,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"mult","value":2,"if":{"kind":"passParity","parity":"odd"}},{"op":"mult","value":0.5,"if":{"kind":"passParity","parity":"even"}}]}
       ],
-      "text": "Harvest: +3. Tek geçişlerde x2, çift geçişlerde x0,5.",
+      "text": "Strike: +3. Tek geçişlerde x2, çift geçişlerde x0,5.",
       "art": {"creature":"a glossy blue frog with translucent water-drop spots, surrounded by floating bubbles, cheerful face"}
     },
     {
@@ -389,7 +390,7 @@
         {"on":"howl","effects":[{"op":"addDurability","target":"right","amount":1}]},
         {"on":"harvest","effects":[{"op":"gain","amount":3}]}
       ],
-      "text": "Howl: sağındaki kartın dayanıklılığını +1 yapar. Harvest: +3.",
+      "text": "Howl: sağındaki kartın dayanıklılığını +1 yapar. Strike: +3.",
       "art": {"creature":"a small red crab with a coral crown on its shell, raised claws, bubbles around it"}
     },
     {
@@ -403,7 +404,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":4}]},
         {"on":"lastBreath","effects":[{"op":"gain","amount":3}]}
       ],
-      "text": "Harvest: +4. Last Breath: +3.",
+      "text": "Strike: +4. Last Breath: +3.",
       "art": {"creature":"a round puffer fish blowing a stream of shiny bubbles, big surprised eyes"}
     },
     {
@@ -416,7 +417,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"mult","value":3,"if":{"kind":"passParity","parity":"odd"}}]}
       ],
-      "text": "Harvest: +2. Tek geçişlerde x3.",
+      "text": "Strike: +2. Tek geçişlerde x3.",
       "art": {"creature":"a playful otter floating on its back on gentle waves, holding a shell"}
     },
     {
@@ -429,7 +430,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":1,"per":{"kind":"cards","filter":{"element":"water"},"excludeSelf":true}}]}
       ],
-      "text": "Harvest: +2 ve masadaki her başka Su kartı için +1.",
+      "text": "Strike: +2 ve masadaki her başka Su kartı için +1.",
       "art": {"creature":"a chubby grey seal pup lying on a coral reef rock, whiskers dripping with water"}
     },
     {
@@ -443,7 +444,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":2}]},
         {"on":"haunt","effects":[{"op":"gain","amount":2}]}
       ],
-      "text": "Harvest: +2. Haunt: başka bir kart pasife geçtiğinde +2.",
+      "text": "Strike: +2. Haunt: başka bir kart pasife geçtiğinde +2.",
       "art": {"creature":"a tiny wisp of pale blue mist shaped like a sleepy little ghost"}
     },
     {
@@ -457,7 +458,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":1},{"op":"copyIncome","from":"right","pct":100}]}
       ],
-      "text": "Heavy. Harvest: +1 ve sağındaki kartın bu geçişteki gelirinin tamamı.",
+      "text": "Heavy. Strike: +1 ve sağındaki kartın bu geçişteki gelirinin tamamı.",
       "art": {"creature":"a long slender river eel with teal scales weaving through reeds and ripples"}
     },
     {
@@ -471,7 +472,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":1},{"op":"copyIncome","from":"left","pct":75},{"op":"copyIncome","from":"right","pct":75}]}
       ],
-      "text": "Heavy. Harvest: +1, solundaki ve sağındaki kartın bu geçişteki gelirinin %75'i.",
+      "text": "Heavy. Strike: +1, solundaki ve sağındaki kartın bu geçişteki gelirinin %75'i.",
       "art": {"creature":"a round blue octopus with swirling whirlpool patterns on its head, curling tentacles splashing water, big friendly eyes"}
     },
     {
@@ -486,7 +487,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":4}]},
         {"on":"lastBreath","effects":[{"op":"gain","amount":6}]}
       ],
-      "text": "Rebirth. Harvest: +4. Last Breath: +6.",
+      "text": "Rebirth. Strike: +4. Last Breath: +6.",
       "art": {"creature":"an elegant seahorse with orange and teal scales holding a glowing pearl in its curled tail"}
     },
     {
@@ -500,7 +501,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"mult","value":2,"if":{"kind":"passParity","parity":"odd"}}]}
       ],
-      "text": "Swift. Harvest: +3. Tek geçişlerde x2.",
+      "text": "Swift. Strike: +3. Tek geçişlerde x2.",
       "art": {"creature":"a sleek dolphin leaping out of a cresting wave, joyful expression"}
     },
     {
@@ -512,9 +513,9 @@
       "durability": 3,
       "abilities": [
         {"on":"howl","effects":[{"op":"addDurability","target":"right","amount":2}]},
-        {"on":"harvest","effects":[{"op":"gain","amount":2}]}
+        {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"guard","amount":2}]}
       ],
-      "text": "Howl: sağındaki kartın dayanıklılığını +2 yapar. Harvest: +2.",
+      "text": "Howl: sağındaki kartın dayanıklılığını +2 yapar. Strike: +2. +2 Koruma.",
       "art": {"creature":"a tall swaying kelp creature with gentle eyes and seaweed arms, small fish around it"}
     },
     {
@@ -528,7 +529,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":3}]},
         {"on":"haunt","effects":[{"op":"gain","amount":3}]}
       ],
-      "text": "Harvest: +3. Haunt: başka bir kart pasife geçtiğinde +3.",
+      "text": "Strike: +3. Haunt: başka bir kart pasife geçtiğinde +3.",
       "art": {"creature":"a small translucent ghost made of pale blue mist with a gentle smile, wisps trailing behind it"}
     },
     {
@@ -542,7 +543,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":3}]},
         {"on":"lastBreath","effects":[{"op":"retrigger","target":"left"}]}
       ],
-      "text": "Harvest: +3. Last Breath: solundaki kartı bir kez daha tetikler.",
+      "text": "Strike: +3. Last Breath: solundaki kartı bir kez daha tetikler.",
       "art": {"creature":"a slender sea serpent with a glowing conch-shell crest, calling the tide"}
     },
     {
@@ -557,7 +558,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"copyIncome","from":"left","pct":100},{"op":"copyIncome","from":"right","pct":100}]}
       ],
-      "text": "Heavy. Harvest: solundaki ve sağındaki kartın bu geçişteki gelirinin tamamı.",
+      "text": "Heavy. Strike: solundaki ve sağındaki kartın bu geçişteki gelirinin tamamı.",
       "art": {"creature":"a translucent jellyfish with a mirror-like shimmering bell reflecting light, long glowing tentacles"}
     },
     {
@@ -572,7 +573,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":1,"per":{"kind":"cards","filter":{"state":"passive"}}},{"op":"mult","value":1.5,"if":{"kind":"passParity","parity":"odd"}}]}
       ],
-      "text": "Heavy. Harvest: +2 ve masadaki her pasif kart için +1. Tek geçişlerde x1,5.",
+      "text": "Heavy. Strike: +2 ve masadaki her pasif kart için +1. Tek geçişlerde x1,5.",
       "art": {"creature":"a sturdy turtle covered in wet mud and moss, lily pads growing on its shell"}
     },
     {
@@ -587,7 +588,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":1,"per":{"kind":"distinctElements"}},{"op":"mult","value":2,"if":{"kind":"passParity","parity":"odd"}}]}
       ],
-      "text": "Swift. Harvest: +2 ve masadaki her farklı element için +1. Tek geçişlerde x2.",
+      "text": "Swift. Strike: +2 ve masadaki her farklı element için +1. Tek geçişlerde x2.",
       "art": {"creature":"a graceful blue songbird made of raindrops and cloud wisps, singing in a drizzle"}
     },
     {
@@ -602,7 +603,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":3}]},
         {"on":"lastBreath","effects":[{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"state":"passive"}}}]}
       ],
-      "text": "Harvest: +3. Last Breath: masadaki her pasif kart için +2.",
+      "text": "Strike: +3. Last Breath: masadaki her pasif kart için +2.",
       "art": {"creature":"a deep-sea anglerfish with a glowing lantern lure, dark blue body and sharp friendly grin"}
     },
     {
@@ -617,7 +618,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"mult","value":2,"if":{"kind":"passParity","parity":"odd"}}]},
         {"on":"lastBreath","effects":[{"op":"gain","amount":4}]}
       ],
-      "text": "Harvest: +3. Tek geçişlerde x2. Last Breath: +4.",
+      "text": "Strike: +3. Tek geçişlerde x2. Last Breath: +4.",
       "art": {"creature":"a long sea serpent rising from rolling tides, turquoise scales and a fin crest"}
     },
     {
@@ -633,7 +634,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":5}]},
         {"on":"lastBreath","effects":[{"op":"gain","amount":8}]}
       ],
-      "text": "Rebirth. Harvest: +5. Last Breath: +8.",
+      "text": "Rebirth. Strike: +5. Last Breath: +8.",
       "art": {"creature":"a young leviathan with deep blue armored scales and glowing bioluminescent spots, emerging from the deep"}
     },
     {
@@ -649,7 +650,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":3}]},
         {"on":"haunt","effects":[{"op":"gain","amount":3}]}
       ],
-      "text": "Aura: diğer Ghost kartları Harvest'te +2. Harvest: +3. Haunt: +3.",
+      "text": "Aura: diğer Ghost kartları Strike'te +2. Strike: +3. Haunt: +3.",
       "art": {"creature":"an elegant ghost queen made of swirling sea mist with a crown of pale coral"}
     },
     {
@@ -662,9 +663,9 @@
       "unlockYear": 3,
       "abilities": [
         {"on":"howl","effects":[{"op":"addDurability","target":"others","amount":1,"filter":{"element":"water"}}]},
-        {"on":"harvest","effects":[{"op":"gain","amount":3}]}
+        {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"guard","amount":3}]}
       ],
-      "text": "Howl: diğer tüm Su kartlarına +1 dayanıklılık. Harvest: +3.",
+      "text": "Howl: diğer tüm Su kartlarına +1 dayanıklılık. Strike: +3. +3 Koruma.",
       "art": {"creature":"an ancient wise sea tortoise with a barnacle-covered shell and a long white beard of seaweed"}
     },
     {
@@ -679,7 +680,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"copyIncome","from":"left","pct":125},{"op":"copyIncome","from":"right","pct":125}]}
       ],
-      "text": "Heavy. Harvest: +3, solundaki ve sağındaki kartın bu geçişteki gelirinin %125'i.",
+      "text": "Heavy. Strike: +3, solundaki ve sağındaki kartın bu geçişteki gelirinin %125'i.",
       "art": {"creature":"a colossal kraken with massive swirling tentacles rising from a stormy sea, glowing eyes"}
     },
     {
@@ -694,7 +695,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":6},{"op":"mult","value":2,"if":{"kind":"passParity","parity":"odd"}}]},
         {"on":"lastBreath","effects":[{"op":"retrigger","target":"left"},{"op":"retrigger","target":"right"}]}
       ],
-      "text": "Harvest: +6. Tek geçişlerde x2. Last Breath: solundaki ve sağındaki kartı bir kez daha tetikler.",
+      "text": "Strike: +6. Tek geçişlerde x2. Last Breath: solundaki ve sağındaki kartı bir kez daha tetikler.",
       "art": {"creature":"a majestic serpentine sea dragon with flowing fins, teal and silver scales, riding a great wave"}
     },
     {
@@ -704,12 +705,13 @@
       "type": "beast",
       "rarity": "mythic",
       "durability": 3,
+      "source": "hunt",
       "unlockYear": 5,
       "abilities": [
         {"on":"howl","effects":[{"op":"addDurability","target":"others","amount":1}]},
         {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"mult","value":2,"if":{"kind":"passParity","parity":"odd"}}]}
       ],
-      "text": "Howl: diğer tüm kartlara +1 dayanıklılık. Harvest: +4. Tek geçişlerde x2.",
+      "text": "Howl: diğer tüm kartlara +1 dayanıklılık. Strike: +4. Tek geçişlerde x2.",
       "art": {"creature":"a colossal ethereal whale swimming through a starry night sky above the ocean, glowing moon runes on its skin"}
     },
     {
@@ -720,9 +722,9 @@
       "rarity": "common",
       "durability": 3,
       "abilities": [
-        {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gain","amount":5,"if":{"kind":"neighbor","side":"left","filter":{"state":"passive"}}}]}
+        {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gain","amount":5,"if":{"kind":"neighbor","side":"left","filter":{"state":"passive"}}},{"op":"guard","amount":2}]}
       ],
-      "text": "Harvest: +2. Solundaki kart pasifse +5.",
+      "text": "Strike: +2. Solundaki kart pasifse +5. +2 Koruma.",
       "art": {"creature":"a sturdy little golem made of mossy boulders with glowing amber eyes and tiny ferns growing on its shoulders"}
     },
     {
@@ -736,7 +738,7 @@
         {"on":"howl","effects":[{"op":"addDurability","target":"left","amount":1},{"op":"addDurability","target":"right","amount":1}]},
         {"on":"harvest","effects":[{"op":"gain","amount":1}]}
       ],
-      "text": "Howl: solundaki ve sağındaki kartlara +1 dayanıklılık. Harvest: +1.",
+      "text": "Howl: solundaki ve sağındaki kartlara +1 dayanıklılık. Strike: +1.",
       "art": {"creature":"a small wooden guardian made of twisted roots and bark with glowing green eyes and leaves sprouting on its head"}
     },
     {
@@ -749,7 +751,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":1,"per":{"kind":"cards","filter":{"state":"passive"}}}]}
       ],
-      "text": "Harvest: +2 ve masadaki her pasif kart için +1.",
+      "text": "Strike: +2 ve masadaki her pasif kart için +1.",
       "art": {"creature":"a chubby mole with tiny pebbles stuck in its soft brown fur, digging out of the ground"}
     },
     {
@@ -762,7 +764,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":1},{"op":"gainPer","amount":2,"per":{"kind":"selfTriggers"}}]}
       ],
-      "text": "Harvest: +1 ve bu turdaki her önceki tetiği için +2.",
+      "text": "Strike: +1 ve bu turdaki her önceki tetiği için +2.",
       "art": {"creature":"a tiny sprout creature with two leaf ears and a seed-shaped body, smiling"}
     },
     {
@@ -775,7 +777,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"gainPer","amount":1,"per":{"kind":"cards","filter":{"type":"golem"},"excludeSelf":true}}]}
       ],
-      "text": "Harvest: +4 ve masadaki her başka Golem için +1.",
+      "text": "Strike: +4 ve masadaki her başka Golem için +1.",
       "art": {"creature":"a small round golem of reddish clay with handprints on its body and pebble eyes"}
     },
     {
@@ -789,7 +791,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":3}]},
         {"on":"lastBreath","effects":[{"op":"gainPer","amount":1,"per":{"kind":"cards","filter":{"state":"passive"}}}]}
       ],
-      "text": "Harvest: +3. Last Breath: masadaki her pasif kart için +1.",
+      "text": "Strike: +3. Last Breath: masadaki her pasif kart için +1.",
       "art": {"creature":"a chubby toad with a big spotted mushroom cap growing on its head"}
     },
     {
@@ -801,9 +803,9 @@
       "durability": 3,
       "keywords": ["heavy"],
       "abilities": [
-        {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gain","amount":5,"if":{"kind":"neighbor","side":"left","filter":{"state":"passive"}}}]}
+        {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gain","amount":5,"if":{"kind":"neighbor","side":"left","filter":{"state":"passive"}}},{"op":"guard","amount":2}]}
       ],
-      "text": "Heavy. Harvest: +2. Solundaki kart pasifse +5.",
+      "text": "Heavy. Strike: +2. Solundaki kart pasifse +5. +2 Koruma.",
       "art": {"creature":"a stocky badger with earthy striped fur peeking out of a burrow"}
     },
     {
@@ -816,7 +818,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":3,"per":{"kind":"cards","filter":{"type":"swarm"},"excludeSelf":true}}]}
       ],
-      "text": "Harvest: +3 ve masadaki her başka Swarm için +3.",
+      "text": "Strike: +3 ve masadaki her başka Swarm için +3.",
       "art": {"creature":"a tiny beetle with a shell like a polished river stone, moss on its back"}
     },
     {
@@ -830,7 +832,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":1},{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"state":"passive"}}}]}
       ],
-      "text": "Heavy. Harvest: +1 ve masadaki her pasif kart için +2.",
+      "text": "Heavy. Strike: +1 ve masadaki her pasif kart için +2.",
       "art": {"creature":"a chunky lizard with rocky plates and amber crystal spikes along its back"}
     },
     {
@@ -844,7 +846,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"state":"passive"}}}]}
       ],
-      "text": "Slumber 2. Harvest: +2 ve masadaki her pasif kart için +2.",
+      "text": "Slumber 2. Strike: +2 ve masadaki her pasif kart için +2.",
       "art": {"creature":"a grumpy little thorn bush creature with berry eyes and prickly branches"}
     },
     {
@@ -856,9 +858,9 @@
       "durability": 3,
       "keywords": ["ward"],
       "abilities": [
-        {"on":"harvest","effects":[{"op":"gain","amount":4}]}
+        {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"guard","amount":3}]}
       ],
-      "text": "Ward. Harvest: +4.",
+      "text": "Ward. Strike: +4. +3 Koruma.",
       "art": {"creature":"a tortoise with a heavy shell made of iron ore plates and rivets"}
     },
     {
@@ -871,7 +873,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"mult","value":2,"if":{"kind":"any","conds":[{"kind":"neighbor","side":"left","filter":{"type":"golem"}},{"kind":"neighbor","side":"right","filter":{"type":"golem"}}]}}]}
       ],
-      "text": "Harvest: +3. Komşularından biri Golem ise x2.",
+      "text": "Strike: +3. Komşularından biri Golem ise x2.",
       "art": {"creature":"a golem made of glowing amber and green crystals growing out of rock"}
     },
     {
@@ -885,7 +887,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":3}]},
         {"on":"lastBreath","effects":[{"op":"addDurability","target":"right","amount":1}]}
       ],
-      "text": "Harvest: +3. Last Breath: sağındaki kartın dayanıklılığını +1 yapar.",
+      "text": "Strike: +3. Last Breath: sağındaki kartın dayanıklılığını +1 yapar.",
       "art": {"creature":"a green serpent made of twisting vines with small leaves and flowers along its body"}
     },
     {
@@ -899,7 +901,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":2}]},
         {"on":"lastBreath","effects":[{"op":"addDurability","target":"left","amount":1},{"op":"addDurability","target":"right","amount":1}]}
       ],
-      "text": "Harvest: +2. Last Breath: solundaki ve sağındaki kartlara +1 dayanıklılık.",
+      "text": "Strike: +2. Last Breath: solundaki ve sağındaki kartlara +1 dayanıklılık.",
       "art": {"creature":"a small brown finch carrying a glowing seed in its beak, nest of twigs"}
     },
     {
@@ -915,7 +917,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":3}]},
         {"on":"epilogue","effects":[{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"state":"passive"}}}]}
       ],
-      "text": "Heavy. Harvest: +3. Epilogue: masadaki her pasif kart için +2.",
+      "text": "Heavy. Strike: +3. Epilogue: masadaki her pasif kart için +2.",
       "art": {"creature":"a large gentle golem made of mossy stone and roots with a bushy moss beard and glowing green eyes"}
     },
     {
@@ -930,7 +932,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":1,"per":{"kind":"heat"}},{"op":"gainPer","amount":1,"per":{"kind":"cards","filter":{"state":"passive"}}}]}
       ],
-      "text": "Heavy. Harvest: +2, masadaki Isı kadar +1 ve her pasif kart için +1.",
+      "text": "Heavy. Strike: +2, masadaki Isı kadar +1 ve her pasif kart için +1.",
       "art": {"creature":"a massive tortoise with a small smoking volcano on its rocky shell, lava trickling down"}
     },
     {
@@ -945,7 +947,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":2,"per":{"kind":"selfTriggers"}}]}
       ],
-      "text": "Slumber 2. Harvest: +2 ve bu turdaki her önceki tetiği için +2.",
+      "text": "Slumber 2. Strike: +2 ve bu turdaki her önceki tetiği için +2.",
       "art": {"creature":"an old oak tree creature with a wise wrinkled bark face and acorn eyes"}
     },
     {
@@ -960,7 +962,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"type":"golem"},"excludeSelf":true}}]}
       ],
-      "text": "Heavy. Harvest: +3 ve masadaki her başka Golem için +2.",
+      "text": "Heavy. Strike: +3 ve masadaki her başka Golem için +2.",
       "art": {"creature":"a tall imposing golem of speckled grey granite with glowing runes on its fists"}
     },
     {
@@ -975,7 +977,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":2}]},
         {"on":"lastBreath","effects":[{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"state":"passive"}}}]}
       ],
-      "text": "Harvest: +2. Last Breath: masadaki her pasif kart için +2.",
+      "text": "Strike: +2. Last Breath: masadaki her pasif kart için +2.",
       "art": {"creature":"a burly mole with large digging claws causing the ground to crack around it"}
     },
     {
@@ -990,7 +992,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":1,"per":{"kind":"cards","filter":{"state":"passive"}}},{"op":"gainPer","amount":1,"per":{"kind":"distinctElements"}}]}
       ],
-      "text": "Swift. Harvest: +3, masadaki her pasif kart ve her farklı element için +1.",
+      "text": "Swift. Strike: +3, masadaki her pasif kart ve her farklı element için +1.",
       "art": {"creature":"a fierce eagle with sandstone-colored feathers, wings trailing swirling sand and wind currents, small crystals on its crest"}
     },
     {
@@ -1005,7 +1007,7 @@
         {"on":"aura","effects":[{"op":"aura","filter":{"element":"earth"},"gain":1}]},
         {"on":"harvest","effects":[{"op":"gain","amount":4}]}
       ],
-      "text": "Aura: diğer Toprak kartları Harvest'te +1. Harvest: +4.",
+      "text": "Aura: diğer Toprak kartları Strike'te +1. Strike: +4.",
       "art": {"creature":"an ancient walking tree spirit with a mossy trunk face, glowing green eyes and branches full of leaves and fireflies"}
     },
     {
@@ -1018,9 +1020,9 @@
       "unlockYear": 3,
       "keywords": ["ward","heavy"],
       "abilities": [
-        {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":1,"per":{"kind":"cards","filter":{"state":"passive"}}}]}
+        {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":1,"per":{"kind":"cards","filter":{"state":"passive"}}},{"op":"guard","amount":4}]}
       ],
-      "text": "Ward. Heavy. Harvest: +3 ve masadaki her pasif kart için +1.",
+      "text": "Ward. Heavy. Strike: +3 ve masadaki her pasif kart için +1. +4 Koruma.",
       "art": {"creature":"a gigantic tortoise carrying a small mountain with pine trees on its shell"}
     },
     {
@@ -1036,7 +1038,7 @@
         {"on":"aura","effects":[{"op":"aura","gain":1}]},
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":3,"per":{"kind":"selfTriggers"}}]}
       ],
-      "text": "Slumber 2. Aura: diğer tüm kartlar Harvest'te +1. Harvest: +3 ve bu turdaki her önceki tetiği için +3.",
+      "text": "Slumber 2. Aura: diğer tüm kartlar Strike'te +1. Strike: +3 ve bu turdaki her önceki tetiği için +3.",
       "art": {"creature":"a colossal world tree spirit with roots wrapping around the earth, glowing leaves and a serene ancient face"}
     },
     {
@@ -1052,7 +1054,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":3,"per":{"kind":"cards","filter":{"state":"passive"}}}]},
         {"on":"epilogue","effects":[{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"state":"passive"}}}]}
       ],
-      "text": "Heavy. Harvest: +2 ve masadaki her pasif kart için +3. Epilogue: her pasif kart için +2.",
+      "text": "Heavy. Strike: +2 ve masadaki her pasif kart için +3. Epilogue: her pasif kart için +2.",
       "art": {"creature":"a towering colossus of ancient carved stone covered in moss and glowing runes"}
     },
     {
@@ -1062,13 +1064,14 @@
       "type": "beast",
       "rarity": "mythic",
       "durability": 6,
+      "source": "hunt",
       "unlockYear": 5,
       "keywords": ["heavy"],
       "abilities": [
         {"on":"howl","effects":[{"op":"addDurability","target":"left","amount":2},{"op":"addDurability","target":"right","amount":2}]},
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"state":"passive"}}}]}
       ],
-      "text": "Howl: solundaki ve sağındaki kartlara +2 dayanıklılık. Heavy. Harvest: +2 ve masadaki her pasif kart için +2.",
+      "text": "Howl: solundaki ve sağındaki kartlara +2 dayanıklılık. Heavy. Strike: +2 ve masadaki her pasif kart için +2.",
       "art": {"creature":"a primordial world tortoise with an entire glowing forest and waterfalls on its shell, cosmic runes"}
     },
     {
@@ -1081,7 +1084,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":5},{"op":"mult","value":1.5,"if":{"kind":"count","count":{"kind":"distinctElements"},"cmp":">=","value":3}}]}
       ],
-      "text": "Harvest: +5. Masada en az 3 farklı element varsa x1,5.",
+      "text": "Strike: +5. Masada en az 3 farklı element varsa x1,5.",
       "art": {"creature":"a round fluffy owl with lavender feathers that blend into soft clouds, big golden eyes"}
     },
     {
@@ -1095,7 +1098,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":1,"per":{"kind":"distinctElements"}}]}
       ],
-      "text": "Swift. Harvest: +3 ve masadaki her farklı element için +1.",
+      "text": "Swift. Strike: +3 ve masadaki her farklı element için +1.",
       "art": {"creature":"a small winged cat with pale lavender fur and a wispy tail made of breeze, floating in the air"}
     },
     {
@@ -1109,7 +1112,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"gainPer","amount":3,"per":{"kind":"cards","filter":{"type":"swarm"},"excludeSelf":true}}]}
       ],
-      "text": "Swift. Harvest: +4 ve masadaki her başka Swarm için +3.",
+      "text": "Swift. Strike: +4 ve masadaki her başka Swarm için +3.",
       "art": {"creature":"a fluffy moth with lavender and white wings patterned like storm clouds"}
     },
     {
@@ -1123,7 +1126,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"mult","value":2.5,"if":{"kind":"position","where":"first"}}]}
       ],
-      "text": "Swift. Harvest: +3. İlk slottaysa x2,5.",
+      "text": "Swift. Strike: +3. İlk slottaysa x2,5.",
       "art": {"creature":"a tiny sparrow riding a gust of wind with ruffled lavender feathers"}
     },
     {
@@ -1136,7 +1139,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gain","amount":6,"if":{"kind":"count","count":{"kind":"distinctElements"},"cmp":">=","value":4}}]}
       ],
-      "text": "Harvest: +3. Masada en az 4 farklı element varsa +6.",
+      "text": "Strike: +3. Masada en az 4 farklı element varsa +6.",
       "art": {"creature":"a slender pale fox with long flowing tail and ears like leaves in the wind"}
     },
     {
@@ -1149,7 +1152,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"mult","value":2.5,"if":{"kind":"position","where":"last"}}]}
       ],
-      "text": "Harvest: +3. En sağdaysa x2,5.",
+      "text": "Strike: +3. En sağdaysa x2,5.",
       "art": {"creature":"a fluffy white bunny with a dandelion puff tail, seeds drifting in the breeze"}
     },
     {
@@ -1162,7 +1165,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"type":"avian"},"excludeSelf":true}}]}
       ],
-      "text": "Harvest: +3 ve masadaki her başka Avian için +2.",
+      "text": "Strike: +3 ve masadaki her başka Avian için +2.",
       "art": {"creature":"a cheerful little finch with lavender wings, part of a small flock flying together"}
     },
     {
@@ -1177,7 +1180,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":2}]},
         {"on":"haunt","effects":[{"op":"gain","amount":2}]}
       ],
-      "text": "Swift. Harvest: +2. Haunt: +2.",
+      "text": "Swift. Strike: +2. Haunt: +2.",
       "art": {"creature":"a tiny spinning whirlwind spirit with a playful face, leaves caught in its spiral"}
     },
     {
@@ -1191,7 +1194,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"mult","value":2.5,"if":{"kind":"position","where":"first"}}]}
       ],
-      "text": "Swift. Harvest: +4. İlk slottaysa x2,5.",
+      "text": "Swift. Strike: +4. İlk slottaysa x2,5.",
       "art": {"creature":"a proud eagle with lavender and white feathers riding swirling storm winds, sharp golden eyes"}
     },
     {
@@ -1205,7 +1208,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":1,"per":{"kind":"distinctElements"}}]}
       ],
-      "text": "Swift. Harvest: +3 ve masadaki her farklı element için +1.",
+      "text": "Swift. Strike: +3 ve masadaki her farklı element için +1.",
       "art": {"creature":"a sleek ferret spinning in a small cyclone, fur swept by the wind"}
     },
     {
@@ -1218,7 +1221,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"mult","value":2,"if":{"kind":"count","count":{"kind":"distinctElements"},"cmp":">=","value":4}}]}
       ],
-      "text": "Harvest: +3. Masada en az 4 farklı element varsa x2.",
+      "text": "Strike: +3. Masada en az 4 farklı element varsa x2.",
       "art": {"creature":"an elegant songbird with long tail feathers shaped like wind chimes, glowing softly"}
     },
     {
@@ -1232,7 +1235,7 @@
         {"on":"howl","effects":[{"op":"addDurability","target":"left","amount":1}]},
         {"on":"harvest","effects":[{"op":"gain","amount":3}]}
       ],
-      "text": "Howl: solundaki kartın dayanıklılığını +1 yapar. Harvest: +3.",
+      "text": "Howl: solundaki kartın dayanıklılığını +1 yapar. Strike: +3.",
       "art": {"creature":"a baby whale floating among the clouds with small feathered fins"}
     },
     {
@@ -1245,7 +1248,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"keyword":"swift"},"excludeSelf":true}}]}
       ],
-      "text": "Harvest: +3 ve masadaki her başka Swift kart için +2.",
+      "text": "Strike: +3 ve masadaki her başka Swift kart için +2.",
       "art": {"creature":"a round fluffy thistle seed creature rolling in the wind with tiny eyes"}
     },
     {
@@ -1259,7 +1262,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"keyword":"swift"},"excludeSelf":true}}]}
       ],
-      "text": "Swift. Harvest: +3 ve masadaki her başka Swift kart için +2.",
+      "text": "Swift. Strike: +3 ve masadaki her başka Swift kart için +2.",
       "art": {"creature":"a lean wind-swept hound with streaming lavender fur, sprinting"}
     },
     {
@@ -1275,7 +1278,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":1,"per":{"kind":"distinctElements"}},{"op":"mult","value":1.5,"if":{"kind":"link","side":"right","state":"compatible"}}]}
       ],
-      "text": "Swift. Harvest: +3 ve masadaki her farklı element için +1. Sağ bağlantı uyumluysa x1,5.",
+      "text": "Swift. Strike: +3 ve masadaki her farklı element için +1. Sağ bağlantı uyumluysa x1,5.",
       "art": {"creature":"a sharp-eyed hawk with storm-grey feathers crackling with yellow lightning"}
     },
     {
@@ -1290,7 +1293,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"addHeat","amount":1},{"op":"gain","amount":2},{"op":"gainPer","amount":1,"per":{"kind":"distinctElements"}}]}
       ],
-      "text": "Swift. Harvest: masaya +1 Isı. +2 ve masadaki her farklı element için +1.",
+      "text": "Swift. Strike: masaya +1 Isı. +2 ve masadaki her farklı element için +1.",
       "art": {"creature":"a fierce hawk with feathers of orange flame trailing ember sparks across the wind"}
     },
     {
@@ -1304,7 +1307,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"mult","value":2.5,"if":{"kind":"any","conds":[{"kind":"position","where":"first"},{"kind":"position","where":"last"}]}}]}
       ],
-      "text": "Harvest: +4. İlk ya da son slottaysa x2,5.",
+      "text": "Strike: +4. İlk ya da son slottaysa x2,5.",
       "art": {"creature":"a fluffy baby griffin with an eagle head and a lion cub body, tiny wings flapping"}
     },
     {
@@ -1319,7 +1322,7 @@
         {"on":"aura","effects":[{"op":"aura","filter":{"type":"avian"},"gain":2}]},
         {"on":"harvest","effects":[{"op":"gain","amount":3}]}
       ],
-      "text": "Aura: diğer Avian kartları Harvest'te +2. Harvest: +3.",
+      "text": "Aura: diğer Avian kartları Strike'te +2. Strike: +3.",
       "art": {"creature":"a wise old owl with silver-lavender feathers, round spectacles and a scroll"}
     },
     {
@@ -1335,7 +1338,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":2}]},
         {"on":"haunt","effects":[{"op":"gainPer","amount":1,"per":{"kind":"distinctElements"}}]}
       ],
-      "text": "Swift. Harvest: +2. Haunt: masadaki her farklı element için +1.",
+      "text": "Swift. Strike: +2. Haunt: masadaki her farklı element için +1.",
       "art": {"creature":"a swirling violet vortex spirit with glowing eyes at its center"}
     },
     {
@@ -1350,7 +1353,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":2,"per":{"kind":"distinctElements"}}]}
       ],
-      "text": "Swift. Harvest: +2 ve masadaki her farklı element için +2.",
+      "text": "Swift. Strike: +2 ve masadaki her farklı element için +2.",
       "art": {"creature":"a long feathered serpent gliding through the clouds, iridescent lavender scales"}
     },
     {
@@ -1364,7 +1367,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":2,"per":{"kind":"distinctElements"}},{"op":"mult","value":2,"if":{"kind":"count","count":{"kind":"distinctElements"},"cmp":">=","value":5}}]}
       ],
-      "text": "Harvest: +3 ve masadaki her farklı element için +2. 5 farklı element varsa x2.",
+      "text": "Strike: +3 ve masadaki her farklı element için +2. 5 farklı element varsa x2.",
       "art": {"creature":"a fluffy cloud dragon with a body made of soft clouds and a lavender mane"}
     },
     {
@@ -1380,7 +1383,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":5},{"op":"mult","value":2,"if":{"kind":"position","where":"first"}}]},
         {"on":"lastBreath","effects":[{"op":"retrigger","target":"right"}]}
       ],
-      "text": "Swift. Harvest: +5. İlk slottaysa x2. Last Breath: sağındaki kartı bir kez daha tetikler.",
+      "text": "Swift. Strike: +5. İlk slottaysa x2. Last Breath: sağındaki kartı bir kez daha tetikler.",
       "art": {"creature":"a great eagle at the eye of a hurricane, wings spread with swirling storm clouds"}
     },
     {
@@ -1394,7 +1397,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"gainPer","amount":2,"per":{"kind":"distinctElements"}},{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"type":"avian"},"excludeSelf":true}}]}
       ],
-      "text": "Harvest: +4, masadaki her farklı element ve her başka Avian için +2.",
+      "text": "Strike: +4, masadaki her farklı element ve her başka Avian için +2.",
       "art": {"creature":"a gigantic mythical roc bird with emerald and gold feathers soaring above mountains"}
     },
     {
@@ -1409,7 +1412,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":6},{"op":"gainPer","amount":3,"per":{"kind":"distinctElements"}}]}
       ],
-      "text": "Swift. Overload. Harvest: +6 ve masadaki her farklı element için +3.",
+      "text": "Swift. Overload. Strike: +6 ve masadaki her farklı element için +3.",
       "art": {"creature":"a serpentine dragon made of a raging tornado, debris and lightning swirling around it"}
     },
     {
@@ -1419,13 +1422,14 @@
       "type": "ghost",
       "rarity": "mythic",
       "durability": 3,
+      "source": "hunt",
       "unlockYear": 5,
       "keywords": ["swift"],
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":3,"per":{"kind":"distinctElements"}}]},
         {"on":"lastBreath","effects":[{"op":"retrigger","target":"others"}]}
       ],
-      "text": "Swift. Harvest: +3 ve masadaki her farklı element için +3. Last Breath: diğer tüm kartlar bir kez daha tetiklenir.",
+      "text": "Swift. Strike: +3 ve masadaki her farklı element için +3. Last Breath: diğer tüm kartlar bir kez daha tetiklenir.",
       "art": {"creature":"an ancient spirit of the four winds with four swirling faces, cosmic aura and glowing runes"}
     },
     {
@@ -1439,7 +1443,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"gain","amount":4,"if":{"kind":"link","side":"right","state":"compatible"}}]}
       ],
-      "text": "Harvest: +4. Sağ bağlantı uyumluysa +4.",
+      "text": "Strike: +4. Sağ bağlantı uyumluysa +4.",
       "art": {"creature":"a small fluffy bat with big ears, wings crackling with static electricity, mischievous grin"}
     },
     {
@@ -1453,7 +1457,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gain","amount":5,"if":{"kind":"link","side":"right","state":"compatible"}}]}
       ],
-      "text": "Harvest: +3. Sağ bağlantı uyumluysa +5.",
+      "text": "Strike: +3. Sağ bağlantı uyumluysa +5.",
       "art": {"creature":"a small eel-like serpent coiled around itself like a copper coil, glowing yellow stripes buzzing with electricity"}
     },
     {
@@ -1467,7 +1471,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gain","amount":5,"if":{"kind":"link","side":"left","state":"compatible"}}]}
       ],
-      "text": "Harvest: +3. Sol bağlantı uyumluysa +5.",
+      "text": "Strike: +3. Sol bağlantı uyumluysa +5.",
       "art": {"creature":"a cute snail whose spiral shell is a tiny thundercloud with lightning sparks, glowing antennae"}
     },
     {
@@ -1481,7 +1485,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gain","amount":4,"if":{"kind":"link","side":"left","state":"clash"}},{"op":"gain","amount":4,"if":{"kind":"link","side":"right","state":"clash"}}]}
       ],
-      "text": "Harvest: +2. Her çakışan bağlantı için +4.",
+      "text": "Strike: +2. Her çakışan bağlantı için +4.",
       "art": {"creature":"a fluffy yellow rabbit with puffed static fur and sparks dancing between its long ears"}
     },
     {
@@ -1495,7 +1499,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gain","amount":4,"if":{"kind":"link","side":"left","state":"clash"}},{"op":"gain","amount":4,"if":{"kind":"link","side":"right","state":"clash"}}]}
       ],
-      "text": "Harvest: +2. Her çakışan bağlantı için +4.",
+      "text": "Strike: +2. Her çakışan bağlantı için +4.",
       "art": {"creature":"a tiny round mouse with lightning-bolt tail and glowing yellow cheeks"}
     },
     {
@@ -1509,7 +1513,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":3,"per":{"kind":"cards","filter":{"type":"swarm"},"excludeSelf":true}}]}
       ],
-      "text": "Harvest: +3 ve masadaki her başka Swarm için +3.",
+      "text": "Strike: +3 ve masadaki her başka Swarm için +3.",
       "art": {"creature":"a small metallic beetle with antennae sparking electricity"}
     },
     {
@@ -1523,7 +1527,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"mult","value":2,"if":{"kind":"all","conds":[{"kind":"any","conds":[{"kind":"link","side":"left","state":"compatible"},{"kind":"link","side":"left","state":"clash"}]},{"kind":"any","conds":[{"kind":"link","side":"right","state":"compatible"},{"kind":"link","side":"right","state":"clash"}]}]}}]}
       ],
-      "text": "Harvest: +3. İki yanı da bağlıysa x2.",
+      "text": "Strike: +3. İki yanı da bağlıysa x2.",
       "art": {"creature":"a segmented copper-colored worm with glowing wire-like stripes"}
     },
     {
@@ -1537,7 +1541,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":5}]}
       ],
-      "text": "Harvest: +5.",
+      "text": "Strike: +5.",
       "art": {"creature":"a playful puppy with spiky yellow fur charged with static, tiny lightning sparks"}
     },
     {
@@ -1551,7 +1555,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"mult","value":2.5,"if":{"kind":"link","side":"left","state":"clash"}}]}
       ],
-      "text": "Harvest: +4. Sol bağlantı çakışıyorsa x2,5.",
+      "text": "Strike: +4. Sol bağlantı çakışıyorsa x2,5.",
       "art": {"creature":"a lean lizard with spiky yellow frills standing up with crackling static, tense alert pose"}
     },
     {
@@ -1564,9 +1568,9 @@
       "keywords": ["ward"],
       "polarity": {"left":"-","right":"-"},
       "abilities": [
-        {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"mult","value":2,"if":{"kind":"link","side":"left","state":"compatible"}}]}
+        {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"mult","value":2,"if":{"kind":"link","side":"left","state":"compatible"}},{"op":"guard","amount":2}]}
       ],
-      "text": "Ward. Harvest: +4. Sol bağlantı uyumluysa x2.",
+      "text": "Ward. Strike: +4. Sol bağlantı uyumluysa x2. +2 Koruma.",
       "art": {"creature":"a sturdy ram with curled horns crackling with lightning and a woolly fleece full of static"}
     },
     {
@@ -1580,7 +1584,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":1,"per":{"kind":"cards","filter":{"element":"electric"},"excludeSelf":true}}]}
       ],
-      "text": "Harvest: +2 ve masadaki her başka Elektrik kartı için +1.",
+      "text": "Strike: +2 ve masadaki her başka Elektrik kartı için +1.",
       "art": {"creature":"a chubby hamster running in a tiny glowing dynamo wheel"}
     },
     {
@@ -1595,7 +1599,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"mult","value":2.5,"if":{"kind":"link","side":"right","state":"compatible"}}]}
       ],
-      "text": "Swift. Harvest: +3. Sağ bağlantı uyumluysa x2,5.",
+      "text": "Swift. Strike: +3. Sağ bağlantı uyumluysa x2,5.",
       "art": {"creature":"a sleek lynx with ear tufts sparking electric arcs"}
     },
     {
@@ -1610,7 +1614,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gain","amount":4,"if":{"kind":"link","side":"left","state":"compatible"}},{"op":"gain","amount":4,"if":{"kind":"link","side":"right","state":"compatible"}}]}
       ],
-      "text": "Heavy. Harvest: +2. Her uyumlu bağlantı için +4.",
+      "text": "Heavy. Strike: +2. Her uyumlu bağlantı için +4.",
       "art": {"creature":"a boxy metal golem with glass capacitor tubes glowing on its back"}
     },
     {
@@ -1625,7 +1629,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":7}]}
       ],
-      "text": "Overload. Harvest: +7.",
+      "text": "Overload. Strike: +7.",
       "art": {"creature":"a hyperactive weasel with fur standing on end, surging with bright lightning"}
     },
     {
@@ -1640,7 +1644,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"copyIncome","from":"left","pct":50},{"op":"gain","amount":3,"if":{"kind":"link","side":"right","state":"compatible"}}]}
       ],
-      "text": "Harvest: +3 ve soldaki kartın bu geçişteki gelirinin %50'si. Sağ bağlantı uyumluysa +3.",
+      "text": "Strike: +3 ve soldaki kartın bu geçişteki gelirinin %50'si. Sağ bağlantı uyumluysa +3.",
       "art": {"creature":"a long dark-blue electric eel glowing with yellow lightning stripes underwater"}
     },
     {
@@ -1656,7 +1660,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":2},{"op":"gainPer","amount":1,"per":{"kind":"cards","filter":{"state":"passive"}}},{"op":"gain","amount":2,"if":{"kind":"link","side":"left","state":"clash"}},{"op":"gain","amount":2,"if":{"kind":"link","side":"right","state":"clash"}}]}
       ],
-      "text": "Heavy. Harvest: +2, masadaki her pasif kart için +1, her çakışan bağlantı için +2.",
+      "text": "Heavy. Strike: +2, masadaki her pasif kart için +1, her çakışan bağlantı için +2.",
       "art": {"creature":"a heavy iron golem with a giant horseshoe magnet on its chest attracting metal shards"}
     },
     {
@@ -1671,7 +1675,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":4},{"op":"mult","value":3,"if":{"kind":"all","conds":[{"kind":"link","side":"left","state":"compatible"},{"kind":"link","side":"right","state":"compatible"}]}}]}
       ],
-      "text": "Harvest: +4. İki bağlantısı da uyumluysa x3.",
+      "text": "Strike: +4. İki bağlantısı da uyumluysa x3.",
       "art": {"creature":"a fierce hound with a mane of crackling blue-yellow lightning"}
     },
     {
@@ -1687,7 +1691,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":4}]},
         {"on":"haunt","effects":[{"op":"gain","amount":2},{"op":"gain","amount":3,"if":{"kind":"link","side":"right","state":"compatible"}}]}
       ],
-      "text": "Harvest: +4. Haunt: +2, sağ bağlantı uyumluysa +3 daha.",
+      "text": "Strike: +4. Haunt: +2, sağ bağlantı uyumluysa +3 daha.",
       "art": {"creature":"a small flickering ghost made of pure lightning with a cheeky grin"}
     },
     {
@@ -1701,9 +1705,9 @@
       "keywords": ["ward"],
       "polarity": {"left":"-","right":"-"},
       "abilities": [
-        {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gain","amount":3,"if":{"kind":"link","side":"left","state":"clash"}},{"op":"gain","amount":3,"if":{"kind":"link","side":"right","state":"clash"}}]}
+        {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gain","amount":3,"if":{"kind":"link","side":"left","state":"clash"}},{"op":"gain","amount":3,"if":{"kind":"link","side":"right","state":"clash"}},{"op":"guard","amount":2}]}
       ],
-      "text": "Ward. Harvest: +3. Her çakışan bağlantı için +3.",
+      "text": "Ward. Strike: +3. Her çakışan bağlantı için +3. +2 Koruma.",
       "art": {"creature":"a tortoise with a copper coil shell humming with electricity"}
     },
     {
@@ -1719,7 +1723,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":6},{"op":"mult","value":1.5,"if":{"kind":"link","side":"left","state":"compatible"}},{"op":"mult","value":1.5,"if":{"kind":"link","side":"right","state":"compatible"}}]}
       ],
-      "text": "Overload. Harvest: +6. Her uyumlu bağlantı için x1,5.",
+      "text": "Overload. Strike: +6. Her uyumlu bağlantı için x1,5.",
       "art": {"creature":"a powerful storm dragon with dark blue scales and wings crackling with thunderbolts"}
     },
     {
@@ -1735,7 +1739,7 @@
         {"on":"harvest","effects":[{"op":"gain","amount":3},{"op":"gainPer","amount":1,"per":{"kind":"cards","filter":{"element":"electric"},"excludeSelf":true}}]},
         {"on":"lastBreath","effects":[{"op":"retrigger","target":"right"}]}
       ],
-      "text": "Harvest: +3 ve masadaki her başka Elektrik kartı için +1. Last Breath: sağındaki kartı bir kez daha tetikler.",
+      "text": "Strike: +3 ve masadaki her başka Elektrik kartı için +1. Last Breath: sağındaki kartı bir kez daha tetikler.",
       "art": {"creature":"a glowing serpent made of swirling violet and yellow plasma energy"}
     },
     {
@@ -1751,7 +1755,7 @@
         {"on":"howl","effects":[{"op":"addDurability","target":"others","amount":1,"filter":{"element":"electric"}}]},
         {"on":"harvest","effects":[{"op":"gain","amount":3}]}
       ],
-      "text": "Howl: diğer tüm Elektrik kartlarına +1 dayanıklılık. Harvest: +3.",
+      "text": "Howl: diğer tüm Elektrik kartlarına +1 dayanıklılık. Strike: +3.",
       "art": {"creature":"a crab with copper claws connected by arcs of electricity"}
     },
     {
@@ -1767,7 +1771,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":5},{"op":"mult","value":3,"if":{"kind":"all","conds":[{"kind":"link","side":"left","state":"compatible"},{"kind":"link","side":"right","state":"compatible"}]}}]}
       ],
-      "text": "Swift. Harvest: +5. İki bağlantısı da uyumluysa x3.",
+      "text": "Swift. Strike: +5. İki bağlantısı da uyumluysa x3.",
       "art": {"creature":"a majestic white wolf wreathed in lightning, drums of thunder floating around it"}
     },
     {
@@ -1783,7 +1787,7 @@
       "abilities": [
         {"on":"harvest","effects":[{"op":"gain","amount":8},{"op":"gain","amount":6,"if":{"kind":"link","side":"left","state":"clash"}},{"op":"gain","amount":6,"if":{"kind":"link","side":"right","state":"clash"}}]}
       ],
-      "text": "Ward. Overload. Harvest: +8 ve her çakışan bağlantı için +6.",
+      "text": "Ward. Overload. Strike: +8 ve her çakışan bağlantı için +6.",
       "art": {"creature":"a giant storm golem of dark metal with a thundercloud crown and lightning veins"}
     },
     {
@@ -1793,14 +1797,30 @@
       "type": "dragon",
       "rarity": "mythic",
       "durability": 3,
+      "source": "hunt",
       "unlockYear": 5,
       "polarity": {"left":"-","right":"+"},
       "abilities": [
         {"on":"howl","effects":[{"op":"addDurability","target":"others","amount":1,"filter":{"element":"electric"}}]},
         {"on":"harvest","effects":[{"op":"gain","amount":5},{"op":"gainPer","amount":2,"per":{"kind":"cards","filter":{"element":"electric"},"excludeSelf":true}}]}
       ],
-      "text": "Howl: diğer tüm Elektrik kartlarına +1 dayanıklılık. Harvest: +5 ve masadaki her başka Elektrik kartı için +2.",
+      "text": "Howl: diğer tüm Elektrik kartlarına +1 dayanıklılık. Strike: +5 ve masadaki her başka Elektrik kartı için +2.",
       "art": {"creature":"a colossal tempest dragon coiled in a storm, cosmic lightning and glowing runes across its wings"}
+    },
+    {
+      "id": "primordial_ninetail",
+      "name": "Ezeli Dokuzkuyruk",
+      "elements": ["fire"],
+      "type": "beast",
+      "rarity": "ancient",
+      "durability": 3,
+      "source": "hunt",
+      "abilities": [
+        {"on":"howl","effects":[{"op":"addHeat","amount":3}]},
+        {"on":"harvest","effects":[{"op":"gain","amount":5},{"op":"gainPer","amount":1,"per":{"kind":"heat"}},{"op":"gainPer","amount":2,"per":{"kind":"distinctElements"}}]}
+      ],
+      "text": "Howl: masaya +3 Isı. Strike: +5, masadaki Isı kadar +1 ve masadaki her farklı element için +2.",
+      "art": {"creature":"a colossal nine-tailed fox spirit made of living flame and ancient stone, nine tails blazing with white-gold fire, glowing runes across its fur"}
     }
   ]
 }

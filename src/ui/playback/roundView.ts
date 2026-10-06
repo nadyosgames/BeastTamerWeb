@@ -1,5 +1,6 @@
 import type { DurabilitySource, IncomeDetail, RoundEvent } from '../../core/engine/events.ts'
-import type { AbilityTrigger, CardDef, LinkState } from '../../core/types.ts'
+import type { HitBlock, HuntEvent, HuntOutcome, HuntState } from '../../core/hunt.ts'
+import type { AbilityTrigger, CardDef, Intent, LinkState } from '../../core/types.ts'
 
 /**
  * Motorun olay akışından ekrandaki tur durumunu türeten saf reducer.
@@ -12,9 +13,15 @@ export interface SlotView {
   maxDurability: number
   passive: boolean
   ward: boolean
+  /** Uyuyor (Slumber ya da Kükreme): bu geçişe kadar tetiklenmez. */
+  sleepUntil: number
   income: number | null
+  /** Av: vuruşun etiketi (SAVUŞTU, ZIRH...) ya da null. */
+  note: string | null
   pulse: number
   total: number
+  /** Av: bu kartın bu turda yaratığa işlettiği hasar. */
+  dealt: number
 }
 
 export interface RoundView {
@@ -34,13 +41,27 @@ export interface RoundView {
 export type LogEntry =
   /** pass 0 = tur başı (Howl, kutuplar, tur başı etkileri). */
   | { k: 'section'; pass: number }
-  | { k: 'ability'; slot: number; on: AbilityTrigger | 'retrigger'; income: number; detail: IncomeDetail; cost?: { from: number; to: number } }
+  | {
+      k: 'ability'
+      slot: number
+      on: AbilityTrigger | 'retrigger'
+      income: number
+      detail: IncomeDetail
+      cost?: { from: number; to: number }
+      /** Av: yaratığa işleyen hasar ve engelleyen özellik. */
+      hit?: { damage: number; blocked: HitBlock | null }
+      guard?: number
+    }
   /** by: değişime yol açan yeteneğin sahibi (yetenek kaynaklıysa). */
   | { k: 'durability'; slot: number; from: number; to: number; source: DurabilitySource; by: number | null }
   | { k: 'heat'; value: number; by: number | null }
-  | { k: 'status'; slot: number; what: 'ward' | 'exhausted' | 'rebirth' | 'reactivated' }
+  | { k: 'status'; slot: number; what: 'ward' | 'exhausted' | 'rebirth' | 'reactivated' | 'slumber' }
   | { k: 'cap' }
   | { k: 'end'; total: number; triggers: number; passes: number }
+  /** Av: yaratığın tur sonu hamlesi. */
+  | { k: 'action'; intent: Intent; attack: number; absorbed: number; tamerDamage: number; recovered: number; fled: boolean }
+  | { k: 'prey'; what: 'down' | 'revive' | 'phase'; text?: string; hp?: number }
+  | { k: 'huntEnd'; damage: number; guard: number; outcome: HuntOutcome | null }
 
 export function initialView(cards: readonly CardDef[]): RoundView {
   return {
@@ -49,9 +70,12 @@ export function initialView(cards: readonly CardDef[]): RoundView {
       maxDurability: c.durability,
       passive: false,
       ward: (c.keywords ?? []).includes('ward'),
+      sleepUntil: c.slumber ?? 0,
       income: null,
+      note: null,
       pulse: 0,
       total: 0,
+      dealt: 0,
     })),
     pass: 0,
     total: 0,
@@ -73,13 +97,16 @@ function withAbility(log: LogEntry[], entry: Extract<LogEntry, { k: 'ability' }>
 }
 
 export function applyEvent(v: RoundView, e: RoundEvent): RoundView {
-  const slots = v.slots.map((s) => ({ ...s, income: null as number | null }))
+  const slots = v.slots.map((s) => ({ ...s, income: null as number | null, note: null as string | null }))
   const log = (entry: LogEntry) => [...v.log, entry]
   switch (e.t) {
     case 'roundStart':
       return { ...v, log: log({ k: 'section', pass: 0 }) }
     case 'links':
       return { ...v, links: e.links }
+    case 'slumber':
+      slots[e.slot].sleepUntil = e.until
+      return { ...v, slots, log: log({ k: 'status', slot: e.slot, what: 'slumber' }) }
     case 'passStart':
       return { ...v, slots, pass: e.pass, active: null, passTotals: [...v.passTotals, 0], log: log({ k: 'section', pass: e.pass }) }
     case 'ability': {
@@ -96,7 +123,7 @@ export function applyEvent(v: RoundView, e: RoundEvent): RoundView {
         active: e.slot,
         total: v.total + e.income,
         passTotals,
-        log: withAbility(v.log, { k: 'ability', slot: e.slot, on: e.on, income: e.income, detail: e.detail }),
+        log: withAbility(v.log, { k: 'ability', slot: e.slot, on: e.on, income: e.income, detail: e.detail, guard: e.guard || undefined }),
       }
     }
     case 'durability': {
@@ -140,4 +167,104 @@ export function applyEvent(v: RoundView, e: RoundEvent): RoundView {
 /** Görsel olarak "adım" sayılan olaylar (bunlar arasında bekleme yapılır). */
 export function isBeat(e: RoundEvent): boolean {
   return e.t === 'ability' || e.t === 'exhausted' || e.t === 'rebirth'
+}
+
+// ---------------------------------------------------------------------------
+// Av görünümü: tur olaylarına ek olarak hasar, Koruma ve yaratığın hamlesi
+// ---------------------------------------------------------------------------
+
+export const BLOCK_LABEL: Record<HitBlock, string> = { evade: 'SAVUŞTU', armor: 'ZIRH', shell: 'KABUK', veil: 'SİS' }
+
+export interface HuntView extends RoundView {
+  preyHp: number
+  preyMax: number
+  /** Bu turda yaratığa işleyen hasar ve biriken Koruma. */
+  damage: number
+  guard: number
+  tamerHp: number
+  /** Yaratık vurulduğunda artar (sarsılma animasyonu). */
+  preyPulse: number
+  lastDamage: number
+  /** Tamer vurulduğunda artar. */
+  tamerPulse: number
+  action: Extract<HuntEvent, { t: 'preyAction' }> | null
+  phaseText: string | null
+  revived: boolean
+  down: boolean
+  outcome: HuntOutcome | null
+}
+
+export function initialHuntView(cards: readonly CardDef[], before: HuntState): HuntView {
+  return {
+    ...initialView(cards),
+    preyHp: before.prey.hp,
+    preyMax: before.prey.maxHp,
+    damage: 0,
+    guard: 0,
+    tamerHp: before.tamerHp,
+    preyPulse: 0,
+    lastDamage: 0,
+    tamerPulse: 0,
+    action: null,
+    phaseText: null,
+    revived: false,
+    down: false,
+    outcome: null,
+  }
+}
+
+export function applyHuntEvent(v: HuntView, e: HuntEvent): HuntView {
+  switch (e.t) {
+    case 'hit': {
+      const slots = v.slots.slice()
+      slots[e.slot] = { ...slots[e.slot], income: e.damage, dealt: slots[e.slot].dealt + e.damage, note: e.blocked && e.damage === 0 ? BLOCK_LABEL[e.blocked] : null }
+      // Vuruş sonucu, kendisini doğuran yetenek satırına eklenir.
+      const log = [...v.log]
+      for (let i = log.length - 1; i >= 0; i--) {
+        const entry = log[i]
+        if (entry.k === 'ability' && entry.slot === e.slot && !entry.hit) {
+          log[i] = { ...entry, hit: { damage: e.damage, blocked: e.blocked } }
+          break
+        }
+      }
+      return {
+        ...v,
+        slots,
+        log,
+        preyHp: e.preyHp,
+        damage: v.damage + e.damage,
+        guard: v.guard + e.guard,
+        preyPulse: e.damage > 0 ? v.preyPulse + 1 : v.preyPulse,
+        lastDamage: e.damage,
+      }
+    }
+    case 'revive':
+      return { ...v, preyHp: e.hp, preyMax: e.hp, revived: true, log: [...v.log, { k: 'prey', what: 'revive', hp: e.hp }] }
+    case 'preyDown':
+      return { ...v, preyHp: 0, down: true, active: null, log: [...v.log, { k: 'prey', what: 'down' }] }
+    case 'preyAction':
+      return {
+        ...v,
+        active: null,
+        action: e,
+        tamerHp: e.tamerHp,
+        preyHp: e.preyHp,
+        tamerPulse: e.tamerDamage > 0 ? v.tamerPulse + 1 : v.tamerPulse,
+        log: [...v.log, { k: 'action', intent: e.intent, attack: e.attack, absorbed: e.absorbed, tamerDamage: e.tamerDamage, recovered: e.recovered, fled: e.fled }],
+      }
+    case 'phase':
+      return { ...v, phaseText: e.text, log: [...v.log, { k: 'prey', what: 'phase', text: e.text }] }
+    case 'huntRoundEnd':
+      return { ...v, active: null, done: true, outcome: e.outcome, log: [...v.log, { k: 'huntEnd', damage: e.damage, guard: e.guard, outcome: e.outcome }] }
+    case 'roundEnd':
+      // Av turunu motorun roundEnd'i değil huntRoundEnd kapatır (yaratığın hamlesi ondan sonra gelir).
+      return { ...v, slots: v.slots.map((s) => ({ ...s, income: null, note: null })), active: null }
+    default:
+      return { ...v, ...applyEvent(v, e) }
+  }
+}
+
+/** Avda vuruş (hit) adımdır; yetenek olayı onunla aynı adımda gösterilir. */
+export function isHuntBeat(e: HuntEvent): boolean {
+  return e.t === 'hit' || e.t === 'exhausted' || e.t === 'rebirth' || e.t === 'preyAction' || e.t === 'preyDown' || e.t === 'phase' || e.t === 'revive'
 }

@@ -15,9 +15,9 @@ import { compileModifiers } from '../../core/engine/modifiers.ts'
 import { resolveRound } from '../../core/engine/round.ts'
 import type { CardDef } from '../../core/types.ts'
 import { useGame } from '../../state/game.ts'
-import { useRun } from '../../state/run.ts'
+import { useHunt } from '../../state/hunt.ts'
 import { content } from '../content.ts'
-import { TUTORIAL } from './script.ts'
+import { TUTORIAL, TUTORIAL_HUNT } from './script.ts'
 
 const ctx = (roundIndex: number) => ({ mods: compileModifiers({}), roundIndex, roundCount: TUTORIAL.length, triggerCap: DEFAULT_TRIGGER_CAP })
 
@@ -39,21 +39,34 @@ describe('eğitim senaryosu', () => {
     })
   })
 
-  it('eğitim günü profili ve haftalık kotayı değiştirmez', () => {
+  it('hedef dizilimlerle yaratık 3. turda bayılır, daha önce değil', () => {
+    const totals = TUTORIAL.map((round, i) => {
+      const hand = round.cards.map((id) => content.card(id))
+      const goal = permutations(hand).filter((o) => !round.goal || round.goal(o.map((c) => c.id)))
+      return Math.min(...goal.map((o) => resolveRound(o, ctx(i)).total))
+    })
+    expect(totals[0] + totals[1]).toBeLessThan(TUTORIAL_HUNT.hp)
+    expect(totals[0] + totals[1] + totals[2]).toBeGreaterThanOrEqual(TUTORIAL_HUNT.hp)
+  })
+
+  it('eğitim avı profili, koleksiyonu ve günü değiştirmez', () => {
     const before = { ...useGame.getState() }
-    const run = useRun.getState()
-    run.startTutorial(TUTORIAL.map((r) => r.cards.map((id) => content.card(id))))
+    useHunt.getState().startTutorial(TUTORIAL_HUNT, TUTORIAL.map((r) => r.cards.map((id) => content.card(id))))
     for (let i = 0; i < TUTORIAL.length; i++) {
-      useRun.getState().autoFill()
-      useRun.getState().play()
-      useRun.getState().playbackDone()
-      useRun.getState().next()
+      const h = useHunt.getState()
+      // Hedefli turlarda en iyi dizilimi dene (eğitim BAŞLAT'ı hedef dışı dizilimde kilitler).
+      const round = TUTORIAL[i]
+      const order = permutations(h.hand.map((_, k) => k)).find((o) => !round.goal || round.goal(o.map((k) => h.hand[k].id)))!
+      order.forEach((k, slot) => useHunt.getState().place(k, slot))
+      useHunt.getState().play()
+      useHunt.getState().playbackDone()
+      useHunt.getState().next()
     }
-    expect(useRun.getState().status).toBe('dayDone')
-    expect(useRun.getState().rounds).toHaveLength(TUTORIAL.length)
+    expect(useHunt.getState().status).toBe('huntDone')
+    expect(useHunt.getState().state?.outcome).toBe('captured')
     const after = useGame.getState()
-    expect(after.dayIndex).toBe(before.dayIndex)
-    expect(after.weekIncome).toBe(before.weekIncome)
-    expect(after.days).toHaveLength(before.days.length)
+    expect(after.day).toBe(before.day)
+    expect(after.collection).toEqual(before.collection)
+    expect(after.logs).toHaveLength(before.logs.length)
   })
 })

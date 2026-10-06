@@ -1,0 +1,369 @@
+{
+  "$schema": "./schema/regions.schema.json",
+  "world": {"name": "Bilinen Topraklar", "size": [4400,2600]},
+  "regions": [
+    {
+      "id": "ash_valley",
+      "name": "Kül Vadisi",
+      "text": "Sönmüş volkanların arasında, kül kaplı tepeler ve sıcak kaynaklar. Ateş ve Toprak yaratıklarının yurdu; Elektrik yaratıkları yalnızca fırtınayla gelir.",
+      "level": 1,
+      "biome": "volcanic",
+      "unlock": {"kind": "start"},
+      "elements": ["fire", "earth", "electric"],
+      "climate": {"sunny": 3, "drought": 2, "quake": 2, "calm": 2, "stormy": 1.2, "foggy": 1, "rainy": 1.2, "windy": 0.6},
+      "buff": {"text": "Ateş yaratıkları +%5 hasar.", "modifiers": [{"kind": "incomePct", "pct": 5, "filter": {"element": "fire"}}]},
+      "area": [1250,900,1100,704],
+      "map": {
+        "camp": [0.06,0.86],
+        "paths": [
+          ["camp", "torch_lizard"],
+          ["torch_lizard", "ash_crow"],
+          ["torch_lizard", "magma_pup"],
+          ["ash_crow", "storm_snail"],
+          ["magma_pup", "storm_snail"],
+          ["magma_pup", "blaze_hound"],
+          ["storm_snail", "rock_lizard"],
+          ["storm_snail", "steam_turtle"],
+          ["blaze_hound", "steam_turtle"],
+          ["rock_lizard", "storm_hound"],
+          ["rock_lizard", "sun_dragon"],
+          ["steam_turtle", "ember_thunder_dragon"],
+          ["storm_hound", "ember_thunder_dragon"],
+          ["storm_hound", "primordial_ninetail"]
+        ],
+        "features": [
+          {
+            "kind": "river",
+            "points": [[0.65,0], [0.62,0.14], [0.68,0.25], [0.64,0.39], [0.56,0.56], [0.62,0.7], [0.7,0.87], [0.66,1]]
+          },
+          {"kind": "landmark", "style": "mountain", "pos": [0.345,0.18], "scale": 1.1},
+          {"kind": "landmark", "style": "mountain", "pos": [0.41,0.234], "scale": 0.8},
+          {"kind": "landmark", "style": "mountain", "pos": [0.095,0.39], "scale": 0.9},
+          {"kind": "landmark", "style": "mountain", "pos": [0.7,0.4], "scale": 0.75},
+          {"kind": "landmark", "style": "mountain", "pos": [0.15,0.148], "scale": 0.7},
+          {"kind": "landmark", "style": "hill", "pos": [0.47,0.2]},
+          {"kind": "landmark", "style": "volcano", "pos": [0.875,0.49]},
+          {"kind": "lake", "pos": [0.282,0.875], "size": [34,14]},
+          {"kind": "lake", "pos": [0.418,0.906], "size": [26,11]},
+          {"kind": "label", "pos": [0.436,0.297], "text": "Güneş Tepesi"},
+          {"kind": "label", "pos": [0.875,0.6], "text": "Kül Dağı"},
+          {"kind": "label", "pos": [0.35,0.956], "text": "Sıcak Kaynaklar"},
+          {"kind": "label", "pos": [0.682,0.966], "text": "Kor Irmağı", "rotate": -70}
+        ]
+      }
+    },
+    {
+      "id": "coral_coast",
+      "name": "Mercan Kıyısı",
+      "text": "Batı denizinin resifli kıyısı: lagünler, tuz koyları ve rüzgârla dövülen bir fener. Su ve Rüzgar yaratıklarının yurdu; yağmur ve sis sık gelir.",
+      "level": 2,
+      "biome": "coast",
+      "unlock": {"kind": "finals", "regions": ["ash_valley"]},
+      "elements": ["water", "wind"],
+      "climate": {"rainy": 3, "windy": 2.5, "foggy": 2, "calm": 2, "sunny": 1.5, "stormy": 1},
+      "buff": {"text": "Su yaratıkları +%5 hasar.", "modifiers": [{"kind": "incomePct", "pct": 5, "filter": {"element": "water"}}]},
+      "area": [120,830,1020,880],
+      "map": {
+        "camp": [0.88,0.6],
+        "paths": [
+          ["camp", "bubble_fish"],
+          ["camp", "tide_otter"],
+          ["tide_otter", "reef_seal"],
+          ["bubble_fish", "kraken"],
+          ["reef_seal", "river_eel"],
+          ["tide_otter", "breeze_sparrow"],
+          ["reef_seal", "flock_finch"],
+          ["flock_finch", "moon_whale"],
+          ["river_eel", "wave_dolphin"],
+          ["flock_finch", "pearl_seahorse"],
+          ["flock_finch", "tidal_serpent"],
+          ["wave_dolphin", "rain_bird"],
+          ["wave_dolphin", "mirror_jelly"],
+          ["rain_bird", "leviathan_calf"],
+          ["breeze_sparrow", "reef_seal"],
+          ["moon_whale", "breeze_sparrow"],
+          ["tidal_serpent", "moon_whale"],
+          ["mirror_jelly", "rain_bird"]
+        ],
+        "features": [
+          {"kind": "landmark", "style": "lighthouse", "pos": [0.12,0.12]},
+          {"kind": "lake", "pos": [0.5,0.86], "size": [70,26]},
+          {"kind": "label", "pos": [0.13,0.22], "text": "Fener Burnu"},
+          {"kind": "label", "pos": [0.5,0.93], "text": "Tuz Lagünü"},
+          {"kind": "label", "pos": [0.3,0.55], "text": "Mercan Resifi", "rotate": -12}
+        ]
+      }
+    },
+    {
+      "id": "whisper_forest",
+      "name": "Fısıltı Ormanı",
+      "text": "Vadinin güneyinde, yaşlı meşelerin ve mantar korularının ormanı. Toprak ve Su yaratıkları burada; sisli ve yağmurlu günler çoktur.",
+      "level": 2,
+      "biome": "forest",
+      "unlock": {"kind": "finals", "regions": ["ash_valley"]},
+      "elements": ["earth", "water"],
+      "climate": {"rainy": 2.5, "foggy": 2.5, "calm": 2, "quake": 1.5, "sunny": 1, "windy": 0.8},
+      "buff": {
+        "text": "Toprak yaratıkları +%5 hasar.",
+        "modifiers": [{"kind": "incomePct", "pct": 5, "filter": {"element": "earth"}}]
+      },
+      "area": [1180,1700,1200,820],
+      "map": {
+        "camp": [0.16,0.1],
+        "paths": [
+          ["camp", "root_keeper"],
+          ["camp", "sprout"],
+          ["root_keeper", "mushroom_toad"],
+          ["mushroom_toad", "burrow_badger"],
+          ["sprout", "pebble_mole"],
+          ["mushroom_toad", "thorn_bush"],
+          ["pebble_mole", "mist_wisp"],
+          ["burrow_badger", "vine_serpent"],
+          ["pebble_mole", "elder_oak"],
+          ["thorn_bush", "moss_giant"],
+          ["thorn_bush", "mud_turtle"],
+          ["mud_turtle", "world_tree"],
+          ["elder_oak", "gaia_tortoise"],
+          ["world_tree", "ancient_tree"],
+          ["mushroom_toad", "sprout"],
+          ["mist_wisp", "thorn_bush"]
+        ],
+        "features": [
+          {"kind": "river", "points": [[0.42,0], [0.47,0.2], [0.4,0.42], [0.5,0.62], [0.46,0.82], [0.55,1]]},
+          {"kind": "landmark", "style": "ruin", "pos": [0.86,0.2]},
+          {"kind": "label", "pos": [0.5,0.5], "text": "Fısıltı Deresi", "rotate": 72},
+          {"kind": "label", "pos": [0.86,0.3], "text": "Unutulmuş Sunak"},
+          {"kind": "label", "pos": [0.2,0.9], "text": "Mantar Korusu"}
+        ]
+      }
+    },
+    {
+      "id": "storm_plateau",
+      "name": "Fırtına Yaylası",
+      "text": "Kıyının kuzeyinde, bulutlara değen bir yayla. Rüzgar ve Elektrik yaratıkları; gök neredeyse her gün ya eser ya gürler.",
+      "level": 3,
+      "biome": "highlands",
+      "unlock": {"kind": "finals", "regions": ["coral_coast"]},
+      "elements": ["wind", "electric"],
+      "climate": {"windy": 3, "stormy": 3, "calm": 1.5, "foggy": 1, "quake": 1, "sunny": 1},
+      "buff": {
+        "text": "Rüzgar yaratıkları +%5 hasar.",
+        "modifiers": [{"kind": "incomePct", "pct": 5, "filter": {"element": "wind"}}]
+      },
+      "area": [240,60,1320,700],
+      "map": {
+        "camp": [0.2,0.9],
+        "paths": [
+          ["camp", "breeze_fox"],
+          ["camp", "dandelion_bunny"],
+          ["dandelion_bunny", "storm_moth"],
+          ["dandelion_bunny", "static_rabbit"],
+          ["static_rabbit", "jolt_pup"],
+          ["storm_moth", "storm_eagle"],
+          ["static_rabbit", "chime_bird"],
+          ["storm_eagle", "roc"],
+          ["static_rabbit", "thunder_ram"],
+          ["jolt_pup", "thunder_hawk"],
+          ["thunder_hawk", "griffin_chick"],
+          ["thunder_ram", "sage_owl"],
+          ["griffin_chick", "hurricane_eagle"],
+          ["griffin_chick", "sky_serpent"],
+          ["sky_serpent", "four_winds"],
+          ["breeze_fox", "dandelion_bunny"],
+          ["storm_eagle", "chime_bird"],
+          ["sky_serpent", "sage_owl"]
+        ],
+        "features": [
+          {"kind": "landmark", "style": "mountain", "pos": [0.55,0.12], "scale": 1.2},
+          {"kind": "landmark", "style": "mountain", "pos": [0.64,0.18], "scale": 0.9},
+          {"kind": "landmark", "style": "hill", "pos": [0.08,0.3]},
+          {"kind": "label", "pos": [0.6,0.31], "text": "Bora Geçidi"},
+          {"kind": "label", "pos": [0.08,0.4], "text": "Çan Tepesi"},
+          {"kind": "label", "pos": [0.92,0.9], "text": "Bulut Sırtı"}
+        ]
+      }
+    },
+    {
+      "id": "crimson_desert",
+      "name": "Kızıl Çöl",
+      "text": "Ormanın doğusunda kızıl kumlar, kanyonlar ve tek bir vaha. Ateş ve Rüzgar yaratıkları; güneş ve kuraklık bitmez.",
+      "level": 3,
+      "biome": "desert",
+      "unlock": {"kind": "finals", "regions": ["whisper_forest"]},
+      "elements": ["fire", "wind"],
+      "climate": {"sunny": 3.5, "drought": 3, "windy": 2, "calm": 1, "stormy": 0.6},
+      "buff": {"text": "Beast yaratıkları +%5 hasar.", "modifiers": [{"kind": "incomePct", "pct": 5, "filter": {"type": "beast"}}]},
+      "area": [2480,1620,1250,900],
+      "map": {
+        "camp": [0.05,0.32],
+        "paths": [
+          ["camp", "flame_swarm"],
+          ["camp", "cinder_beetle"],
+          ["flame_swarm", "whirl_wisp"],
+          ["cinder_beetle", "flame_lily"],
+          ["cinder_beetle", "phoenix_chick"],
+          ["whirl_wisp", "forge_golem"],
+          ["phoenix_chick", "gale_hound"],
+          ["forge_golem", "thistle_ball"],
+          ["gale_hound", "fire_hawk"],
+          ["gale_hound", "crimson_wolf"],
+          ["thistle_ball", "phoenix"],
+          ["fire_hawk", "lava_salamander"],
+          ["crimson_wolf", "magma_titan"],
+          ["magma_titan", "volcano_serpent"],
+          ["volcano_serpent", "eternal_flame"],
+          ["eternal_flame", "sandstorm_eagle"],
+          ["flame_swarm", "cinder_beetle"],
+          ["whirl_wisp", "cinder_beetle"],
+          ["thistle_ball", "whirl_wisp"]
+        ],
+        "features": [
+          {"kind": "landmark", "style": "mesa", "pos": [0.62,0.16], "scale": 1.2},
+          {"kind": "landmark", "style": "mesa", "pos": [0.74,0.22], "scale": 0.85},
+          {"kind": "lake", "pos": [0.35,0.82], "size": [56,22]},
+          {"kind": "label", "pos": [0.35,0.89], "text": "Serap Vahası"},
+          {"kind": "label", "pos": [0.68,0.32], "text": "Kızıl Kanyon"},
+          {"kind": "label", "pos": [0.86,0.66], "text": "Kum Denizi"}
+        ]
+      }
+    },
+    {
+      "id": "crystal_caves",
+      "name": "Kristal Mağaralar",
+      "text": "Çölün kuzeyinde yeraltına inen ışıltılı galeriler. Toprak ve Elektrik yaratıkları; sarsıntılar ve yer altı fırtınaları sık.",
+      "level": 4,
+      "biome": "caves",
+      "unlock": {"kind": "finals", "regions": ["crimson_desert"]},
+      "elements": ["earth", "electric"],
+      "climate": {"quake": 3, "stormy": 2.5, "calm": 2, "foggy": 1.5, "drought": 1},
+      "buff": {
+        "text": "Elektrik yaratıkları +%5 hasar.",
+        "modifiers": [{"kind": "incomePct", "pct": 5, "filter": {"element": "electric"}}]
+      },
+      "area": [2500,850,1200,720],
+      "map": {
+        "camp": [0.22,0.92],
+        "paths": [
+          ["camp", "clay_golem"],
+          ["camp", "boulder_beetle"],
+          ["boulder_beetle", "copper_worm"],
+          ["clay_golem", "zap_beetle"],
+          ["clay_golem", "crystal_golem"],
+          ["copper_worm", "iron_tortoise"],
+          ["crystal_golem", "capacitor_golem"],
+          ["zap_beetle", "quake_mole"],
+          ["zap_beetle", "granite_golem"],
+          ["quake_mole", "magnet_golem"],
+          ["quake_mole", "mountain_tortoise"],
+          ["mountain_tortoise", "conductor_crab"],
+          ["mountain_tortoise", "stone_colossus"],
+          ["mountain_tortoise", "storm_colossus"],
+          ["storm_colossus", "plasma_serpent"],
+          ["capacitor_golem", "copper_worm"],
+          ["magnet_golem", "crystal_golem"]
+        ],
+        "features": [
+          {"kind": "landmark", "style": "crystal", "pos": [0.5,0.42], "scale": 1.1},
+          {"kind": "landmark", "style": "crystal", "pos": [0.86,0.14], "scale": 0.9},
+          {"kind": "lake", "pos": [0.78,0.8], "size": [48,18]},
+          {"kind": "label", "pos": [0.5,0.53], "text": "Işıltı Galerisi"},
+          {"kind": "label", "pos": [0.78,0.88], "text": "Yankı Gölü"}
+        ]
+      }
+    },
+    {
+      "id": "mist_marsh",
+      "name": "Sis Bataklığı",
+      "text": "Yaylanın doğusunda, sisin hiç kalkmadığı bataklık ve batık bir tapınak. Su ve Elektrik yaratıklarıyla hayaletler dolaşır.",
+      "level": 4,
+      "biome": "marsh",
+      "unlock": {"kind": "finals", "regions": ["storm_plateau"]},
+      "elements": ["water", "electric"],
+      "climate": {"foggy": 3.5, "rainy": 3, "stormy": 2, "calm": 1.5},
+      "buff": {
+        "text": "Ghost ve Serpent yaratıkları +%5 hasar.",
+        "modifiers": [{"kind": "incomePct", "pct": 5, "filter": {"anyOf": [{"type": "ghost"}, {"type": "serpent"}]}}]
+      },
+      "area": [1640,60,1180,740],
+      "map": {
+        "camp": [0.05,0.6],
+        "paths": [
+          ["camp", "volt_mouse"],
+          ["camp", "elder_tortoise"],
+          ["camp", "spark_coil"],
+          ["spark_coil", "mist_ghost"],
+          ["spark_coil", "kelp_guardian"],
+          ["volt_mouse", "tide_caller"],
+          ["mist_ghost", "whirl_octopus"],
+          ["mist_ghost", "surge_weasel"],
+          ["kelp_guardian", "coil_tortoise"],
+          ["surge_weasel", "electric_eel"],
+          ["coil_tortoise", "abyss_angler"],
+          ["electric_eel", "vortex_spirit"],
+          ["electric_eel", "lightning_wisp"],
+          ["abyss_angler", "sea_dragon"],
+          ["sea_dragon", "mist_queen"],
+          ["lightning_wisp", "raijin_wolf"],
+          ["mist_ghost", "volt_mouse"],
+          ["kelp_guardian", "whirl_octopus"],
+          ["tide_caller", "mist_ghost"],
+          ["raijin_wolf", "vortex_spirit"]
+        ],
+        "features": [
+          {"kind": "lake", "pos": [0.55,0.5], "size": [90,34]},
+          {"kind": "lake", "pos": [0.3,0.2], "size": [40,16]},
+          {"kind": "landmark", "style": "ruin", "pos": [0.82,0.62]},
+          {"kind": "label", "pos": [0.55,0.59], "text": "Sis Gölü"},
+          {"kind": "label", "pos": [0.82,0.72], "text": "Batık Tapınak"}
+        ]
+      }
+    },
+    {
+      "id": "dragon_peak",
+      "name": "Ejder Zirvesi",
+      "text": "Dünyanın tepesi: karlı sivri kayalar, ejder yuvaları ve her havanın aynı gün değiştiği gök kapısı. Bilinen toprakların en güçlü yaratıkları burada.",
+      "level": 5,
+      "biome": "summit",
+      "unlock": {"kind": "finals", "regions": ["crystal_caves", "mist_marsh"]},
+      "elements": ["fire", "wind", "electric"],
+      "climate": {"stormy": 2, "windy": 2, "sunny": 2, "quake": 1.5, "rainy": 1, "foggy": 1, "drought": 1, "calm": 1},
+      "buff": {
+        "text": "Dragon yaratıkları +%10 hasar.",
+        "modifiers": [{"kind": "incomePct", "pct": 10, "filter": {"type": "dragon"}}]
+      },
+      "area": [2950,60,1350,720],
+      "map": {
+        "camp": [0.06,0.88],
+        "paths": [
+          ["camp", "wyvern"],
+          ["wyvern", "fire_wisp"],
+          ["fire_wisp", "seed_finch"],
+          ["wyvern", "cyclone_ferret"],
+          ["fire_wisp", "sky_whale_calf"],
+          ["seed_finch", "arc_lynx"],
+          ["sky_whale_calf", "tornado_dragon"],
+          ["sky_whale_calf", "tension_lizard"],
+          ["tornado_dragon", "dynamo_hamster"],
+          ["tension_lizard", "cinder_drake"],
+          ["dynamo_hamster", "volcano_tortoise"],
+          ["cinder_drake", "swarm_mother"],
+          ["volcano_tortoise", "cloud_dragon"],
+          ["swarm_mother", "tempest_dragon"],
+          ["swarm_mother", "thunder_dragon"],
+          ["wyvern", "seed_finch"],
+          ["sky_whale_calf", "seed_finch"],
+          ["arc_lynx", "cyclone_ferret"],
+          ["volcano_tortoise", "cinder_drake"],
+          ["cloud_dragon", "thunder_dragon"]
+        ],
+        "features": [
+          {"kind": "landmark", "style": "snowpeak", "pos": [0.5,0.14], "scale": 1.3},
+          {"kind": "landmark", "style": "snowpeak", "pos": [0.62,0.2], "scale": 0.95},
+          {"kind": "landmark", "style": "snowpeak", "pos": [0.38,0.22], "scale": 0.8},
+          {"kind": "label", "pos": [0.5,0.33], "text": "Gök Kapısı"},
+          {"kind": "label", "pos": [0.88,0.9], "text": "Ejder Yuvası"}
+        ]
+      }
+    }
+  ]
+}

@@ -1,11 +1,11 @@
+import { useHunt } from '../../state/hunt.ts'
 import { useNav } from '../../state/nav.ts'
-import { useRun } from '../../state/run.ts'
 import { content } from '../content.ts'
-import { TUTORIAL, type TutorialRound } from './script.ts'
+import { TUTORIAL, TUTORIAL_HUNT, type TutorialRound } from './script.ts'
 
-/** Eğitimi baştan başlatır ve oyun ekranına geçer (ana menü, rehber ve tamamlama ekranı kullanır). */
+/** Eğitimi baştan başlatır ve av ekranına geçer (ana menü, rehber ve tamamlama ekranı kullanır). */
 export function startTutorial() {
-  useRun.getState().startTutorial(TUTORIAL.map((r) => r.cards.map((id) => content.card(id))))
+  useHunt.getState().startTutorial(TUTORIAL_HUNT, TUTORIAL.map((r) => r.cards.map((id) => content.card(id))))
   useNav.getState().go('run')
 }
 
